@@ -35,7 +35,21 @@ class QA_Core_Admin extends QA_Core {
 	 */
 	function init_vars() {}
 
-
+	/**
+	 * Renders an admin section of display code.
+	 *
+	 * @param  string $name Name of the admin file(without extension)
+	 * @param  string $vars Array of variable name=>value that is available to the display code(optional)
+	 * @return void
+	 */
+	function render_admin( $name, $vars = array() ) {
+		foreach ( $vars as $key => $val )
+			$$key = $val;
+		if ( file_exists( "{$this->plugin_dir}ui-admin/{$name}.php" ) )
+			include "{$this->plugin_dir}ui-admin/{$name}.php";
+		else
+			echo "<p>Rendering of admin template {$this->plugin_dir}ui-admin/{$name}.php failed</p>";
+	}
 }
 endif;
 

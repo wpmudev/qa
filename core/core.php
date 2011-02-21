@@ -20,8 +20,8 @@ class QA_Core {
 	/** @var string $plugin_dir Path to plugin directory */
 	var $plugin_dir = QA_PLUGIN_DIR;
 	/** @var string $text_domain The text domain for strings localization */
-	var $text_domain = 'qa';
-	/** @var string $text_domain The key for the options array */
+	var $text_domain = 'qa_textdomain';
+	/** @var string $options_name The key for the options array */
 	var $options_name = 'qa_options';
 
 	/**
@@ -32,20 +32,27 @@ class QA_Core {
 
 		register_activation_hook( $this->plugin_dir . 'loader.php', array( $this, 'plugin_activate' ) );
 
-		add_action( 'init', array( $this, 'init_data_structures' ) );
+		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'init', array( $this, 'handle_forms' ), 11 );
+
+		add_action( 'parse_query', array( $this, 'parse_query' ) );
+
+		add_filter( 'index_template', array( $this, 'handle_template' ) );
+		add_filter( 'single_template', array( $this, 'handle_template' ) );
+		add_filter( 'archive_template', array( $this, 'handle_template' ) );
+
+		add_filter( 'wp_title', array( $this, 'wp_title' ), 10, 3 );
 	}
 
 	/**
-	 * Register post types and taxonomies.
+	 * Register post types and taxonomies and sets rewrite rules.
 	 *
 	 * For rewriting to work, taxonomies have to be registered before the post type.
-	 *
-	 * @return void
 	 */
-	function init_data_structures() {
+	function init() {
 		register_taxonomy( 'question_category', 'question', array(
 			'hierarchical' => true,
-			'rewrite' => array( 'slug' => 'questions/category' ),
+			'rewrite' => array( 'slug' => 'questions/category', 'hierarchical' => true ),
 			'labels' => array(
 				'name'			=> __( 'Question Categories', $this->text_domain ),
 				'singular_name'	=> __( 'Question Category', $this->text_domain ),
@@ -100,41 +107,142 @@ class QA_Core {
 				'not_found_in_trash'	=> __('No questions found in trash', $this->text_domain),
 			)
 		) );
+
+		global $wp;
+		$wp->add_query_var( 'ask_question' );
+		add_rewrite_rule( 'questions/ask/?$', 'index.php?ask_question=1', 'top' );
+
+		$wp->add_query_var( 'edit_question' );
+		add_rewrite_rule( 'questions/([^/]+)/edit/?$', 'index.php?question=$matches[1]&edit_question=1', 'top' );
 	}
 
 	/**
-	 * Initiate variables.
-	 *
-	 * @return void
+	 * Handles questions create/edit form submissions
 	 */
-	function init_vars() {}
+	function handle_forms() {
+		if ( !isset( $_POST['_wpnonce'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'qa_edit' ) )
+			return;
+
+		$question = array(
+			'ID' => $_POST['question_id'],
+			'post_title' => $_POST['question_title'],
+			'post_content' => $_POST['question_content'],
+			'post_type' => 'question',
+			'post_status' => 'publish'
+		);
+
+		// TODO: check for duplicate submissions and flooding
+
+		$question_id = wp_insert_post( $question );
+
+		if ( !$question_id || is_wp_error( $question_id ) ) {
+			debug( $question_id );
+			return;
+		}
+
+		wp_set_post_terms( $question_id, $_POST['question_tags'], 'question_tag' );
+
+		wp_redirect( get_permalink( $question_id ) );
+		die;
+	}
 
 	/**
-	 * Initiate variables.
-	 *
-	 * @return void
+	 * Various WP_Query manipulations
+	 */
+	function parse_query( $wp_query ) {
+		// Redirect template loading to archive-question.php rather than to archive.php
+		if ( $wp_query->get( 'question_category' ) || $wp_query->get( 'question_tag' ) ) {
+			$wp_query->set( 'post_type', 'question' );
+		}
+
+		// Force 'index' template type
+		if ( $wp_query->get( 'ask_question' ) || $wp_query->get( 'edit_question' ) ) {
+			$wp_query->init_query_flags();
+		}
+	}
+
+	/**
+	 * Load a template, with fallback to default-templates
+	 */
+	function load_template( $name ) {
+		$path = locate_template( $name );
+
+		if ( !$path ) {
+			$path = QA_PLUGIN_DIR . "default-templates/$name";
+		}
+
+		load_template( $path );
+	}
+
+	/**
+	 * Loads default templates if the current theme doesn't have them.
+	 */
+	function handle_template( $path ) {
+		$type = reset( explode( '_', current_filter() ) );
+
+		$file = basename( $path );
+
+		if ( is_question_page( 'ask' ) ) {
+			$this->load_template( 'ask-question.php' );
+		}
+		elseif ( get_query_var( 'edit_question' ) ) {
+			$this->load_template( 'edit-question.php' );
+		}
+		elseif ( 'question' == get_query_var( 'post_type' ) && "$type.php" == $file ) {
+			// A more specific template was not found, so load the default one
+			$path = $this->plugin_dir . "default-templates/$type-question.php";
+		}
+
+		return $path;
+	}
+
+	/**
+	 * Various wp_title manipulations
+	 */
+	function wp_title( $title, $sep, $seplocation ) {
+		if ( is_question_page( 'ask' ) ) {
+			$title = array( __( 'Ask a question', $this->text_domain ) );
+		}
+		elseif ( is_question_page( 'edit' ) ) {
+			$title = array( __( 'Edit question', $this->text_domain ) );
+		}
+
+		if ( is_array( $title ) ) {
+			if ( 'right' == $seplocation )
+				array_push( $title, " $sep " );
+			else
+				array_unshift( $title, " $sep " );
+
+			$title = implode( '', $title );
+		}
+
+		return $title;
+	}
+
+	/**
+	 * Initiate modules.
 	 */
 	function init_modules() {
-		include_once $this->plugin_dir . 'core/admin.php';
-		new QA_Core_Admin();
+		include_once $this->plugin_dir . 'core/template-tags.php';
+
+		if ( is_admin() ) {
+			include_once $this->plugin_dir . 'core/admin.php';
+			new QA_Core_Admin();
+		}
 	}
 
 	/**
 	 * Loads "-[xx_XX].mo" language file from the "languages" directory
-	 * @return void
 	 */
 	function load_plugin_textdomain() {
-		$plugin_dir = $this->plugin_dir . 'languages';
-		load_plugin_textdomain( $this->text_domain, null, $plugin_dir );
+		load_plugin_textdomain( $this->text_domain, null, $this->plugin_dir . 'languages' );
 	}
 
 	/**
 	 * Activate plugin.
-	 *
-	 * @return void
 	 */
 	function plugin_activate() {
-		$this->init_data_structures();
+		$this->init();
 		flush_rewrite_rules();
 	}
 
@@ -172,23 +280,6 @@ class QA_Core {
 		else
 			return $options;
 	}
-
-	/**
-	 * Renders an admin section of display code.
-	 *
-	 * @param  string $name Name of the admin file(without extension)
-	 * @param  string $vars Array of variable name=>value that is available to the display code(optional)
-	 * @return void
-	 */
-	function render_admin( $name, $vars = array() ) {
-		foreach ( $vars as $key => $val )
-			$$key = $val;
-		if ( file_exists( "{$this->plugin_dir}ui-admin/{$name}.php" ) )
-			include "{$this->plugin_dir}ui-admin/{$name}.php";
-		else
-			echo "<p>Rendering of admin template {$this->plugin_dir}ui-admin/{$name}.php failed</p>";
-	}
-
 }
 endif;
 
