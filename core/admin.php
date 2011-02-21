@@ -13,27 +13,27 @@ if ( !class_exists('QA_Core_Admin') ):
  */
 class QA_Core_Admin extends QA_Core {
 
-    /**
-     * Constructor.
-     */
-    function QA_Core_Admin() {
-        $this->init();
-    }
+	/**
+	 * Constructor.
+	 */
+	function QA_Core_Admin() {
+		$this->init();
+	}
 
-    /**
-     * Intiate plugin.
-     *
-     * @return void
-     */
-    function init() {
-    }
+	/**
+	 * Intiate plugin.
+	 *
+	 * @return void
+	 */
+	function init() {
+	}
 
-    /**
-     * Initiate variables.
-     *
-     * @return void
-     */
-    function init_vars() {}
+	/**
+	 * Initiate variables.
+	 *
+	 * @return void
+	 */
+	function init_vars() {}
 
 
 }
