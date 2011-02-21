@@ -21,7 +21,7 @@ class QA_Core_Admin extends QA_Core {
 	}
 
 	/**
-	 * Intiate plugin.
+	 * Intiate hooks. 
 	 *
 	 * @return void
 	 */

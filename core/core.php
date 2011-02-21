@@ -21,7 +21,7 @@ class QA_Core {
 	var $plugin_dir = QA_PLUGIN_DIR;
 	/** @var string $text_domain The text domain for strings localization */
 	var $text_domain = 'qa';
-	/** @var string $text_domain The key for the options array */
+	/** @var string $options_name The key for the options array */
 	var $options_name = 'qa_options';
 
 	/**
