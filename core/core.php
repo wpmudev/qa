@@ -36,6 +36,8 @@ class QA_Core {
 	/**
 	 * Register post types and taxonomies.
 	 *
+	 * For rewriting to work, taxonomies have to be registered before the post type.
+	 *
 	 * @return void
 	 */
 	function init_data_structure() {
@@ -96,6 +98,35 @@ class QA_Core {
 				'not_found_in_trash'	=> __('No questions found in trash', $this->text_domain),
 			)
 		) );
+	}
+
+	/**
+	 * Insert an array into another array before/after a certain key
+	 *
+	 * @see {@link http://gist.github.com/gists/588429/}
+	 *
+	 * @param array $array The initial array
+	 * @param array $pairs The array to insert
+	 * @param string $key The certain key
+	 * @param string $position Wether to insert the array before or after the key
+	 * @return array
+	 */
+	function array_insert( $array, $pairs, $key, $position = 'after' ) {
+		$key_pos = array_search( $key, array_keys( $array ) );
+
+		if ( 'after' == $position )
+			$key_pos++;
+
+		if ( false !== $key_pos ) {
+			$result = array_slice( $array, 0, $key_pos );
+			$result = array_merge( $result, $pairs );
+			$result = array_merge( $result, array_slice( $array, $key_pos ) );
+		}
+		else {
+			$result = array_merge( $array, $pairs );
+		}
+
+		return $result;
 	}
 
 	/**
