@@ -30,7 +30,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
+/* define plugin version */
+define ( 'QA_PLUGIN_URL', 1.0.0 ); 
 /* define module directory url */
 define ( 'QA_PLUGIN_URL', WP_PLUGIN_URL . '/' . str_replace( basename(__FILE__), '', plugin_basename(__FILE__) ));
 /* define module directory path */ 
 define ( 'QA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . str_replace( basename(__FILE__), '', plugin_basename(__FILE__) ));
+
+// start plugin
+include_once 'core/core.php';
