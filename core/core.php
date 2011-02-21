@@ -21,12 +21,15 @@ class QA_Core {
     var $plugin_dir = QA_PLUGIN_DIR;
     /** @var string $text_domain The text domain for strings localization */
     var $text_domain = 'qa';
+    /** @var string $text_domain The text domain for strings localization */
+    var $options_name = 'qa_options';
 
     /**
      * Constructor.
      */
     function QA_Core() {
         $this->init();
+        $this->init_modules();
     }
 
     /**
@@ -42,6 +45,16 @@ class QA_Core {
      * @return void
      */
     function init_vars() {}
+
+    /**
+     * Initiate variables.
+     *
+     * @return void
+     */
+    function init_modules() {
+        include_once $this->plugin_dir . 'core/admin.php';
+        new QA_Core_Admin(); 
+    }
 
     /**
      * Loads "-[xx_XX].mo" language file from the "languages" directory
