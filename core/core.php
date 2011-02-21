@@ -30,7 +30,9 @@ class QA_Core {
 	function QA_Core() {
 		$this->init_modules();
 
-		add_action( 'init', array( $this, 'init_data_structure' ) );
+		register_activation_hook( $this->plugin_dir . 'loader.php', array( $this, 'plugin_activate' ) );
+
+		add_action( 'init', array( $this, 'init_data_structures' ) );
 	}
 
 	/**
@@ -40,7 +42,7 @@ class QA_Core {
 	 *
 	 * @return void
 	 */
-	function init_data_structure() {
+	function init_data_structures() {
 		register_taxonomy( 'question_category', 'question', array(
 			'hierarchical' => true,
 			'rewrite' => array( 'slug' => 'questions/category' ),
@@ -101,35 +103,6 @@ class QA_Core {
 	}
 
 	/**
-	 * Insert an array into another array before/after a certain key
-	 *
-	 * @see {@link http://gist.github.com/gists/588429/}
-	 *
-	 * @param array $array The initial array
-	 * @param array $pairs The array to insert
-	 * @param string $key The certain key
-	 * @param string $position Wether to insert the array before or after the key
-	 * @return array
-	 */
-	function array_insert( $array, $pairs, $key, $position = 'after' ) {
-		$key_pos = array_search( $key, array_keys( $array ) );
-
-		if ( 'after' == $position )
-			$key_pos++;
-
-		if ( false !== $key_pos ) {
-			$result = array_slice( $array, 0, $key_pos );
-			$result = array_merge( $result, $pairs );
-			$result = array_merge( $result, array_slice( $array, $key_pos ) );
-		}
-		else {
-			$result = array_merge( $array, $pairs );
-		}
-
-		return $result;
-	}
-
-	/**
 	 * Initiate variables.
 	 *
 	 * @return void
@@ -156,19 +129,14 @@ class QA_Core {
 	}
 
 	/**
-	 *
-	 *
-	 * @return void
-	 */
-	function plugin_activate() { }
-
-	/**
-	 * Deactivate plugin.
+	 * Activate plugin.
 	 *
 	 * @return void
 	 */
-	function plugin_deactivate() {}
-
+	function plugin_activate() {
+		$this->init_data_structures();
+		flush_rewrite_rules();
+	}
 
 	/**
 	 * Save plugin options.
