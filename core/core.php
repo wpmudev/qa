@@ -3,12 +3,12 @@
 if ( !class_exists('QA_Core') ):
 
 /**
- * QA_Core 
- * 
+ * QA_Core
+ *
  * @package QA
  * @copyright Incsub 2007-2011 {@link http://incsub.com}
- * @author 
- * @author Ivan Shaovchev (Incsub) {@link http://ivan.sh} 
+ * @author
+ * @author Ivan Shaovchev (Incsub) {@link http://ivan.sh}
  * @license GNU General Public License (Version 2 - GPLv2) {@link http://www.gnu.org/licenses/gpl-2.0.html}
  */
 class QA_Core {
@@ -28,16 +28,75 @@ class QA_Core {
 	 * Constructor.
 	 */
 	function QA_Core() {
-		$this->init();
 		$this->init_modules();
+
+		add_action( 'init', array( $this, 'init_data_structure' ) );
 	}
 
 	/**
-	 * Intiate plugin.
+	 * Register post types and taxonomies.
 	 *
 	 * @return void
 	 */
-	function init() {}
+	function init_data_structure() {
+		register_taxonomy( 'question_category', 'question', array(
+			'hierarchical' => true,
+			'rewrite' => array( 'slug' => 'questions/category' ),
+			'labels' => array(
+				'name' => __( 'Question Categories', 'qa-textdomain' ),
+				'singular_name' => __( 'Question Category', 'qa-textdomain' ),
+				'search_items' => __( 'Search Question Categories', 'qa-textdomain' ),
+				'all_items' => __( 'All Question Categories', 'qa-textdomain' ),
+				'parent_item' => __( 'Parent Question Category', 'qa-textdomain' ),
+				'parent_item_colon' => __( 'Parent Question Category:', 'qa-textdomain' ),
+				'edit_item' => __( 'Edit Question Category', 'qa-textdomain' ),
+				'update_item' => __( 'Update Question Category', 'qa-textdomain' ),
+				'add_new_item' => __( 'Add New Question Category', 'qa-textdomain' ),
+				'new_item_name' => __( 'New Question Category Name', 'qa-textdomain' ),
+			)
+		) );
+
+		register_taxonomy( 'question_tag', 'question', array(
+			'rewrite' => array( 'slug' => 'questions/tag' ),
+			'labels' => array(
+				'name' => __( 'Question Tags', 'qa-textdomain' ),
+				'singular_name' => __( 'Question Tag', 'qa-textdomain' ),
+				'search_items' => __( 'Search Question Tags', 'qa-textdomain' ),
+				'popular_items' => __( 'Popular Question Tags', 'qa-textdomain' ),
+				'all_items' => __( 'All Question Tags', 'qa-textdomain' ),
+				'edit_item' => __( 'Edit Question Tag', 'qa-textdomain' ),
+				'update_item' => __( 'Update Question Tag', 'qa-textdomain' ),
+				'add_new_item' => __( 'Add New Question Tag', 'qa-textdomain' ),
+				'new_item_name' => __( 'New Question Tag Name', 'qa-textdomain' ),
+				'separate_items_with_commas' => __( 'Separate question tags with commas', 'qa-textdomain' ),
+				'add_or_remove_items' => __( 'Add or remove question tags', 'qa-textdomain' ),
+				'choose_from_most_used' => __( 'Choose from the most used question tags', 'qa-textdomain' ),
+			)
+		) );
+
+		register_post_type( 'question', array(
+			'public' => true,
+			'rewrite' => array( 'slug' => 'questions' ),
+			'has_archive' => true,
+
+			'capability_type' => 'post',
+
+			'supports' => array( 'title', 'editor', 'author', 'comments', 'revisions' ),
+
+			'labels' => array(
+				'name'			=> __('Questions', 'qa-textdomain'),
+				'singular_name' => __('Question', 'qa-textdomain'),
+				'add_new'		=> __('Add New', 'qa-textdomain'),
+				'add_new_item'	=> __('Add New Question', 'qa-textdomain'),
+				'edit_item'		=> __('Edit Question', 'qa-textdomain'),
+				'new_item'		=> __('New Question', 'qa-textdomain'),
+				'view_item'		=> __('View Question', 'qa-textdomain'),
+				'search_items'	=> __('Search Questions', 'qa-textdomain'),
+				'not_found'		=> __('No questions found', 'qa-textdomain'),
+				'not_found_in_trash' => __('No questions found in trash', 'qa-textdomain'),
+			)
+		) );
+	}
 
 	/**
 	 * Initiate variables.
@@ -53,7 +112,7 @@ class QA_Core {
 	 */
 	function init_modules() {
 		include_once $this->plugin_dir . 'core/admin.php';
-		new QA_Core_Admin(); 
+		new QA_Core_Admin();
 	}
 
 	/**
@@ -66,14 +125,14 @@ class QA_Core {
 	}
 
 	/**
-	 * 
+	 *
 	 *
 	 * @return void
 	 */
 	function plugin_activate() { }
 
 	/**
-	 * Deactivate plugin. 
+	 * Deactivate plugin.
 	 *
 	 * @return void
 	 */
@@ -88,9 +147,9 @@ class QA_Core {
 	 */
 	function save_options( $params ) {
 		if ( wp_verify_nonce( $params['_wpnonce'], 'verify' ) ) {
-			// Remove unwanted parameters 
+			// Remove unwanted parameters
 			unset( $params['_wpnonce'], $params['_wp_http_referer'], $params['save'] );
-			// Update options by merging the old ones 
+			// Update options by merging the old ones
 			$options = $this->get_options();
 			$options = array_merge( $options, array( $params['key'] => $params ) );
 			update_option( $this->options_name, $options );
@@ -108,7 +167,7 @@ class QA_Core {
 	function get_options( $key = null ) {
 		$options = get_option( $this->options_name );
 		$options = is_array( $options ) ? $options : array();
-		// Check if specific plugin option is requested and return it 
+		// Check if specific plugin option is requested and return it
 		if ( isset( $key ) && array_key_exists( $key, $options ) )
 			return $options[$key];
 		else
