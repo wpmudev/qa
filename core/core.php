@@ -21,7 +21,7 @@ class QA_Core {
 	var $plugin_dir = QA_PLUGIN_DIR;
 	/** @var string $text_domain The text domain for strings localization */
 	var $text_domain = 'qa';
-	/** @var string $text_domain The text domain for strings localization */
+	/** @var string $text_domain The key for the options array */
 	var $options_name = 'qa_options';
 
 	/**
@@ -43,34 +43,34 @@ class QA_Core {
 			'hierarchical' => true,
 			'rewrite' => array( 'slug' => 'questions/category' ),
 			'labels' => array(
-				'name' => __( 'Question Categories', 'qa-textdomain' ),
-				'singular_name' => __( 'Question Category', 'qa-textdomain' ),
-				'search_items' => __( 'Search Question Categories', 'qa-textdomain' ),
-				'all_items' => __( 'All Question Categories', 'qa-textdomain' ),
-				'parent_item' => __( 'Parent Question Category', 'qa-textdomain' ),
-				'parent_item_colon' => __( 'Parent Question Category:', 'qa-textdomain' ),
-				'edit_item' => __( 'Edit Question Category', 'qa-textdomain' ),
-				'update_item' => __( 'Update Question Category', 'qa-textdomain' ),
-				'add_new_item' => __( 'Add New Question Category', 'qa-textdomain' ),
-				'new_item_name' => __( 'New Question Category Name', 'qa-textdomain' ),
+				'name'			=> __( 'Question Categories', $this->text_domain ),
+				'singular_name'	=> __( 'Question Category', $this->text_domain ),
+				'search_items'	=> __( 'Search Question Categories', $this->text_domain ),
+				'all_items'		=> __( 'All Question Categories', $this->text_domain ),
+				'parent_item'	=> __( 'Parent Question Category', $this->text_domain ),
+				'parent_item_colon'	=> __( 'Parent Question Category:', $this->text_domain ),
+				'edit_item'		=> __( 'Edit Question Category', $this->text_domain ),
+				'update_item'	=> __( 'Update Question Category', $this->text_domain ),
+				'add_new_item'	=> __( 'Add New Question Category', $this->text_domain ),
+				'new_item_name'	=> __( 'New Question Category Name', $this->text_domain ),
 			)
 		) );
 
 		register_taxonomy( 'question_tag', 'question', array(
 			'rewrite' => array( 'slug' => 'questions/tag' ),
 			'labels' => array(
-				'name' => __( 'Question Tags', 'qa-textdomain' ),
-				'singular_name' => __( 'Question Tag', 'qa-textdomain' ),
-				'search_items' => __( 'Search Question Tags', 'qa-textdomain' ),
-				'popular_items' => __( 'Popular Question Tags', 'qa-textdomain' ),
-				'all_items' => __( 'All Question Tags', 'qa-textdomain' ),
-				'edit_item' => __( 'Edit Question Tag', 'qa-textdomain' ),
-				'update_item' => __( 'Update Question Tag', 'qa-textdomain' ),
-				'add_new_item' => __( 'Add New Question Tag', 'qa-textdomain' ),
-				'new_item_name' => __( 'New Question Tag Name', 'qa-textdomain' ),
-				'separate_items_with_commas' => __( 'Separate question tags with commas', 'qa-textdomain' ),
-				'add_or_remove_items' => __( 'Add or remove question tags', 'qa-textdomain' ),
-				'choose_from_most_used' => __( 'Choose from the most used question tags', 'qa-textdomain' ),
+				'name'			=> __( 'Question Tags', $this->text_domain ),
+				'singular_name'	=> __( 'Question Tag', $this->text_domain ),
+				'search_items'	=> __( 'Search Question Tags', $this->text_domain ),
+				'popular_items'	=> __( 'Popular Question Tags', $this->text_domain ),
+				'all_items'		=> __( 'All Question Tags', $this->text_domain ),
+				'edit_item'		=> __( 'Edit Question Tag', $this->text_domain ),
+				'update_item'	=> __( 'Update Question Tag', $this->text_domain ),
+				'add_new_item'	=> __( 'Add New Question Tag', $this->text_domain ),
+				'new_item_name'	=> __( 'New Question Tag Name', $this->text_domain ),
+				'separate_items_with_commas'	=> __( 'Separate question tags with commas', $this->text_domain ),
+				'add_or_remove_items'			=> __( 'Add or remove question tags', $this->text_domain ),
+				'choose_from_most_used'			=> __( 'Choose from the most used question tags', $this->text_domain ),
 			)
 		) );
 
@@ -84,16 +84,16 @@ class QA_Core {
 			'supports' => array( 'title', 'editor', 'author', 'comments', 'revisions' ),
 
 			'labels' => array(
-				'name'			=> __('Questions', 'qa-textdomain'),
-				'singular_name' => __('Question', 'qa-textdomain'),
-				'add_new'		=> __('Add New', 'qa-textdomain'),
-				'add_new_item'	=> __('Add New Question', 'qa-textdomain'),
-				'edit_item'		=> __('Edit Question', 'qa-textdomain'),
-				'new_item'		=> __('New Question', 'qa-textdomain'),
-				'view_item'		=> __('View Question', 'qa-textdomain'),
-				'search_items'	=> __('Search Questions', 'qa-textdomain'),
-				'not_found'		=> __('No questions found', 'qa-textdomain'),
-				'not_found_in_trash' => __('No questions found in trash', 'qa-textdomain'),
+				'name'			=> __('Questions', $this->text_domain),
+				'singular_name'	=> __('Question', $this->text_domain),
+				'add_new'		=> __('Add New', $this->text_domain),
+				'add_new_item'	=> __('Add New Question', $this->text_domain),
+				'edit_item'		=> __('Edit Question', $this->text_domain),
+				'new_item'		=> __('New Question', $this->text_domain),
+				'view_item'		=> __('View Question', $this->text_domain),
+				'search_items'	=> __('Search Questions', $this->text_domain),
+				'not_found'		=> __('No questions found', $this->text_domain),
+				'not_found_in_trash'	=> __('No questions found in trash', $this->text_domain),
 			)
 		) );
 	}
