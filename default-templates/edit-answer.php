@@ -4,8 +4,11 @@
 
 <?php the_qa_menu(); ?>
 
-<div id="ask-question">
-<?php the_question_form(); ?>
+<?php the_post(); ?>
+
+<div id="answer-form">
+	<h2><?php _e( 'Answer for ', QA_TEXTDOMAIN ); the_question_link( $post->post_parent ); ?></h2>
+	<?php the_answer_form(); ?>
 </div>
 
 </div><!--#qa-page-wrapper-->

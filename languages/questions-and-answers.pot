@@ -1,0 +1,449 @@
+# Copyright (C) 2010 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/qa\n"
+"POT-Creation-Date: 2011-05-12 17:31:21+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: core/admin.php:22
+msgid "View questions."
+msgstr ""
+
+#: core/admin.php:23
+msgid "Ask questions."
+msgstr ""
+
+#: core/admin.php:24
+msgid "Edit questions."
+msgstr ""
+
+#: core/admin.php:25
+msgid "Delete questions."
+msgstr ""
+
+#: core/admin.php:26
+msgid "Edit others' questions."
+msgstr ""
+
+#: core/admin.php:27
+msgid "Delete others' questions."
+msgstr ""
+
+#: core/admin.php:29
+msgid "View answers."
+msgstr ""
+
+#: core/admin.php:30
+msgid "Add answers."
+msgstr ""
+
+#: core/admin.php:31
+msgid "Edit answers."
+msgstr ""
+
+#: core/admin.php:32
+msgid "Delete answers."
+msgstr ""
+
+#: core/admin.php:33
+msgid "Edit others' answers."
+msgstr ""
+
+#: core/admin.php:34
+msgid "Delete others' answers."
+msgstr ""
+
+#: core/admin.php:83
+msgid "Settings"
+msgstr ""
+
+#: core/edit.php:60 core/edit.php:105
+msgid "Are you sure you want to do that?"
+msgstr ""
+
+#: core/edit.php:65
+msgid "You are not allowed to post questions"
+msgstr ""
+
+#: core/edit.php:73
+msgid "Questions must have both a title and a body."
+msgstr ""
+
+#: core/edit.php:87
+msgid "It seems that question was <a href=\"%s\">already asked</a>."
+msgstr ""
+
+#: core/edit.php:111
+msgid "You are not allowed to post answers"
+msgstr ""
+
+#: core/edit.php:121
+msgid "Answer must be associated to a question."
+msgstr ""
+
+#: core/edit.php:124
+msgid "You have to actually write something."
+msgstr ""
+
+#: core/edit.php:138
+msgid "It seems that answer was <a href=\"%s\">already given</a>."
+msgstr ""
+
+#: core/edit.php:164
+msgid "You are posting too fast. Slow down."
+msgstr ""
+
+#: core/template-tags.php:14 core/core.php:76 core/widgets.php:54
+msgid "Questions"
+msgstr ""
+
+#: core/template-tags.php:19 core/widgets.php:103
+msgid "Unanswered"
+msgstr ""
+
+#: core/template-tags.php:24
+msgid "Ask a Question"
+msgstr ""
+
+#: core/template-tags.php:57
+msgid "An error has occured while processing your submission."
+msgstr ""
+
+#: core/template-tags.php:66
+msgid "Search"
+msgstr ""
+
+#: core/template-tags.php:88
+msgid "prev"
+msgstr ""
+
+#: core/template-tags.php:110
+msgid "next"
+msgstr ""
+
+#: core/template-tags.php:130
+msgid "Y/m/d g:i:s A"
+msgstr ""
+
+#: core/template-tags.php:137
+msgid "%s ago"
+msgstr ""
+
+#: core/template-tags.php:160
+msgid "link"
+msgstr ""
+
+#: core/template-tags.php:163
+msgid "edit"
+msgstr ""
+
+#: core/template-tags.php:166
+msgid "delete"
+msgstr ""
+
+#: core/template-tags.php:209
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:222
+msgid "This question is useful and clear (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:223
+msgid "This question is unclear or not useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:233 core/template-tags.php:254
+msgid "Score"
+msgstr ""
+
+#: core/template-tags.php:243
+msgid "This answer is useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:244
+msgid "This answer is not useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:285
+msgid "Accept answer (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:293
+msgid "Accepted answer"
+msgstr ""
+
+#: core/template-tags.php:295
+msgid "accepted"
+msgstr ""
+
+#: core/template-tags.php:314
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:334 core/template-tags.php:447
+msgid "Please <a href=\"%s\">login</a> to post questions."
+msgstr ""
+
+#: core/template-tags.php:356 core/widgets.php:29
+msgid "Title:"
+msgstr ""
+
+#: core/template-tags.php:369 default-templates/single-question.php:15
+msgid "Tags:"
+msgstr ""
+
+#: core/template-tags.php:394
+msgid "1 Answer"
+msgid_plural "%d Answers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:474
+msgid "Submit"
+msgstr ""
+
+#: core/template-tags.php:476
+msgid "Register/Login and Submit"
+msgstr ""
+
+#: core/template-tags.php:478
+msgid "Login and Submit"
+msgstr ""
+
+#: core/answers.php:38
+msgid "Answers"
+msgstr ""
+
+#: core/answers.php:39 default-templates/user-question.php:52
+msgid "Answer"
+msgstr ""
+
+#: core/answers.php:40 core/core.php:78
+msgid "Add New"
+msgstr ""
+
+#: core/answers.php:41
+msgid "Add New Answer"
+msgstr ""
+
+#: core/answers.php:42
+msgid "Edit Answer"
+msgstr ""
+
+#: core/answers.php:43
+msgid "New Answer"
+msgstr ""
+
+#: core/answers.php:44
+msgid "View Answer"
+msgstr ""
+
+#: core/answers.php:45
+msgid "Search Answers"
+msgstr ""
+
+#: core/answers.php:46
+msgid "No answers found"
+msgstr ""
+
+#: core/answers.php:47
+msgid "No answers found in trash"
+msgstr ""
+
+#: core/answers.php:87
+msgid "Answers for \"%s\""
+msgstr ""
+
+#: core/answers.php:91
+msgid "By: %s"
+msgstr ""
+
+#: core/core.php:45 core/widgets.php:149
+msgid "Question Tags"
+msgstr ""
+
+#: core/core.php:46
+msgid "Question Tag"
+msgstr ""
+
+#: core/core.php:47
+msgid "Search Question Tags"
+msgstr ""
+
+#: core/core.php:48
+msgid "Popular Question Tags"
+msgstr ""
+
+#: core/core.php:49
+msgid "All Question Tags"
+msgstr ""
+
+#: core/core.php:50
+msgid "Edit Question Tag"
+msgstr ""
+
+#: core/core.php:51
+msgid "Update Question Tag"
+msgstr ""
+
+#: core/core.php:52
+msgid "Add New Question Tag"
+msgstr ""
+
+#: core/core.php:53
+msgid "New Question Tag Name"
+msgstr ""
+
+#: core/core.php:54
+msgid "Separate question tags with commas"
+msgstr ""
+
+#: core/core.php:55
+msgid "Add or remove question tags"
+msgstr ""
+
+#: core/core.php:56
+msgid "Choose from the most used question tags"
+msgstr ""
+
+#: core/core.php:77 default-templates/user-question.php:47
+msgid "Question"
+msgstr ""
+
+#: core/core.php:79
+msgid "Add New Question"
+msgstr ""
+
+#: core/core.php:80
+msgid "Edit Question"
+msgstr ""
+
+#: core/core.php:81
+msgid "New Question"
+msgstr ""
+
+#: core/core.php:82
+msgid "View Question"
+msgstr ""
+
+#: core/core.php:83
+msgid "Search Questions"
+msgstr ""
+
+#: core/core.php:84
+msgid "No questions found."
+msgstr ""
+
+#: core/core.php:85
+msgid "No questions found in trash."
+msgstr ""
+
+#: core/core.php:316
+msgid "Please login or register to vote."
+msgstr ""
+
+#: core/core.php:317
+msgid "You can't vote on your own post."
+msgstr ""
+
+#: core/core.php:329
+msgid "Ask a question"
+msgstr ""
+
+#: core/core.php:337
+msgid "User: %s"
+msgstr ""
+
+#: core/widgets.php:53
+msgid "List of questions"
+msgstr ""
+
+#: core/widgets.php:97
+msgid "Which:"
+msgstr ""
+
+#: core/widgets.php:101
+msgid "Recent"
+msgstr ""
+
+#: core/widgets.php:102
+msgid "Popular"
+msgstr ""
+
+#: core/widgets.php:116
+msgid "Number of questions to show:"
+msgstr ""
+
+#: core/widgets.php:148
+msgid "The most popular question tags in cloud format"
+msgstr ""
+
+#: core/widgets.php:178
+msgid "%s question"
+msgid_plural "%s questions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: default-templates/user-question.php:14
+msgid "Name"
+msgstr ""
+
+#: default-templates/user-question.php:18
+msgid "Member for"
+msgstr ""
+
+#: default-templates/user-question.php:22
+msgid "Website"
+msgstr ""
+
+#: default-templates/single-question.php:16
+msgid "asked"
+msgstr ""
+
+#: default-templates/single-question.php:33
+msgid "Your Answer"
+msgstr ""
+
+#: default-templates/edit-answer.php:10
+msgid "Answer for "
+msgstr ""
+
+#: ui-admin/navigation.php:7
+msgid "General"
+msgstr ""
+
+#: ui-admin/navigation.php:15
+msgid "General Settings"
+msgstr ""
+
+#: ui-admin/message.php:3
+msgid "Settings Saved."
+msgstr ""
+
+#: ui-admin/settings-general.php:18
+msgid "Assign Capabilities"
+msgstr ""
+
+#: ui-admin/settings-general.php:27
+msgid "Select a role to which you want to assign WP Q&A capabilities."
+msgstr ""
+
+#: ui-admin/settings-general.php:45
+msgid "Moderation"
+msgstr ""
+
+#: ui-admin/settings-general.php:49
+msgid "Answers are held for moderation."
+msgstr ""

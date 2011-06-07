@@ -1,168 +1,240 @@
 <?php
 
-if ( !class_exists('QA_Core') ):
-
 /**
- * QA_Core
- *
- * @package QA
- * @copyright Incsub 2007-2011 {@link http://incsub.com}
- * @author
- * @author Ivan Shaovchev (Incsub) {@link http://ivan.sh}
- * @license GNU General Public License (Version 2 - GPLv2) {@link http://www.gnu.org/licenses/gpl-2.0.html}
+ * Takes care of the 'question' post type, rewrite rules, queries and templates.
  */
 class QA_Core {
 
-	/** @var string $plugin_version plugin version */
-	var $plugin_version = QA_VERSION;
-	/** @var string $plugin_url Plugin URL */
-	var $plugin_url = QA_PLUGIN_URL;
-	/** @var string $plugin_dir Path to plugin directory */
-	var $plugin_dir = QA_PLUGIN_DIR;
-	/** @var string $text_domain The text domain for strings localization */
-	var $text_domain = 'qa_textdomain';
-	/** @var string $options_name The key for the options array */
-	var $options_name = 'qa_options';
-
-	/**
-	 * Constructor.
-	 */
 	function QA_Core() {
-		$this->init_modules();
+		register_activation_hook( QA_PLUGIN_DIR . 'loader.php', array( &$this, 'flush_rules' ) );
 
-		register_activation_hook( $this->plugin_dir . 'loader.php', array( $this, 'plugin_activate' ) );
+		add_action( 'plugins_loaded', array( &$this, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( &$this, 'init' ) );
 
-		add_action( 'init', array( $this, 'init' ) );
-		add_action( 'init', array( $this, 'handle_forms' ), 11 );
+		if ( !is_admin() ) {
+			add_action( 'parse_query', array( &$this, 'parse_query' ) );
+		}
+		add_filter( 'posts_clauses', array( &$this, 'posts_clauses' ), 10, 2 );
 
-		add_action( 'parse_query', array( $this, 'parse_query' ) );
+		add_action( 'template_redirect', array( &$this, 'load_default_style' ), 11 );
+		add_action( 'template_redirect', array( &$this, 'template_redirect' ), 12 );
 
-		add_filter( 'index_template', array( $this, 'handle_template' ) );
-		add_filter( 'single_template', array( $this, 'handle_template' ) );
-		add_filter( 'archive_template', array( $this, 'handle_template' ) );
+		add_filter( 'single_template', array( &$this, 'handle_template' ) );
+		add_filter( 'archive_template', array( &$this, 'handle_template' ) );
 
-		add_filter( 'wp_title', array( $this, 'wp_title' ), 10, 3 );
+		add_filter( 'wp_title', array( &$this, 'wp_title' ), 10, 3 );
+		add_filter( 'body_class', array( &$this, 'body_class' ) );
 	}
 
 	/**
-	 * Register post types and taxonomies and sets rewrite rules.
-	 *
-	 * For rewriting to work, taxonomies have to be registered before the post type.
+	 * Register the 'question' post type and related taxonomies and rewrite rules.
 	 */
 	function init() {
-		register_taxonomy( 'question_category', 'question', array(
-			'hierarchical' => true,
-			'rewrite' => array( 'slug' => 'questions/category', 'hierarchical' => true ),
-			'labels' => array(
-				'name'			=> __( 'Question Categories', $this->text_domain ),
-				'singular_name'	=> __( 'Question Category', $this->text_domain ),
-				'search_items'	=> __( 'Search Question Categories', $this->text_domain ),
-				'all_items'		=> __( 'All Question Categories', $this->text_domain ),
-				'parent_item'	=> __( 'Parent Question Category', $this->text_domain ),
-				'parent_item_colon'	=> __( 'Parent Question Category:', $this->text_domain ),
-				'edit_item'		=> __( 'Edit Question Category', $this->text_domain ),
-				'update_item'	=> __( 'Update Question Category', $this->text_domain ),
-				'add_new_item'	=> __( 'Add New Question Category', $this->text_domain ),
-				'new_item_name'	=> __( 'New Question Category Name', $this->text_domain ),
-			)
-		) );
-
+		// Has to come before the 'question' post type definition
 		register_taxonomy( 'question_tag', 'question', array(
-			'rewrite' => array( 'slug' => 'questions/tag' ),
+			'rewrite' => array( 'slug' => 'questions/tags', 'with_front' => false ),
+
+			'capabilities' => array(
+				'manage_terms' => 'edit_others_questions',
+				'edit_terms' => 'edit_others_questions',
+				'delete_terms' => 'edit_others_questions',
+				'assign_terms' => 'edit_published_questions'
+			),
+
 			'labels' => array(
-				'name'			=> __( 'Question Tags', $this->text_domain ),
-				'singular_name'	=> __( 'Question Tag', $this->text_domain ),
-				'search_items'	=> __( 'Search Question Tags', $this->text_domain ),
-				'popular_items'	=> __( 'Popular Question Tags', $this->text_domain ),
-				'all_items'		=> __( 'All Question Tags', $this->text_domain ),
-				'edit_item'		=> __( 'Edit Question Tag', $this->text_domain ),
-				'update_item'	=> __( 'Update Question Tag', $this->text_domain ),
-				'add_new_item'	=> __( 'Add New Question Tag', $this->text_domain ),
-				'new_item_name'	=> __( 'New Question Tag Name', $this->text_domain ),
-				'separate_items_with_commas'	=> __( 'Separate question tags with commas', $this->text_domain ),
-				'add_or_remove_items'			=> __( 'Add or remove question tags', $this->text_domain ),
-				'choose_from_most_used'			=> __( 'Choose from the most used question tags', $this->text_domain ),
+				'name'			=> __( 'Question Tags', QA_TEXTDOMAIN ),
+				'singular_name'	=> __( 'Question Tag', QA_TEXTDOMAIN ),
+				'search_items'	=> __( 'Search Question Tags', QA_TEXTDOMAIN ),
+				'popular_items'	=> __( 'Popular Question Tags', QA_TEXTDOMAIN ),
+				'all_items'		=> __( 'All Question Tags', QA_TEXTDOMAIN ),
+				'edit_item'		=> __( 'Edit Question Tag', QA_TEXTDOMAIN ),
+				'update_item'	=> __( 'Update Question Tag', QA_TEXTDOMAIN ),
+				'add_new_item'	=> __( 'Add New Question Tag', QA_TEXTDOMAIN ),
+				'new_item_name'	=> __( 'New Question Tag Name', QA_TEXTDOMAIN ),
+				'separate_items_with_commas'	=> __( 'Separate question tags with commas', QA_TEXTDOMAIN ),
+				'add_or_remove_items'			=> __( 'Add or remove question tags', QA_TEXTDOMAIN ),
+				'choose_from_most_used'			=> __( 'Choose from the most used question tags', QA_TEXTDOMAIN ),
 			)
 		) );
 
 		register_post_type( 'question', array(
 			'public' => true,
-			'rewrite' => array( 'slug' => 'questions' ),
+			'rewrite' => array( 'slug' => 'questions', 'with_front' => false ),
 			'has_archive' => true,
 
-			'capability_type' => 'post',
+			'capability_type' => 'question',
+			'capabilities' => array(
+				'read' => 'read_questions',
+				'edit_posts' => 'edit_published_questions',
+				'delete_posts' => 'delete_published_questions',
+			),
+			'map_meta_cap' => true,
 
 			'supports' => array( 'title', 'editor', 'author', 'comments', 'revisions' ),
 
 			'labels' => array(
-				'name'			=> __('Questions', $this->text_domain),
-				'singular_name'	=> __('Question', $this->text_domain),
-				'add_new'		=> __('Add New', $this->text_domain),
-				'add_new_item'	=> __('Add New Question', $this->text_domain),
-				'edit_item'		=> __('Edit Question', $this->text_domain),
-				'new_item'		=> __('New Question', $this->text_domain),
-				'view_item'		=> __('View Question', $this->text_domain),
-				'search_items'	=> __('Search Questions', $this->text_domain),
-				'not_found'		=> __('No questions found', $this->text_domain),
-				'not_found_in_trash'	=> __('No questions found in trash', $this->text_domain),
+				'name'			=> __('Questions', QA_TEXTDOMAIN),
+				'singular_name'	=> __('Question', QA_TEXTDOMAIN),
+				'add_new'		=> __('Add New', QA_TEXTDOMAIN),
+				'add_new_item'	=> __('Add New Question', QA_TEXTDOMAIN),
+				'edit_item'		=> __('Edit Question', QA_TEXTDOMAIN),
+				'new_item'		=> __('New Question', QA_TEXTDOMAIN),
+				'view_item'		=> __('View Question', QA_TEXTDOMAIN),
+				'search_items'	=> __('Search Questions', QA_TEXTDOMAIN),
+				'not_found'		=> __('No questions found.', QA_TEXTDOMAIN),
+				'not_found_in_trash'	=> __('No questions found in trash.', QA_TEXTDOMAIN),
 			)
 		) );
 
-		global $wp;
-		$wp->add_query_var( 'ask_question' );
-		add_rewrite_rule( 'questions/ask/?$', 'index.php?ask_question=1', 'top' );
+		// Add additional rewrite rules
+		global $wp, $wp_rewrite;
 
-		$wp->add_query_var( 'edit_question' );
-		add_rewrite_rule( 'questions/([^/]+)/edit/?$', 'index.php?question=$matches[1]&edit_question=1', 'top' );
-	}
+		// Ask page
+		$wp->add_query_var( 'qa_ask' );
+		$this->add_rewrite_rule( 'questions/ask/?$', array(
+			'qa_ask' => 1
+		) );
 
-	/**
-	 * Handles questions create/edit form submissions
-	 */
-	function handle_forms() {
-		if ( !isset( $_POST['_wpnonce'] ) || !wp_verify_nonce( $_POST['_wpnonce'], 'qa_edit' ) )
-			return;
+		// Edit page
+		$wp->add_query_var( 'qa_edit' );
+		$this->add_rewrite_rule( 'questions/edit/(\d+)/?$', array(
+			'qa_edit' => '$matches[1]'
+		) );
 
-		$question = array(
-			'ID' => $_POST['question_id'],
-			'post_title' => $_POST['question_title'],
-			'post_content' => $_POST['question_content'],
+		// Unanswered page
+		$wp->add_query_var( 'qa_unanswered' );
+		$this->add_rewrite_rule( 'questions/unanswered/?$', array(
 			'post_type' => 'question',
-			'post_status' => 'publish'
-		);
+			'qa_unanswered' => 1
+		) );
 
-		// TODO: check for duplicate submissions and flooding
+		$feeds = '(' . trim( implode( '|', $wp_rewrite->feeds ) ) . ')';
+		$this->add_rewrite_rule( "questions/unanswered/feed/$feeds/?$", array(
+			'post_type' => 'question',
+			'qa_unanswered' => 1,
+			'feed' => '$matches[1]'
+		) );
+		$this->add_rewrite_rule( "questions/unanswered/$feeds/?$", array(
+			'post_type' => 'question',
+			'qa_unanswered' => 1,
+			'feed' => '$matches[1]'
+		) );
 
-		$question_id = wp_insert_post( $question );
+		$this->add_rewrite_rule( "questions/unanswered/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", array(
+			'post_type' => 'question',
+			'qa_unanswered' => 1,
+			'paged' => '$matches[1]'
+		) );
 
-		if ( !$question_id || is_wp_error( $question_id ) ) {
-			debug( $question_id );
-			return;
-		}
-
-		wp_set_post_terms( $question_id, $_POST['question_tags'], 'question_tag' );
-
-		wp_redirect( get_permalink( $question_id ) );
-		die;
+		// User page
+		$this->add_rewrite_rule( 'questions/user/([^/]+)/?$', array(
+			'post_type' => 'question',
+			'author_name' => '$matches[1]'
+		) );
 	}
 
 	/**
-	 * Various WP_Query manipulations
+	 * Simple wrapper for adding straight rewrite rules,
+	 * but with the matched rule as an associative array.
+	 *
+	 * @see http://core.trac.wordpress.org/ticket/16840
+	 *
+	 * @param string $regex The rewrite regex
+	 * @param array $args The mapped args
+	 * @param string $position Where to stick this rule in the rules array. Can be 'top' or 'bottom'
+	 */
+	function add_rewrite_rule( $regex, $args, $position = 'top' ) {
+		global $wp, $wp_rewrite;
+
+		$result = add_query_arg( $args, 'index.php' );
+		add_rewrite_rule( $regex, $result, $position );
+	}
+
+	/**
+	 * Flush rewrite rules when the plugin is activated.
+	 */
+	function flush_rules() {
+		$this->init();
+		flush_rewrite_rules();
+	}
+
+	/**
+	 * Various WP_Query manipulations.
 	 */
 	function parse_query( $wp_query ) {
-		// Redirect template loading to archive-question.php rather than to archive.php
-		if ( $wp_query->get( 'question_category' ) || $wp_query->get( 'question_tag' ) ) {
-			$wp_query->set( 'post_type', 'question' );
+		if ( $GLOBALS['wp_query'] !== $wp_query )
+			return;
+
+		if ( $wp_query->get( 'qa_ask' ) || $wp_query->get( 'qa_edit' ) ) {
+			$wp_query->is_home = false;
 		}
 
-		// Force 'index' template type
-		if ( $wp_query->get( 'ask_question' ) || $wp_query->get( 'edit_question' ) ) {
-			$wp_query->init_query_flags();
+		if ( $wp_query->get( 'qa_edit' ) ) {
+			$wp_query->set( 'post_type', array( 'question', 'answer' ) );
+			$wp_query->set( 'post__in', array( $wp_query->get( 'qa_edit' ) ) );
+		}
+
+		if ( 'question' == $wp_query->get( 'post_type' ) && is_archive() ) {
+			$wp_query->set( 'orderby', 'modified' );
 		}
 	}
 
 	/**
-	 * Load a template, with fallback to default-templates
+	 * Redirect templates using $wp_query.
+	 */
+	function template_redirect() {
+		global $wp_query;
+
+		if ( is_qa_page( 'ask' ) ) {
+			$this->load_template( 'ask-question.php' );
+		}
+
+		if ( is_qa_page( 'edit' ) ) {
+			$post_type = $wp_query->posts[0]->post_type;
+			$this->load_template( "edit-{$post_type}.php" );
+		}
+
+		if ( is_qa_page( 'user' ) ) {
+			$wp_query->queried_object_id = (int) $wp_query->get('author');
+			$wp_query->queried_object = get_userdata( $wp_query->queried_object_id );
+			$wp_query->is_post_type_archive = false;
+
+			$this->load_template( 'user-question.php' );
+		}
+
+		if ( ( is_qa_page( 'archive' ) && is_search() ) || is_qa_page( 'unanswered' ) ) {
+			$this->load_template( 'archive-question.php' );
+		}
+
+		// Redirect template loading to archive-question.php rather than to archive.php
+		if ( is_qa_page( 'tag' ) ) {
+			$wp_query->set( 'post_type', 'question' );
+		}
+	}
+
+	/**
+	 * Loads default templates if the current theme doesn't have them.
+	 */
+	function handle_template( $path ) {
+		global $wp_query;
+
+		if ( 'question' != get_query_var( 'post_type' ) )
+			return $path;
+
+		$type = reset( explode( '_', current_filter() ) );
+
+		$file = basename( $path );
+
+		if ( empty( $path ) || "$type.php" == $file ) {
+			// A more specific template was not found, so load the default one
+			$path = QA_PLUGIN_DIR . "default-templates/$type-question.php";
+		}
+
+		return $path;
+	}
+
+	/**
+	 * Load a template, with fallback to default-templates.
 	 */
 	function load_template( $name ) {
 		$path = locate_template( $name );
@@ -172,42 +244,102 @@ class QA_Core {
 		}
 
 		load_template( $path );
+		die;
 	}
 
 	/**
-	 * Loads default templates if the current theme doesn't have them.
+	 * Helper method for retriving a COUNT(*) using WP_Query
+	 *
+	 * @access protected
+	 *
+	 * @param array $args Additional args to be passed to WP_Query
 	 */
-	function handle_template( $path ) {
-		$type = reset( explode( '_', current_filter() ) );
+	function get_count( $args ) {
+		$args = array_merge( $args, array(
+			'nopaging' => true,
+			'orderby' => 'none',
+			'fields' => 'ids',
+			'qa_count' => true,
+		) );
 
-		$file = basename( $path );
+		$r = new WP_Query( $args );
 
-		if ( is_question_page( 'ask' ) ) {
-			$this->load_template( 'ask-question.php' );
-		}
-		elseif ( get_query_var( 'edit_question' ) ) {
-			$this->load_template( 'edit-question.php' );
-		}
-		elseif ( 'question' == get_query_var( 'post_type' ) && "$type.php" == $file ) {
-			// A more specific template was not found, so load the default one
-			$path = $this->plugin_dir . "default-templates/$type-question.php";
-		}
-
-		return $path;
+		return $r->posts[0];
 	}
 
 	/**
-	 * Various wp_title manipulations
+	 * Various SQL manipulations.
+	 */
+	function posts_clauses( $clauses, $wp_query ) {
+		global $wpdb;
+
+		if ( $wp_query->get( 'qa_count' ) ) {
+			$clauses['fields'] = 'COUNT(*)';
+			$clauses['groupby'] = '';
+		}
+		
+		// TODO: use meta_query ?
+		if ( $wp_query->get( 'qa_unanswered' ) ) {
+			$clauses['where'] .= " AND $wpdb->posts.ID NOT IN(
+				SELECT post_id FROM $wpdb->postmeta
+				WHERE meta_key = '_answer_count'
+				AND meta_value > '0'
+			)";
+		}
+
+		return $clauses;
+	}
+
+	/**
+	 * Enqueue default CSS and JS.
+	 */
+	function load_default_style() {
+		if ( !is_qa_page() )
+			return;
+
+		if ( !current_theme_supports( 'qa_style' ) ) {
+			wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . 'default-templates/css/general.css', array(), QA_VERSION );
+		}
+
+		if ( !current_theme_supports( 'qa_script' ) ) {
+			if ( is_qa_page( 'ask' ) || is_qa_page( 'edit' ) || is_qa_page( 'single' ) ) {
+				wp_enqueue_style( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.css', array(), '1.3.0-l10n' );
+
+				wp_enqueue_script( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.js', array( 'jquery' ), '1.3.0-l10n' );
+
+				wp_enqueue_script( 'suggest' );
+			}
+
+			wp_enqueue_script( 'qa-init', QA_PLUGIN_URL . 'default-templates/js/init.js', array('jquery'), QA_VERSION );
+			wp_localize_script( 'qa-init', 'QA_L10N', array(
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'msg_login' => __( 'Please login or register to vote.', QA_TEXTDOMAIN ),
+				'msg_own' => __( 'You can\'t vote on your own post.', QA_TEXTDOMAIN )
+			) );
+		}
+	}
+
+	/**
+	 * Various wp_title manipulations.
 	 */
 	function wp_title( $title, $sep, $seplocation ) {
-		if ( is_question_page( 'ask' ) ) {
-			$title = array( __( 'Ask a question', $this->text_domain ) );
+		global $wp_query;
+
+		if ( is_qa_page( 'ask' ) ) {
+			$new_title = __( 'Ask a question', QA_TEXTDOMAIN );
 		}
-		elseif ( is_question_page( 'edit' ) ) {
-			$title = array( __( 'Edit question', $this->text_domain ) );
+		elseif ( is_qa_page( 'edit' ) ) {
+			$post_type_obj = get_post_type_object( $wp_query->posts[0]->post_type );
+			$new_title = $post_type_obj->labels->edit_item;
+		}
+		elseif ( is_qa_page( 'user' ) ) {
+			$user = get_queried_object();
+			$new_title = sprintf( __( 'User: %s', QA_TEXTDOMAIN ), $user->display_name );
 		}
 
-		if ( is_array( $title ) ) {
+		if ( isset( $new_title ) ) {
+			$title = array( $new_title );
+
 			if ( 'right' == $seplocation )
 				array_push( $title, " $sep " );
 			else
@@ -219,50 +351,24 @@ class QA_Core {
 		return $title;
 	}
 
-	/**
-	 * Initiate modules.
-	 */
-	function init_modules() {
-		include_once $this->plugin_dir . 'core/template-tags.php';
+	function body_class( $classes ) {
+		if ( is_qa_page( 'ask' ) )
+			$classes[] = 'ask-question';
 
-		if ( is_admin() ) {
-			include_once $this->plugin_dir . 'core/admin.php';
-			new QA_Core_Admin();
-		}
+		if ( is_qa_page( 'edit' ) )
+			$classes[] = 'edit-question';
+
+		if ( is_qa_page( 'unanswered' ) )
+			$classes[] = 'unanswered';
+
+		return $classes;
 	}
 
 	/**
 	 * Loads "-[xx_XX].mo" language file from the "languages" directory
 	 */
 	function load_plugin_textdomain() {
-		load_plugin_textdomain( $this->text_domain, null, $this->plugin_dir . 'languages' );
-	}
-
-	/**
-	 * Activate plugin.
-	 */
-	function plugin_activate() {
-		$this->init();
-		flush_rewrite_rules();
-	}
-
-	/**
-	 * Save plugin options.
-	 *
-	 * @param  array $params The $_POST array
-	 * @return die() if _wpnonce is not verified
-	 */
-	function save_options( $params ) {
-		if ( wp_verify_nonce( $params['_wpnonce'], 'verify' ) ) {
-			// Remove unwanted parameters
-			unset( $params['_wpnonce'], $params['_wp_http_referer'], $params['save'] );
-			// Update options by merging the old ones
-			$options = $this->get_options();
-			$options = array_merge( $options, array( $params['key'] => $params ) );
-			update_option( $this->options_name, $options );
-		} else {
-			die( __( 'Security check failed!', $this->text_domain ) );
-		}
+		load_plugin_textdomain( QA_TEXTDOMAIN, '', plugin_basename( QA_PLUGIN_DIR . 'languages' ) );
 	}
 
 	/**
@@ -272,7 +378,7 @@ class QA_Core {
 	 * @return array $options Plugin options or empty array if no options are found
 	 */
 	function get_options( $key = null ) {
-		$options = get_option( $this->options_name );
+		$options = get_option( QA_OPTIONS_NAME );
 		$options = is_array( $options ) ? $options : array();
 		// Check if specific plugin option is requested and return it
 		if ( isset( $key ) && array_key_exists( $key, $options ) )
@@ -281,10 +387,6 @@ class QA_Core {
 			return $options;
 	}
 }
-endif;
 
-/* Initiate Class */
-if ( class_exists('QA_Core') )
-	$_qa_core = new QA_Core();
+$_qa_core = new QA_Core();
 
-?>

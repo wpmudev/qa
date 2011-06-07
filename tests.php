@@ -5,26 +5,33 @@
  */
 
 function test_rewrites() {
+	global $pagenow;
+	
+	if ( 'index.php' != $pagenow )
+		return;
+
+	$archives = array(
+		qa_get_url( 'archive' ),
+		qa_get_url( 'user' ),
+	);
+
+	$tag_id = (int) reset( get_terms( 'question_tag', array( 'fields' => 'ids' ) ) );
+	if ( $tag_id )
+		$archives[] = qa_get_url( 'tag', $tag_id );
+
+	$urls = array(
+		qa_get_url( 'ask' )
+	);
+
 	$question_id = reset( get_posts( array(
 		'post_type' => 'question',
 		'fields' => 'ids'
 	) ) );
 
-	$tag_id = (int) reset( get_terms( 'question_tag', array( 'fields' => 'ids' ) ) );
-
-	$category_id = (int) reset( get_terms( 'question_category', array( 'fields' => 'ids' ) ) );
-
-	$archives = array(
-		get_post_type_archive_link('question'),
-		get_term_link(get_term($category_id, 'question_category')),
-		get_term_link(get_term($tag_id, 'question_tag')),	
-	);
-
-	$urls = array(
-		get_ask_question_link()
-		,get_permalink( $question_id )
-		,get_edit_question_link( $question_id )
-	);
+	if ( $question_id ) {
+		$urls[] = qa_get_url( 'single', $question_id );
+		$urls[] = qa_get_url( 'edit', $question_id );
+	}
 
 	$urls = array_merge( $urls,
 		$archives
@@ -47,9 +54,9 @@ add_action('admin_notices', 'test_rewrites');
 
 function test_templates() {
 	foreach ( array( 'ask', 'edit', 'single', 'archive', 'tag', 'category' ) as $type ) {
-		if ( is_question_page( $type ) )
+		if ( is_qa_page( $type ) )
 			echo( "<pre>$type: true\n</pre>" );
 	}
 }
-add_action( 'template_redirect', 'test_templates' );
+#add_action( 'template_redirect', 'test_templates' );
 

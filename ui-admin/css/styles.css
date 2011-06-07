@@ -5,3 +5,6 @@
 .qa-payments li, .qa-settings li {
     float: left;
 }
+#ajax-loader {
+	float: right;
+}
