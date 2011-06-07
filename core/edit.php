@@ -12,6 +12,10 @@ class QA_Edit {
 		add_action( 'delete_post', array( &$this, 'update_answer_count' ) );
 		add_action( 'trash_post', array( &$this, 'update_answer_count' ) );
 		add_action( 'transition_post_status', array( &$this, 'transition_post_status' ), 10, 3 );
+
+		add_action( 'wp_login', array( &$this, 'wp_login' ) );
+		add_action( 'user_register', array( &$this, 'user_register' ) );
+		add_action( 'login_message', array( &$this, 'login_message' ) );
 	}
 
 	function handle_forms() {
@@ -61,9 +65,6 @@ class QA_Edit {
 
 		$question_id = (int) $_POST['question_id'];
 
-		if ( !$question_id && !current_user_can( 'publish_questions' ) )
-			wp_die( __( 'You are not allowed to post questions', QA_TEXTDOMAIN ) );
-
 		$question = array(
 			'post_title' => trim( $_POST['question_title'] ),
 			'post_content' => trim( $_POST['question_content'] ),
@@ -95,6 +96,8 @@ class QA_Edit {
 
 		wp_set_post_terms( $question_id, $_POST['question_tags'], 'question_tag' );
 
+		wp_set_post_terms( $question_id, array( (int) $_POST['question_cat'] ), 'question_category' );
+
 		return qa_get_url( 'single', $question_id );
 	}
 
@@ -106,9 +109,6 @@ class QA_Edit {
 
 		$question_id = (int) $_POST['question_id'];
 		$answer_id = (int) $_POST['answer_id'];
-
-		if ( !$answer_id && !current_user_can( 'publish_answers' ) )
-			wp_die( __( 'You are not allowed to post answers', QA_TEXTDOMAIN ) );
 
 		$answer = array(
 			'post_parent' => absint( $question_id ),
@@ -167,6 +167,20 @@ class QA_Edit {
 			$post = array_merge( $post, $defaults );
 			$post['post_status'] = is_user_logged_in() ? 'publish' : 'draft';
 			$post_id = wp_insert_post( $post, true );
+
+			// Anon posting
+			if ( !is_user_logged_in() ) {
+				$key = md5( current_time('timestamp') . $post_id );
+				add_post_meta( $post_id, '_claim', $key );
+				setcookie( '_qa_claim', $key, 0, '/' );	// TODO: handle multiple claims
+
+				$url = site_url( 'wp-login.php', 'login' );
+				if ( get_option( 'users_can_register' ) )
+					$url .= '?action=register';
+
+				wp_redirect( $url );
+				die;
+			}
 		} else {
 			if ( !current_user_can( 'edit_post', $post_id ) )
 				die( "Cheatin' uh?" );
@@ -181,6 +195,74 @@ class QA_Edit {
 		}
 
 		return $post_id;
+	}
+	
+	// Redirect user to his claimed post, if there is one
+	function wp_login( $login ) {
+		$post_id = $this->_get_post_to_claim();
+
+		if ( !$post_id )
+			return;
+
+		$user = get_userdatabylogin( $login );
+
+		wp_update_post( array(
+			'ID' => $post_id,
+			'post_author' => $user->ID,
+			'post_status' => 'publish'
+		) );
+
+		delete_post_meta( $post_id, '_claim' );
+		setcookie( '_qa_claim', false, time() - 3600, '/' );
+
+		wp_redirect( qa_get_url( 'single', $post_id ) );
+		die;
+	}
+
+	// Automatically log in newly registered user, if there's a claimed post
+	function user_register( $user_id ) {
+		$post_id = $this->_get_post_to_claim();
+
+		if ( !$post_id )
+			return;
+
+		wp_set_auth_cookie( $user_id, true, is_ssl() );
+
+		$user = get_userdata( $user_id );
+
+		do_action( 'wp_login', $user->user_login );
+	}
+
+	// Customized login message
+	function login_message( $msg ) {
+		$post_id = $this->_get_post_to_claim();
+
+		if ( !$post_id )
+			return $msg;
+
+		if ( 'register' != $_GET['action'] )
+			return $msg;
+
+		$text = sprintf( __( 'To finish posting your %s, please register below. If you already have an account, please <a href="%s">login</a> instead.', QA_TEXTDOMAIN ), get_post_type( $post_id ), wp_login_url() );
+
+		return '<p class="message register">' . $text . '</p>';
+	}
+
+	function _get_post_to_claim() {
+		if ( !isset( $_COOKIE['_qa_claim'] ) )
+			return false;
+
+		$posts = get_posts( array(
+			'post_type' => array( 'question', 'answer' ),
+			'post_status' => 'draft',
+			'meta_key' => '_claim',
+			'meta_value' => $_COOKIE['_qa_claim']
+		) );
+
+		if ( empty( $posts ) )
+			return false;
+
+		return reset( $posts )->ID;	
 	}
 
 	// Reserve some slugs that are used for other purposes.

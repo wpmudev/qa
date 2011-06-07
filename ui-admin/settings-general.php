@@ -8,7 +8,7 @@ $options = $this->get_options('general_settings');
 <div class="wrap">
 	<?php screen_icon('options-general'); ?>
 
-	<?php $this->render_admin( 'navigation', array( 'sub' => 'general' ) ); ?>
+	<h2><?php _e( 'Q&A Settings', QA_TEXTDOMAIN ); ?></h2>
 
 	<form action="" method="post" class="qa-general">
 
@@ -24,7 +24,7 @@ $options = $this->get_options('general_settings');
 							<option value="<?php echo $role; ?>"><?php echo $name; ?></option>
 						<?php endforeach; ?>
 					</select>
-					<span class="description"><?php _e('Select a role to which you want to assign WP Q&A capabilities.', 'directory'); ?></span>
+					<span class="description"><?php _e('Select a role to which you want to assign WP Q&A capabilities.', QA_TEXTDOMAIN); ?></span>
 
 					<br /><br />
 
@@ -38,25 +38,12 @@ $options = $this->get_options('general_settings');
 				</td>
 			</tr>
 		</table>
-<!--
-		<table class="form-table">
-			<tr>
-				<th>
-					<label for="moderation"><?php _e('Moderation', QA_TEXTDOMAIN) ?></label>
-				</th>
-				<td>
-					<input type="checkbox" id="moderation" name="moderation" value="1"<?php checked( $options['moderation'] ) ?>  />
-					<span class="description"><?php _e('Answers are held for moderation.', QA_TEXTDOMAIN); ?></span>
-				</td>
-			</tr>
-		</table>
--->
-		<br /><br />
+
 		<p class="submit">
 			<?php wp_nonce_field('qa-verify'); ?>
 			<input type="hidden" name="action" value="qa-save" />
 			<input type="hidden" name="key" value="general_settings" />
-			<input type="submit" class="button-primary" name="save" value="Save Changes">
+			<input type="submit" class="button-primary" name="save" value="<?php _e( 'Save Changes', QA_TEXTDOMAIN ); ?>">
 		</p>
 
 	</form>

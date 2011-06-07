@@ -22,7 +22,7 @@ class QA_Widget_Helper extends WP_Widget {
 
 		echo $after_widget;
 	}
-	
+
 	function title_field( $title ) {
 ?>
 		<p>
@@ -37,7 +37,7 @@ class QA_Widget_Helper extends WP_Widget {
 			) );
 			?>
 		</p>
-<?php	
+<?php
 	}
 }
 
@@ -173,9 +173,9 @@ class QA_Widget_Tags extends QA_Widget_Helper {
 		echo "</div>\n";
 		echo $after_widget;
 	}
-	
+
 	function count_text_callback( $count ) {
-		return sprintf( _n('%s question', '%s questions', $count), number_format_i18n( $count ) );	
+		return sprintf( _n('1 question', '%s questions', $count), number_format_i18n( $count ) );
 	}
 
 	function form( $instance ) {
@@ -191,6 +191,68 @@ class QA_Widget_Tags extends QA_Widget_Helper {
 	}
 }
 
+
+class QA_Widget_Categories extends QA_Widget_Helper {
+
+	var $default_instance = array(
+		'title' => '',
+		'count' => false
+	);
+
+	function QA_Widget_Categories() {
+		$widget_ops = array( 'description' => __( 'A list of question categories', QA_TEXTDOMAIN ) );
+		$this->WP_Widget( 'question_categories', __( 'Question Categories', QA_TEXTDOMAIN ), $widget_ops );
+	}
+
+	function widget( $args, $instance ) {
+		extract( $args );
+
+		if ( !empty($instance['title']) ) {
+			$title = $instance['title'];
+		} else {
+			$tax = get_taxonomy( 'question_category' );
+			$title = $tax->labels->name;
+		}
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
+		echo $before_widget;
+		if ( $title )
+			echo $before_title . $title . $after_title;
+
+		$cat_args = array(
+			'taxonomy' => 'question_category',
+			'orderby' => 'name',
+			'hierarchical' => true,
+			'show_count' => $instance['count'],
+			'title_li' => ''
+		);
+
+		echo '<ul>';
+		wp_list_categories( $cat_args );
+		echo '</ul>';
+
+		echo $after_widget;
+	}
+
+	function form( $instance ) {
+		$instance = $this->parse_instance( $instance );
+		$this->title_field( $instance['title'] );
+?>
+		<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('count'); ?>" name="<?php echo $this->get_field_name('count'); ?>"<?php checked( $instance['count'] ); ?> />
+		<label for="<?php echo $this->get_field_id('count'); ?>"><?php _e( 'Show question counts', QA_TEXTDOMAIN ); ?></label><br />
+<?php
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['count'] = !empty( $new_instance['count'] );
+
+		return $instance;
+	}
+}
+
+
 function qa_widgets_init() {
 	if ( !is_blog_installed() )
 		return;
@@ -198,6 +260,8 @@ function qa_widgets_init() {
 	register_widget( 'QA_Widget_Questions' );
 
 	register_widget( 'QA_Widget_Tags' );
+
+	register_widget( 'QA_Widget_Categories' );
 }
 
 add_action( 'widgets_init', 'qa_widgets_init' );

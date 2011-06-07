@@ -1,0 +1,552 @@
+# Copyright (C) 2010 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Q&A\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/qa\n"
+"POT-Creation-Date: 2011-05-31 20:28:57+00:00\n"
+"PO-Revision-Date: 2011-06-04 05:09+0200\n"
+"Last-Translator: scribu <mail@scribu.net>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: ROMANIAN\n"
+"X-Poedit-Country: Romania\n"
+"Plural-Forms: nplurals=2; plural=(n>1 || n==0)\n"
+
+#: core/admin.php:22
+msgid "View questions."
+msgstr "Vizionare întrebări."
+
+#: core/admin.php:23
+msgid "Ask questions."
+msgstr "Adăugare întrebări."
+
+#: core/admin.php:24
+msgid "Edit questions."
+msgstr "Editare întrebări."
+
+#: core/admin.php:25
+msgid "Delete questions."
+msgstr "Ștergere întrebări."
+
+#: core/admin.php:26
+msgid "Edit others' questions."
+msgstr "Editare întrebări ale altor utilizatori."
+
+#: core/admin.php:27
+msgid "Delete others' questions."
+msgstr "Ștergere întrebări ale altor utilizatori."
+
+#: core/admin.php:29
+msgid "View answers."
+msgstr "Vizionare răspunsuri."
+
+#: core/admin.php:30
+msgid "Add answers."
+msgstr "Adăugare răspunsuri."
+
+#: core/admin.php:31
+msgid "Edit answers."
+msgstr "Editare răspunsuri."
+
+#: core/admin.php:32
+msgid "Delete answers."
+msgstr "Ștergere răspunsuri."
+
+#: core/admin.php:33
+msgid "Edit others' answers."
+msgstr "Editare răspunri ale altor utilizatori."
+
+#: core/admin.php:34
+msgid "Delete others' answers."
+msgstr "Ștergere răspunri ale altor utilizatori."
+
+#: core/admin.php:82
+msgid "Settings"
+msgstr "Setări"
+
+#: core/edit.php:64
+#: core/edit.php:108
+msgid "Are you sure you want to do that?"
+msgstr "Sigur vrei să faci asta?"
+
+#: core/edit.php:74
+msgid "Questions must have both a title and a body."
+msgstr "Întrebările trebuie să aibe și titlu și conținut."
+
+#: core/edit.php:88
+msgid "It seems that question was <a href=\"%s\">already asked</a>."
+msgstr "Se pare că acea întrebare a fost <a href=\"%s\">pusă deja</a>."
+
+#: core/edit.php:121
+msgid "Answer must be associated to a question."
+msgstr "Răspunsul trebuie să fie asociat unei întrebări."
+
+#: core/edit.php:124
+msgid "You have to actually write something."
+msgstr "Trebuie să scrii ceva."
+
+#: core/edit.php:138
+msgid "It seems that answer was <a href=\"%s\">already given</a>."
+msgstr "Se pare că acel răspuns a fost <a href=\"%s\">dat deja</a>."
+
+#: core/edit.php:164
+msgid "You are posting too fast. Slow down."
+msgstr "Postezi prea repede. Mai încet."
+
+#: core/edit.php:246
+msgid "To finish posting your %s, please register below. If you already have an account, please <a href=\"%s\">login</a> instead."
+msgstr "Pentru a termina de postat %s, te rog înregistrează-te mai jos. Dacă ai deja un cont, te rog <a href=\"%s\">autentifică-te</a>, în schimb."
+
+#: core/template-tags.php:14
+#: core/core.php:129
+#: core/widgets.php:54
+msgid "Questions"
+msgstr "Întrebări"
+
+#: core/template-tags.php:19
+#: core/widgets.php:103
+msgid "Unanswered"
+msgstr "Fără răspuns"
+
+#: core/template-tags.php:24
+msgid "Ask a Question"
+msgstr "Pune o întrebare"
+
+#: core/template-tags.php:57
+msgid "An error has occured while processing your submission."
+msgstr "A apărut o eroare în timpul procesării datelor."
+
+#: core/template-tags.php:66
+msgid "Search"
+msgstr "Căutare"
+
+#: core/template-tags.php:88
+msgid "prev"
+msgstr "anterior"
+
+#: core/template-tags.php:110
+msgid "next"
+msgstr "următor"
+
+#: core/template-tags.php:135
+msgid "%s ago"
+msgstr "acum %s"
+
+#: core/template-tags.php:158
+msgid "link"
+msgstr "link"
+
+#: core/template-tags.php:161
+msgid "edit"
+msgstr "editează"
+
+#: core/template-tags.php:164
+msgid "delete"
+msgstr "șterge"
+
+#: core/template-tags.php:211
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] "vot"
+msgstr[1] "voturi"
+
+#: core/template-tags.php:224
+msgid "This question is useful and clear (click again to undo)"
+msgstr "Această întrebare este folositoare și clară (click din nou pentru undo)"
+
+#: core/template-tags.php:225
+msgid "This question is unclear or not useful (click again to undo)"
+msgstr "Această întrebare nu este folositoare sau este neclară (click din nou pentru undo)"
+
+#: core/template-tags.php:235
+#: core/template-tags.php:264
+msgid "Score"
+msgstr "Scor"
+
+#: core/template-tags.php:244
+msgid "Click here to be notified of followup answers via e-mail"
+msgstr "Click aici pentru a fi notificat de răspunsuri prin e-mail"
+
+#: core/template-tags.php:245
+msgid "Stop notifying me of followup answers via e-mail"
+msgstr "Nu îmi mai trimite e-mail-uri când sunt postate răspunsuri noi."
+
+#: core/template-tags.php:253
+msgid "This answer is useful (click again to undo)"
+msgstr "Acest răspuns este util (click din nou pentru undo)"
+
+#: core/template-tags.php:254
+msgid "This answer is not useful (click again to undo)"
+msgstr "Acest răspuns nu este util (click din nou pentru undo)"
+
+#: core/template-tags.php:295
+msgid "Accept answer (click again to undo)"
+msgstr "Acceptă răspunsul (click din nou pentru undo)"
+
+#: core/template-tags.php:303
+msgid "Accepted answer"
+msgstr "Răspuns acceptat"
+
+#: core/template-tags.php:305
+msgid "accepted"
+msgstr "acceptat"
+
+#: core/template-tags.php:324
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] "răspuns"
+msgstr[1] "răspunsuri"
+
+#: core/template-tags.php:369
+#: core/widgets.php:29
+msgid "Title:"
+msgstr "Titlu:"
+
+#: core/template-tags.php:389
+msgid "Select category..."
+msgstr "Selectează categorie..."
+
+#: core/template-tags.php:393
+#: default-templates/single-question.php:16
+msgid "Tags:"
+msgstr "Etichete:"
+
+#: core/template-tags.php:418
+msgid "1 Answer"
+msgid_plural "%d Answers"
+msgstr[0] "1 răspuns"
+msgstr[1] "%d răspunsuri"
+
+#: core/template-tags.php:500
+msgid "Submit"
+msgstr "Trimite"
+
+#: core/template-tags.php:502
+msgid "Register/Login and Submit"
+msgstr "Înresitrează-te/autentifică-te și trimite"
+
+#: core/template-tags.php:504
+msgid "Login and Submit"
+msgstr "Autentifică-te și trimite"
+
+#: core/answers.php:38
+msgid "Answers"
+msgstr "Întrebări"
+
+#: core/answers.php:39
+#: core/buddypress.php:91
+#: default-templates/user-question.php:52
+msgid "Answer"
+msgstr "Întrebare"
+
+#: core/answers.php:40
+#: core/core.php:131
+msgid "Add New"
+msgstr "Adaugă"
+
+#: core/answers.php:41
+msgid "Add New Answer"
+msgstr "Adaugă răspuns nou"
+
+#: core/answers.php:42
+msgid "Edit Answer"
+msgstr "Editează răspuns"
+
+#: core/answers.php:43
+msgid "New Answer"
+msgstr "Răspuns nou"
+
+#: core/answers.php:44
+msgid "View Answer"
+msgstr "Vezi răspuns"
+
+#: core/answers.php:45
+msgid "Search Answers"
+msgstr "Caută răspunsuri"
+
+#: core/answers.php:46
+msgid "No answers found"
+msgstr "Niciun răspuns găsit"
+
+#: core/answers.php:47
+msgid "No answers found in trash"
+msgstr "Niciun răspuns găsit la gunoi"
+
+#: core/answers.php:87
+msgid "Answers for \"%s\""
+msgstr "Răspunsuri pentru \"%s\""
+
+#: core/answers.php:91
+msgid "By: %s"
+msgstr "De: %s"
+
+#: core/core.php:73
+#: core/widgets.php:204
+msgid "Question Categories"
+msgstr "Categorii de întrebări"
+
+#: core/core.php:74
+msgid "Question Category"
+msgstr "Categorie de întrebări"
+
+#: core/core.php:75
+msgid "Search Question Categories"
+msgstr "Caută categorii de întrebări"
+
+#: core/core.php:76
+msgid "All Question Categories"
+msgstr "Toate categoriile de întrebări"
+
+#: core/core.php:77
+msgid "Parent Question Category"
+msgstr "Categoria părinte"
+
+#: core/core.php:78
+msgid "Parent Question Category:"
+msgstr "Categoria părinte:"
+
+#: core/core.php:79
+msgid "Edit Question Category"
+msgstr "Editează categoria de întrebări"
+
+#: core/core.php:80
+msgid "Update Question Category"
+msgstr "Actualizează categoria de întrebări"
+
+#: core/core.php:81
+msgid "Add New Question Category"
+msgstr "Adaugă o nouă categorie de întrebări"
+
+#: core/core.php:82
+msgid "New Question Category Name"
+msgstr "Noul nume al categoriei de întrebări"
+
+#: core/core.php:98
+#: core/widgets.php:149
+msgid "Question Tags"
+msgstr "Etichete"
+
+#: core/core.php:99
+msgid "Question Tag"
+msgstr "Etichetă"
+
+#: core/core.php:100
+msgid "Search Question Tags"
+msgstr "Caută etichete pentru întrebări"
+
+#: core/core.php:101
+msgid "Popular Question Tags"
+msgstr "Etichete populare pentru întrebări"
+
+#: core/core.php:102
+msgid "All Question Tags"
+msgstr "Toate etichetele pentru întrebări"
+
+#: core/core.php:103
+msgid "Edit Question Tag"
+msgstr "Editează eticheta"
+
+#: core/core.php:104
+msgid "Update Question Tag"
+msgstr "Actualizează eticheta"
+
+#: core/core.php:105
+msgid "Add New Question Tag"
+msgstr "Adaugă o nouă etichetă"
+
+#: core/core.php:106
+msgid "New Question Tag Name"
+msgstr "Noul nume al etichetei"
+
+#: core/core.php:107
+msgid "Separate question tags with commas"
+msgstr "Separă etichetele prin virgule"
+
+#: core/core.php:108
+msgid "Add or remove question tags"
+msgstr "Adaugă sau șterge etichete"
+
+#: core/core.php:109
+msgid "Choose from the most used question tags"
+msgstr "Alege din etichetele cele mai populare"
+
+#: core/core.php:130
+#: core/buddypress.php:86
+#: default-templates/user-question.php:47
+msgid "Question"
+msgstr "Întrebare"
+
+#: core/core.php:132
+msgid "Add New Question"
+msgstr "Adaugă o nouă întrebare"
+
+#: core/core.php:133
+msgid "Edit Question"
+msgstr "Editează întrebarea"
+
+#: core/core.php:134
+msgid "New Question"
+msgstr "Întrebare nouă"
+
+#: core/core.php:135
+msgid "View Question"
+msgstr "Vezi întrebarea"
+
+#: core/core.php:136
+msgid "Search Questions"
+msgstr "Caută întrebări"
+
+#: core/core.php:137
+msgid "No questions found."
+msgstr "Nu s-au găsit întrebări."
+
+#: core/core.php:138
+msgid "No questions found in trash."
+msgstr "Nu s-au găsit întrebări la gunoi."
+
+#: core/core.php:324
+msgid "Please login or register to vote."
+msgstr "Te rog autentifică-te sau înregistrează-te pentru a vota."
+
+#: core/core.php:325
+msgid "You can't vote on your own post."
+msgstr "Nu poți vota pentru propriul post."
+
+#: core/core.php:356
+msgid "Ask a question"
+msgstr "Pune o întrebare"
+
+#: core/core.php:364
+msgid "User: %s"
+msgstr "Utilizator: %s"
+
+#: core/subscriptions.php:68
+msgid "[%s] New answer on \"%s\""
+msgstr "[%s] Răspuns nou pentru \"%s\""
+
+#: core/subscriptions.php:70
+msgid "%s added a new answer to %s:"
+msgstr "%s a adăugat un răspuns nou pentru %s:"
+
+#: core/subscriptions.php:84
+msgid "To manage your subscriptions, visit <a href=\"%s\">your profile</a>."
+msgstr "Pentru a gestiona abonamentele, vizitează-ți <a href=\"%s\">profilul</a>."
+
+#: core/buddypress.php:11
+msgid "Q&A"
+msgstr "Q&A"
+
+#: core/widgets.php:53
+msgid "List of questions"
+msgstr "Listă de întrebări"
+
+#: core/widgets.php:97
+msgid "Which:"
+msgstr "Care:"
+
+#: core/widgets.php:101
+msgid "Recent"
+msgstr "Recente"
+
+#: core/widgets.php:102
+msgid "Popular"
+msgstr "Populare"
+
+#: core/widgets.php:116
+msgid "Number of questions to show:"
+msgstr "Numărul de întrebări de afișat:"
+
+#: core/widgets.php:148
+msgid "The most popular question tags in cloud format"
+msgstr "Cele mai populare etichete pentru întrebări"
+
+#: core/widgets.php:178
+msgid "1 question"
+msgid_plural "%s questions"
+msgstr[0] "1 question"
+msgstr[1] "%s întrebări"
+
+#: core/widgets.php:203
+msgid "A list of question categories"
+msgstr "O listă de categorii de întrebări"
+
+#: core/widgets.php:242
+msgid "Show question counts"
+msgstr "Afișează numerotarea întrebărilor"
+
+#: qa.php:36
+msgid "Please install the latest version of <a href=\"http://premium.wpmudev.org/project/update-notifications/\" title=\"Download Now &raquo;\">our free Update Notifications plugin</a> which helps you stay up-to-date with the most stable, secure versions of WPMU DEV themes and plugins. <a href=\"http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-information/\">More information &raquo;</a>"
+msgstr ""
+
+#: default-templates/user-question.php:14
+msgid "Name"
+msgstr "Nume"
+
+#: default-templates/user-question.php:18
+msgid "Member for"
+msgstr "Membru din"
+
+#: default-templates/user-question.php:22
+msgid "Website"
+msgstr "Website"
+
+#: default-templates/single-question.php:15
+msgid "Category:"
+msgstr "Categorie:"
+
+#: default-templates/single-question.php:17
+msgid "asked"
+msgstr "pusă"
+
+#: default-templates/single-question.php:35
+msgid "Your Answer"
+msgstr "Răspunsul tău"
+
+#: default-templates/edit-answer.php:10
+msgid "Answer for %s"
+msgstr "Răspuns la %s"
+
+#: ui-admin/message.php:3
+msgid "Settings Saved."
+msgstr "Setările au fost salvate."
+
+#: ui-admin/settings-general.php:11
+msgid "Q&A Settings"
+msgstr "Setări Q&A"
+
+#: ui-admin/settings-general.php:18
+msgid "Assign Capabilities"
+msgstr "Repartizează capabilități"
+
+#: ui-admin/settings-general.php:27
+msgid "Select a role to which you want to assign WP Q&A capabilities."
+msgstr "Selectează rolul căruia vrei să-i repartizezi capabilități legate de WP Q&A."
+
+#: ui-admin/settings-general.php:46
+msgid "Save Changes"
+msgstr "Salvează schimbările"
+
+#. Plugin Name of the plugin/theme
+msgid "Q&A - WordPress Questions and Answers Plugin"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more..."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "scribu (Incsub)"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://premium.wpmudev.org/"
+msgstr ""
+

@@ -12,12 +12,14 @@
 		<?php the_question_voting(); ?>
 		<div id="question-body">
 			<div id="question-content"><?php the_content(); ?></div>
+			<?php the_question_category(  __( 'Category:', QA_TEXTDOMAIN ) . ' <span class="question-category">', '', '</span>' ); ?>
 			<?php the_question_tags( __( 'Tags:', QA_TEXTDOMAIN ) . ' <span class="question-tags">', ' ', '</span>' ); ?>
 			<span id="qa-lastaction"><?php _e( 'asked', QA_TEXTDOMAIN ); ?> <?php the_qa_time( get_the_ID() ); ?></span>
 
-			<?php the_qa_action_links( get_the_ID() ); ?>
-
-			<?php the_qa_author_box( get_the_ID() ); ?>
+			<div class="question-meta">
+				<?php the_qa_action_links( get_the_ID() ); ?>
+				<?php the_qa_author_box( get_the_ID() ); ?>
+			</div>
 		</div>
 	</div>
 </div>
@@ -33,6 +35,8 @@
 	<h2><?php _e( 'Your Answer', QA_TEXTDOMAIN ); ?></h2>
 	<?php the_answer_form(); ?>
 </div>
+
+<p><?php the_question_subscription(); ?></p>
 
 </div><!--#qa-page-wrapper-->
 

@@ -49,7 +49,7 @@ $fav_query = new WP_Query( array(
 
 		<li><a href="#qa-user-answers">
 			<span id="user-answers-total"><?php echo number_format_i18n( $answer_query->found_posts ); ?></span>
-			<?php echo _n( 'Answer', 'Answers', $answer_query->found_posts, QA_TEXTDOMAIN ); ?>		
+			<?php echo _n( 'Answer', 'Answers', $answer_query->found_posts, QA_TEXTDOMAIN ); ?>
 		</a></li>
 	</ul>
 

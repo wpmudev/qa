@@ -1,0 +1,546 @@
+# Copyright (C) 2010 Q&A - WordPress Questions and Answers Plugin
+# This file is distributed under the same license as the Q&A - WordPress Questions and Answers Plugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Q&A - WordPress Questions and Answers Plugin 1.1-alpha2\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/qa\n"
+"POT-Creation-Date: 2011-05-31 20:28:57+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: core/admin.php:22
+msgid "View questions."
+msgstr ""
+
+#: core/admin.php:23
+msgid "Ask questions."
+msgstr ""
+
+#: core/admin.php:24
+msgid "Edit questions."
+msgstr ""
+
+#: core/admin.php:25
+msgid "Delete questions."
+msgstr ""
+
+#: core/admin.php:26
+msgid "Edit others' questions."
+msgstr ""
+
+#: core/admin.php:27
+msgid "Delete others' questions."
+msgstr ""
+
+#: core/admin.php:29
+msgid "View answers."
+msgstr ""
+
+#: core/admin.php:30
+msgid "Add answers."
+msgstr ""
+
+#: core/admin.php:31
+msgid "Edit answers."
+msgstr ""
+
+#: core/admin.php:32
+msgid "Delete answers."
+msgstr ""
+
+#: core/admin.php:33
+msgid "Edit others' answers."
+msgstr ""
+
+#: core/admin.php:34
+msgid "Delete others' answers."
+msgstr ""
+
+#: core/admin.php:82
+msgid "Settings"
+msgstr ""
+
+#: core/edit.php:64 core/edit.php:108
+msgid "Are you sure you want to do that?"
+msgstr ""
+
+#: core/edit.php:74
+msgid "Questions must have both a title and a body."
+msgstr ""
+
+#: core/edit.php:88
+msgid "It seems that question was <a href=\"%s\">already asked</a>."
+msgstr ""
+
+#: core/edit.php:121
+msgid "Answer must be associated to a question."
+msgstr ""
+
+#: core/edit.php:124
+msgid "You have to actually write something."
+msgstr ""
+
+#: core/edit.php:138
+msgid "It seems that answer was <a href=\"%s\">already given</a>."
+msgstr ""
+
+#: core/edit.php:164
+msgid "You are posting too fast. Slow down."
+msgstr ""
+
+#: core/edit.php:246
+msgid ""
+"To finish posting your %s, please register below. If you already have an "
+"account, please <a href=\"%s\">login</a> instead."
+msgstr ""
+
+#: core/template-tags.php:14 core/core.php:129 core/widgets.php:54
+msgid "Questions"
+msgstr ""
+
+#: core/template-tags.php:19 core/widgets.php:103
+msgid "Unanswered"
+msgstr ""
+
+#: core/template-tags.php:24
+msgid "Ask a Question"
+msgstr ""
+
+#: core/template-tags.php:57
+msgid "An error has occured while processing your submission."
+msgstr ""
+
+#: core/template-tags.php:66
+msgid "Search"
+msgstr ""
+
+#: core/template-tags.php:88
+msgid "prev"
+msgstr ""
+
+#: core/template-tags.php:110
+msgid "next"
+msgstr ""
+
+#: core/template-tags.php:135
+msgid "%s ago"
+msgstr ""
+
+#: core/template-tags.php:158
+msgid "link"
+msgstr ""
+
+#: core/template-tags.php:161
+msgid "edit"
+msgstr ""
+
+#: core/template-tags.php:164
+msgid "delete"
+msgstr ""
+
+#: core/template-tags.php:211
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:224
+msgid "This question is useful and clear (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:225
+msgid "This question is unclear or not useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:235 core/template-tags.php:264
+msgid "Score"
+msgstr ""
+
+#: core/template-tags.php:244
+msgid "Click here to be notified of followup answers via e-mail"
+msgstr ""
+
+#: core/template-tags.php:245
+msgid "Stop notifying me of followup answers via e-mail"
+msgstr ""
+
+#: core/template-tags.php:253
+msgid "This answer is useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:254
+msgid "This answer is not useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:295
+msgid "Accept answer (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:303
+msgid "Accepted answer"
+msgstr ""
+
+#: core/template-tags.php:305
+msgid "accepted"
+msgstr ""
+
+#: core/template-tags.php:324
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:369 core/widgets.php:29
+msgid "Title:"
+msgstr ""
+
+#: core/template-tags.php:389
+msgid "Select category..."
+msgstr ""
+
+#: core/template-tags.php:393 default-templates/single-question.php:16
+msgid "Tags:"
+msgstr ""
+
+#: core/template-tags.php:418
+msgid "1 Answer"
+msgid_plural "%d Answers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:500
+msgid "Submit"
+msgstr ""
+
+#: core/template-tags.php:502
+msgid "Register/Login and Submit"
+msgstr ""
+
+#: core/template-tags.php:504
+msgid "Login and Submit"
+msgstr ""
+
+#: core/answers.php:38
+msgid "Answers"
+msgstr ""
+
+#: core/answers.php:39 core/buddypress.php:91
+#: default-templates/user-question.php:52
+msgid "Answer"
+msgstr ""
+
+#: core/answers.php:40 core/core.php:131
+msgid "Add New"
+msgstr ""
+
+#: core/answers.php:41
+msgid "Add New Answer"
+msgstr ""
+
+#: core/answers.php:42
+msgid "Edit Answer"
+msgstr ""
+
+#: core/answers.php:43
+msgid "New Answer"
+msgstr ""
+
+#: core/answers.php:44
+msgid "View Answer"
+msgstr ""
+
+#: core/answers.php:45
+msgid "Search Answers"
+msgstr ""
+
+#: core/answers.php:46
+msgid "No answers found"
+msgstr ""
+
+#: core/answers.php:47
+msgid "No answers found in trash"
+msgstr ""
+
+#: core/answers.php:87
+msgid "Answers for \"%s\""
+msgstr ""
+
+#: core/answers.php:91
+msgid "By: %s"
+msgstr ""
+
+#: core/core.php:73 core/widgets.php:204
+msgid "Question Categories"
+msgstr ""
+
+#: core/core.php:74
+msgid "Question Category"
+msgstr ""
+
+#: core/core.php:75
+msgid "Search Question Categories"
+msgstr ""
+
+#: core/core.php:76
+msgid "All Question Categories"
+msgstr ""
+
+#: core/core.php:77
+msgid "Parent Question Category"
+msgstr ""
+
+#: core/core.php:78
+msgid "Parent Question Category:"
+msgstr ""
+
+#: core/core.php:79
+msgid "Edit Question Category"
+msgstr ""
+
+#: core/core.php:80
+msgid "Update Question Category"
+msgstr ""
+
+#: core/core.php:81
+msgid "Add New Question Category"
+msgstr ""
+
+#: core/core.php:82
+msgid "New Question Category Name"
+msgstr ""
+
+#: core/core.php:98 core/widgets.php:149
+msgid "Question Tags"
+msgstr ""
+
+#: core/core.php:99
+msgid "Question Tag"
+msgstr ""
+
+#: core/core.php:100
+msgid "Search Question Tags"
+msgstr ""
+
+#: core/core.php:101
+msgid "Popular Question Tags"
+msgstr ""
+
+#: core/core.php:102
+msgid "All Question Tags"
+msgstr ""
+
+#: core/core.php:103
+msgid "Edit Question Tag"
+msgstr ""
+
+#: core/core.php:104
+msgid "Update Question Tag"
+msgstr ""
+
+#: core/core.php:105
+msgid "Add New Question Tag"
+msgstr ""
+
+#: core/core.php:106
+msgid "New Question Tag Name"
+msgstr ""
+
+#: core/core.php:107
+msgid "Separate question tags with commas"
+msgstr ""
+
+#: core/core.php:108
+msgid "Add or remove question tags"
+msgstr ""
+
+#: core/core.php:109
+msgid "Choose from the most used question tags"
+msgstr ""
+
+#: core/core.php:130 core/buddypress.php:86
+#: default-templates/user-question.php:47
+msgid "Question"
+msgstr ""
+
+#: core/core.php:132
+msgid "Add New Question"
+msgstr ""
+
+#: core/core.php:133
+msgid "Edit Question"
+msgstr ""
+
+#: core/core.php:134
+msgid "New Question"
+msgstr ""
+
+#: core/core.php:135
+msgid "View Question"
+msgstr ""
+
+#: core/core.php:136
+msgid "Search Questions"
+msgstr ""
+
+#: core/core.php:137
+msgid "No questions found."
+msgstr ""
+
+#: core/core.php:138
+msgid "No questions found in trash."
+msgstr ""
+
+#: core/core.php:324
+msgid "Please login or register to vote."
+msgstr ""
+
+#: core/core.php:325
+msgid "You can't vote on your own post."
+msgstr ""
+
+#: core/core.php:356
+msgid "Ask a question"
+msgstr ""
+
+#: core/core.php:364
+msgid "User: %s"
+msgstr ""
+
+#: core/subscriptions.php:68
+msgid "[%s] New answer on \"%s\""
+msgstr ""
+
+#: core/subscriptions.php:70
+msgid "%s added a new answer to %s:"
+msgstr ""
+
+#: core/subscriptions.php:84
+msgid "To manage your subscriptions, visit <a href=\"%s\">your profile</a>."
+msgstr ""
+
+#: core/buddypress.php:11
+msgid "Q&A"
+msgstr ""
+
+#: core/widgets.php:53
+msgid "List of questions"
+msgstr ""
+
+#: core/widgets.php:97
+msgid "Which:"
+msgstr ""
+
+#: core/widgets.php:101
+msgid "Recent"
+msgstr ""
+
+#: core/widgets.php:102
+msgid "Popular"
+msgstr ""
+
+#: core/widgets.php:116
+msgid "Number of questions to show:"
+msgstr ""
+
+#: core/widgets.php:148
+msgid "The most popular question tags in cloud format"
+msgstr ""
+
+#: core/widgets.php:178
+msgid "1 question"
+msgid_plural "%s questions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/widgets.php:203
+msgid "A list of question categories"
+msgstr ""
+
+#: core/widgets.php:242
+msgid "Show question counts"
+msgstr ""
+
+#: qa.php:36
+msgid ""
+"Please install the latest version of <a href=\"http://premium.wpmudev.org/"
+"project/update-notifications/\" title=\"Download Now &raquo;\">our free "
+"Update Notifications plugin</a> which helps you stay up-to-date with the "
+"most stable, secure versions of WPMU DEV themes and plugins. <a href="
+"\"http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-"
+"information/\">More information &raquo;</a>"
+msgstr ""
+
+#: default-templates/user-question.php:14
+msgid "Name"
+msgstr ""
+
+#: default-templates/user-question.php:18
+msgid "Member for"
+msgstr ""
+
+#: default-templates/user-question.php:22
+msgid "Website"
+msgstr ""
+
+#: default-templates/single-question.php:15
+msgid "Category:"
+msgstr ""
+
+#: default-templates/single-question.php:17
+msgid "asked"
+msgstr ""
+
+#: default-templates/single-question.php:35
+msgid "Your Answer"
+msgstr ""
+
+#: default-templates/edit-answer.php:10
+msgid "Answer for %s"
+msgstr ""
+
+#: ui-admin/message.php:3
+msgid "Settings Saved."
+msgstr ""
+
+#: ui-admin/settings-general.php:11
+msgid "Q&A Settings"
+msgstr ""
+
+#: ui-admin/settings-general.php:18
+msgid "Assign Capabilities"
+msgstr ""
+
+#: ui-admin/settings-general.php:27
+msgid "Select a role to which you want to assign WP Q&A capabilities."
+msgstr ""
+
+#: ui-admin/settings-general.php:46
+msgid "Save Changes"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Q&A - WordPress Questions and Answers Plugin"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid ""
+"http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Q&A allows any WordPress site to have a fully featured questions and answers "
+"section - just like StackOverflow, Yahoo Answers, Quora and more..."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "scribu (Incsub)"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://premium.wpmudev.org/"
+msgstr ""

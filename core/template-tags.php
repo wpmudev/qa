@@ -10,7 +10,7 @@
 
 function the_qa_menu() {
 	$menu = array(
-		array( 
+		array(
 			'title' => __( 'Questions', QA_TEXTDOMAIN ),
 			'type' => 'archive',
 			'current' => !is_qa_page( 'unanswered' ) && !is_qa_page( 'ask' ) && !is_qa_page( 'edit' )
@@ -127,8 +127,6 @@ function _qa_single_page_link( $query, $num, $title = '', $class = '' ) {
 function the_qa_time( $id ) {
 	$post = get_post( $id );
 
-	$t_time = get_the_time( __( 'Y/m/d g:i:s A' ) );
-	$m_time = $post->post_date;
 	$time = get_post_time( 'G', true, $post );
 
 	$time_diff = time() - $time;
@@ -136,7 +134,7 @@ function the_qa_time( $id ) {
 	if ( $time_diff > 0 && $time_diff < 24*60*60 )
 		$h_time = sprintf( __( '%s ago', QA_TEXTDOMAIN ), human_time_diff( $time ) );
 	else
-		$h_time = mysql2date( get_option( 'date_format' ), $m_time );
+		$h_time = mysql2date( get_option( 'date_format' ), $post->post_date );
 
 	echo '<span class="qa-timediff">' . $h_time . '</span>';
 }
@@ -168,7 +166,7 @@ function the_qa_action_links( $id ) {
 	foreach ( $links as $type => $title )
 		$links[ $type ] = _qa_html( 'a', array( 'href' => qa_get_url( $type, $id ) ), $title );
 
-	echo '<div id="qa-action-links">';
+	echo '<div class="qa-action-links">';
 	echo implode( ' | ', $links );
 	echo '</div>';
 }
@@ -193,7 +191,11 @@ function the_question_link( $question_id = 0 ) {
 	if ( !$question_id )
 		$question_id = get_the_ID();
 
-	echo _qa_html( 'a', array( 'class' => 'question-link', 'href' => qa_get_url( 'single', $question_id ) ), get_the_title( $question_id ) );
+	echo get_question_link( $question_id );
+}
+
+function get_question_link( $question_id ) {
+	return _qa_html( 'a', array( 'class' => 'question-link', 'href' => qa_get_url( 'single', $question_id ) ), get_the_title( $question_id ) );
 }
 
 function the_question_score( $question_id = 0 ) {
@@ -234,6 +236,14 @@ function the_question_voting( $question_id = 0 ) {
 	<?php echo $buttons['down']; ?>
 </div>
 <?php
+}
+
+function the_question_subscription() {
+	echo $GLOBALS['_qa_subscriptions']->get_link(
+		get_queried_object_id(),
+		__( 'Click here to be notified of followup answers via e-mail', QA_TEXTDOMAIN ),
+		__( 'Stop notifying me of followup answers via e-mail', QA_TEXTDOMAIN )
+	);
 }
 
 function the_answer_voting( $answer_id ) {
@@ -319,6 +329,10 @@ function the_question_tags( $before = '', $sep = ', ', $after = '' ) {
 	the_terms( 0, 'question_tag', $before, $sep, $after );
 }
 
+function the_question_category( $before = '', $sep = ', ', $after = '' ) {
+	the_terms( 0, 'question_category', $before, $sep, $after );
+}
+
 function the_question_form() {
 	global $wp_query;
 
@@ -329,10 +343,9 @@ function the_question_form() {
 			return;
 
 		$question->tags = wp_get_object_terms( $question->ID, 'question_tag', array( 'fields' => 'names' ) );
-		
-	} elseif ( !current_user_can( 'publish_questions' ) ) {
-		echo _qa_html( 'p', sprintf( __( 'Please <a href="%s">login</a> to post questions.', QA_TEXTDOMAIN ), wp_login_url( qa_get_url( 'ask' ) ) ) );
-		return;
+
+		$cats = wp_get_object_terms( $question->ID, 'question_category', array( 'fields' => 'ids' ) );
+		$question->cat = empty( $cats ) ? false : reset( $cats );
 	} else {
 		$question = (object) array(
 			'ID' => '',
@@ -365,6 +378,17 @@ function the_question_form() {
 
 	<table id="question-taxonomies">
 		<tr>
+			<td id="question-category-td">
+			<?php wp_dropdown_categories( array(
+				'taxonomy' => 'question_category',
+				'selected' => $question->cat,
+				'hide_empty' => false,
+				'hierarchical' => true,
+				'name' => 'question_cat',
+				'class' => '',
+				'show_option_none' => __( 'Select category...', QA_TEXTDOMAIN )
+			) ); ?>
+			</td>
 			<td id="question-tags-label">
 				<label for="question-tags"><?php _e('Tags:', QA_TEXTDOMAIN); ?></label>
 			</td>
@@ -422,9 +446,14 @@ function the_answer_list() {
 	<div id="answer-<?php echo $answer->ID; ?>" class="answer">
 		<?php the_answer_voting( $answer->ID ); ?>
 		<div class="answer-body">
-			<?php echo get_the_content(); ?>
-			<?php the_qa_author_box( $answer->ID ); ?>
-			<?php the_qa_action_links( $answer->ID ); ?>
+			<div class="answer-content">
+				<?php echo get_the_content(); ?>
+			</div>
+
+			<div class="answer-meta">
+				<?php the_qa_action_links( $answer->ID ); ?>
+				<?php the_qa_author_box( $answer->ID ); ?>
+			</div>
 		</div>
 	</div>
 <?php
@@ -443,9 +472,6 @@ function the_answer_form() {
 
 		if ( !current_user_can( 'edit_post', $answer->ID ) )
 			return;
-	} elseif ( !current_user_can( 'publish_answers' ) ) {
-		echo _qa_html( 'p', sprintf( __( 'Please <a href="%s">login</a> to post questions.', QA_TEXTDOMAIN ), wp_login_url( qa_get_url( 'single', get_queried_object_id() ) ) ) );
-		return;
 	} else {
 		$answer = (object) array(
 			'ID' => '',

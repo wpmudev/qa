@@ -6,9 +6,10 @@
 class QA_Core {
 
 	function QA_Core() {
+		load_plugin_textdomain( QA_TEXTDOMAIN, '', plugin_basename( QA_PLUGIN_DIR . 'languages' ) );
+
 		register_activation_hook( QA_PLUGIN_DIR . 'loader.php', array( &$this, 'flush_rules' ) );
 
-		add_action( 'plugins_loaded', array( &$this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( &$this, 'init' ) );
 
 		if ( !is_admin() ) {
@@ -30,9 +31,61 @@ class QA_Core {
 	 * Register the 'question' post type and related taxonomies and rewrite rules.
 	 */
 	function init() {
+		global $wp, $wp_rewrite;
+
+		// Ask page
+		$wp->add_query_var( 'qa_ask' );
+		$this->add_rewrite_rule( QA_SLUG_ROOT . '/' . QA_SLUG_ASK . '/?$', array(
+			'qa_ask' => 1
+		) );
+
+		// Edit page
+		$wp->add_query_var( 'qa_edit' );
+		$this->add_rewrite_rule( QA_SLUG_ROOT . '/' . QA_SLUG_EDIT . '/(\d+)/?$', array(
+			'qa_edit' => '$matches[1]'
+		) );
+
+		// User page
+		$this->add_rewrite_rule( QA_SLUG_ROOT . '/' . QA_SLUG_USER . '/([^/]+)/?$', array(
+			'post_type' => 'question',
+			'author_name' => '$matches[1]'
+		) );
+
+		// Unanswered page
+		$wp->add_query_var( 'qa_unanswered' );
+
+		$wp_rewrite->add_rewrite_tag( '%qa_unanswered%', '(' . QA_SLUG_UNANSWERED . ')', 'post_type=question&qa_unanswered=' );
+		$wp_rewrite->add_permastruct( 'questions-unanswered', QA_SLUG_ROOT . '/%qa_unanswered%', false );
+
+		// Has to come before the 'question' post type definition
+		register_taxonomy( 'question_category', 'question', array(
+			'hierarchical' => true,
+			'rewrite' => array( 'slug' => QA_SLUG_ROOT . '/' . QA_SLUG_CATEGORIES, 'with_front' => false ),
+
+			'capabilities' => array(
+				'manage_terms' => 'edit_others_questions',
+				'edit_terms' => 'edit_others_questions',
+				'delete_terms' => 'edit_others_questions',
+				'assign_terms' => 'edit_published_questions'
+			),
+
+			'labels' => array(
+				'name' => __( 'Question Categories', QA_TEXTDOMAIN ),
+				'singular_name' => __( 'Question Category', QA_TEXTDOMAIN ),
+				'search_items' => __( 'Search Question Categories', QA_TEXTDOMAIN ),
+				'all_items' => __( 'All Question Categories', QA_TEXTDOMAIN ),
+				'parent_item' => __( 'Parent Question Category', QA_TEXTDOMAIN ),
+				'parent_item_colon' => __( 'Parent Question Category:', QA_TEXTDOMAIN ),
+				'edit_item' => __( 'Edit Question Category', QA_TEXTDOMAIN ),
+				'update_item' => __( 'Update Question Category', QA_TEXTDOMAIN ),
+				'add_new_item' => __( 'Add New Question Category', QA_TEXTDOMAIN ),
+				'new_item_name' => __( 'New Question Category Name', QA_TEXTDOMAIN ),
+			)
+		) );
+
 		// Has to come before the 'question' post type definition
 		register_taxonomy( 'question_tag', 'question', array(
-			'rewrite' => array( 'slug' => 'questions/tags', 'with_front' => false ),
+			'rewrite' => array( 'slug' => QA_SLUG_ROOT . '/' . QA_SLUG_TAGS, 'with_front' => false ),
 
 			'capabilities' => array(
 				'manage_terms' => 'edit_others_questions',
@@ -59,7 +112,7 @@ class QA_Core {
 
 		register_post_type( 'question', array(
 			'public' => true,
-			'rewrite' => array( 'slug' => 'questions', 'with_front' => false ),
+			'rewrite' => array( 'slug' => QA_SLUG_ROOT, 'with_front' => false ),
 			'has_archive' => true,
 
 			'capability_type' => 'question',
@@ -84,52 +137,6 @@ class QA_Core {
 				'not_found'		=> __('No questions found.', QA_TEXTDOMAIN),
 				'not_found_in_trash'	=> __('No questions found in trash.', QA_TEXTDOMAIN),
 			)
-		) );
-
-		// Add additional rewrite rules
-		global $wp, $wp_rewrite;
-
-		// Ask page
-		$wp->add_query_var( 'qa_ask' );
-		$this->add_rewrite_rule( 'questions/ask/?$', array(
-			'qa_ask' => 1
-		) );
-
-		// Edit page
-		$wp->add_query_var( 'qa_edit' );
-		$this->add_rewrite_rule( 'questions/edit/(\d+)/?$', array(
-			'qa_edit' => '$matches[1]'
-		) );
-
-		// Unanswered page
-		$wp->add_query_var( 'qa_unanswered' );
-		$this->add_rewrite_rule( 'questions/unanswered/?$', array(
-			'post_type' => 'question',
-			'qa_unanswered' => 1
-		) );
-
-		$feeds = '(' . trim( implode( '|', $wp_rewrite->feeds ) ) . ')';
-		$this->add_rewrite_rule( "questions/unanswered/feed/$feeds/?$", array(
-			'post_type' => 'question',
-			'qa_unanswered' => 1,
-			'feed' => '$matches[1]'
-		) );
-		$this->add_rewrite_rule( "questions/unanswered/$feeds/?$", array(
-			'post_type' => 'question',
-			'qa_unanswered' => 1,
-			'feed' => '$matches[1]'
-		) );
-
-		$this->add_rewrite_rule( "questions/unanswered/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", array(
-			'post_type' => 'question',
-			'qa_unanswered' => 1,
-			'paged' => '$matches[1]'
-		) );
-
-		// User page
-		$this->add_rewrite_rule( 'questions/user/([^/]+)/?$', array(
-			'post_type' => 'question',
-			'author_name' => '$matches[1]'
 		) );
 	}
 
@@ -207,7 +214,7 @@ class QA_Core {
 		}
 
 		// Redirect template loading to archive-question.php rather than to archive.php
-		if ( is_qa_page( 'tag' ) ) {
+		if ( is_qa_page( 'tag' ) || is_qa_page( 'category' ) ) {
 			$wp_query->set( 'post_type', 'question' );
 		}
 	}
@@ -277,7 +284,7 @@ class QA_Core {
 			$clauses['fields'] = 'COUNT(*)';
 			$clauses['groupby'] = '';
 		}
-		
+
 		// TODO: use meta_query ?
 		if ( $wp_query->get( 'qa_unanswered' ) ) {
 			$clauses['where'] .= " AND $wpdb->posts.ID NOT IN(
@@ -299,6 +306,7 @@ class QA_Core {
 
 		if ( !current_theme_supports( 'qa_style' ) ) {
 			wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . 'default-templates/css/general.css', array(), QA_VERSION );
+			add_action( 'wp_head', array( &$this, 'wp_head' ) );
 		}
 
 		if ( !current_theme_supports( 'qa_script' ) ) {
@@ -314,9 +322,28 @@ class QA_Core {
 			wp_localize_script( 'qa-init', 'QA_L10N', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'msg_login' => __( 'Please login or register to vote.', QA_TEXTDOMAIN ),
-				'msg_own' => __( 'You can\'t vote on your own post.', QA_TEXTDOMAIN )
+				'msg_own' => __( 'You can\'t vote on your own post.', QA_TEXTDOMAIN ),
+				'content_width' => $this->_get_content_width()
 			) );
 		}
+	}
+
+	/**
+	 * Attempt to integrate better with the theme
+	 */
+	function wp_head() {
+		$width = $this->_get_content_width();
+?>
+<style type="text/css">
+#qa-page-wrapper { width: <?php echo $width; ?>px }
+#question-form table { width: <?php echo $width - 6; ?>px }
+.question-summary { width: <?php echo $width - 116; ?>px }
+</style>
+<?php
+	}
+
+	function _get_content_width() {
+		return isset( $GLOBALS['content_width'] ) ? $GLOBALS['content_width'] : 620;
 	}
 
 	/**
@@ -362,13 +389,6 @@ class QA_Core {
 			$classes[] = 'unanswered';
 
 		return $classes;
-	}
-
-	/**
-	 * Loads "-[xx_XX].mo" language file from the "languages" directory
-	 */
-	function load_plugin_textdomain() {
-		load_plugin_textdomain( QA_TEXTDOMAIN, '', plugin_basename( QA_PLUGIN_DIR . 'languages' ) );
 	}
 
 	/**

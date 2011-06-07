@@ -7,7 +7,7 @@
 <?php the_post(); ?>
 
 <div id="answer-form">
-	<h2><?php _e( 'Answer for ', QA_TEXTDOMAIN ); the_question_link( $post->post_parent ); ?></h2>
+	<h2><?php printf( __( 'Answer for %s', QA_TEXTDOMAIN ), get_question_link( $post->post_parent ) ); ?></h2>
 	<?php the_answer_form(); ?>
 </div>
 

@@ -46,7 +46,6 @@ class QA_Core_Admin extends QA_Core {
 		register_activation_hook( QA_PLUGIN_DIR . 'loader.php', array( &$this, 'init_defaults' ) );
 
 		add_action( 'admin_init', array( &$this, 'admin_head' ) );
-		add_action( 'admin_notices', array( &$this, 'upgrade' ) );
 		add_action( 'admin_menu', array( &$this, 'admin_menu' ) );
 		add_action( 'wp_ajax_qa-get-caps', array( &$this, 'ajax_get_caps' ) );
 		add_action( 'wp_ajax_qa-save', array( &$this, 'ajax_save' ) );
@@ -66,7 +65,7 @@ class QA_Core_Admin extends QA_Core {
 	 */
 	function init_defaults() {
 		global $wp_roles;
-		
+
 		foreach ( array_keys( $this->capability_map ) as $capability )
 			$wp_roles->add_cap( 'administrator', $capability );
 
@@ -91,14 +90,6 @@ class QA_Core_Admin extends QA_Core {
 	function admin_head() {
 		add_action( 'admin_print_styles-' . $this->hook_suffix, array( &$this, 'enqueue_styles' ) );
 		add_action( 'admin_print_scripts-' . $this->hook_suffix, array( &$this, 'enqueue_scripts' ) );
-	}
-
-	function upgrade() {
-		if ( $GLOBALS['hook_suffix'] != $this->hook_suffix )
-			return;
-?>
-<div class="updated"><p>Upgrade to the <a href="http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin">full version</a> to get more features and dedicated support.</p></div>
-<?php
 	}
 
 	/**
@@ -212,8 +203,8 @@ class QA_Core_Admin extends QA_Core {
 	 * @return void
 	 */
 	function render_admin( $name, $vars = array() ) {
-		foreach ( $vars as $key => $val )
-			$$key = $val;
+		extract( $vars );
+
 		if ( file_exists( QA_PLUGIN_DIR . "ui-admin/{$name}.php" ) )
 			include QA_PLUGIN_DIR . "ui-admin/{$name}.php";
 		else

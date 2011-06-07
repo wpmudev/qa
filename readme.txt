@@ -1,11 +1,11 @@
 === Q&A ===
-Contributors: WPMUDEV
+Contributors: scribu
 Tags: questions, answers, community, Q&A, stackoverflow, wordpress-plugins
 Requires at least: 3.1
-Tested up to: 3.2
+Tested up to: 3.1
 Stable tag: trunk
 
-Q&A Lite allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
+Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
 
 == Description ==
 
@@ -25,29 +25,13 @@ Chock-full of features such as:
 * Easy theme integration using **widgets**
 * Fully **customizable** using dedicated template files
 
-This powerful plugin covers all the question and answer bases right out of the box. It’s easy to install and fully operational in moments, and highly customizable too!
+This extensive and powerful plugin covers all the question and answer bases right out of the box while easily installed and fully operational in moments -- and highly customizable too!
 
-= Pro Version =
+== Notes ==
 
-Q&A Lite is an entirely functional but limited version of our <a href='http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin'>full Q&A plugin</a>.
+Newly registered users are automatically logged in. To prevent spam bots from running amok, we strongly recommend installing this free plugin:
 
-Here are some features that come *only* with the PRO version:
-
-**Categories**, in addition to tags, can be assigned to questions (separate from the normal post categories). Very handy when you have a few broad areas that you would like to distinguish between.
-
-**Anonymous visitors** can also post question and answers, which will be published after they have successfully logged in (which is easier to do than usual). This lowers the barrier to entry, making your community grow faster.
-
-Users can **subscribe** to questions, receiving emails when new answers are posted. This is a great way to engage users and leads to better answers overall.
-
-<a href='http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin'>**Upgrade to the full version now &raquo;**</a>
-
-== Screenshots ==
-
-1. The question form
-2. Voting system
-3. User profile
-4. Single question view
-5. The admin area
+http://wordpress.org/extend/plugins/stop-spammer-registrations-plugin/
 
 == Installation ==
 
@@ -67,9 +51,13 @@ To disable the default JavaScript, add the following line to your theme's functi
 
 `add_theme_support( 'qa_script' );`
 
-When you feel that the Q&A section is ready for primetime, if your theme supports [custom menus](http://en.support.wordpress.com/menus/), you could add direct links to http://yoursite.com/questions/ and even to http://yoursite.com/questions/ask/ to your main menu.
+When you feel the Q&A section is ready for prime time, if your theme supports [custom menus](http://en.support.wordpress.com/menus/), you could add direct links to http://yoursite.com/questions/ and even to http://yoursite.com/questions/ask/ to your main menu.
 
 == Changelog ==
+
+= 1.1 =
+* BuddyPress integration
+* prevent extra large font on single question page
 
 = 1.0.1 =
 * show message when non-logged-in user tries to vote
@@ -77,6 +65,21 @@ When you feel that the Q&A section is ready for primetime, if your theme support
 * load archive-question.php template even when there are no unanswered questions
 
 = 1.0 =
-* initial release
+* ajaxified voting and answer accepting
+* allow users to accept their own answers (without gaining reputation)
+* fixed compatibility with Theme My Login plugin
+* more descriptive error messages
+* sturdier CSS
 
+= 1.0-beta2 =
+* changed default CSS
+* added widgets: question list, question tags, question categories
+* added sidebar to default templates
+* added <body> class to qa templates
+* fixed issue with WP-Polls plugin
+* fixed issue with form not working in IE
+* other minor bugfixes
+
+= 1.0-beta1 =
+* initial release
 

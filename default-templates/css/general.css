@@ -4,7 +4,6 @@
 #qa-page-wrapper {
 	float: left;
 	overflow: hidden;
-	width: 620px;
 	padding-bottom: 2em;
 }
 
@@ -173,12 +172,12 @@
 
 .question-score {
 	color: #666;
-	width: 2.4em;
+	width: 30px;
 }
 
 .question-status {
 	color: #FFF;
-	width: 3.9em;
+	width: 46px;
 }
 
 .question-status.answered-accepted,
@@ -199,7 +198,6 @@
 .question-summary {
 	padding: 0 5px 0 0;
 	float: right;
-	width: 82%;
 }
 
 .question h3 {
@@ -227,9 +225,18 @@
 	line-height: 1.75;
 }
 
+#single-question h1 {
+	font-size: 24px;
+}
+
 #single-question-container {
 	overflow: hidden;
 	padding: 20px 0;
+}
+
+.question-meta .qa-action-links,
+.answer-meta .qa-action-links {
+	float: left;
 }
 
 .qa-user-box {
@@ -379,7 +386,7 @@
 
 #qa-user-tabs-wrapper {
 	clear: both;
-	padding-top: 20px;
+	margin-top: 20px;
 }
 
 #qa-user-tabs {
@@ -478,15 +485,12 @@
 	margin-bottom: 20px;
 }
 
-#question-form table {
-	width: 614px;
-}
-
 #question-form table input {
 	width: 100%;
 }
 
 #question-title-label,
+#question-category-td,
 #question-tags-label {
 	width: 1%;
 }
@@ -494,6 +498,10 @@
 #question-title-label,
 #question-tags-label {
 	padding-right: .5em;
+}
+
+#question-tags-label {
+	padding-left: 1em;
 }
 
 #question-title,
@@ -532,4 +540,9 @@
 .qa-suggest-results li {color: #101010}
 .qa-suggest-match {color: #000}
 .qa-suggest-over {background-color: #f0f0b8}
+
+/* BuddyPress integration */
+#item-body t config --global core.autocrlf true#qa-user-tabs-wrapper {
+	margin-top: 0;
+}
 

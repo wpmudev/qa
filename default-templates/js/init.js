@@ -8,7 +8,7 @@ jQuery(function($) {
 	var $editor = $('#question-form, #answer-form').find('textarea');
 	if ( $editor.length ) {
 		$editor.cleditor({
-			width: 616,
+			width: QA_L10N.content_width - 4,
 			height: 200,
 			controls: 'bold italic | image link unlink | bullets numbering style | outdent indent | undo redo | removeformat source',
 			styles:

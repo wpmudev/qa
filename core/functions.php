@@ -22,15 +22,18 @@ function is_qa_page( $type = '' ) {
 			'user' => 'question' == get_query_var( 'post_type' ) && get_query_var( 'author_name' ),
 			'single' => is_singular( 'question' ),
 			'archive' => is_post_type_archive( 'question' ),
-			'tag' => is_tax( 'question_tag' )
+			'tag' => is_tax( 'question_tag' ),
+			'category' => is_tax( 'question_category' )
 		);
 	}
 
 	// Check if any flags are true
 	if ( empty( $type ) )
-		return in_array( true, $flags );
+		$result = in_array( true, $flags );
+	else
+		$result = isset( $flags[ $type ] ) && $flags[ $type ];
 
-	return isset( $flags[ $type ] ) && $flags[ $type ];
+	return apply_filters( 'is_qa_page', $result, $type );
 }
 
 /**
@@ -45,19 +48,21 @@ function qa_get_url( $type, $id = 0 ) {
 
 	switch ( $type ) {
 		case 'ask':
+			$result = trailingslashit( $base ) . user_trailingslashit( QA_SLUG_ASK );
+			break;
 		case 'unanswered':
-			return trailingslashit( $base ) . user_trailingslashit( $type );
+			$result = trailingslashit( $base ) . user_trailingslashit( QA_SLUG_UNANSWERED );
 			break;
 		case 'edit':
 			$post = get_post( $id );
 			if ( $post ) {
-				return trailingslashit( $base ) . user_trailingslashit( 'edit/' . $post->ID );
+				$result = trailingslashit( $base ) . user_trailingslashit( QA_SLUG_EDIT . '/' . $post->ID );
 			}
 			break;
 		case 'delete':
 			$post = get_post( $id );
 			if ( $post ) {
-				return add_query_arg( array(
+				$result = add_query_arg( array(
 					'qa_delete' => $post->ID,
 					'_wpnonce' => wp_create_nonce( 'qa_delete' )
 				), $base );
@@ -69,21 +74,29 @@ function qa_get_url( $type, $id = 0 ) {
 			}
 			$user = get_userdata( $id );
 			if ( $user ) {
-				return trailingslashit( $base ) . user_trailingslashit( 'user/' . $user->user_nicename );
+				if ( defined( 'BP_VERSION' ) ) {
+
+				}
+				$result = trailingslashit( $base ) . user_trailingslashit( 'user/' . $user->user_nicename );
 			}
 			break;
 		case 'single':
-			return get_permalink( $id );
+			$result = get_permalink( $id );
 			break;
 		case 'archive':
-			return get_post_type_archive_link( 'question' );
+			$result = get_post_type_archive_link( 'question' );
 			break;
 		case 'tag':
-			return get_term_link( $id, 'question_tag' );
+			$result = get_term_link( $id, 'question_tag' );
 			break;
+		case 'category':
+			$result = get_term_link( $id, 'question_category' );
+			break;
+		default:
+			return '';
 	}
 
-	return '';
+	return apply_filters( 'qa_get_url', $result, $type, $id );
 }
 
 function is_question_answered( $question_id = 0, $type = 'any' ) {
