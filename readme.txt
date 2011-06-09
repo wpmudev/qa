@@ -58,6 +58,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 = 1.1 =
 * BuddyPress integration
 * prevent extra large font on single question page
+* don't penalize users for downvoting questions, only answers
 
 = 1.0.1 =
 * show message when non-logged-in user tries to vote

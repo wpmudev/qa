@@ -43,7 +43,7 @@ class QA_Votes {
 			'title' => $link_text,
 			'class' => "vote-$vote_type-" . ( $voted ? 'on' : 'off' )
 		);
-		
+
 		if ( !is_user_logged_in() )
 			$input_attr['data-msg'] = 'login';
 		elseif ( get_post_field( 'post_author', $id ) == get_current_user_id() )
@@ -310,9 +310,9 @@ class QA_Votes {
 
 			$total += $down_votes_by_others * QA_DOWN_VOTE;
 
-			// Calculate penalty for downvoting
+			// Calculate penalty for downvoting answers
 			$down_votes_by_user = $_qa_core->get_count( array(
-				'post_type' => array( 'question', 'answer' ),
+				'post_type' => 'answer',
 				'meta_key' => '_down_vote',
 				'meta_value' => $user_id
 			) );
