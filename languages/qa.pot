@@ -1,16 +1,23 @@
-# Copyright (C) 2010 Q&A - WordPress Questions and Answers Plugin
+# Translation of the WordPress plugin Q&A - WordPress Questions and Answers Plugin 1.1-alpha2b by scribu (Incsub).
+# Copyright (C) 2011 scribu (Incsub)
 # This file is distributed under the same license as the Q&A - WordPress Questions and Answers Plugin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Q&A - WordPress Questions and Answers Plugin 1.1-alpha2\n"
+"Project-Id-Version: Q&A - WordPress Questions and Answers Plugin 1.1-"
+"alpha2b\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/qa\n"
-"POT-Creation-Date: 2011-05-31 20:28:57+00:00\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2011-06-30 00:13+0530\n"
+"PO-Revision-Date: 2011-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: core/admin.php:22
 msgid "View questions."
@@ -64,166 +71,6 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: core/edit.php:64 core/edit.php:108
-msgid "Are you sure you want to do that?"
-msgstr ""
-
-#: core/edit.php:74
-msgid "Questions must have both a title and a body."
-msgstr ""
-
-#: core/edit.php:88
-msgid "It seems that question was <a href=\"%s\">already asked</a>."
-msgstr ""
-
-#: core/edit.php:121
-msgid "Answer must be associated to a question."
-msgstr ""
-
-#: core/edit.php:124
-msgid "You have to actually write something."
-msgstr ""
-
-#: core/edit.php:138
-msgid "It seems that answer was <a href=\"%s\">already given</a>."
-msgstr ""
-
-#: core/edit.php:164
-msgid "You are posting too fast. Slow down."
-msgstr ""
-
-#: core/edit.php:246
-msgid ""
-"To finish posting your %s, please register below. If you already have an "
-"account, please <a href=\"%s\">login</a> instead."
-msgstr ""
-
-#: core/template-tags.php:14 core/core.php:129 core/widgets.php:54
-msgid "Questions"
-msgstr ""
-
-#: core/template-tags.php:19 core/widgets.php:103
-msgid "Unanswered"
-msgstr ""
-
-#: core/template-tags.php:24
-msgid "Ask a Question"
-msgstr ""
-
-#: core/template-tags.php:57
-msgid "An error has occured while processing your submission."
-msgstr ""
-
-#: core/template-tags.php:66
-msgid "Search"
-msgstr ""
-
-#: core/template-tags.php:88
-msgid "prev"
-msgstr ""
-
-#: core/template-tags.php:110
-msgid "next"
-msgstr ""
-
-#: core/template-tags.php:135
-msgid "%s ago"
-msgstr ""
-
-#: core/template-tags.php:158
-msgid "link"
-msgstr ""
-
-#: core/template-tags.php:161
-msgid "edit"
-msgstr ""
-
-#: core/template-tags.php:164
-msgid "delete"
-msgstr ""
-
-#: core/template-tags.php:211
-msgid "vote"
-msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/template-tags.php:224
-msgid "This question is useful and clear (click again to undo)"
-msgstr ""
-
-#: core/template-tags.php:225
-msgid "This question is unclear or not useful (click again to undo)"
-msgstr ""
-
-#: core/template-tags.php:235 core/template-tags.php:264
-msgid "Score"
-msgstr ""
-
-#: core/template-tags.php:244
-msgid "Click here to be notified of followup answers via e-mail"
-msgstr ""
-
-#: core/template-tags.php:245
-msgid "Stop notifying me of followup answers via e-mail"
-msgstr ""
-
-#: core/template-tags.php:253
-msgid "This answer is useful (click again to undo)"
-msgstr ""
-
-#: core/template-tags.php:254
-msgid "This answer is not useful (click again to undo)"
-msgstr ""
-
-#: core/template-tags.php:295
-msgid "Accept answer (click again to undo)"
-msgstr ""
-
-#: core/template-tags.php:303
-msgid "Accepted answer"
-msgstr ""
-
-#: core/template-tags.php:305
-msgid "accepted"
-msgstr ""
-
-#: core/template-tags.php:324
-msgid "answer"
-msgid_plural "answers"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/template-tags.php:369 core/widgets.php:29
-msgid "Title:"
-msgstr ""
-
-#: core/template-tags.php:389
-msgid "Select category..."
-msgstr ""
-
-#: core/template-tags.php:393 default-templates/single-question.php:16
-msgid "Tags:"
-msgstr ""
-
-#: core/template-tags.php:418
-msgid "1 Answer"
-msgid_plural "%d Answers"
-msgstr[0] ""
-msgstr[1] ""
-
-#: core/template-tags.php:500
-msgid "Submit"
-msgstr ""
-
-#: core/template-tags.php:502
-msgid "Register/Login and Submit"
-msgstr ""
-
-#: core/template-tags.php:504
-msgid "Login and Submit"
-msgstr ""
-
 #: core/answers.php:38
 msgid "Answers"
 msgstr ""
@@ -231,7 +78,9 @@ msgstr ""
 #: core/answers.php:39 core/buddypress.php:91
 #: default-templates/user-question.php:52
 msgid "Answer"
-msgstr ""
+msgid_plural "Answers"
+msgstr[0] ""
+msgstr[1] ""
 
 #: core/answers.php:40 core/core.php:131
 msgid "Add New"
@@ -266,12 +115,25 @@ msgid "No answers found in trash"
 msgstr ""
 
 #: core/answers.php:87
+#, php-format
 msgid "Answers for \"%s\""
 msgstr ""
 
 #: core/answers.php:91
+#, php-format
 msgid "By: %s"
 msgstr ""
+
+#: core/buddypress.php:11
+msgid "Q&A"
+msgstr ""
+
+#: core/buddypress.php:86 core/core.php:130
+#: default-templates/user-question.php:47
+msgid "Question"
+msgid_plural "Questions"
+msgstr[0] ""
+msgstr[1] ""
 
 #: core/core.php:73 core/widgets.php:204
 msgid "Question Categories"
@@ -361,9 +223,8 @@ msgstr ""
 msgid "Choose from the most used question tags"
 msgstr ""
 
-#: core/core.php:130 core/buddypress.php:86
-#: default-templates/user-question.php:47
-msgid "Question"
+#: core/core.php:129 core/template-tags.php:14 core/widgets.php:54
+msgid "Questions"
 msgstr ""
 
 #: core/core.php:132
@@ -407,23 +268,184 @@ msgid "Ask a question"
 msgstr ""
 
 #: core/core.php:364
+#, php-format
 msgid "User: %s"
 msgstr ""
 
+#: core/edit.php:64 core/edit.php:108
+msgid "Are you sure you want to do that?"
+msgstr ""
+
+#: core/edit.php:74
+msgid "Questions must have both a title and a body."
+msgstr ""
+
+#: core/edit.php:88
+#, php-format
+msgid "It seems that question was <a href=\"%s\">already asked</a>."
+msgstr ""
+
+#: core/edit.php:121
+msgid "Answer must be associated to a question."
+msgstr ""
+
+#: core/edit.php:124
+msgid "You have to actually write something."
+msgstr ""
+
+#: core/edit.php:138
+#, php-format
+msgid "It seems that answer was <a href=\"%s\">already given</a>."
+msgstr ""
+
+#: core/edit.php:164
+msgid "You are posting too fast. Slow down."
+msgstr ""
+
+#: core/edit.php:246
+#, php-format
+msgid ""
+"To finish posting your %s, please register below. If you already have an "
+"account, please <a href=\"%s\">login</a> instead."
+msgstr ""
+
 #: core/subscriptions.php:68
+#, php-format
 msgid "[%s] New answer on \"%s\""
 msgstr ""
 
 #: core/subscriptions.php:70
+#, php-format
 msgid "%s added a new answer to %s:"
 msgstr ""
 
 #: core/subscriptions.php:84
+#, php-format
 msgid "To manage your subscriptions, visit <a href=\"%s\">your profile</a>."
 msgstr ""
 
-#: core/buddypress.php:11
-msgid "Q&A"
+#: core/template-tags.php:19 core/widgets.php:103
+msgid "Unanswered"
+msgstr ""
+
+#: core/template-tags.php:24
+msgid "Ask a Question"
+msgstr ""
+
+#: core/template-tags.php:57
+msgid "An error has occured while processing your submission."
+msgstr ""
+
+#: core/template-tags.php:66
+msgid "Search"
+msgstr ""
+
+#: core/template-tags.php:88
+msgid "prev"
+msgstr ""
+
+#: core/template-tags.php:110
+msgid "next"
+msgstr ""
+
+#: core/template-tags.php:135
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: core/template-tags.php:158
+msgid "link"
+msgstr ""
+
+#: core/template-tags.php:161
+msgid "edit"
+msgstr ""
+
+#: core/template-tags.php:164
+msgid "delete"
+msgstr ""
+
+#: core/template-tags.php:211
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:224
+msgid "This question is useful and clear (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:225
+msgid "This question is unclear or not useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:235 core/template-tags.php:264
+msgid "Score"
+msgstr ""
+
+#: core/template-tags.php:244
+msgid "Click here to be notified of followup answers via e-mail"
+msgstr ""
+
+#: core/template-tags.php:245
+msgid "Stop notifying me of followup answers via e-mail"
+msgstr ""
+
+#: core/template-tags.php:253
+msgid "This answer is useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:254
+msgid "This answer is not useful (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:295
+msgid "Accept answer (click again to undo)"
+msgstr ""
+
+#: core/template-tags.php:303
+msgid "Accepted answer"
+msgstr ""
+
+#: core/template-tags.php:305
+msgid "accepted"
+msgstr ""
+
+#: core/template-tags.php:324
+msgid "answer"
+msgid_plural "answers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:369 core/widgets.php:29
+msgid "Title:"
+msgstr ""
+
+#: core/template-tags.php:389
+msgid "Select category..."
+msgstr ""
+
+#: core/template-tags.php:393 default-templates/single-question.php:16
+msgid "Tags:"
+msgstr ""
+
+#: core/template-tags.php:418
+#, php-format
+msgid "1 Answer"
+msgid_plural "%d Answers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/template-tags.php:500
+msgid "Submit"
+msgstr ""
+
+#: core/template-tags.php:502
+msgid "Register/Login and Submit"
+msgstr ""
+
+#: core/template-tags.php:504
+msgid "Login and Submit"
 msgstr ""
 
 #: core/widgets.php:53
@@ -451,6 +473,7 @@ msgid "The most popular question tags in cloud format"
 msgstr ""
 
 #: core/widgets.php:178
+#, php-format
 msgid "1 question"
 msgid_plural "%s questions"
 msgstr[0] ""
@@ -464,26 +487,9 @@ msgstr ""
 msgid "Show question counts"
 msgstr ""
 
-#: qa.php:36
-msgid ""
-"Please install the latest version of <a href=\"http://premium.wpmudev.org/"
-"project/update-notifications/\" title=\"Download Now &raquo;\">our free "
-"Update Notifications plugin</a> which helps you stay up-to-date with the "
-"most stable, secure versions of WPMU DEV themes and plugins. <a href="
-"\"http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-"
-"information/\">More information &raquo;</a>"
-msgstr ""
-
-#: default-templates/user-question.php:14
-msgid "Name"
-msgstr ""
-
-#: default-templates/user-question.php:18
-msgid "Member for"
-msgstr ""
-
-#: default-templates/user-question.php:22
-msgid "Website"
+#: default-templates/edit-answer.php:10
+#, php-format
+msgid "Answer for %s"
 msgstr ""
 
 #: default-templates/single-question.php:15
@@ -498,12 +504,38 @@ msgstr ""
 msgid "Your Answer"
 msgstr ""
 
-#: default-templates/edit-answer.php:10
-msgid "Answer for %s"
+#: default-templates/user-question.php:14
+msgid "Name"
+msgstr ""
+
+#: default-templates/user-question.php:18
+msgid "Member for"
+msgstr ""
+
+#: default-templates/user-question.php:22
+msgid "Website"
+msgstr ""
+
+#: qa.php:36
+msgid ""
+"Please install the latest version of <a href=\"http://premium.wpmudev.org/"
+"project/update-notifications/\" title=\"Download Now &raquo;\">our free "
+"Update Notifications plugin</a> which helps you stay up-to-date with the "
+"most stable, secure versions of WPMU DEV themes and plugins. <a href="
+"\"http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-"
+"information/\">More information &raquo;</a>"
 msgstr ""
 
 #: ui-admin/message.php:3
 msgid "Settings Saved."
+msgstr ""
+
+#: ui-admin/navigation.php:7
+msgid "General"
+msgstr ""
+
+#: ui-admin/navigation.php:15
+msgid "General Settings"
 msgstr ""
 
 #: ui-admin/settings-general.php:11
