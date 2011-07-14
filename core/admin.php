@@ -25,6 +25,7 @@ class QA_Core_Admin extends QA_Core {
 			'delete_published_questions' => __( 'Delete questions.', QA_TEXTDOMAIN ),
 			'edit_others_questions'      => __( 'Edit others\' questions.', QA_TEXTDOMAIN ),
 			'delete_others_questions'    => __( 'Delete others\' questions.', QA_TEXTDOMAIN ),
+			'subscribe_to_new_questions' => __( 'Subscribe to new questions.', QA_TEXTDOMAIN ),
 
 			'read_answers'               => __( 'View answers.', QA_TEXTDOMAIN ),
 			'publish_answers'            => __( 'Add answers.', QA_TEXTDOMAIN ),
@@ -49,6 +50,10 @@ class QA_Core_Admin extends QA_Core {
 		add_action( 'admin_menu', array( &$this, 'admin_menu' ) );
 		add_action( 'wp_ajax_qa-get-caps', array( &$this, 'ajax_get_caps' ) );
 		add_action( 'wp_ajax_qa-save', array( &$this, 'ajax_save' ) );
+		
+		add_action( 'show_user_profile', array( &$this, 'show_user_profile' ) ); 
+		add_action( 'edit_user_profile', array( &$this, 'show_user_profile' ) );
+		add_action( 'profile_update', array( &$this, 'profile_update' ) );
 	}
 
 	/**
@@ -128,6 +133,36 @@ class QA_Core_Admin extends QA_Core {
 		}
 		do_action('handle_module_admin_requests');
 	}
+	
+	/**
+	 * Display notification settings in user profile
+	 */
+	function show_user_profile() {
+		if (!current_user_can('subscribe_to_new_questions'))
+			return;
+		
+		if ( file_exists( QA_PLUGIN_DIR . "ui-admin/user_profile.php" ) )
+			include QA_PLUGIN_DIR . "ui-admin/user_profile.php";
+		else
+			echo "<p>Rendering of admin template " . QA_PLUGIN_DIR . "ui-admin/user_profile.php failed</p>";
+	}
+	
+	/**
+	 * Save notification settings when the user profile is updated
+	 */
+	function profile_update() {
+		if (!current_user_can('subscribe_to_new_questions'))
+			return;
+		
+		global $wpdb;
+		$user_id =  $_REQUEST['user_id'];
+		
+		if (isset($_POST['qa_notification'])) {
+			update_usermeta($user_id, 'qa_notification', $_POST['qa_notification']);
+		} else {
+			update_usermeta($user_id, 'qa_notification', 0);
+		}
+	}
 
 	/**
 	 * Ajax callback which gets the post types associated with each page.
@@ -191,6 +226,9 @@ class QA_Core_Admin extends QA_Core {
 		);
 
 		update_option( QA_OPTIONS_NAME, $options );
+		
+		update_option( 'qa_email_notification_subject', $_POST['qa_email_notification_subject'] );
+		update_option( 'qa_email_notification_content', $_POST['qa_email_notification_content'] );
 
 		die(1);
 	}

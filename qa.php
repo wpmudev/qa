@@ -4,7 +4,7 @@ Plugin Name: Q&A - WordPress Questions and Answers Plugin
 Plugin URI: http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin
 Description: Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
 Author: scribu (Incsub)
-Version: 1.1-alpha2b
+Version: 1.1
 Author URI: http://premium.wpmudev.org/
 WDP ID: 217
 */
@@ -74,6 +74,22 @@ define( 'QA_DOWN_VOTE_PENALTY', -1 );
 
 // Pagination
 define( 'QA_ANSWERS_PER_PAGE', 20 );
+
+global $qa_email_notification_content, $qa_email_notification_subject;
+
+$qa_email_notification_subject = "[SITE_NAME] New Question";  // SITE_NAME
+$qa_email_notification_content = "Dear TO_USER,
+
+New question was posted on SITE_NAME.
+
+QUESTION_TITLE
+
+QUESTION_DESCRIPTION
+
+If you wish to answer it please goto QUESTION_LINK.
+
+Thanks,
+SITE_NAME";
 
 // Load plugin files
 include_once QA_PLUGIN_DIR . 'core/core.php';

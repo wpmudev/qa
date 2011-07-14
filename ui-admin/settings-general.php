@@ -1,7 +1,7 @@
 <?php if (!defined('ABSPATH')) die('No direct access allowed!'); ?>
 
 <?php
-global $wp_roles;
+global $wp_roles, $qa_email_notification_subject, $qa_email_notification_content;
 $options = $this->get_options('general_settings');
 ?>
 
@@ -13,6 +13,28 @@ $options = $this->get_options('general_settings');
 	<form action="" method="post" class="qa-general">
 
 		<table class="form-table">
+			<tr>
+				<th>
+					<label for="qa_email_notification_subject"><?php _e( 'Notification E-mail Subject', QA_TEXTDOMAIN ) ?></label>
+				</th>
+				<td>
+					<input id="qa_email_notification_subject" name="qa_email_notification_subject" value="<?php echo get_site_option('qa_email_notification_subject', $qa_email_notification_subject); ?>" />
+					<br/>
+					<?php _e('Variables:', 'messaging'); ?> SITE_NAME</td>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>
+					<label for="qa_email_notification_content"><?php _e( 'Notification E-mail Content', QA_TEXTDOMAIN ) ?></label>
+				</th>
+				<td>
+					<textarea id="qa_email_notification_content" name="qa_email_notification_content" rows="12" cols="40"><?php echo get_site_option('qa_email_notification_content', $qa_email_notification_content); ?></textarea>
+					<br/>
+					<?php _e('Variables:', 'messaging'); ?> TO_USER, SITE_NAME, SITE_URL, QUESTION_TITLE, QUESTION_DESCRIPTION, QUESTION_LINK</td>
+				</td>
+			</tr>
+			
 			<tr>
 				<th>
 					<label for="roles"><?php _e( 'Assign Capabilities', QA_TEXTDOMAIN ) ?></label>
