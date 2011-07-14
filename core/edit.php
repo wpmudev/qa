@@ -174,7 +174,7 @@ class QA_Edit {
 				WHERE meta_key = 'qa_notification'
 				AND meta_value = 1");
 			
-			$message_content = get_site_option('qa_email_notification_content', $qa_email_notification_content);
+			$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
 			$message_content = str_replace( "SITE_NAME", $current_site->site_name, $message_content );
 			$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
 			
@@ -184,7 +184,7 @@ class QA_Edit {
 			
 			$message_content = str_replace( "\'", "'", $message_content );
 			
-			$subject_content = get_site_option('qa_email_notification_subject', $qa_email_notification_subject);
+			$subject_content = get_option('qa_email_notification_subject', $qa_email_notification_subject);
 			$subject_content = str_replace( "SITE_NAME", $current_site->site_name, $subject_content );
 			
 			$admin_email = get_site_option('admin_email');

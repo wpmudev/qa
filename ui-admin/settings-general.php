@@ -18,7 +18,7 @@ $options = $this->get_options('general_settings');
 					<label for="qa_email_notification_subject"><?php _e( 'Notification E-mail Subject', QA_TEXTDOMAIN ) ?></label>
 				</th>
 				<td>
-					<input id="qa_email_notification_subject" name="qa_email_notification_subject" value="<?php echo get_site_option('qa_email_notification_subject', $qa_email_notification_subject); ?>" />
+					<input id="qa_email_notification_subject" name="qa_email_notification_subject" value="<?php echo get_option('qa_email_notification_subject', $qa_email_notification_subject); ?>" />
 					<br/>
 					<?php _e('Variables:', 'messaging'); ?> SITE_NAME</td>
 				</td>
@@ -29,7 +29,7 @@ $options = $this->get_options('general_settings');
 					<label for="qa_email_notification_content"><?php _e( 'Notification E-mail Content', QA_TEXTDOMAIN ) ?></label>
 				</th>
 				<td>
-					<textarea id="qa_email_notification_content" name="qa_email_notification_content" rows="12" cols="40"><?php echo get_site_option('qa_email_notification_content', $qa_email_notification_content); ?></textarea>
+					<textarea id="qa_email_notification_content" name="qa_email_notification_content" rows="12" cols="40"><?php echo get_option('qa_email_notification_content', $qa_email_notification_content); ?></textarea>
 					<br/>
 					<?php _e('Variables:', 'messaging'); ?> TO_USER, SITE_NAME, SITE_URL, QUESTION_TITLE, QUESTION_DESCRIPTION, QUESTION_LINK</td>
 				</td>
