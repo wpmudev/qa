@@ -55,7 +55,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
-= 1.1 =
+= 1.0.2 =
 * BuddyPress integration
 * prevent extra large font on single question page
 * don't penalize users for downvoting questions, only answers
