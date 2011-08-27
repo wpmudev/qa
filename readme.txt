@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.0.3 =
+* Fixed: BP Default theme issues
+
 = 1.0.2 =
 * BuddyPress integration
 * prevent extra large font on single question page

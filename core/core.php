@@ -335,9 +335,22 @@ class QA_Core {
 		$width = $this->_get_content_width();
 ?>
 <style type="text/css">
+<?php
+if (get_current_theme() == 'BuddyPress Default') {
+	$bp_max_width = 1200;
+	$bp_min_width = 920;
+?>
+div#sidebar { margin-left: 0; }
+#qa-page-wrapper { width: 90%; max-width: <?php echo $bp_max_width - 210; ?>px; min-width: <?php echo $bp_min_width - 210; ?>px }
+#question-form table { max-width: <?php echo $bp_max_width - 210 - 6; ?>px; min-width: <?php echo $bp_min_width - 210 - 6; ?>px }
+.question-summary { max-width: <?php echo $bp_max_width - 210 - 116; ?>px; min-width: <?php echo $bp_min_width - 210 - 116; ?>px }
+<?php
+} else {
+?>
 #qa-page-wrapper { width: <?php echo $width; ?>px }
 #question-form table { width: <?php echo $width - 6; ?>px }
 .question-summary { width: <?php echo $width - 116; ?>px }
+<?php } ?>
 </style>
 <?php
 	}
