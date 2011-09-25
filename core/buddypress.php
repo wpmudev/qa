@@ -6,16 +6,20 @@ class QA_BuddyPress {
 
 	function QA_BuddyPress() {
 		global $bp;
-
+		
+		add_filter( 'qa_get_url', array( &$this, 'qa_get_url' ), 10, 3 );
+		
+		add_action( 'bp_setup_nav', array( &$this, 'bp_setup_nav'), 100 );
+		add_action( 'template_redirect', array( &$this, 'template_redirect' ), 9 );
+	}
+	
+	function bp_setup_nav() {
 		bp_core_new_nav_item( array(
 			'name' => __( 'Q&A', QA_TEXTDOMAIN ),
 			'slug' => QA_BP_COMPONENT_SLUG,
 			'screen_function' => array( &$this, 'tab_template' ),
 			'default_subnav_slug' => 'questions'
 		) );
-
-		add_filter( 'qa_get_url', array( &$this, 'qa_get_url' ), 10, 3 );
-		add_action( 'template_redirect', array( &$this, 'template_redirect' ), 9 );
 	}
 
 	// Make the BP profile URL canonical
@@ -40,12 +44,14 @@ class QA_BuddyPress {
 
 	function tab_template() {
 		global $_qa_core;
-
-		bp_core_load_template( 'members/single/home' );
-		add_action( 'bp_before_member_body', array( &$this, 'tab_content' ) );
+		
+		add_action( 'bp_template_content', array( &$this, 'tab_content' ) );
+		add_action( 'bp_member_plugin_options_nav', array( &$this, 'tab_nav' ) );
 		add_filter( 'is_qa_page', array( &$this, 'is_qa_page' ), 10, 2 );
-
+		
 		$_qa_core->load_default_style();
+		
+		bp_core_load_template( 'members/single/plugins' );
 	}
 
 	function is_qa_page( $result, $type ) {
@@ -53,6 +59,40 @@ class QA_BuddyPress {
 			return true;
 
 		return $result;
+	}
+	
+	function tab_nav() {
+		$question_query = new WP_Query( array(
+			'author' => $user_id,
+			'post_type' => 'question',
+			'posts_per_page' => 20,
+			'update_post_term_cache' => false
+		) );
+
+		$answer_query = new WP_Query( array(
+			'author' => $user_id,
+			'post_type' => 'answer',
+			'posts_per_page' => 20,
+			'update_post_term_cache' => false
+		) );
+
+		$fav_query = new WP_Query( array(
+			'post_type' => 'question',
+			'meta_key' => '_fav',
+			'meta_value' => $user_id,
+			'posts_per_page' => 20,
+		) );
+?>
+		<li><a href="#qa-user-questions">
+			<span id="user-questions-total"><?php echo number_format_i18n( $question_query->found_posts ); ?></span>
+			<?php echo _n( 'Question', 'Questions', $question_query->found_posts, QA_TEXTDOMAIN ); ?>
+		</a></li>
+
+		<li><a href="#qa-user-answers">
+			<span id="user-answers-total"><?php echo number_format_i18n( $answer_query->found_posts ); ?></span>
+			<?php echo _n( 'Answer', 'Answers', $answer_query->found_posts, QA_TEXTDOMAIN ); ?>
+		</a></li>
+<?php
 	}
 
 	function tab_content() {
@@ -79,19 +119,6 @@ class QA_BuddyPress {
 			'posts_per_page' => 20,
 		) );
 ?>
-<div id="qa-user-tabs-wrapper">
-	<ul id="qa-user-tabs">
-		<li><a href="#qa-user-questions">
-			<span id="user-questions-total"><?php echo number_format_i18n( $question_query->found_posts ); ?></span>
-			<?php echo _n( 'Question', 'Questions', $question_query->found_posts, QA_TEXTDOMAIN ); ?>
-		</a></li>
-
-		<li><a href="#qa-user-answers">
-			<span id="user-answers-total"><?php echo number_format_i18n( $answer_query->found_posts ); ?></span>
-			<?php echo _n( 'Answer', 'Answers', $answer_query->found_posts, QA_TEXTDOMAIN ); ?>
-		</a></li>
-	</ul>
-
 	<div id="qa-user-questions">
 		<div id="question-list">
 		<?php while ( $question_query->have_posts() ) : $question_query->the_post(); ?>
@@ -128,8 +155,6 @@ class QA_BuddyPress {
 		?>
 		</ul>
 	</div><!--#qa-user-answers-->
-
-</div><!--#qa-user-tabs-wrapper-->
 <?php
 	}
 }

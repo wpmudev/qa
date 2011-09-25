@@ -58,6 +58,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 = 1.0.3 =
 * Fixed: BP Default theme issues
 * Fixed: BP Default child theme issues
+* Fixed: BP 1.5 compatibility
 
 = 1.0.2 =
 * BuddyPress integration
