@@ -81,7 +81,7 @@ class QA_Votes {
 			return false;
 
 		// Check capability
-		if ( !current_user_can( 'read_post', $id ) )
+		if ( !current_user_can( 'read', $id ) )
 			return;
 
 		$this->remove( $id, false );

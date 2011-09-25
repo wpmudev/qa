@@ -5,6 +5,9 @@ class QA_AJAX {
 	function init() {
 		add_action( 'wp_ajax_qa_vote', array( __CLASS__, 'vote' ) );
 		add_action( 'wp_ajax_qa_accept', array( __CLASS__, 'accept' ) );
+		
+		add_action( 'wp_ajax_nopriv_qa_vote', array( __CLASS__, 'vote' ) );
+		add_action( 'wp_ajax_nopriv_qa_accept', array( __CLASS__, 'accept' ) );
 	}
 
 	function vote() {
@@ -21,7 +24,6 @@ class QA_AJAX {
 			the_answer_voting( $id );
 		else
 			die( -1 );
-
 		die;
 	}
 
