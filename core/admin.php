@@ -51,9 +51,39 @@ class QA_Core_Admin extends QA_Core {
 		add_action( 'wp_ajax_qa-get-caps', array( &$this, 'ajax_get_caps' ) );
 		add_action( 'wp_ajax_qa-save', array( &$this, 'ajax_save' ) );
 		
+		add_action( 'wp_ajax_nopriv_ajax-tag-search', array( &$this, 'ajax_tag_search' ) );
+		
 		add_action( 'show_user_profile', array( &$this, 'show_user_profile' ) ); 
 		add_action( 'edit_user_profile', array( &$this, 'show_user_profile' ) );
 		add_action( 'profile_update', array( &$this, 'profile_update' ) );
+	}
+	
+	function ajax_tag_search() {
+		global $wpdb;
+		
+		if ( isset( $_GET['tax'] ) ) {
+			$taxonomy = sanitize_key( $_GET['tax'] );
+			$tax = get_taxonomy( $taxonomy );
+			if ( ! $tax )
+				die( '0' );
+		} else {
+			die('0');
+		}
+	
+		$s = stripslashes( $_GET['q'] );
+	
+		if ( false !== strpos( $s, ',' ) ) {
+			$s = explode( ',', $s );
+			$s = $s[count( $s ) - 1];
+		}
+		$s = trim( $s );
+		if ( strlen( $s ) < 2 )
+			die; // require 2 chars for matching
+	
+		$results = $wpdb->get_col( $wpdb->prepare( "SELECT t.name FROM $wpdb->term_taxonomy AS tt INNER JOIN $wpdb->terms AS t ON tt.term_id = t.term_id WHERE tt.taxonomy = %s AND t.name LIKE (%s)", $taxonomy, '%' . like_escape( $s ) . '%' ) );
+		echo join( $results, "\n" );
+		die;
+		break;
 	}
 
 	/**

@@ -59,6 +59,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 * Fixed: BP Default theme issues
 * Fixed: BP Default child theme issues
 * Fixed: BP 1.5 compatibility
+* Fixed: Tag search when not logged in
 
 = 1.0.2 =
 * BuddyPress integration
