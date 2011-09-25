@@ -60,6 +60,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 * Fixed: BP Default child theme issues
 * Fixed: BP 1.5 compatibility
 * Fixed: Tag search when not logged in
+* No more slow down message for Administrators (users with manage_options capability)
 
 = 1.0.2 =
 * BuddyPress integration

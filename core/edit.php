@@ -160,7 +160,7 @@ class QA_Edit {
 			", get_current_user_id() ) );
 
 			$diff = current_time( 'timestamp' ) - strtotime( $most_recent );
-			if ( $diff < QA_FLOOD_SECONDS )
+			if ( !current_user_can('manage_options') && $diff < QA_FLOOD_SECONDS )
 				wp_die( __( 'You are posting too fast. Slow down.', QA_TEXTDOMAIN ) );
 
 			// Create new post
