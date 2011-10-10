@@ -54,28 +54,39 @@ class QA_Subscriptions {
 
 	// TODO: use wp-cron
 	function notify( $new_status, $old_status, $post ) {
+		global $current_site;
+		
 		if ( 'answer' != $post->post_type || 'publish' != $new_status || $new_status == $old_status )
 			return;
 
 		$author = get_userdata( $post->post_author );
 
 		$question_id = $post->post_parent;
-
+		$question = get_post($question_id);
+		
 		$subscribers = get_post_meta( $question_id, '_sub' );
 		if ( !in_array( $post->post_author, $subscribers ) )
 			$subscribers[] = $post->post_author; // Notify question author too
 
-		$subject = sprintf( __( '[%s] New answer on "%s"' ), get_option( 'blogname' ), $post->post_title );
+		$subject = sprintf( __( '[%s] New answer on "%s"' ), get_option( 'blogname' ), $question->post_title );
 
 		$content = sprintf( __( '%s added a new answer to %s:', QA_TEXTDOMAIN ),
 			_qa_html( 'a', array( 'href' => qa_get_url( 'user', $post->post_author ) ), $author->user_nicename ),
 			_qa_html( 'a', array( 'href' => qa_get_url( 'single', $question_id ) ), get_post_field( 'post_title', $question_id ) )
 		);
 
-		$content .= "\n\n" . $post->post_content . "\n\n";
+		$content .= "<br/><br/>" . $post->post_content . "<br/><br/>";
 
 		cache_users( $subscribers );
-
+		
+		$admin_email = get_site_option('admin_email');
+		if ($admin_email == ''){
+			$admin_email = 'admin@' . $current_site->domain;
+		}
+		
+		$from_email = $admin_email;
+		$message_headers = "MIME-Version: 1.0\n" . "From: " . $current_site->site_name .  " <{$from_email}>\n" . "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
+		
 		foreach ( $subscribers as $subscriber_id ) {
 			// Don't notify the author of the answer
 			if ( $post->post_author == $subscriber_id )
@@ -83,7 +94,7 @@ class QA_Subscriptions {
 
 			$msg = $content . sprintf( __( 'To manage your subscriptions, visit <a href="%s">your profile</a>.', QA_TEXTDOMAIN ), qa_get_url( 'user', $subscriber_id ) );
 
-			wp_mail( get_user_option( 'user_email', $subscriber_id ), $subject, $msg );
+			wp_mail( get_user_option( 'user_email', $subscriber_id ), $subject, $msg, $message_headers);
 		}
 	}
 }

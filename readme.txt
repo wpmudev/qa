@@ -1,5 +1,5 @@
 === Q&A ===
-Contributors: scribu
+Contributors: scribu, mohanjith
 Tags: questions, answers, community, Q&A, stackoverflow, wordpress-plugins
 Requires at least: 3.1
 Tested up to: 3.1
@@ -54,6 +54,9 @@ To disable the default JavaScript, add the following line to your theme's functi
 When you feel the Q&A section is ready for prime time, if your theme supports [custom menus](http://en.support.wordpress.com/menus/), you could add direct links to http://yoursite.com/questions/ and even to http://yoursite.com/questions/ask/ to your main menu.
 
 == Changelog ==
+
+= 1.0.4 =
+* Fixed: Missing question title in answer notification
 
 = 1.0.3 =
 * Fixed: BP Default theme issues
