@@ -57,6 +57,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 = 1.0.4 =
 * Fixed: Missing question title in answer notification
+* Fixed: Notified as new question when it's infact a new answer
 
 = 1.0.3 =
 * Fixed: BP Default theme issues

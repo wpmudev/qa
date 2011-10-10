@@ -169,41 +169,43 @@ class QA_Edit {
 			$post_id = wp_insert_post( $post, true );
 			
 			// Notification
-			$notification_subscriptions = $wpdb->get_results( "SELECT user_id
-				FROM {$wpdb->usermeta}
-				WHERE meta_key = 'qa_notification'
-				AND meta_value = 1");
-			
-			$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
-			$message_content = str_replace( "SITE_NAME", $current_site->site_name, $message_content );
-			$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
-			
-			$message_content = str_replace( "QUESTION_TITLE", $post['post_title'], $message_content );
-			$message_content = str_replace( "QUESTION_DESCRIPTION", strip_tags($post['post_content']), $message_content );
-			$message_content = str_replace( "QUESTION_LINK", get_permalink($post_id), $message_content );
-			
-			$message_content = str_replace( "\'", "'", $message_content );
-			
-			$subject_content = get_option('qa_email_notification_subject', $qa_email_notification_subject);
-			$subject_content = str_replace( "SITE_NAME", $current_site->site_name, $subject_content );
-			
-			$admin_email = get_site_option('admin_email');
-			if ($admin_email == ''){
-				$admin_email = 'admin@' . $current_site->domain;
-			}
-			
-			$from_email = $admin_email;
-			$message_headers = "MIME-Version: 1.0\n" . "From: " . $current_site->site_name .  " <{$from_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
-			
-			foreach ($notification_subscriptions as $uid) {
-				$user_data = get_userdata($uid->user_id);
-				$email = $user_data->user_email;
+			if (isset($defaults['post_type']) && $defaults['post_type'] == 'question') {
+				$notification_subscriptions = $wpdb->get_results( "SELECT user_id
+					FROM {$wpdb->usermeta}
+					WHERE meta_key = 'qa_notification'
+					AND meta_value = 1");
 				
-				$tmp_to_email =  $user_data->user_email;
+				$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
+				$message_content = str_replace( "SITE_NAME", $current_site->site_name, $message_content );
+				$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
 				
-				$message_content_send = str_replace( "TO_USER", $user_data->display_name, $message_content );
+				$message_content = str_replace( "QUESTION_TITLE", $post['post_title'], $message_content );
+				$message_content = str_replace( "QUESTION_DESCRIPTION", strip_tags($post['post_content']), $message_content );
+				$message_content = str_replace( "QUESTION_LINK", get_permalink($post_id), $message_content );
 				
-				wp_mail($tmp_to_email, $subject_content, $message_content_send, $message_headers);
+				$message_content = str_replace( "\'", "'", $message_content );
+				
+				$subject_content = get_option('qa_email_notification_subject', $qa_email_notification_subject);
+				$subject_content = str_replace( "SITE_NAME", $current_site->site_name, $subject_content );
+				
+				$admin_email = get_site_option('admin_email');
+				if ($admin_email == ''){
+					$admin_email = 'admin@' . $current_site->domain;
+				}
+				
+				$from_email = $admin_email;
+				$message_headers = "MIME-Version: 1.0\n" . "From: " . $current_site->site_name .  " <{$from_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
+				
+				foreach ($notification_subscriptions as $uid) {
+					$user_data = get_userdata($uid->user_id);
+					$email = $user_data->user_email;
+					
+					$tmp_to_email =  $user_data->user_email;
+					
+					$message_content_send = str_replace( "TO_USER", $user_data->display_name, $message_content );
+					
+					wp_mail($tmp_to_email, $subject_content, $message_content_send, $message_headers);
+				}
 			}
 			
 			// Anon posting
