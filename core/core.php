@@ -8,7 +8,7 @@ class QA_Core {
 	function QA_Core() {
 		load_plugin_textdomain( QA_TEXTDOMAIN, '', plugin_basename( QA_PLUGIN_DIR . 'languages' ) );
 
-		register_activation_hook( QA_PLUGIN_DIR . 'loader.php', array( &$this, 'flush_rules' ) );
+		register_activation_hook( QA_PLUGIN_DIR . 'loader.php', array( &$this, 'install' ) );
 
 		add_action( 'init', array( &$this, 'init' ) );
 
@@ -19,6 +19,7 @@ class QA_Core {
 
 		add_action( 'template_redirect', array( &$this, 'load_default_style' ), 11 );
 		add_action( 'template_redirect', array( &$this, 'template_redirect' ), 12 );
+		add_action( 'option_rewrite_rules', array(&$this, 'check_rewrite_rules') );
 
 		add_filter( 'single_template', array( &$this, 'handle_template' ) );
 		add_filter( 'archive_template', array( &$this, 'handle_template' ) );
@@ -155,6 +156,27 @@ class QA_Core {
 
 		$result = add_query_arg( $args, 'index.php' );
 		add_rewrite_rule( $regex, $result, $position );
+	}
+	
+	/**
+	 * Flush rewrite rules when the plugin is activated.
+	 */
+	function install() {
+		// Nothing to do
+	}
+	
+	function check_rewrite_rules($value) {
+		//prevent an infinite loop
+		if ( ! post_type_exists( 'question' ) )
+			return;
+		
+		if (!is_array($value))
+			$value = array();
+		
+		$array_key = QA_SLUG_ROOT . '/' . QA_SLUG_ASK . '/?$';
+		if ( !array_key_exists($array_key, $value) ) {
+			$this->flush_rules();
+		}
 	}
 
 	/**
