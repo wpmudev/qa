@@ -55,11 +55,6 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
-= 1.0.4 =
-* Fixed: Missing question title in answer notification
-* Fixed: Notified as new question when it's infact a new answer
-* Fixed: 404 error in ask page
-
 = 1.0.3 =
 * Fixed: BP Default theme issues
 * Fixed: BP Default child theme issues
@@ -67,6 +62,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 * Fixed: Tag search when not logged in
 * No more slow down message for Administrators (users with manage_options capability)
 * Fixed: Rating by subscribers
+* Fixed: Missing question title in answer notification
+* Fixed: Notified as new question when it's infact a new answer
+* Fixed: 404 error in ask page
 
 = 1.0.2 =
 * BuddyPress integration
