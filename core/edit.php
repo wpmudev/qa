@@ -109,8 +109,15 @@ class QA_Edit {
 
 		$question_id = (int) $_POST['question_id'];
 		$answer_id = (int) $_POST['answer_id'];
+		
+		$title = trim(strip_tags($_POST['answer']));
+		
+		if (strlen($title) >= 255) {
+			$title = substr($title, 0, 252)."...";
+		}
 
 		$answer = array(
+			'post_title' => $title,
 			'post_parent' => absint( $question_id ),
 			'post_content' => trim( $_POST['answer'] ),
 			'post_type' => 'answer',

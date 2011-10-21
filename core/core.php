@@ -158,9 +158,6 @@ class QA_Core {
 		add_rewrite_rule( $regex, $result, $position );
 	}
 	
-	/**
-	 * Flush rewrite rules when the plugin is activated.
-	 */
 	function install() {
 		// Nothing to do
 	}
@@ -183,8 +180,8 @@ class QA_Core {
 	 * Flush rewrite rules when the plugin is activated.
 	 */
 	function flush_rules() {
-		$this->init();
-		flush_rewrite_rules();
+		global $wp_rewrite;
+		$wp_rewrite->flush_rules();
 	}
 
 	/**

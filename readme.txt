@@ -65,6 +65,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 * Fixed: Missing question title in answer notification
 * Fixed: Notified as new question when it's infact a new answer
 * Fixed: 404 error in ask page
+* Auto generate answer title to help backend answer management
 
 = 1.0.2 =
 * BuddyPress integration

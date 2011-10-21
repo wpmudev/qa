@@ -102,5 +102,5 @@ class QA_Answers {
 	}
 }
 
-new QA_Answers;
+$_qa_answers = new QA_Answers();
 
