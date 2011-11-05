@@ -9,23 +9,29 @@
 -------------------------------------------------------------- */
 
 function the_qa_menu() {
-	$menu = array(
-		array(
-			'title' => __( 'Questions', QA_TEXTDOMAIN ),
-			'type' => 'archive',
-			'current' => !is_qa_page( 'unanswered' ) && !is_qa_page( 'ask' ) && !is_qa_page( 'edit' )
-		),
-		array(
-			'title' => __( 'Unanswered', QA_TEXTDOMAIN ),
-			'type' => 'unanswered',
-			'current' => is_qa_page( 'unanswered' )
-		),
+	global $user_ID;
+	$menu = array();
+	
+	if ($user_ID == 0 || current_user_can( 'read_questions', 0 )) {
+		$menu[] = array(
+				'title' => __( 'Questions', QA_TEXTDOMAIN ),
+				'type' => 'archive',
+				'current' => !is_qa_page( 'unanswered' ) && !is_qa_page( 'ask' ) && !is_qa_page( 'edit' )
+			);
+		$menu[] = array(
+				'title' => __( 'Unanswered', QA_TEXTDOMAIN ),
+				'type' => 'unanswered',
+				'current' => is_qa_page( 'unanswered' )
+			);
+	}
+	
+	if ($user_ID == 0 || current_user_can( 'publish_questions', 0 )) {
 		$menu[] = array(
 			'title' => __( 'Ask a Question', QA_TEXTDOMAIN ),
 			'type' => 'ask',
 			'current' => is_qa_page( 'ask' )
-		)
-	);
+		);
+	}
 
 	echo "<div id='qa-menu'>";
 
@@ -419,10 +425,11 @@ function the_answer_count( $question_id = 0 ) {
 }
 
 function the_answer_list() {
+	global $user_ID;
 	$question_id = get_the_ID();
 
-#	if ( !current_user_can( 'read_answers', $question_id ) )
-#		return;
+	if ( $user_ID != 0 && !current_user_can( 'read_answers', $question_id ) )
+		return;
 
 	$accepted_answer = get_post_meta( $question_id, '_accepted_answer', true );
 
@@ -465,21 +472,24 @@ function the_answer_list() {
 }
 
 function the_answer_form() {
-	global $wp_query;
-
+	global $wp_query, $user_ID;
+	
 	if ( is_qa_page( 'edit' ) ) {
 		$answer = $wp_query->posts[0];
-
-		if ( !current_user_can( 'edit_post', $answer->ID ) )
+		
+		if ( $user_ID != 0 && !current_user_can( 'edit_published_answers', $answer->ID ) )
 			return;
 	} else {
+		if ( $user_ID != 0 && !current_user_can( 'publish_answers', 0 ) ) {
+			echo '<p>'.__('You are not allowed to add answers!', QA_TEXTDOMAIN).'</p>';
+			return;
+		}
 		$answer = (object) array(
 			'ID' => '',
 			'post_parent' => get_the_ID(),
 			'post_content' => ''
 		);
 	}
-
 ?>
 <form id="answer-form" method="post" action="<?php echo qa_get_url( 'archive' ); ?>">
 	<?php wp_nonce_field( 'qa_answer' ); ?>

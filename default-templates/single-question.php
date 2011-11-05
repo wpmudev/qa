@@ -1,4 +1,6 @@
-<?php get_header( 'question' ); ?>
+<?php
+global $user_ID;
+get_header( 'question' ); ?>
 
 <div id="qa-page-wrapper">
 
@@ -6,6 +8,7 @@
 
 <?php the_post(); ?>
 
+<?php if ( $user_ID == 0 || current_user_can( 'read_questions', 0 ) ) { ?>
 <div id="single-question">
 	<h1><?php the_title(); ?></h1>
 	<div id="single-question-container">
@@ -23,18 +26,20 @@
 		</div>
 	</div>
 </div>
+<?php } ?>
 
-<?php if ( is_question_answered() ) { ?>
+<?php if ( ($user_ID == 0 || current_user_can( 'read_answers', 0 )) && is_question_answered() ) { ?>
 <div id="answer-list">
 	<h2><?php the_answer_count(); ?></h2>
 	<?php the_answer_list(); ?>
 </div>
 <?php } ?>
-
+<?php if ( $user_ID == 0 || current_user_can( 'publish_answers', 0 ) ) { ?>
 <div id="edit-answer">
 	<h2><?php _e( 'Your Answer', QA_TEXTDOMAIN ); ?></h2>
 	<?php the_answer_form(); ?>
 </div>
+<?php } ?>
 
 <p><?php the_question_subscription(); ?></p>
 
