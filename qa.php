@@ -7,6 +7,7 @@ Author: S H Mohanjith (Incsub), scribu (Incsub)
 Version: 1.0.3
 Author URI: http://premium.wpmudev.org/
 WDP ID: 217
+Text Domain: qa
 */
 
 /*
