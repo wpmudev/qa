@@ -62,6 +62,8 @@ class QA_BuddyPress {
 	}
 	
 	function tab_nav() {
+		$user_id = bp_displayed_user_id();
+		
 		$question_query = new WP_Query( array(
 			'author' => $user_id,
 			'post_type' => 'question',

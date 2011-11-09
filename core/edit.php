@@ -325,11 +325,49 @@ class QA_Edit {
 	function transition_post_status( $new_status, $old_status, $post ) {
 		if ( $new_status == $old_status )
 			return;
-
+		
+		global $user_ID;
+		
+		$current_user = get_userdata( $user_ID );
 		$this->update_answer_count( $post->ID );
 
 		if ( 'answer' == $post->post_type && 'publish' == $new_status ) {
 			$this->_touch_post( $post->post_parent );
+			// Post to activity stream
+			if (function_exists('bp_activity_add')) {
+				$question = get_post($post->post_parent);
+				$activity_id = bp_activity_add( array(
+					'id' => get_post_meta($post->ID, '_bp_activity_id', true),
+					'user_id' => $user_ID,
+					'action' => sprintf(__('%s answered question "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $question->post_title),
+					'primary_link' => get_permalink($post->ID),
+					'component' => 'qa',
+					'type' => 'activity_update',
+					'item_id' => $post->ID,
+					'secondary_item_id' => $question->ID
+				));
+				if ($activity_id) {
+					update_post_meta($post->ID, '_bp_activity_id', $activity_id);
+				}
+			}
+		}
+		
+		if ( 'question' == $post->post_type && 'publish' == $new_status ) {
+			// Post to activity stream
+			if (function_exists('bp_activity_add')) {
+				$activity_id = bp_activity_add( array(
+					'id' => get_post_meta($post->ID, '_bp_activity_id', true),
+					'user_id' => $user_ID,
+					'action' => sprintf(__('%s asked "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $post->post_title),
+					'primary_link' => get_permalink($post->ID),
+					'component' => 'qa',
+					'type' => 'activity_update',
+					'item_id' => $post->ID,
+				));
+				if ($activity_id) {
+					update_post_meta($post->ID, '_bp_activity_id', $activity_id);
+				}
+			}
 		}
 	}
 
