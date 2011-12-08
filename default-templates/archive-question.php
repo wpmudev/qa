@@ -15,6 +15,7 @@
 <?php while ( have_posts() ) : the_post(); ?>
 	<div class="question">
 		<div class="question-stats">
+			<div class="qa-status-icon <?php echo (is_question_answered())?'qa-answered-icon':'qa-unanswered-icon'; ?>"></div>
 			<?php the_question_score(); ?>
 			<?php the_question_status(); ?>
 		</div>
