@@ -56,6 +56,8 @@ class QA_Core_Admin extends QA_Core {
 		add_action( 'show_user_profile', array( &$this, 'show_user_profile' ) ); 
 		add_action( 'edit_user_profile', array( &$this, 'show_user_profile' ) );
 		add_action( 'profile_update', array( &$this, 'profile_update' ) );
+		
+		add_filter( 'user_has_cap', array(&$this, 'user_has_cap'), 10, 3);
 	}
 	
 	function ajax_tag_search() {
@@ -234,13 +236,19 @@ class QA_Core_Admin extends QA_Core {
 
 		// add/remove capabilities
 		global $wp_roles;
-
+		
+		$qa_capabilities_set = get_option('qa_capabilties_set', array());
+		
 		$role = $_POST['roles'];
 
 		$all_caps = array_keys( $this->capability_map );
-		$to_add = array_keys( $_POST['capabilities'] );
+		if (isset($_POST['capabilities'])) {
+			$to_add = array_keys( $_POST['capabilities'] );
+		} else {
+			$to_add = array();
+		}
 		$to_remove = array_diff( $all_caps, $to_add );
-
+		
 		foreach ( $to_remove as $capability ) {
 			$wp_roles->remove_cap( $role, $capability );
 		}
@@ -254,7 +262,10 @@ class QA_Core_Admin extends QA_Core {
 				'moderation' => isset( $_POST['moderation'] )
 			)
 		);
-
+		
+		$qa_capabilities_set[$role] = true;
+		
+		update_option( 'qa_capabilties_set', array_unique( $qa_capabilities_set ));
 		update_option( QA_OPTIONS_NAME, $options );
 		
 		update_option( 'qa_email_notification_subject', $_POST['qa_email_notification_subject'] );
@@ -278,8 +289,58 @@ class QA_Core_Admin extends QA_Core {
 		else
 			echo "<p>Rendering of admin template " . QA_PLUGIN_DIR . "ui-admin/{$name}.php failed</p>";
 	}
+	
+	function user_has_cap($allcaps, $caps = null, $args = null) {
+		global $current_user, $blog_id, $post;
+		
+		$qa_capabilities_set = get_option('qa_capabilties_set', array());
+		
+		$capable = false;
+		
+		$qa_cap_set = false;
+		foreach ($current_user->roles as $role) {
+			if (isset($qa_capabilities_set[$role])) {
+				$qa_cap_set = true;
+			}
+		}
+		
+		if (!$qa_cap_set && preg_match('/(_question|_questions|_answer|_answers)/i', join($caps, ',')) > 0) {
+			if (in_array('administrator', $current_user->roles)) {
+				foreach ($caps as $cap) {
+					$allcaps[$cap] = 1;
+				}
+				return $allcaps;
+			}
+			
+			foreach ($caps as $cap) {
+				$capable = false;
+				
+				switch ($cap) {
+					case 'read_questions' or 'read_answers':
+						$capable = true;
+						break;
+					default:
+						if (isset($args[1]) && isset($args[2])) {
+							if (current_user_can(preg_replace('/_question|_answer/i', '_post', $cap), $args[1], $args[2])) {
+								$capable = true;
+							}
+						} else if (isset($args[1])) {
+							if (current_user_can(preg_replace('/_question|_answer/i', '_post', $cap), $args[1])) {
+								$capable = true;
+							}
+						} else if (current_user_can(preg_replace('/_question|_answer/i', '_post', $cap))) {
+							$capable = true;
+						}
+						break;
+				}
+				
+				if ($capable) {
+					$allcaps[$cap] = 1;
+				}
+			}
+		}
+		return $allcaps;
+	}
 }
 
 $GLOBALS['_qa_core_admin'] = new QA_Core_Admin();
-
-?>

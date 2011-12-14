@@ -340,7 +340,7 @@ function the_question_category( $before = '', $sep = ', ', $after = '' ) {
 }
 
 function the_question_form() {
-	global $wp_query;
+	global $wp_query, $wp_version;
 
 	if ( is_qa_page( 'edit' ) ) {
 		$question = $wp_query->posts[0];
@@ -379,8 +379,12 @@ function the_question_form() {
 			</td>
 		</tr>
 	</table>
-
-	<textarea name="question_content"><?php echo esc_textarea( $question->post_content ); ?></textarea>
+	
+	<?php if (version_compare($wp_version, "3.3") >= 0) { ?>
+	<?php wp_editor( $question->post_content, 'question_content'); ?>
+	<?php } else { ?>
+	<textarea name="question_content" class="wp32"><?php echo esc_textarea( $question->post_content ); ?></textarea>
+	<?php } ?>
 
 	<table id="question-taxonomies">
 		<tr>
@@ -472,7 +476,7 @@ function the_answer_list() {
 }
 
 function the_answer_form() {
-	global $wp_query, $user_ID;
+	global $wp_query, $user_ID, $wp_version;
 	
 	if ( is_qa_page( 'edit' ) ) {
 		$answer = $wp_query->posts[0];
@@ -498,8 +502,11 @@ function the_answer_form() {
 	<input type="hidden" name="question_id" value="<?php echo esc_attr( $answer->post_parent ); ?>" />
 	<input type="hidden" name="answer_id" value="<?php echo esc_attr( $answer->ID ); ?>" />
 
-	<p><textarea name="answer"><?php echo esc_textarea( $answer->post_content ); ?></textarea></p>
-
+	<?php if (version_compare($wp_version, "3.3") >= 0) { ?>
+		<p><?php wp_editor(  $answer->post_content, 'answer'); ?></p>
+	<?php } else { ?>
+		<p><textarea name="answer" class="wp32"><?php echo esc_textarea( $answer->post_content ); ?></textarea></p>
+	<?php } ?>
 	<?php the_qa_submit_button(); ?>
 </form>
 <?php

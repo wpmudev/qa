@@ -156,7 +156,7 @@
 .question-score,
 .question-status {
 	float: left;
-	height: 38px;
+	height: 70px;
 	margin-right: 5px;
 	padding: 5px;
 }
@@ -482,14 +482,14 @@
 	padding-top: 20px;
 }
 
-#question-form textarea,
-#answer-form textarea {
+#question-form textarea.wp32,
+#answer-form textarea.wp32 {
 	width: 600px;
 	height: 200px;
 }
 
-#question-form textarea,
-#answer-form textarea,
+#question-form textarea.wp32,
+#answer-form textarea.wp32,
 .cleditorMain {
 	margin: 20px 0;
 }

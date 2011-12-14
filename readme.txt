@@ -2,7 +2,7 @@
 Contributors: scribu, mohanjith
 Tags: questions, answers, community, Q&A, stackoverflow, wordpress-plugins
 Requires at least: 3.1
-Tested up to: 3.1
+Tested up to: 3.3
 Stable tag: trunk
 
 Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
@@ -54,6 +54,10 @@ To disable the default JavaScript, add the following line to your theme's functi
 When you feel the Q&A section is ready for prime time, if your theme supports [custom menus](http://en.support.wordpress.com/menus/), you could add direct links to http://yoursite.com/questions/ and even to http://yoursite.com/questions/ask/ to your main menu.
 
 == Changelog ==
+
+= 1.0.4 =
+* Switch frontend WYSIWYG editor to TinyMCE and Quicktags
+* WordPress 3.3 compatibility
 
 = 1.0.3 =
 * Fixed: BP Default theme issues

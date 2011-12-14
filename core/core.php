@@ -183,7 +183,7 @@ class QA_Core {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
 	}
-
+	
 	/**
 	 * Various WP_Query manipulations.
 	 */
@@ -320,6 +320,8 @@ class QA_Core {
 	 * Enqueue default CSS and JS.
 	 */
 	function load_default_style() {
+		global $wp_version;
+		
 		if ( !is_qa_page() )
 			return;
 
@@ -330,10 +332,10 @@ class QA_Core {
 
 		if ( !current_theme_supports( 'qa_script' ) ) {
 			if ( is_qa_page( 'ask' ) || is_qa_page( 'edit' ) || is_qa_page( 'single' ) ) {
-				wp_enqueue_style( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.css', array(), '1.3.0-l10n' );
-
-				wp_enqueue_script( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.js', array( 'jquery' ), '1.3.0-l10n' );
-
+				if (version_compare($wp_version, "3.3", "<")) {
+					wp_enqueue_style( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.css', array(), '1.3.0-l10n' );
+					wp_enqueue_script( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.js', array( 'jquery' ), '1.3.0-l10n' );
+				}
 				wp_enqueue_script( 'suggest' );
 			}
 
@@ -367,9 +369,9 @@ div#content .padder { margin-right: 0; }
 <?php
 } else {
 ?>
-#qa-page-wrapper { width: <?php echo $width; ?>px }
-#question-form table { width: <?php echo $width - 6; ?>px }
-.question-summary { width: <?php echo $width - 116; ?>px }
+#qa-page-wrapper { width: <?php echo $width; ?>px; }
+#question-form table { width: <?php echo $width - 6; ?>px; }
+.question-summary { width: <?php echo $width - 156; ?>px; }
 <?php } ?>
 </style>
 <?php

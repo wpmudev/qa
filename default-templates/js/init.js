@@ -4,9 +4,9 @@ jQuery(function($) {
 		return ( undefined === CLEDITOR_I18N[s] ) ? s : CLEDITOR_I18N[s];
 	}
 
-	// Add CLEditor
+	// Add CLEditor if needed
 	var $editor = $('#question-form, #answer-form').find('textarea');
-	if ( $editor.length ) {
+	if ( $editor.length && $editor.cleditor) {
 		$editor.cleditor({
 			width: QA_L10N.content_width - 4,
 			height: 200,
