@@ -55,10 +55,6 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
-= 1.0.4 =
-* Switch frontend WYSIWYG editor to TinyMCE and Quicktags
-* WordPress 3.3 compatibility
-
 = 1.0.3 =
 * Fixed: BP Default theme issues
 * Fixed: BP Default child theme issues
@@ -72,6 +68,8 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 * Auto generate answer title to help backend answer management
 * Fixed: QA capabilities not taking affect
 * BuddyPress Activity stream integration
+* Switch frontend WYSIWYG editor to TinyMCE and Quicktags
+* WordPress 3.3 compatibility
 
 = 1.0.2 =
 * BuddyPress integration
