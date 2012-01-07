@@ -123,8 +123,8 @@ class QA_Votes {
 	 * @return int|array Vote count or array of vote counts and vote by the current user
 	 */
 	function get( $id ) {
-		$up = get_post_meta( $id, '_up_vote' );
-		$down = get_post_meta( $id, '_down_vote' );
+		$up = get_post_meta( $id, '_up_vote', array() );
+		$down = get_post_meta( $id, '_down_vote', array() );
 
 		$user_id = get_current_user_id();
 
