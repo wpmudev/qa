@@ -1,12 +1,12 @@
 <?php
 global $user_ID;
-get_header( 'question' ); ?>
+get_header( 'question' );
+
+?>
 
 <div id="qa-page-wrapper">
 
 <?php the_qa_menu(); ?>
-
-<?php the_post(); ?>
 
 <?php if ( $user_ID == 0 || current_user_can( 'read_questions', 0 ) ) { ?>
 <div id="single-question">
