@@ -55,10 +55,8 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
-= 1.0.6 =
-* Fixed: WYSIWYG editor doesn't wrap
-
 = 1.0.4 =
+* Fixed: WYSIWYG editor doesn't wrap
 * Fixed: Votes Array Error
 
 = 1.0.3 =
