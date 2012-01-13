@@ -364,13 +364,13 @@ if (get_template() == 'bp-default') {
 div#sidebar { margin-left: 0; }
 div#content .padder { margin-right: 0; }
 #qa-page-wrapper, #content { width: 80%; max-width: <?php echo $bp_max_width - 212; ?>px; min-width: <?php echo $bp_min_width - 210; ?>px }
-#question-form table { max-width: <?php echo $bp_max_width - 210 - 6; ?>px; min-width: <?php echo $bp_min_width - 210 - 6; ?>px }
+#question-form table#question-form-table { max-width: <?php echo $bp_max_width - 210 - 6; ?>px; min-width: <?php echo $bp_min_width - 210 - 6; ?>px }
 .question-summary { max-width: <?php echo $bp_max_width - 210 - 116; ?>px; min-width: <?php echo $bp_min_width - 210 - 116; ?>px }
 <?php
 } else {
 ?>
 #qa-page-wrapper { width: <?php echo $width; ?>px; }
-#question-form table { width: <?php echo $width - 6; ?>px; }
+#question-form table#question-form-table { width: <?php echo $width - 6; ?>px; }
 .question-summary { width: <?php echo $width - 156; ?>px; }
 <?php } ?>
 </style>

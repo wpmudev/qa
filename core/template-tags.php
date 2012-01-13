@@ -369,7 +369,7 @@ function the_question_form() {
 	<input type="hidden" name="qa_action" value="edit_question" />
 	<input type="hidden" name="question_id" value="<?php echo esc_attr( $question->ID ); ?>" />
 
-	<table>
+	<table id="question-form-table">
 		<tr>
 			<td id="question-title-label">
 				<label for="question-title"><?php _e('Title:', QA_TEXTDOMAIN); ?></label>

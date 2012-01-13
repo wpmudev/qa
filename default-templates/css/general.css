@@ -501,8 +501,8 @@
 	margin-bottom: 20px;
 }
 
-#question-form table input {
-	width: 100%;
+#question-form table#question-form-table input {
+	width: 99%;
 }
 
 #question-title-label,
