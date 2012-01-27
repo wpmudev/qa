@@ -12,7 +12,7 @@ function the_qa_menu() {
 	global $user_ID;
 	$menu = array();
 	
-	if ($user_ID == 0 || current_user_can( 'read_questions', 0 )) {
+	if ($user_ID == 0 || current_user_can( 'read_questions' )) {
 		$menu[] = array(
 				'title' => __( 'Questions', QA_TEXTDOMAIN ),
 				'type' => 'archive',
@@ -484,7 +484,7 @@ function the_answer_form() {
 		if ( $user_ID != 0 && !current_user_can( 'edit_published_answers', $answer->ID ) )
 			return;
 	} else {
-		if ( $user_ID != 0 && !current_user_can( 'publish_answers', 0 ) ) {
+		if ( $user_ID != 0 && !current_user_can( 'publish_answers') ) {
 			echo '<p>'.__('You are not allowed to add answers!', QA_TEXTDOMAIN).'</p>';
 			return;
 		}

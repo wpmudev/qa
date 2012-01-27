@@ -105,7 +105,9 @@ class QA_Core_Admin extends QA_Core {
 
 		foreach ( array_keys( $this->capability_map ) as $capability )
 			$wp_roles->add_cap( 'administrator', $capability );
-
+		
+		$wp_roles->add_cap( 'subscriber', 'read_questions' );
+		$wp_roles->add_cap( 'subscriber', 'read_answers' );
 		// add option to the autoload list
 		add_option( QA_OPTIONS_NAME, array() );
 	}
