@@ -6,6 +6,8 @@ get_header( 'question' );
 
 <div id="qa-page-wrapper">
 
+<?php do_action( 'qa_before_content', 'single-question' ); ?>
+
 <?php the_qa_menu(); ?>
 
 <?php if ( $user_ID == 0 || current_user_can( 'read_questions' ) ) { ?>
@@ -20,8 +22,12 @@ get_header( 'question' );
 			<span id="qa-lastaction"><?php _e( 'asked', QA_TEXTDOMAIN ); ?> <?php the_qa_time( get_the_ID() ); ?></span>
 
 			<div class="question-meta">
+				<?php do_action( 'qa_before_question_meta' ); ?>
+				
 				<?php the_qa_action_links( get_the_ID() ); ?>
 				<?php the_qa_author_box( get_the_ID() ); ?>
+				
+				<?php do_action( 'qa_after_question_meta' ); ?>
 			</div>
 		</div>
 	</div>
@@ -30,19 +36,28 @@ get_header( 'question' );
 
 <?php if ( ($user_ID == 0 || current_user_can( 'read_answers' )) && is_question_answered() ) { ?>
 <div id="answer-list">
+	<?php do_action( 'qa_before_answers' ); ?>
+	
 	<h2><?php the_answer_count(); ?></h2>
 	<?php the_answer_list(); ?>
+	
+	<?php do_action( 'qa_after_answers' ); ?>
 </div>
 <?php } ?>
 <?php if ( $user_ID == 0 || current_user_can( 'publish_answers' ) ) { ?>
 <div id="edit-answer">
+	<?php do_action( 'qa_before_edit_answer' ); ?>
+	
 	<h2><?php _e( 'Your Answer', QA_TEXTDOMAIN ); ?></h2>
 	<?php the_answer_form(); ?>
+	
+	<?php do_action( 'qa_after_edit_answer' ); ?>
 </div>
 <?php } ?>
 
 <p><?php the_question_subscription(); ?></p>
 
+<?php do_action( 'qa_after_content', 'single-question' ); ?>
 </div><!--#qa-page-wrapper-->
 
 <?php get_sidebar( 'question' ); ?>

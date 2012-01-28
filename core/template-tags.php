@@ -32,10 +32,13 @@ function the_qa_menu() {
 			'current' => is_qa_page( 'ask' )
 		);
 	}
-
+	
+	echo apply_filters( 'qa_before_menu', '' );
+	
 	echo "<div id='qa-menu'>";
 
 	echo "<ul>";
+	echo apply_filters( 'qa_first_menu_item', '' );
 	foreach ( $menu as $item ) {
 		extract( $item );
 
@@ -49,9 +52,13 @@ function the_qa_menu() {
 			)
 		);
 	}
+	echo apply_filters( 'qa_last_menu_item', '' );
 	echo "</ul>";
 
 	the_qa_search_form();
+	
+	echo apply_filters( 'qa_after_menu', '' );
+	
 	echo "</div>";
 }
 
@@ -141,7 +148,8 @@ function the_qa_time( $id ) {
 		$h_time = sprintf( __( '%s ago', QA_TEXTDOMAIN ), human_time_diff( $time ) );
 	else
 		$h_time = mysql2date( get_option( 'date_format' ), $post->post_date );
-
+	
+	$h_time = apply_filters( 'qa_time', $h_time, $time);
 	echo '<span class="qa-timediff">' . $h_time . '</span>';
 }
 
@@ -181,7 +189,7 @@ function the_qa_user_link( $user_id ) {
 	$author_name = get_the_author_meta( 'display_name', $user_id );
 	$author_url = qa_get_url( 'user', $user_id );
 
-	echo "<a class='qa-user-link' href='$author_url'>$author_name</a>";
+	echo apply_filters( 'qa_user_link', "<a class='qa-user-link' href='$author_url'>$author_name</a>");
 }
 
 function the_qa_user_rep( $user_id ) {
@@ -201,7 +209,7 @@ function the_question_link( $question_id = 0 ) {
 }
 
 function get_question_link( $question_id ) {
-	return _qa_html( 'a', array( 'class' => 'question-link', 'href' => qa_get_url( 'single', $question_id ) ), get_the_title( $question_id ) );
+	return apply_filters( 'qa_get_question_link', _qa_html( 'a', array( 'class' => 'question-link', 'href' => qa_get_url( 'single', $question_id ) ), get_the_title( $question_id ) ) );
 }
 
 function the_question_score( $question_id = 0 ) {
@@ -211,7 +219,8 @@ function the_question_score( $question_id = 0 ) {
 	list( $up, $down ) = qa_get_votes( $question_id );
 
 	$score = $up - $down;
-
+	$score = apply_filters( 'qa_question_score', $score);
+	
 	echo "<div class='question-score'>";
 	echo	"<div class='mini-count'>" . number_format_i18n( $score ) . "</div>";
 	echo	"<div>" . _n( 'vote', 'votes', $score, QA_TEXTDOMAIN ) . "</div>";
@@ -324,6 +333,8 @@ function the_question_status( $question_id = 0 ) {
 		$status = 'answered';
 	else
 		$status = 'unanswered';
+		
+	$status = apply_filters( 'qa_question_status', $status );
 
 	echo "<div class='question-status $status'>";
 	echo	"<div class='mini-count'>" . number_format_i18n( $count ) . "</div>";

@@ -104,9 +104,9 @@ function is_question_answered( $question_id = 0, $type = 'any' ) {
 		$question_id = get_the_ID();
 
 	if ( 'accepted' == $type ) {
-		return get_post_meta( $question_id, 'accepted_answer', true );
+		return apply_filters( 'qa_is_question_answered', get_post_meta( $question_id, 'accepted_answer', true ));
 	} else {
-		return get_answer_count( $question_id ) > 0;
+		return apply_filters( 'qa_is_question_answered', (get_answer_count( $question_id ) > 0) );
 	}
 }
 

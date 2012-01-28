@@ -55,6 +55,12 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.0.5 =
+* Allow susbscribers view answers and questions by default
+* New filters qa_before_menu, qa_first_menu_item, qa_last_menu_item, qa_after_menu, is_qa_page, qa_get_url, qa_is_question_answered, qa_time, qa_user_link, qa_get_question_link, qa_question_score, qa_question_status
+* New actions qa_before_content, qa_before_question_loop, qa_before_question, qa_before_question_stats, qa_after_question_stats, qa_before_question_summary, qa_after_question_summary, qa_after_question,
+  qa_after_question_loop, qa_after_content, qa_before_question_meta, qa_after_question_meta, qa_before_edit_answer, qa_after_edit_answer
+
 = 1.0.4 =
 * Fixed: WYSIWYG editor doesn't wrap
 * Fixed: Votes Array Error

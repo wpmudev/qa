@@ -1,6 +1,8 @@
 <?php get_header( 'question' ); ?>
 
 <div id="qa-page-wrapper">
+	
+<?php do_action( 'qa_before_content', 'edit-question' ); ?>
 
 <?php the_qa_menu(); ?>
 
@@ -56,19 +58,27 @@ $fav_query = new WP_Query( array(
 	<div id="qa-user-questions">
 		<div id="question-list">
 		<?php while ( have_posts() ) : the_post(); ?>
+			<?php do_action( 'qa_before_question_loop' ); ?>
 			<div class="question">
+				<?php do_action( 'qa_before_question' ); ?>
 				<div class="question-stats">
+					<?php do_action( 'qa_before_question_stats' ); ?>
 					<?php the_question_score(); ?>
 					<?php the_question_status(); ?>
+					<?php do_action( 'qa_after_question_stats' ); ?>
 				</div>
 				<div class="question-summary">
+					<?php do_action( 'qa_before_question_summary' ); ?>
 					<h3><?php the_question_link(); ?></h3>
 					<?php the_question_tags(); ?>
 					<div class="question-started">
 						<?php the_qa_time( get_the_ID() ); ?>
 					</div>
+					<?php do_action( 'qa_after_question_summary' ); ?>
 				</div>
+				<?php do_action( 'qa_after_question' ); ?>
 			</div>
+			<?php do_action( 'qa_after_question_loop' ); ?>
 		<?php endwhile; ?>
 		</div><!--#question-list-->
 	</div><!--#qa-user-questions-->
@@ -91,6 +101,8 @@ $fav_query = new WP_Query( array(
 	</div><!--#qa-user-answers-->
 
 </div><!--#qa-user-tabs-wrapper-->
+
+<?php do_action( 'qa_after_content', 'edit-question' ); ?>
 
 </div><!--#qa-page-wrapper-->
 

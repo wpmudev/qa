@@ -2,11 +2,15 @@
 
 <div id="qa-page-wrapper">
 
+<?php do_action( 'qa_before_content', 'edit-question' ); ?>
+
 <?php the_qa_menu(); ?>
 
 <div id="edit-question">
 <?php the_question_form(); ?>
 </div>
+
+<?php do_action( 'qa_after_content', 'edit-question' ); ?>
 
 </div><!--#qa-page-wrapper-->
 
