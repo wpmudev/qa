@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.0.6 =
+* QA post terms not saved if the user is not logged in
+
 = 1.0.5 =
 * Allow susbscribers view answers and questions by default
 * New filters qa_before_menu, qa_first_menu_item, qa_last_menu_item, qa_after_menu, is_qa_page, qa_get_url, qa_is_question_answered, qa_time, qa_user_link, qa_get_question_link, qa_question_score, qa_question_status

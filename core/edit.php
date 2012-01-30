@@ -94,10 +94,6 @@ class QA_Edit {
 			'comment_status' => 'open',
 		) );
 
-		wp_set_post_terms( $question_id, $_POST['question_tags'], 'question_tag' );
-
-		wp_set_post_terms( $question_id, array( (int) $_POST['question_cat'] ), 'question_category' );
-
 		return qa_get_url( 'single', $question_id );
 	}
 
@@ -214,6 +210,10 @@ class QA_Edit {
 					wp_mail($tmp_to_email, $subject_content, $message_content_send, $message_headers);
 				}
 			}
+			
+			
+			wp_set_post_terms( $post_id, $_POST['question_tags'], 'question_tag' );
+			wp_set_post_terms( $post_id, array( (int) $_POST['question_cat'] ), 'question_category' );
 			
 			// Anon posting
 			if ( !is_user_logged_in() ) {
