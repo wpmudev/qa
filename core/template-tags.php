@@ -12,7 +12,7 @@ function the_qa_menu() {
 	global $user_ID;
 	$menu = array();
 	
-	if ($user_ID == 0 || current_user_can( 'read_questions' )) {
+	if ( ($user_ID == 0 && qa_visitor_can('read_questions')) || current_user_can( 'read_questions' )) {
 		$menu[] = array(
 				'title' => __( 'Questions', QA_TEXTDOMAIN ),
 				'type' => 'archive',
@@ -25,7 +25,7 @@ function the_qa_menu() {
 			);
 	}
 	
-	if ($user_ID == 0 || current_user_can( 'publish_questions', 0 )) {
+	if ( ($user_ID == 0 && qa_visitor_can('publish_questions')) || current_user_can( 'publish_questions' )) {
 		$menu[] = array(
 			'title' => __( 'Ask a Question', QA_TEXTDOMAIN ),
 			'type' => 'ask',
@@ -443,7 +443,7 @@ function the_answer_list() {
 	global $user_ID;
 	$question_id = get_the_ID();
 
-	if ( $user_ID != 0 && !current_user_can( 'read_answers', $question_id ) )
+	if ( ($user_ID == 0 && qa_visitor_can('read_answers', $question_id)) && !current_user_can( 'read_answers', $question_id ) )
 		return;
 
 	$accepted_answer = get_post_meta( $question_id, '_accepted_answer', true );
@@ -492,10 +492,10 @@ function the_answer_form() {
 	if ( is_qa_page( 'edit' ) ) {
 		$answer = $wp_query->posts[0];
 		
-		if ( $user_ID != 0 && !current_user_can( 'edit_published_answers', $answer->ID ) )
+		if ( ($user_ID == 0 && !qa_visitor_can('edit_published_answers', $answer->ID)) && !current_user_can( 'edit_published_answers', $answer->ID ) )
 			return;
 	} else {
-		if ( $user_ID != 0 && !current_user_can( 'publish_answers') ) {
+		if ( ($user_ID == 0 && !qa_visitor_can('publish_answers')) && !current_user_can( 'publish_answers') ) {
 			echo '<p>'.__('You are not allowed to add answers!', QA_TEXTDOMAIN).'</p>';
 			return;
 		}
@@ -534,5 +534,13 @@ function the_qa_submit_button() {
 ?>
 	<input class="qa-edit-submit" type="submit" value="<?php echo $button; ?>" />
 <?php
+}
+
+function qa_visitor_can($capability, $post_id = null) {
+	$role = get_role('visitor');
+	if ($role && $role->has_cap($capability, $post_id)) {
+		return true;
+	}
+	return false;
 }
 

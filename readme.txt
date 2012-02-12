@@ -59,6 +59,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 * Better theme compatibility for Twenty Eleven, Twety Ten, BP Default and Products themes
 * Make your own theme style mod and copy to qa/theme-mods/css/custom-<theme_directory>.css
 * More styling improvements
+* Added visitor role to control what users not logged in can use in QA
 
 = 1.0.6 =
 * QA post terms not saved if the user is not logged in

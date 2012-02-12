@@ -44,7 +44,7 @@ class QA_Core_Admin extends QA_Core {
 	 * @return void
 	 */
 	function init() {
-		register_activation_hook( QA_PLUGIN_DIR . 'loader.php', array( &$this, 'init_defaults' ) );
+		register_activation_hook( QA_PLUGIN_DIR . 'qa.php', array( &$this, 'init_defaults' ) );
 
 		add_action( 'admin_init', array( &$this, 'admin_head' ) );
 		add_action( 'admin_menu', array( &$this, 'admin_menu' ) );
@@ -102,14 +102,27 @@ class QA_Core_Admin extends QA_Core {
 	 */
 	function init_defaults() {
 		global $wp_roles;
-
-		foreach ( array_keys( $this->capability_map ) as $capability )
-			$wp_roles->add_cap( 'administrator', $capability );
 		
-		$wp_roles->add_cap( 'subscriber', 'read_questions' );
-		$wp_roles->add_cap( 'subscriber', 'read_answers' );
-		// add option to the autoload list
-		add_option( QA_OPTIONS_NAME, array() );
+		if (get_option('qa_installed_version', '0.0.0') != QA_VERSION) {
+			add_role('visitor', 'Visitor', array('read_questions' => true, 'publish_questions' => true,
+							     'read_answers' => true, 'publish_answers' => true) );
+			
+			foreach ( array_keys( $this->capability_map ) as $capability )
+				$wp_roles->add_cap( 'administrator', $capability );
+			
+			$wp_roles->add_cap( 'subscriber', 'read_questions' );
+			$wp_roles->add_cap( 'subscriber', 'read_answers' );
+			
+			$wp_roles->add_cap( 'visitor', 'read_questions' );
+			$wp_roles->add_cap( 'visitor', 'publish_questions' );
+			$wp_roles->add_cap( 'visitor', 'read_answers' );
+			$wp_roles->add_cap( 'visitor', 'publish_answers' );
+			
+			// add option to the autoload list
+			add_option( QA_OPTIONS_NAME, array() );
+			
+			update_option( 'qa_installed_version', QA_VERSION);
+		}
 	}
 
 	/**

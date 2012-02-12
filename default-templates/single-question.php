@@ -9,7 +9,7 @@ get_header( 'question' );
 	
 	<?php the_qa_menu(); ?>
 	
-	<?php if ( $user_ID == 0 || current_user_can( 'read_questions' ) ) { ?>
+	<?php if ( ($user_ID == 0 && qa_visitor_can('read_questions')) || current_user_can( 'read_questions' ) ) { ?>
 	<?php wp_reset_postdata(); ?>
 	<div id="single-question">
 		<h1><?php the_title(); ?></h1>
@@ -34,7 +34,7 @@ get_header( 'question' );
 	</div>
 	<?php } ?>
 	
-	<?php if ( ($user_ID == 0 || current_user_can( 'read_answers' )) && is_question_answered() ) { ?>
+	<?php if ( ( ($user_ID == 0 && qa_visitor_can('read_answers')) || current_user_can( 'read_answers' )) && is_question_answered() ) { ?>
 	<div id="answer-list">
 		<?php do_action( 'qa_before_answers' ); ?>
 		
@@ -44,7 +44,7 @@ get_header( 'question' );
 		<?php do_action( 'qa_after_answers' ); ?>
 	</div>
 	<?php } ?>
-	<?php if ( $user_ID == 0 || current_user_can( 'publish_answers' ) ) { ?>
+	<?php if ( ($user_ID == 0 && qa_visitor_can('publish_answers')) || current_user_can( 'publish_answers' ) ) { ?>
 	<div id="edit-answer">
 		<?php do_action( 'qa_before_edit_answer' ); ?>
 		
