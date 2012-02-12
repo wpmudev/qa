@@ -327,6 +327,12 @@ class QA_Core {
 
 		if ( !current_theme_supports( 'qa_style' ) ) {
 			wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . 'default-templates/css/general.css', array(), QA_VERSION );
+			
+			$qa_current_theme = get_template();
+			
+			if (file_exists( QA_PLUGIN_DIR . 'theme-mods/css/custom-'.$qa_current_theme.'.css' )) {
+				wp_enqueue_style( 'qa-section-custom', QA_PLUGIN_URL . 'theme-mods/css/custom-'.$qa_current_theme.'.css', array('qa-section'), QA_VERSION );
+			}
 			add_action( 'wp_head', array( &$this, 'wp_head' ) );
 		}
 
@@ -357,6 +363,7 @@ class QA_Core {
 ?>
 <style type="text/css">
 <?php
+/*
 if (get_template() == 'bp-default') {
 	$bp_max_width = 1200;
 	$bp_min_width = 920;
@@ -367,12 +374,8 @@ div#content .padder { margin-right: 0; }
 #question-form table#question-form-table { max-width: <?php echo $bp_max_width - 210 - 6; ?>px; min-width: <?php echo $bp_min_width - 210 - 6; ?>px }
 .question-summary { max-width: <?php echo $bp_max_width - 210 - 116; ?>px; min-width: <?php echo $bp_min_width - 210 - 116; ?>px }
 <?php
-} else {
+} */
 ?>
-#qa-page-wrapper { width: <?php echo $width; ?>px; }
-#question-form table#question-form-table { width: <?php echo $width - 6; ?>px; }
-.question-summary { width: <?php echo $width - 156; ?>px; }
-<?php } ?>
 </style>
 <?php
 	}

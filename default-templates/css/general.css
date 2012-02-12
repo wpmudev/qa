@@ -168,6 +168,7 @@
 .mini-count {
 	font-size: 190%;
 	padding-bottom: 7px;
+	padding-top: 7px;
 }
 
 .question-score {
@@ -197,7 +198,7 @@
 
 .question-summary {
 	padding: 0 5px 0 0;
-	float: right;
+	float: left;
 }
 
 .question h3 {
@@ -286,7 +287,7 @@
 #question-body,
 .answer-body {
 	float: right;
-	width: 90%;
+	width: 89%;
 }
 
 .qa-voting-box {
