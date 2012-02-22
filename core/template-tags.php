@@ -443,7 +443,7 @@ function the_answer_list() {
 	global $user_ID;
 	$question_id = get_the_ID();
 
-	if ( ($user_ID == 0 && qa_visitor_can('read_answers', $question_id)) && !current_user_can( 'read_answers', $question_id ) )
+	if ( ($user_ID == 0 && !qa_visitor_can('read_answers', $question_id)) && !current_user_can( 'read_answers', $question_id ) )
 		return;
 
 	$accepted_answer = get_post_meta( $question_id, '_accepted_answer', true );
@@ -538,6 +538,7 @@ function the_qa_submit_button() {
 
 function qa_visitor_can($capability, $post_id = null) {
 	$role = get_role('visitor');
+	
 	if ($role && $role->has_cap($capability, $post_id)) {
 		return true;
 	}

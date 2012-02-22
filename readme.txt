@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.0.8 =
+* Fixed: QA Answers not shown to visitors even though they are given the capability
+
 = 1.0.7 =
 * Better theme compatibility for Twenty Eleven, Twety Ten, BP Default and Products themes
 * Make your own theme style mod and copy to qa/theme-mods/css/custom-<theme_directory>.css

@@ -2,7 +2,6 @@
 global $user_ID, $post;
 get_header( 'question' );
 ?>
-
 <div id="qa-page-wrapper">
 	<div id="qa-content-wrapper">
 	<?php do_action( 'qa_before_content', 'single-question' ); ?>
@@ -34,7 +33,7 @@ get_header( 'question' );
 	</div>
 	<?php } ?>
 	
-	<?php if ( ( ($user_ID == 0 && qa_visitor_can('read_answers')) || current_user_can( 'read_answers' )) && is_question_answered() ) { ?>
+	<?php if ( (( ($user_ID == 0 && qa_visitor_can('read_answers')) || current_user_can( 'read_answers' )) ) && is_question_answered() ) { ?>
 	<div id="answer-list">
 		<?php do_action( 'qa_before_answers' ); ?>
 		
