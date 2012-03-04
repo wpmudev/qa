@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.0.9 =
+* Possible fix for missing domain name in e-mail notification
+
 = 1.0.8 =
 * Fixed: QA Answers not shown to visitors even though they are given the capability
 

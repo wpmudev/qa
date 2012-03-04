@@ -151,8 +151,10 @@ class QA_Edit {
 
 	function _insert_post( $post_id, $post, $defaults ) {
 		if ( !$post_id ) {
-			global $wpdb, $qa_email_notification_content, $qa_email_notification_subject, $current_site;
-
+			global $wpdb, $qa_email_notification_content, $qa_email_notification_subject;
+			
+			$current_site = get_current_site();
+				
 			// Check for flooding
 			$most_recent = $wpdb->get_var( $wpdb->prepare( "
 				SELECT MAX(post_date)
@@ -179,7 +181,7 @@ class QA_Edit {
 					AND meta_value = 1");
 				
 				$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
-				$message_content = str_replace( "SITE_NAME", $current_site->site_name, $message_content );
+				$message_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $message_content );
 				$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
 				
 				$message_content = str_replace( "QUESTION_TITLE", $post['post_title'], $message_content );
@@ -189,7 +191,7 @@ class QA_Edit {
 				$message_content = str_replace( "\'", "'", $message_content );
 				
 				$subject_content = get_option('qa_email_notification_subject', $qa_email_notification_subject);
-				$subject_content = str_replace( "SITE_NAME", $current_site->site_name, $subject_content );
+				$subject_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $subject_content );
 				
 				$admin_email = get_site_option('admin_email');
 				if ($admin_email == ''){
@@ -197,7 +199,7 @@ class QA_Edit {
 				}
 				
 				$from_email = $admin_email;
-				$message_headers = "MIME-Version: 1.0\n" . "From: " . $current_site->site_name .  " <{$from_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
+				$message_headers = "MIME-Version: 1.0\n" . "From: " . get_option( 'blogname' ) .  " <{$from_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
 				
 				foreach ($notification_subscriptions as $uid) {
 					$user_data = get_userdata($uid->user_id);
