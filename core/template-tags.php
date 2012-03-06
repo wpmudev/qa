@@ -401,6 +401,8 @@ function the_question_form() {
 		<tr>
 			<td id="question-category-td">
 			<?php wp_dropdown_categories( array(
+				'orderby' => 'name',
+				'order' => 'ASC',
 				'taxonomy' => 'question_category',
 				'selected' => $question->cat,
 				'hide_empty' => false,
