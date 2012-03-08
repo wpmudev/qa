@@ -151,10 +151,8 @@ class QA_Edit {
 
 	function _insert_post( $post_id, $post, $defaults ) {
 		if ( !$post_id ) {
-			global $wpdb, $qa_email_notification_content, $qa_email_notification_subject;
+			global $wpdb, $qa_email_notification_content, $qa_email_notification_subject, $current_blog;
 			
-			$current_site = get_current_site();
-				
 			// Check for flooding
 			$most_recent = $wpdb->get_var( $wpdb->prepare( "
 				SELECT MAX(post_date)
@@ -182,7 +180,7 @@ class QA_Edit {
 				
 				$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
 				$message_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $message_content );
-				$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
+				$message_content = str_replace( "SITE_URL", 'http://' . $current_blog->domain . '', $message_content );
 				
 				$message_content = str_replace( "QUESTION_TITLE", $post['post_title'], $message_content );
 				$message_content = str_replace( "QUESTION_DESCRIPTION", strip_tags($post['post_content']), $message_content );
@@ -195,7 +193,7 @@ class QA_Edit {
 				
 				$admin_email = get_site_option('admin_email');
 				if ($admin_email == ''){
-					$admin_email = 'admin@' . $current_site->domain;
+					$admin_email = 'admin@' . $current_blog->domain;
 				}
 				
 				$from_email = $admin_email;
