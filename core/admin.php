@@ -331,7 +331,8 @@ class QA_Core_Admin extends QA_Core {
 				$capable = false;
 				
 				switch ($cap) {
-					case 'read_questions' or 'read_answers':
+					case 'read_questions':
+					case 'read_answers':
 						$capable = true;
 						break;
 					default:
