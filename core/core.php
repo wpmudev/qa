@@ -165,7 +165,7 @@ class QA_Core {
 	function check_rewrite_rules($value) {
 		//prevent an infinite loop
 		if ( ! post_type_exists( 'question' ) )
-			return;
+			return $value;
 		
 		if (!is_array($value))
 			$value = array();
@@ -174,6 +174,7 @@ class QA_Core {
 		if ( !array_key_exists($array_key, $value) ) {
 			$this->flush_rules();
 		}
+		return $value;
 	}
 
 	/**

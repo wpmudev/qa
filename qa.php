@@ -39,7 +39,7 @@ if ( !function_exists( 'wdp_un_check' ) ) {
 }
 
 // The plugin version
-define( 'QA_VERSION', '1.1.0' );
+define( 'QA_VERSION', '1.1.1' );
 
 // The full url to the plugin directory
 define( 'QA_PLUGIN_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) . '/' );
