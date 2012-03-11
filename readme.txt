@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed: Question author email notification no happening
+
 = 1.1.0 =
 * Possible fix for Call to undefined function get_current_site() 
 

@@ -65,8 +65,8 @@ class QA_Subscriptions {
 		$question = get_post($question_id);
 		
 		$subscribers = get_post_meta( $question_id, '_sub' );
-		if ( !in_array( $post->post_author, $subscribers ) )
-			$subscribers[] = $post->post_author; // Notify question author too
+		if ( !in_array( $question->post_author, $subscribers ) )
+			$subscribers[] = $question->post_author; // Notify question author too
 
 		$subject = sprintf( __( '[%s] New answer on "%s"' ), get_option( 'blogname' ), $question->post_title );
 
