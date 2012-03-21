@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.1.2 =
+* Thesis compatibility
+
 = 1.1.1 =
 * Fixed: Question author email notification no happening
 * Now works with WPML

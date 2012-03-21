@@ -254,7 +254,7 @@ class QA_Core {
 
 		if ( empty( $path ) || "$type.php" == $file ) {
 			// A more specific template was not found, so load the default one
-			$path = QA_PLUGIN_DIR . "default-templates/$type-question.php";
+			$path = QA_PLUGIN_DIR . QA_DEFAULT_TEMPLATE_DIR . "/$type-question.php";
 		}
 
 		return $path;
@@ -267,7 +267,7 @@ class QA_Core {
 		$path = locate_template( $name );
 
 		if ( !$path ) {
-			$path = QA_PLUGIN_DIR . "default-templates/$name";
+			$path = QA_PLUGIN_DIR . QA_DEFAULT_TEMPLATE_DIR. "/$name";
 		}
 
 		load_template( $path );
@@ -327,7 +327,7 @@ class QA_Core {
 			return;
 
 		if ( !current_theme_supports( 'qa_style' ) ) {
-			wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . 'default-templates/css/general.css', array(), QA_VERSION );
+			wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR. '/css/general.css', array(), QA_VERSION );
 			
 			$qa_current_theme = get_template();
 			
@@ -340,13 +340,13 @@ class QA_Core {
 		if ( !current_theme_supports( 'qa_script' ) ) {
 			if ( is_qa_page( 'ask' ) || is_qa_page( 'edit' ) || is_qa_page( 'single' ) ) {
 				if (version_compare($wp_version, "3.3", "<")) {
-					wp_enqueue_style( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.css', array(), '1.3.0-l10n' );
-					wp_enqueue_script( 'cleditor', QA_PLUGIN_URL . 'default-templates/js/cleditor/jquery.cleditor.js', array( 'jquery' ), '1.3.0-l10n' );
+					wp_enqueue_style( 'cleditor', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR . '/js/cleditor/jquery.cleditor.css', array(), '1.3.0-l10n' );
+					wp_enqueue_script( 'cleditor', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR . '/js/cleditor/jquery.cleditor.js', array( 'jquery' ), '1.3.0-l10n' );
 				}
 				wp_enqueue_script( 'suggest' );
 			}
 
-			wp_enqueue_script( 'qa-init', QA_PLUGIN_URL . 'default-templates/js/init.js', array('jquery'), QA_VERSION );
+			wp_enqueue_script( 'qa-init', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR . '/js/init.js', array('jquery'), QA_VERSION );
 			wp_localize_script( 'qa-init', 'QA_L10N', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'msg_login' => __( 'Please login or register to vote.', QA_TEXTDOMAIN ),
