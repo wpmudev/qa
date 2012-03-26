@@ -131,7 +131,7 @@ class QA_Core_Admin extends QA_Core {
 	 * @return void
 	 */
 	function admin_menu() {
-		$this->hook_suffix = add_submenu_page( 'edit.php?post_type=question', __( 'Settings', QA_TEXTDOMAIN ), __( 'Settings', QA_TEXTDOMAIN ), 'edit_users', 'settings', array( &$this, 'handle_admin_requests' ) );
+		$this->hook_suffix = add_submenu_page( 'edit.php?post_type=question', __( 'Settings', QA_TEXTDOMAIN ), __( 'Settings', QA_TEXTDOMAIN ), 'edit_users', 'qa_settings', array( &$this, 'handle_admin_requests' ) );
 	}
 
 	/**
