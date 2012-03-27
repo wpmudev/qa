@@ -171,7 +171,7 @@ class QA_Core_Admin extends QA_Core {
 	 * @return void
 	 */
 	function handle_admin_requests() {
-		if ( isset( $_GET['page'] ) && $_GET['page'] == 'settings' ) {
+		if ( isset( $_GET['page'] ) && $_GET['page'] == 'qa_settings' ) {
 			if ( isset( $_GET['tab'] ) && $_GET['tab'] == 'general' || !isset( $_GET['tab'] ) ) {
 				if ( isset( $_GET['sub'] ) && $_GET['sub'] == 'general' || !isset( $_GET['sub'] ) ) {
 					$this->render_admin('settings-general');
