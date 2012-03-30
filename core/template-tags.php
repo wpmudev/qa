@@ -471,7 +471,7 @@ function the_answer_list() {
 		<?php the_answer_voting( $answer->ID ); ?>
 		<div class="answer-body">
 			<div class="answer-content">
-				<?php echo get_the_content(); ?>
+				<?php the_content(); ?>
 			</div>
 
 			<div class="answer-meta">
