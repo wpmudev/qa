@@ -89,10 +89,11 @@ class QA_Subscriptions {
 		
 		foreach ( $subscribers as $subscriber_id ) {
 			// Don't notify the author of the answer
-			if ( $post->post_author == $subscriber_id )
-				continue;
-
-			$msg = $content . sprintf( __( 'To manage your subscriptions, visit <a href="%s">your profile</a>.', QA_TEXTDOMAIN ), qa_get_url( 'user', $subscriber_id ) );
+			if ( $post->post_author != $subscriber_id ) {
+				$msg = $content . sprintf( __( 'To manage your subscription, visit <a href="%s">the question</a>.', QA_TEXTDOMAIN ), qa_get_url( 'single', $post->ID ) );
+			} else {
+				$msg = $content;
+			}
 
 			wp_mail( get_user_option( 'user_email', $subscriber_id ), $subject, $msg, $message_headers);
 		}
