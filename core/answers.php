@@ -15,6 +15,9 @@ class QA_Answers {
 		add_action( 'request', array( &$this, 'request' ) );
 		add_filter( 'redirect_canonical', array( &$this, 'redirect_canonical' ), 10, 2 );
 		add_filter( 'post_type_link', array( &$this, 'answer_permalink' ), 10, 2 );
+		
+		add_action( 'admin_init', array( &$this, 'admin_init' ) );
+		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_enqueue_scripts' ) );
 	}
 
 	function init() {
@@ -46,7 +49,18 @@ class QA_Answers {
 				'not_found'		=> __('No answers found', QA_TEXTDOMAIN),
 				'not_found_in_trash'	=> __('No answers found in trash', QA_TEXTDOMAIN),
 			)
-		) );	
+		) );
+	}
+	
+	function admin_init() {
+		wp_register_style( 'qa-answers-remove-add', QA_PLUGIN_URL . 'css/qa-answers-remove-add.css' );
+	}
+	
+	function admin_enqueue_scripts($hook) {
+		global $post;
+		if( 'edit.php' != $hook || $post->post_type != 'answer' )
+			return;
+		wp_enqueue_style( 'qa-answers-remove-add' );
 	}
 
 	// Handle answer feed	
