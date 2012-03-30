@@ -57,6 +57,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 = 1.1.5 =
 * Fixed: Q&amp;A - not HTTPS / SSL compatible
+* Fixed: Only Super Admin sees the settings menu in Q&amp;A plugin
 
 = 1.1.4 =
 * Fixed: Nothing shows up in my settings tab
