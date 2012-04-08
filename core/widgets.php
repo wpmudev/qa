@@ -46,6 +46,8 @@ class QA_Widget_Questions extends QA_Widget_Helper {
 	var $default_instance = array(
 		'title' => '',
 		'which' => 'recent',
+		'tags' => '',
+		'categories' => '',
 		'number' => 5
 	);
 
@@ -76,7 +78,17 @@ class QA_Widget_Questions extends QA_Widget_Helper {
 			'posts_per_page' => 5,
 			'suppress_filters' => false
 		) );
-
+		
+		$tag_ids = array();
+		if (isset($instance['tags']) && !empty($instance['tags'])) {
+			$args['question_tag'] = $instance['tags'];
+		}
+		
+		$cat_ids = array();
+		if (isset($instance['categories']) && !empty($instance['categories'])) {
+			$args['question_category'] = $instance['categories'];
+		}
+		
 		echo '<ul>';
 		foreach ( get_posts( $args ) as $post ) {
 			setup_postdata( $post );
@@ -113,6 +125,32 @@ class QA_Widget_Questions extends QA_Widget_Helper {
 			</select>
 		</p>
 		<p>
+			<label for="<?php echo $this->get_field_id('tags'); ?>"><?php _e( 'Tags:', QA_TEXTDOMAIN ); ?></label>
+			<?php
+			echo _qa_html( 'input', array(
+				'type' => 'text',
+				'size' => 30,
+				'id' => $this->get_field_id('tags'),
+				'name' => $this->get_field_name('tags'),
+				'value' => $instance['tags']
+			) );
+			?>
+			<div class="instructions"><?php _e( 'Comma separated', QA_TEXTDOMAIN ); ?></div>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('categories'); ?>"><?php _e( 'Categories:', QA_TEXTDOMAIN ); ?></label>
+			<?php
+			echo _qa_html( 'input', array(
+				'type' => 'text',
+				'size' => 30,
+				'id' => $this->get_field_id('categories'),
+				'name' => $this->get_field_name('categories'),
+				'value' => $instance['categories']
+			) );
+			?>
+			<div class="instructions"><?php _e( 'Comma separated', QA_TEXTDOMAIN ); ?></div>
+		</p>
+		<p>
 			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of questions to show:', QA_TEXTDOMAIN ); ?></label>
 			<?php
 			echo _qa_html( 'input', array(
@@ -132,6 +170,8 @@ class QA_Widget_Questions extends QA_Widget_Helper {
 		$new_instance = $this->parse_instance( $new_instance );
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['which'] = $new_instance['which'];
+		$instance['tags'] = $new_instance['tags'];
+		$instance['categories'] = $new_instance['categories'];
 		$instance['number'] = (int) $new_instance['number'];
 		return $instance;
 	}

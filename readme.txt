@@ -61,6 +61,7 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
   QA_ANSWER_ACCEPTED, QA_ANSWER_ACCEPTING, QA_ANSWER_UP_VOTE, QA_QUESTION_UP_VOTE,
   QA_DOWN_VOTE, QA_DOWN_VOTE_PENALTY, QA_ANSWERS_PER_PAGE, QA_DEFAULT_TEMPLATE_DIR .
   Define them in wp-config.php to override default options.
+* Filter questions by tag or category in Questions Widget
 
 = 1.1.5 =
 * Fixed: Q&A - not HTTPS / SSL compatible
