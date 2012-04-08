@@ -58,30 +58,29 @@ define( 'QA_TEXTDOMAIN', 'qa' );
 define( 'QA_OPTIONS_NAME', 'qa_options' );
 
 // The minimum number of seconds between two user posts
-define( 'QA_FLOOD_SECONDS', 10 );
+if (!defined('QA_FLOOD_SECONDS')) define( 'QA_FLOOD_SECONDS', 10 );
 
 // Rewrite slugs
-define( 'QA_SLUG_ROOT','questions' );
-define( 'QA_SLUG_ASK', 'ask' );
-define( 'QA_SLUG_EDIT', 'edit' );
-define( 'QA_SLUG_UNANSWERED', 'unanswered' );
-define( 'QA_SLUG_TAGS', 'tags' );
-define( 'QA_SLUG_CATEGORIES', 'categories' );
-define( 'QA_SLUG_USER', 'user' );
+if (!defined('QA_SLUG_ROOT')) define( 'QA_SLUG_ROOT','questions' );
+if (!defined('QA_SLUG_ASK')) define( 'QA_SLUG_ASK', 'ask' );
+if (!defined('QA_SLUG_EDIT')) define( 'QA_SLUG_EDIT', 'edit' );
+if (!defined('QA_SLUG_UNANSWERED')) define( 'QA_SLUG_UNANSWERED', 'unanswered' );
+if (!defined('QA_SLUG_TAGS')) define( 'QA_SLUG_TAGS', 'tags' );
+if (!defined('QA_SLUG_CATEGORIES')) define( 'QA_SLUG_CATEGORIES', 'categories' );
+if (!defined('QA_SLUG_USER')) define( 'QA_SLUG_USER', 'user' );
 
 // Reputation multipliers
-define( 'QA_ANSWER_ACCEPTED', 15 );
-define( 'QA_ANSWER_ACCEPTING', 2 );
-define( 'QA_ANSWER_UP_VOTE', 10 );
-define( 'QA_QUESTION_UP_VOTE', 5 );
-define( 'QA_DOWN_VOTE', -2 );
-define( 'QA_DOWN_VOTE_PENALTY', -1 );
+if (!defined('QA_ANSWER_ACCEPTED')) define( 'QA_ANSWER_ACCEPTED', 15 );
+if (!defined('QA_ANSWER_ACCEPTING')) define( 'QA_ANSWER_ACCEPTING', 2 );
+if (!defined('QA_ANSWER_UP_VOTE')) define( 'QA_ANSWER_UP_VOTE', 10 );
+if (!defined('QA_QUESTION_UP_VOTE')) define( 'QA_QUESTION_UP_VOTE', 5 );
+if (!defined('QA_DOWN_VOTE')) define( 'QA_DOWN_VOTE', -2 );
+if (!defined('QA_DOWN_VOTE_PENALTY')) define( 'QA_DOWN_VOTE_PENALTY', -1 );
 
 // Pagination
-define( 'QA_ANSWERS_PER_PAGE', 20 );
+if (!defined('QA_ANSWERS_PER_PAGE')) define( 'QA_ANSWERS_PER_PAGE', 20 );
 
-if (!defined('QA_DEFAULT_TEMPLATE_DIR')) 
-	define( 'QA_DEFAULT_TEMPLATE_DIR', 'default-templates' );
+if (!defined('QA_DEFAULT_TEMPLATE_DIR')) define( 'QA_DEFAULT_TEMPLATE_DIR', 'default-templates' );
 
 global $qa_email_notification_content, $qa_email_notification_subject;
 

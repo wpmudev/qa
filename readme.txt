@@ -55,6 +55,13 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.1.6 =
+* New configurable options QA_FLOOD_SECONDS, QA_SLUG_ROOT, QA_SLUG_ASK,
+  QA_SLUG_EDIT, QA_SLUG_UNANSWERED, QA_SLUG_TAGS, QA_SLUG_CATEGORIES, QA_SLUG_USER,
+  QA_ANSWER_ACCEPTED, QA_ANSWER_ACCEPTING, QA_ANSWER_UP_VOTE, QA_QUESTION_UP_VOTE,
+  QA_DOWN_VOTE, QA_DOWN_VOTE_PENALTY, QA_ANSWERS_PER_PAGE, QA_DEFAULT_TEMPLATE_DIR .
+  Define them in wp-config.php to override default options.
+
 = 1.1.5 =
 * Fixed: Q&A - not HTTPS / SSL compatible
 * Fixed: Only Super Admin sees the settings menu in Q&A plugin
