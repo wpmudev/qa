@@ -8,14 +8,16 @@ class QA_Edit {
 	function QA_Edit() {
 		add_action( 'init', array( &$this, 'handle_forms' ), 11 );
 		add_filter( 'wp_unique_post_slug_is_bad_flat_slug', array( &$this, 'handle_slugs' ), 10, 4 );
-
+		
 		add_action( 'delete_post', array( &$this, 'update_answer_count' ) );
 		add_action( 'trash_post', array( &$this, 'update_answer_count' ) );
 		add_action( 'transition_post_status', array( &$this, 'transition_post_status' ), 10, 3 );
-
+		
 		add_action( 'wp_login', array( &$this, 'wp_login' ) );
-		add_action( 'user_register', array( &$this, 'user_register' ) );
+		add_action( 'user_register', array( &$this, 'user_register' ), 1000);
 		add_action( 'login_message', array( &$this, 'login_message' ) );
+		
+		add_filter( 'registration_redirect', array( &$this, 'registration_redirect' ), 10, 1);
 	}
 
 	function handle_forms() {
@@ -253,37 +255,51 @@ class QA_Edit {
 	// Redirect user to his claimed post, if there is one
 	function wp_login( $login ) {
 		$post_id = $this->_get_post_to_claim();
-
+		
 		if ( !$post_id )
 			return;
-
+		
 		$user = get_userdatabylogin( $login );
-
+		
 		wp_update_post( array(
 			'ID' => $post_id,
 			'post_author' => $user->ID,
 			'post_status' => 'publish'
 		) );
-
+		
 		delete_post_meta( $post_id, '_claim' );
 		setcookie( '_qa_claim', false, time() - 3600, '/' );
-
-		wp_redirect( qa_get_url( 'single', $post_id ) );
-		die;
+		
+		wp_safe_redirect( qa_get_url( 'single', $post_id ) );
+		// die;
 	}
 
 	// Automatically log in newly registered user, if there's a claimed post
 	function user_register( $user_id ) {
 		$post_id = $this->_get_post_to_claim();
-
+		
 		if ( !$post_id )
 			return;
-
+		
 		wp_set_auth_cookie( $user_id, true, is_ssl() );
-
+		
 		$user = get_userdata( $user_id );
-
+		
 		do_action( 'wp_login', $user->user_login );
+	}
+	
+	
+	function registration_redirect( $redirect_to ) {
+		$post_id = $this->_get_post_to_claim();
+		
+		if ( !$post_id )
+			return;
+		
+		wp_set_auth_cookie( $user_id, true, is_ssl() );
+		
+		$user = get_userdata( $user_id );
+		
+		return qa_get_url( 'single', $post_id );
 	}
 
 	// Customized login message

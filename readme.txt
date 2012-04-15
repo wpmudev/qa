@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.1.7 =
+* Fixed: new wordpress user after Q&amp;A anon answer No New User Emails
+
 = 1.1.6 =
 * New configurable options QA_FLOOD_SECONDS, QA_SLUG_ROOT, QA_SLUG_ASK,
   QA_SLUG_EDIT, QA_SLUG_UNANSWERED, QA_SLUG_TAGS, QA_SLUG_CATEGORIES, QA_SLUG_USER,
