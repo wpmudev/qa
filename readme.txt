@@ -55,6 +55,9 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.1.8 =
+* Fixed: settings item
+
 = 1.1.7 =
 * Fixed: new wordpress user after Q&amp;A anon answer No New User Emails
 

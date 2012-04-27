@@ -34,7 +34,7 @@ class QA_Core_Admin extends QA_Core {
 			'edit_others_answers'        => __( 'Edit others\' answers.', QA_TEXTDOMAIN ),
 			'delete_others_answers'      => __( 'Delete others\' answers.', QA_TEXTDOMAIN ),
 		);
-
+		
 		$this->init();
 	}
 
@@ -109,7 +109,7 @@ class QA_Core_Admin extends QA_Core {
 			
 			foreach ( array_keys( $this->capability_map ) as $capability )
 				$wp_roles->add_cap( 'administrator', $capability );
-			
+			//print_r($this->capability_map); exit();
 			$wp_roles->add_cap( 'subscriber', 'read_questions' );
 			$wp_roles->add_cap( 'subscriber', 'read_answers' );
 			
@@ -131,7 +131,7 @@ class QA_Core_Admin extends QA_Core {
 	 * @return void
 	 */
 	function admin_menu() {
-		$this->hook_suffix = add_submenu_page( 'edit.php?post_type=question', __( 'Settings', QA_TEXTDOMAIN ), __( 'Settings', QA_TEXTDOMAIN ), 'edit_users', 'qa_settings', array( &$this, 'handle_admin_requests' ) );
+		$this->hook_suffix = add_submenu_page( 'edit.php?post_type=question', __( 'Settings', QA_TEXTDOMAIN ), __( 'Settings', QA_TEXTDOMAIN ), 'manage_options', 'qa_settings', array( &$this, 'handle_admin_requests' ) );
 	}
 
 	/**
