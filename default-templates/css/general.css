@@ -301,12 +301,12 @@
 	display: block;
 }
 
-.vote-up-on,
-.vote-up-off,
-.vote-down-on,
-.vote-down-off,
-.vote-accepted-on,
-.vote-accepted-off {
+input[type=submit].vote-up-on,
+input[type=submit].vote-up-off,
+input[type=submit].vote-down-on,
+input[type=submit].vote-down-off,
+input[type=submit].vote-accepted-on,
+input[type=submit].vote-accepted-off {
 	border: 0;
 	background-color: #fff !important;
 	background-image: url("../img/vote.png") !important;
@@ -315,45 +315,46 @@
 	text-indent: -9999em;
 	margin: 0 auto;
 	cursor: pointer;
+	filter: none;
 }
 
-.vote-accepted-off,
-.vote-accepted-on {
+input[type=submit].vote-accepted-off,
+input[type=submit].vote-accepted-on {
 	background-image: url("../img/accept.png") !important;
 	display: block;
 	height: 40px !important;
 	width: 39px !important;
 }
 
-.vote-accepted-on {
+input[type=submit].vote-accepted-on {
 	background-position: 0 0 !important;
 }
 
-.vote-accepted-off {
+input[type=submit].vote-accepted-off {
 	background-position: 0 -35px !important;
 }
 
-.vote-up-on,
-.vote-up-off,
-.vote-down-on,
-.vote-down-off {
+input[type=submit].vote-up-on,
+input[type=submit].vote-up-off,
+input[type=submit].vote-down-on,
+input[type=submit].vote-down-off {
 	height: 25px !important;
 	width: 41px !important;
 }
 
-.vote-up-on {
+input[type=submit].vote-up-on {
 	background-position: 0 0 !important;
 }
 
-.vote-up-off {
+input[type=submit].vote-up-off {
 	background-position: 0 -36px !important;
 }
 
-.vote-down-off {
+input[type=submit].vote-down-off {
 	background-position: 0 -70px !important;
 }
 
-.vote-down-on {
+input[type=submit].vote-down-on {
 	background-position: 0 -101px !important;
 }
 
