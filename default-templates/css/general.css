@@ -315,6 +315,13 @@ input[type=submit].vote-accepted-off {
 	text-indent: -9999em;
 	margin: 0 auto;
 	cursor: pointer;
+}
+
+.qa-voting-box input[type=submit] {
+	filter: none;
+}
+
+.qa-voting-box input[type=submit]:hover {
 	filter: none;
 }
 
