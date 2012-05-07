@@ -39,7 +39,7 @@ if ( !function_exists( 'wdp_un_check' ) ) {
 }
 
 // The plugin version
-define( 'QA_VERSION', '1.1.8' );
+define( 'QA_VERSION', '1.1.9' );
 
 // The full url to the plugin directory
 if ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || $_SERVER['SERVER_PORT'] == '443') {
