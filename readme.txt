@@ -55,6 +55,10 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.1.9 =
+* Fixed: Up, Down buttons in BuddyPress default theme
+* Fixed: Unable to change the Question Category once the Question has been added
+
 = 1.1.8 =
 * Fixed: settings item
 

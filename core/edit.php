@@ -243,6 +243,9 @@ class QA_Edit {
 			// Update post
 			$post['ID'] = $post_id;
 			$post_id = wp_update_post( $post, true );
+			
+			wp_set_post_terms( $post_id, $_POST['question_tags'], 'question_tag' );
+			wp_set_post_terms( $post_id, array( (int) $_POST['question_cat'] ), 'question_category' );
 		}
 
 		if ( is_wp_error( $post_id ) ) {
