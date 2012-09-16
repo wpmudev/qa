@@ -4,3 +4,7 @@
 #ajax-loader {
 	float: right;
 }
+
+.column-qa-reported{width:10%;text-align:center;}
+#reported_question label, #reported_answer label{float:left;}
+span.qa_reported{float:right;height:24px;font-weight:bold;}

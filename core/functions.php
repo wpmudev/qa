@@ -77,7 +77,7 @@ function qa_get_url( $type, $id = 0 ) {
 				if ( defined( 'BP_VERSION' ) ) {
 
 				}
-				$result = trailingslashit( $base ) . user_trailingslashit( 'user/' . $user->user_nicename );
+				$result = trailingslashit( $base ) . user_trailingslashit( QA_SLUG_USER . '/' . $user->user_nicename );
 			}
 			break;
 		case 'single':

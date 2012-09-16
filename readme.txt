@@ -1,8 +1,8 @@
 === Q&A ===
-Contributors: scribu, mohanjith
+Contributors: scribu, mohanjith, hakan
 Tags: questions, answers, community, Q&A, stackoverflow, wordpress-plugins
 Requires at least: 3.1
-Tested up to: 3.3.1
+Tested up to: 3.4.2
 Stable tag: trunk
 
 Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
@@ -54,6 +54,40 @@ To disable the default JavaScript, add the following line to your theme's functi
 When you feel the Q&A section is ready for prime time, if your theme supports [custom menus](http://en.support.wordpress.com/menus/), you could add direct links to http://yoursite.com/questions/ and even to http://yoursite.com/questions/ask/ to your main menu.
 
 == Changelog ==
+
+= 1.3.1 =
+* Questions and answers can now be reported/flagged with Captcha verification option
+* Added more filter and action hooks
+* Fixed wrong ordering in the reputation widget
+* Thesis template files fixed
+
+= 1.3.0 =
+* Added full width Q&A pages selection option
+* Added Users with Highest Reputation widget
+* Questions Per Page is now adjustable
+* Question status count included in admin Right Now Dashboard box
+* Changed optional question save status from draft to pending now
+* Features synchronized with Q&A Lite
+
+= 1.2.0.1 =
+* Fixed a minor display bug (forgotten closing italics tag)
+
+= 1.2.0 =
+* Added possibility to save questions in draft mode for all user levels
+* Anon questions can be assigned to an existing author
+* Added possibility to remove commenting in Buddypress activity stream
+* Css settings can be set using admin panel now
+* Added wp_editor filter, post filter and several other filter hooks to control how questions are saved and messages are sent 
+* Disabling of WP editor is now possible
+* Answers per page can be set from admin side
+* Admin UI improved
+* More explanatory reply in case of a duplicate question submission
+* Added proper uninstall functionality
+* Default capabilities are now better set during installation
+* Fixed unauthorized users accessing question pages. They are now redirected to a selectable page instead
+* Fixed css issue for accepted answer icon
+* Fixed notices displayed in WP Debug mode
+* activity-action class is included in css file to prevent links become invisible
 
 = 1.1.9 =
 * Fixed: Up, Down buttons in BuddyPress default theme
@@ -167,3 +201,6 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 = 1.0-beta1 =
 * initial release
 
+67022-1337220918
+
+67022-1341303680-au

@@ -5,8 +5,6 @@
 * @package Thesis
 */
 
-$loopty_loop = new qa_loops;
-
 add_action('thesis_hook_before_content', 'do_qa_ask');
 function do_qa_ask(){
   ?>

@@ -1,5 +1,4 @@
 <?php get_header( 'question' ); ?>
-
 <div id="qa-page-wrapper">
 	<div id="qa-content-wrapper">
 		<?php do_action( 'qa_before_content', 'archive-question' ); ?>
@@ -38,17 +37,21 @@
 					<?php do_action( 'qa_after_question' ); ?>
 				</div>
 				<?php do_action( 'qa_after_question_loop' ); ?>
-			<?php endwhile; ?>
+			<?php endwhile; $wp_query->set('posts_per_page', 6); ?>
 			</div><!--#question-list-->
 			
-			<?php the_qa_pagination(); ?>
+			<?php the_qa_pagination( ); ?>
 			
 			<?php do_action( 'qa_after_content', 'archive-question' ); ?>
 		
-		<?php endif; ?>
+		<?php endif;?>
 	</div>
 </div><!--#qa-page-wrapper-->
-	
-<?php get_sidebar( 'question' ); ?>
+<?php
+global $qa_general_settings;
+
+if ( !isset( $qa_general_settings["full_width"] ) || !$qa_general_settings["full_width"] )	
+	get_sidebar( 'question' ); 
+?>
 	
 <?php get_footer( 'question' ); ?>

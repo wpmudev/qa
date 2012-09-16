@@ -17,7 +17,12 @@
 	</div>
 </div><!--#qa-page-wrapper-->
 
-<?php get_sidebar( 'question' ); ?>
+<?php 
+global $qa_general_settings;
+
+if ( !isset( $qa_general_settings["full_width"] ) || !$qa_general_settings["full_width"] )	
+	get_sidebar( 'question' ); 
+?>
 
 <?php get_footer( 'question' ); ?>
 

@@ -52,8 +52,8 @@ class QA_Widget_Questions extends QA_Widget_Helper {
 	);
 
 	function QA_Widget_Questions() {
-		$widget_ops = array( 'description' => __( 'List of questions', QA_TEXTDOMAIN ) );
-		$this->WP_Widget( 'questions', __( 'Questions', QA_TEXTDOMAIN ), $widget_ops );
+		$widget_ops = array( 'description' => __( 'List of questions selectable from recent, most popular and unanswered ones', QA_TEXTDOMAIN ) );
+		$this->WP_Widget( 'questions', __( 'Q&A: Questions', QA_TEXTDOMAIN ), $widget_ops );
 	}
 
 	function content( $instance ) {
@@ -186,7 +186,7 @@ class QA_Widget_Tags extends QA_Widget_Helper {
 
 	function QA_Widget_Tags() {
 		$widget_ops = array( 'description' => __( 'The most popular question tags in cloud format', QA_TEXTDOMAIN ) );
-		$this->WP_Widget( 'question_tags', __( 'Question Tags', QA_TEXTDOMAIN ), $widget_ops );
+		$this->WP_Widget( 'question_tags', __( 'Q&A: Question Tags', QA_TEXTDOMAIN ), $widget_ops );
 	}
 
 	function widget( $args, $instance ) {
@@ -241,7 +241,7 @@ class QA_Widget_Categories extends QA_Widget_Helper {
 
 	function QA_Widget_Categories() {
 		$widget_ops = array( 'description' => __( 'A list of question categories', QA_TEXTDOMAIN ) );
-		$this->WP_Widget( 'question_categories', __( 'Question Categories', QA_TEXTDOMAIN ), $widget_ops );
+		$this->WP_Widget( 'question_categories', __( 'Q&A: Question Categories', QA_TEXTDOMAIN ), $widget_ops );
 	}
 
 	function widget( $args, $instance ) {
@@ -266,6 +266,8 @@ class QA_Widget_Categories extends QA_Widget_Helper {
 			'show_count' => $instance['count'],
 			'title_li' => ''
 		);
+		
+		$cat_args = apply_filters( 'qa_category_widget_args', $cat_args, $instance );
 
 		echo '<ul>';
 		wp_list_categories( $cat_args );
@@ -292,6 +294,76 @@ class QA_Widget_Categories extends QA_Widget_Helper {
 	}
 }
 
+class QA_Widget_Reputation extends QA_Widget_Helper {
+
+	var $default_instance = array(
+		'title' => '',
+		'number' => 5
+	);
+
+	function QA_Widget_Reputation() {
+		$widget_ops = array( 'description' => __( 'A list of users having highest reputation points', QA_TEXTDOMAIN ) );
+		$this->WP_Widget( 'question_reputation', __( 'Q&A: Users with Highest Reputation', QA_TEXTDOMAIN ), $widget_ops );
+	}
+
+	function widget( $args, $instance ) {
+		extract( $args );
+		$instance = $this->parse_instance( $instance );
+
+		if ( !empty($instance['title']) ) {
+			$title = $instance['title'];
+		}
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
+		echo $before_widget;
+		if ( $title )
+			echo $before_title . $title . $after_title;
+
+		global $wpdb;
+		$results = $wpdb->get_results( "SELECT * FROM " . $wpdb->usermeta . " WHERE meta_key='_qa_rep' AND meta_value > 0  ORDER BY CONVERT(meta_value, SIGNED) DESC LIMIT " . $instance['number'] . " " );
+
+		if ( $results ) {
+			echo '<ul>';
+			do_action( 'qa_reputation_widget_before', $results );
+			foreach ( $results as $result ) {
+				echo '<li class="qa-user-item">';
+				the_qa_user_link( $result->user_id );
+				echo " (". $result->meta_value . ")";
+				echo '</li>';
+			}
+			do_action( 'qa_reputation_widget_after', $results );
+			echo '</ul>';
+		}
+
+		echo $after_widget;
+	}
+
+	function form( $instance ) {
+		$instance = $this->parse_instance( $instance );
+		$this->title_field( $instance['title'] );
+?>
+		<label for="<?php echo $this->get_field_id('number'); ?>">
+		<?php _e( 'Number of users to show:', QA_TEXTDOMAIN ); ?></label>
+			<?php
+			echo _qa_html( 'input', array(
+				'type' => 'text',
+				'size' => 2,
+				'id' => $this->get_field_id('number'),
+				'name' => $this->get_field_name('number'),
+				'value' => $instance['number']
+			) );
+			?>
+<?php
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['count'] = !empty( $new_instance['count'] );
+
+		return $instance;
+	}
+}
 
 function qa_widgets_init() {
 	if ( !is_blog_installed() )
@@ -302,6 +374,8 @@ function qa_widgets_init() {
 	register_widget( 'QA_Widget_Tags' );
 
 	register_widget( 'QA_Widget_Categories' );
+	
+	register_widget( 'QA_Widget_Reputation' );
 }
 
 add_action( 'widgets_init', 'qa_widgets_init' );

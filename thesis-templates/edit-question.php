@@ -5,8 +5,6 @@
 * @package Thesis
 */
 
-$loopty_loop = new qa_loops;
-
 add_action('thesis_hook_before_content', 'do_qa_edit');
 function do_qa_edit(){
   ?>
@@ -33,4 +31,3 @@ function do_qa_edit(){
 
 thesis_html_framework();
 ?>
-

@@ -4,7 +4,7 @@
  * QA_Core_Admin
  *
  * @package QA
- * @copyright Incsub 2007-2011 {@link http://incsub.com}
+ * @copyright Incsub 2007-2012 {@link http://incsub.com}
  * @license GNU General Public License (Version 2 - GPLv2) {@link http://www.gnu.org/licenses/gpl-2.0.html}
  */
 class QA_Core_Admin extends QA_Core {
@@ -18,26 +18,32 @@ class QA_Core_Admin extends QA_Core {
 	 * Constructor.
 	 */
 	function QA_Core_Admin() {
+		// Settings page ID
+		$this->page = 'question_page_qa_settings';
+	
 		$this->capability_map = array(
-			'read_questions'             => __( 'View questions.', QA_TEXTDOMAIN ),
-			'publish_questions'          => __( 'Ask questions.', QA_TEXTDOMAIN ),
-			'edit_published_questions'   => __( 'Edit questions.', QA_TEXTDOMAIN ),
-			'delete_published_questions' => __( 'Delete questions.', QA_TEXTDOMAIN ),
-			'edit_others_questions'      => __( 'Edit others\' questions.', QA_TEXTDOMAIN ),
-			'delete_others_questions'    => __( 'Delete others\' questions.', QA_TEXTDOMAIN ),
-			'subscribe_to_new_questions' => __( 'Subscribe to new questions.', QA_TEXTDOMAIN ),
+			'read_questions'             	=> __( 'View questions', QA_TEXTDOMAIN ),
+			'publish_questions'          	=> __( 'Ask questions', QA_TEXTDOMAIN ),
+			'immediately_publish_questions'	=> __( 'Immediately publish questions (Otherwise they will be saved as pending)', QA_TEXTDOMAIN ),
+			'edit_published_questions'   	=> __( 'Edit own questions', QA_TEXTDOMAIN ),
+			'delete_published_questions' 	=> __( 'Delete own questions', QA_TEXTDOMAIN ),
+			'edit_others_questions'      	=> __( 'Edit others\' questions', QA_TEXTDOMAIN ),
+			'delete_others_questions'    	=> __( 'Delete others\' questions', QA_TEXTDOMAIN ),
+			'subscribe_to_new_questions' 	=> __( 'Subscribe to new questions', QA_TEXTDOMAIN ),
 
-			'read_answers'               => __( 'View answers.', QA_TEXTDOMAIN ),
-			'publish_answers'            => __( 'Add answers.', QA_TEXTDOMAIN ),
-			'edit_published_answers'     => __( 'Edit answers.', QA_TEXTDOMAIN ),
-			'delete_published_answers'   => __( 'Delete answers.', QA_TEXTDOMAIN ),
-			'edit_others_answers'        => __( 'Edit others\' answers.', QA_TEXTDOMAIN ),
-			'delete_others_answers'      => __( 'Delete others\' answers.', QA_TEXTDOMAIN ),
+			'read_answers'               	=> __( 'View answers', QA_TEXTDOMAIN ),
+			'publish_answers'            	=> __( 'Add answers', QA_TEXTDOMAIN ),
+			'edit_published_answers'     	=> __( 'Edit own answers', QA_TEXTDOMAIN ),
+			'delete_published_answers'   	=> __( 'Delete own answers', QA_TEXTDOMAIN ),
+			'edit_others_answers'        	=> __( 'Edit others\' answers', QA_TEXTDOMAIN ),
+			'delete_others_answers'      	=> __( 'Delete others\' answers', QA_TEXTDOMAIN ),
+			
+			'flag_questions'				=> __( 'Report questions and answers', QA_TEXTDOMAIN ),
 		);
 		
 		$this->init();
 	}
-
+	
 	/**
 	 * Intiate hooks.
 	 *
@@ -56,9 +62,312 @@ class QA_Core_Admin extends QA_Core {
 		add_action( 'show_user_profile', array( &$this, 'show_user_profile' ) ); 
 		add_action( 'edit_user_profile', array( &$this, 'show_user_profile' ) );
 		add_action( 'profile_update', array( &$this, 'profile_update' ) );
+		add_filter( 'plugin_row_meta', array(&$this,'set_plugin_meta'), 10, 2 );// Add settings link on plugin page
+
 		
 		add_filter( 'user_has_cap', array(&$this, 'user_has_cap'), 10, 3);
+		
+		$this->plugin_name = "qa";
+		
+		add_action( 'admin_notices', array($this, 'notice_settings') );			// Notice admin to make some settings
+		add_action( 'right_now_content_table_end', array($this, 'add_question_counts') );
+		
+		// Since V 1.3.1
+		add_action( 'add_meta_boxes', array( &$this, 'add_metabox' ), 1 );
+		add_action( 'save_post', array( &$this, 'save_metabox' ) );
+		add_filter( 'manage_question_posts_columns', array( &$this, 'add_column') );
+		add_filter( 'manage_answer_posts_columns', array( &$this, 'add_column') );
+		add_action( 'manage_posts_custom_column', array( &$this, 'show_column') ); 
+
 	}
+
+	/**
+	 * Adds metabox for reported q & a
+	 * Since v1.3.1
+	 */
+	function add_metabox() {
+		global $wpdb, $post;
+		// Display only for reported q & a
+		$result = $wpdb->get_row( "SELECT * FROM " . $wpdb->postmeta . " WHERE post_id=". $post->ID . " AND meta_key='_qa_report' ");
+		
+		if ( $result != null ) {
+			if ( 'question' == $post->post_type )
+				add_meta_box( 
+				'reported_question',
+				__( 'This Question is Reported', QA_TEXTDOMAIN ),
+				array( &$this, 'print_metabox' ),
+				'question',
+				'side',
+				'high'
+				);
+			else if ( 'answer' == $post->post_type )
+				add_meta_box( 
+				'reported_answer',
+				__( 'This Answer is Reported', QA_TEXTDOMAIN ),
+				array( &$this, 'print_metabox' ),
+				'answer',
+				'side',
+				'high'
+				);
+		}
+	}
+	
+	/**
+	 * Html codes for report metabox
+	 * Since v1.3.1
+	 */
+	function print_metabox() {
+		global $post;
+		$meta = get_post_meta( $post->ID, '_qa_report', true );
+		// Use nonce for verification
+		wp_nonce_field( plugin_basename( __FILE__ ), 'qa_nonce' );
+
+		// The actual fields for data entry
+		echo '<label>';
+		_e( 'Number of reports:', QA_TEXTDOMAIN );
+		echo '</label> ';
+		echo '<span class="qa_reported">';
+		if ( isset( $meta["count"] ) )
+			echo $meta["count"];
+		echo '</span>';
+		echo '<div class="clear"></div>';
+		
+		echo '<label>';
+		_e( 'Last reported by:', QA_TEXTDOMAIN );
+		echo '</label> ';
+		echo '<span class="qa_reported">';
+		if ( isset( $meta["user"] ) )
+			echo $meta["user"];
+		echo '</span>';
+		echo '<div class="clear"></div>';
+	
+		echo '<label>';
+		_e( 'Last report reason:', QA_TEXTDOMAIN );
+		echo '</label> ';
+		echo '<span class="qa_reported">';
+		if ( isset( $meta["reason"] ) )
+			echo stripslashes( $meta["reason"] );
+		echo '</span>';
+		echo '<div class="clear"></div>';
+		
+		echo '<label>';
+		_e( 'Delete report:', QA_TEXTDOMAIN );
+		echo '</label> ';
+		echo '<span class="qa_reported">';
+		echo '<input type="checkbox" name="qa_delete_report" />';
+		echo '</span>';
+		echo '<div class="clear"></div>';
+	}
+	
+	/**
+	 * Deletes a report
+	 * Since v1.3.1
+	 */
+	function save_metabox( $post_id ) {
+		global $post;
+
+		if ( !is_object( $post ) || null == $post )
+			return;
+
+		if ( 'question' != $post->post_type && 'answer' != $post->post_type )
+			return;
+		// verify if this is an auto save routine. 
+		// If it is our form has not been submitted, so we dont want to do anything
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+			return;
+
+		if ( !wp_verify_nonce( $_POST['qa_nonce'], plugin_basename( __FILE__ ) ) )
+			return;
+
+		// Check permissions
+		if ( 'question' == $post->post_type ) {
+			if ( !current_user_can( 'edit_others_questions', $post->ID ) )
+				return;
+		}
+		else {
+			if ( !current_user_can( 'edit_others_answers', $post->ID ) )
+				return;
+		}
+		
+		if ( isset( $_POST["qa_delete_report"] ) && $_POST["qa_delete_report"] )
+			delete_post_meta( $post->ID, '_qa_report' );
+	}
+
+	/**
+	 * Adds a column for reported q & a
+	 * Since v1.3.1
+	 */
+	function add_column( $columns ){
+		$columns["qa-reported"] = __('Reported', QA_TEXTDOMAIN );
+		return $columns;
+	}
+
+	/**
+	 * Print that q or a is reported
+	 * Since v1.3.1
+	 */
+	function show_column( $name ) {
+		if ( 'qa-reported' != $name )
+			return;
+			
+		global $post;
+		$meta = get_post_meta( $post->ID, '_qa_report', true );
+		
+		if ( $meta )
+			echo '<span style="color:red;font-weight:bold">' . __('Yes', QA_TEXTDOMAIN ) . '</span>';
+		else
+			echo '<span style="color:green;font-weight:bold">' . __('No', QA_TEXTDOMAIN ) . '</span>';
+	}
+
+	/**
+	 * Add Question status counts in admin Right Now Dashboard box
+	 * http://codex.wordpress.org/Plugin_API/Action_Reference/right_now_content_table_end
+	 */	
+	function add_question_counts() {
+        if ( !post_type_exists( 'question' ) ) {
+             return;
+        }
+
+        $num_posts = wp_count_posts( 'question' );
+        $num = number_format_i18n( $num_posts->publish );
+        $text = _n( 'Question Published', 'Questions Published', intval( $num_posts->publish ) );
+        if ( current_user_can( 'edit_posts' ) ) {
+            $num = "<a href='edit.php?post_type=question'>$num</a>";
+            $text = "<a class='approved' href='edit.php?post_type=question'>$text</a>";
+        }
+        echo '<td class="first b b-question">' . $num . '</td>';
+        echo '<td class="t question">' . $text . '</td>';
+
+        echo '</tr>';
+
+        if ( $num_posts->pending > 0 ) {
+            $num = number_format_i18n( $num_posts->pending );
+            $text = _n( 'Question Pending', 'Questions Pending', intval( $num_posts->pending ) );
+            if ( current_user_can( 'edit_posts' ) ) {
+                $num = "<a href='edit.php?post_status=pending&post_type=question'>$num</a>";
+                $text = "<a class='waiting' href='edit.php?post_status=pending&post_type=question'>$text</a>";
+            }
+            echo '<td class="first b b-question">' . $num . '</td>';
+            echo '<td class="t question">' . $text . '</td>';
+
+            echo '</tr>';
+        }
+		
+		
+		$num_posts = wp_count_posts( 'answer' );
+        $num = number_format_i18n( $num_posts->publish );
+        $text = _n( 'Answer Published', 'Answers Published', intval( $num_posts->publish ) );
+        if ( current_user_can( 'edit_posts' ) ) {
+            $num = "<a href='edit.php?post_type=answer'>$num</a>";
+            $text = "<a class='approved' href='edit.php?post_type=answer'>$text</a>";
+        }
+        echo '<td class="first b b-answer">' . $num . '</td>';
+        echo '<td class="t answer">' . $text . '</td>';
+
+        echo '</tr>';
+
+        if ( $num_posts->pending > 0 ) {
+            $num = number_format_i18n( $num_posts->pending );
+            $text = _n( 'Answer Pending', 'Answers Pending', intval( $num_posts->pending ) );
+            if ( current_user_can( 'edit_posts' ) ) {
+                $num = "<a href='edit.php?post_status=pending&post_type=answer'>$num</a>";
+                $text = "<a class='waiting' href='edit.php?post_status=pending&post_type=answer'>$text</a>";
+            }
+            echo '<td class="first b b-answer">' . $num . '</td>';
+            echo '<td class="t answer">' . $text . '</td>';
+
+            echo '</tr>';
+        }
+		
+		global $wpdb;
+		$count = $wpdb->get_var( " SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_key='_qa_report' " );
+		
+		if ( $count > 0 ) {
+            $num = number_format_i18n( $count );
+            $text = _n( 'Q&A Reported', 'Q&A Reported', intval( $count ) );
+            if ( current_user_can( 'edit_posts' ) ) {
+                $num = "<a href='javascript:void(0)'>$num</a>";
+                $text = "<span class='spam' >$text</span>";
+            }
+            echo '<td class="first b b-question">' . $num . '</td>';
+            echo '<td class="t question">' . $text . '</td>';
+
+            echo '</tr>';
+        }
+
+	}
+	
+	/**
+	 * Warn admin to make some settings
+	 */	
+	function notice_settings () {
+		if ( !current_user_can( 'manage_options' ) )
+			return;
+			
+		global $qa_general_settings;
+		$screen = get_current_screen();
+		// This is admin side, so one additional query can be accepted for the moment.
+		// TODO: Move this into general settings array
+		$no_visit = get_option( "qa_no_visit" );
+		
+		if ( !$no_visit && $screen->id != $this->page ) {
+			/* translators: %s means settings here */
+			echo '<div class="updated fade"><p>' . 
+				sprintf(__("<b>[Q&A]</b> It looks like you have just installed or upgraded Q&A. You may want to adjust some %s. <b>If you are upgrading, please note that there is a new feature letting permitted user roles to report/flag question and answers with optional Captcha verification</b>.", QA_TEXTDOMAIN),"<a href='".admin_url('edit.php?post_type=question&page=qa_settings')."'>".__("settings",QA_TEXTDOMAIN)."</a>") .
+				'</p></div>';
+		}
+		// If admin visits setting page, remove this annoying message :P
+		if ( $screen->id == $this->page && !$no_visit )
+			update_option( "qa_no_visit" , "true" );
+			
+		// Warn admin is visitor registration is required, but registration is closed.	
+		if ( 'assign' != @$qa_general_settings["method"] && !get_option( 'users_can_register' ) )
+			/* translators: %s means settings here */
+			echo '<div class="error fade"><p>' . 
+				sprintf(__("<b>[Q&A]</b> <i>After Visitor Submits a Question</i> setting requires registration of the visitor, but your website is closed to registrations. You may consider to fix this using plugin %s or Wordpress settings.", QA_TEXTDOMAIN),"<a href='".admin_url('edit.php?post_type=question&page=qa_settings')."'>".__("settings",QA_TEXTDOMAIN)."</a>") .
+				'</p></div>';
+
+		// Warn admin is visitor role cannot be found.	
+		if ( !get_role( 'visitor' ) )
+			echo '<div class="error fade"><p>' . 
+				__("<b>[Q&A]</b> Visitor role cannot be found. Try to deactivate and reactivate the plugin, if you continue to see this message, consult our Help and Support.", QA_TEXTDOMAIN) .
+				'</p></div>';
+				
+		// Warn admin in case of default permalink.	
+		if ( !get_option( 'permalink_structure' ) )
+			echo '<div class="error fade"><p>' . 
+				__("<b>[Q&A]</b> Plugin will not function correctly with default permalink structure. You need to use a pretty permalink structure.", QA_TEXTDOMAIN) .
+				'</p></div>';
+
+	}
+
+	/**
+	* Add Settings link to the plugin page
+	* @ http://wpengineer.com/1295/meta-links-for-wordpress-plugins/
+	*/
+	function set_plugin_meta($links, $file) {
+		// create link
+		$plugin = plugin_basename(__FILE__);
+		if ($file == $plugin) {
+			return array_merge(
+				$links,
+				array( sprintf( '<a href="admin.php?page=%s">%s</a>', $this->plugin_name, __('Settings') ) )
+			);
+		}
+		return $links;
+	}
+
+	
+	/**
+	 *	Get saved postbox states
+	 */
+	function postbox_classes( $css_id ) {
+		if ( function_exists( 'postbox_classes' ) )
+			return postbox_classes( $css_id, $this->page );
+		else
+			return "";
+	}
+
 	
 	function ajax_tag_search() {
 		global $wpdb;
@@ -103,26 +412,67 @@ class QA_Core_Admin extends QA_Core {
 	function init_defaults() {
 		global $wp_roles;
 		
-		if (get_option('qa_installed_version', '0.0.0') != QA_VERSION) {
-			add_role('visitor', 'Visitor', array('read_questions' => true, 'publish_questions' => true,
-							     'read_answers' => true, 'publish_answers' => true) );
-			
-			foreach ( array_keys( $this->capability_map ) as $capability )
-				$wp_roles->add_cap( 'administrator', $capability );
-			//print_r($this->capability_map); exit();
-			$wp_roles->add_cap( 'subscriber', 'read_questions' );
-			$wp_roles->add_cap( 'subscriber', 'read_answers' );
-			
-			$wp_roles->add_cap( 'visitor', 'read_questions' );
-			$wp_roles->add_cap( 'visitor', 'publish_questions' );
-			$wp_roles->add_cap( 'visitor', 'read_answers' );
-			$wp_roles->add_cap( 'visitor', 'publish_answers' );
-			
-			// add option to the autoload list
-			add_option( QA_OPTIONS_NAME, array() );
-			
-			update_option( 'qa_installed_version', QA_VERSION);
+		$version = get_option('qa_installed_version');
+		
+		// Version is current and no problem with visitor role; do nothing
+		$visitor_role = get_role( 'visitor' );
+		if ( $version == QA_VERSION && $visitor_role )
+			return;
+
+			// Check if we have some options
+		if ( !$options = get_option( QA_OPTIONS_NAME ) )
+			$options = array();
+		
+		// Set some default settings
+		$changed = false;
+		if ( !isset( $options["general_settings"]["page_width"] ) ) {
+			$options["general_settings"]["page_width"] = 900;
+			$changed = true;
 		}
+		if ( !isset( $options["general_settings"]["content_width"] ) ) {
+			$options["general_settings"]["content_width"] = 600;
+			$changed = true;
+		}
+		if ( !isset( $options["general_settings"]["search_input_width"] ) ) {
+			$options["general_settings"]["search_input_width"] = 150;
+			$changed = true;
+		}
+		if ( $changed || empty( $options ) )
+			update_option( QA_OPTIONS_NAME, $options );
+		
+		// Define visitor role if it is not already defined		
+		if ( !$visitor_role )
+			add_role('visitor', 'Visitor', array('read_questions' => true, 'publish_questions' => true,
+					 'immediately_publish_questions' => true, 'read_answers' => true, 'publish_answers' => true) );
+					 
+		// Default roles and caps
+		$droles = array( 'author', 'contributor', 'subscriber', 'editor', 'visitor' );
+		$dcaps = array( 'read_questions', 'read_answers', 'publish_questions', 'immediately_publish_questions', 'publish_answers' );
+
+		// For initial installation define preset caps
+		if ( !$version ) {
+			// Give admin full caps
+			foreach ( array_keys( $this->capability_map ) as $capability ) {
+				$wp_roles->add_cap( 'administrator', $capability );
+			}
+			// Set default capabilities
+			foreach ( $droles as $drole ) {
+				foreach ( $dcaps as $dcap ) {
+					$wp_roles->add_cap( $drole, $dcap );
+				}
+			}
+		}
+		
+		// If an upgrade, set immediately_publish_questions for those who can publish questions
+		if ( $version != QA_VERSION ) {
+			foreach ( $droles as $drole ) {
+				$r = get_role( $drole );
+				if ( $r && is_object( $r ) && $r->has_cap( 'publish_questions' ) )
+					$wp_roles->add_cap( $drole, 'immediately_publish_questions' );
+			}
+		}
+	
+		update_option( 'qa_installed_version', QA_VERSION);
 	}
 
 	/**
@@ -140,7 +490,7 @@ class QA_Core_Admin extends QA_Core {
 	 * @return void
 	 */
 	function admin_head() {
-		add_action( 'admin_print_styles-' . $this->hook_suffix, array( &$this, 'enqueue_styles' ) );
+		add_action( 'admin_print_styles', array( &$this, 'enqueue_styles' ) );
 		add_action( 'admin_print_scripts-' . $this->hook_suffix, array( &$this, 'enqueue_scripts' ) );
 	}
 
@@ -151,7 +501,7 @@ class QA_Core_Admin extends QA_Core {
 	 */
 	function enqueue_styles() {
 		wp_enqueue_style( 'qa-admin-styles',
-						   QA_PLUGIN_URL . 'ui-admin/css/styles.css');
+						   QA_PLUGIN_URL . 'ui-admin/css/styles.css', array(), QA_VERSION);
 	}
 
 	/**
@@ -162,7 +512,7 @@ class QA_Core_Admin extends QA_Core {
 	function enqueue_scripts() {
 		wp_enqueue_script( 'qa-admin-scripts',
 							QA_PLUGIN_URL . 'ui-admin/js/scripts.js',
-							array( 'jquery' ) );
+							array( 'jquery' ), QA_VERSION );
 	}
 
 	/**
@@ -271,10 +621,31 @@ class QA_Core_Admin extends QA_Core {
 		foreach ( $to_add as $capability ) {
 			$wp_roles->add_cap( $role, $capability );
 		}
+		
+		if ( qa_is_captcha_usable() && isset( $_POST['captcha'] ) )
+			$captcha = true;
+		else
+			$captcha = false;
 
 		$options = array(
 			'general_settings' => array(
-				'moderation' => isset( $_POST['moderation'] )
+				'moderation' 		=> isset( $_POST['moderation'] ),
+				'bp_comment_hide'	=> isset( $_POST['bp_comment_hide'] ),
+				'page_width'		=> @$_POST['page_width'],
+				'content_width'		=> @$_POST['content_width'],
+				'search_input_width'=> @$_POST['search_input_width'],
+				'additional_css'	=> esc_attr(@$_POST['additional_css']),
+				'full_width'		=> isset( $_POST['full_width'] ),
+				'answers_per_page'	=> @$_POST['answers_per_page'],
+				'questions_per_page'=> @$_POST['questions_per_page'],
+				'disable_editor'	=> isset( $_POST['disable_editor'] ),
+				'thank_you'			=> @$_POST['thank_you'],
+				'unauthorized'		=> @$_POST['unauthorized'],
+				'assigned_to'		=> @$_POST['assigned_to'],
+				'method'			=> @$_POST['method'],
+				'captcha'			=> $captcha,
+				'report_reasons'	=> @$_POST['report_reasons'],
+				'report_email'		=> @$_POST['report_email']
 			)
 		);
 		

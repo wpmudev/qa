@@ -39,6 +39,13 @@
 	margin-right: 7px;
 }
 
+#qa-menu .qa-search{
+	background-color: white;
+	display: block;
+	float: left;
+	margin-right: 7px;
+}
+
 #qa-menu #qa-current-url {
 	background-color: #21759B;
 }
@@ -546,3 +553,6 @@
 	margin-top: 0;
 }
 
+/* 67022-1337220918 */
+
+/* 67022-1341303680-au */

@@ -1,7 +1,7 @@
 jQuery(function($) {
 
 	function populate_checkboxes() {
-		$('#ajax-loader').show();
+		$('.ajax-loader').show();
 		// clear checked fields
 		$('#capabilities input').attr( 'checked', false );
 		// set data
@@ -11,28 +11,45 @@ jQuery(function($) {
 		};
 		// make the post request and process the response
 		$.post(ajaxurl, data, function(response) {
-			$('#ajax-loader').hide();
+			$('.ajax-loader').hide();
 			$.each(response, function(index) {
 				if ( index != null ) {
 					$('input[name="capabilities[' + index + ']"]').attr( 'checked', true );
 				}
 			});
+			qa_modify_opacity();
 		});
+	}
+	function qa_modify_opacity() {
+		if ( !$('#publish_questions_checkbox').is(':checked')) { 
+			$(".immediately_publish_questions").css("opacity","0.3"); 
+			$("#immediately_publish_questions_checkbox").attr('checked', false);
+		}
+		else { $(".immediately_publish_questions").css("opacity","1"); }
+	}
+	function qa_show_assigned_to(){
+		if ($('#visitor_method').val()=='assign'){$('#assigned_to').show();}
+		else {$('#assigned_to').hide();}
 	}
 
 	populate_checkboxes();
+	qa_modify_opacity();
 
 	$('#roles').change(populate_checkboxes);
+	$("#publish_questions_checkbox").change(qa_modify_opacity);
+	$('#visitor_method').change(qa_show_assigned_to);
 	
 	$('.qa-general').submit(function() {
-		$('#ajax-loader').show();
+		$('.ajax-loader').show();
 
 		var data = $(this).serializeArray();
 
 		$.post(ajaxurl, data, function() {
-			$('#ajax-loader').hide();
+			$('.ajax-loader').hide();
+			$('.qa_settings_saved').show().delay(5000).fadeOut('slow');
 		});
 
 		return false;
 	});
+	
 });

@@ -11,7 +11,26 @@ class QA_BuddyPress {
 		
 		add_action( 'bp_setup_nav', array( &$this, 'bp_setup_nav'), 100 );
 		add_action( 'template_redirect', array( &$this, 'template_redirect' ), 9 );
+		add_filter( 'bp_activity_can_comment', array( &$this, 'hide_comment' ) ); // New in V1.2
 	}
+	
+	/**
+	 * Hides comment button for Buddypress Activity Stream
+	 * @Since V1.2
+	 */
+	function hide_comment( $can_comment ){
+		global $activities_template, $qa_general_settings;
+		
+		if ( !$activities_template || !@$qa_general_settings["bp_comment_hide"] )
+			return $can_comment;
+ 
+		$activity = $activities_template->activity;
+	  
+		if ( 'qa' != $activity->component )
+			return $can_comment;
+		else
+			return false;
+	} 
 	
 	function bp_setup_nav() {
 		bp_core_new_nav_item( array(

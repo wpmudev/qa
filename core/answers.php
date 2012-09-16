@@ -21,7 +21,7 @@ class QA_Answers {
 	}
 
 	function init() {
-		register_post_type( 'answer', array(
+		$args = array(
 			'show_ui' => true,
 			'show_in_menu' => 'edit.php?post_type=question',
 
@@ -49,7 +49,9 @@ class QA_Answers {
 				'not_found'		=> __('No answers found', QA_TEXTDOMAIN),
 				'not_found_in_trash'	=> __('No answers found in trash', QA_TEXTDOMAIN),
 			)
-		) );
+		);
+		$args = apply_filters( 'qa_answer_register_post_type_args', $args );
+		register_post_type( 'answer', $args );
 	}
 	
 	function admin_init() {

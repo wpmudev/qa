@@ -2,9 +2,12 @@
 -------------------------------------------------------------- */
 
 #qa-page-wrapper {
-	float: left;
 	overflow: hidden;
 	padding-bottom: 2em;
+}
+
+#qa-content-wrapper {
+	margin: 0 auto 0 auto;
 }
 
 #qa-error-notice {
@@ -34,6 +37,13 @@
 
 #qa-menu li {
 	background-color: #777;
+	display: block;
+	float: left;
+	margin-right: 7px;
+}
+
+#qa-menu .qa-search{
+	background-color: white;
 	display: block;
 	float: left;
 	margin-right: 7px;
@@ -306,7 +316,8 @@ input[type=submit].vote-up-off,
 input[type=submit].vote-down-on,
 input[type=submit].vote-down-off,
 input[type=submit].vote-accepted-on,
-input[type=submit].vote-accepted-off {
+input[type=submit].vote-accepted-off,
+.vote-accepted-on {
 	border: 0;
 	background-color: #fff !important;
 	background-image: url("../img/vote.png") !important;
@@ -326,14 +337,16 @@ input[type=submit].vote-accepted-off {
 }
 
 input[type=submit].vote-accepted-off,
-input[type=submit].vote-accepted-on {
+input[type=submit].vote-accepted-on,
+.vote-accepted-on {
 	background-image: url("../img/accept.png") !important;
 	display: block;
 	height: 40px !important;
 	width: 39px !important;
 }
 
-input[type=submit].vote-accepted-on {
+input[type=submit].vote-accepted-on,
+.vote-accepted-on {
 	background-position: 0 0 !important;
 }
 
@@ -571,3 +584,7 @@ input[type=submit].vote-down-on {
 	margin-top: 0;
 }
 
+.activity-action p a {display:inline !important;}
+
+/* Captcha */
+.qa_captcha_inner{margin:10px 0 10px 0;}
