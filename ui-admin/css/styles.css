@@ -1,0 +1,30 @@
+.qa-payments li, .qa-settings li {
+    float: left;
+}
+#ajax-loader {
+	float: right;
+}
+
+.column-qa-reported{width:10%;text-align:center;}
+#reported_question label, #reported_answer label{float:left;}
+span.qa_reported{float:right;height:24px;font-weight:bold;}
+
+.image-radio-option td {
+	padding-top: 15px;
+}
+.image-radio-option label {
+	display: block;
+	float: left;
+	margin: 0 30px 20px 2px;
+	position: relative;
+}
+.image-radio-option input {
+	margin: 0 0 10px;
+}
+.image-radio-option span {
+	display: block;
+	width: 136px;
+}
+.image-radio-option img {
+	margin: 0 0 0 -2px;
+}
