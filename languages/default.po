@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2012-11-16 16:45+0700\n"
-"PO-Revision-Date: 2012-11-16 16:45+0700\n"
+"POT-Creation-Date: 2012-11-22 23:11+0700\n"
+"PO-Revision-Date: 2012-11-22 23:11+0700\n"
 "Last-Translator: incsub.com <hakan@incsub.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -99,173 +99,187 @@ msgstr ""
 msgid "Q&A Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:72
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:69
+msgid "This page uses ajax. Settings are saved without a page refresh."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:76
 msgid "Theme Adaptation Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:89
-msgid "Page layout"
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:93
+msgid "Page Layout"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:94
-msgid "Select the layout that will be applied to Q&A pages."
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:98
+msgid ""
+"Select the layout that will be applied to Q&A pages. For best result, apply "
+"the same layout of the rest of your pages."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:101
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:105
 msgid "Usable Page Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:107
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:111
 msgid ""
-"Enter usable page width of your theme. Because of paddings, usable width can "
-"be slightly smaller than full page width. Tip: To find the usable page "
-"width, using Google Chrome, mouse over left of Q&A menu, right click and "
-"select \"Inspect element\". Dimensions of the net page width will be "
-"displayed."
+"Enter usable page width of your theme (Typically around 1000). Because of "
+"paddings, usable width can be slightly smaller than full page width. Tip: To "
+"find the usable page width, using Google Chrome, mouse over left of Q&A "
+"menu, right click and select \"Inspect element\". Dimensions of the net page "
+"width will be displayed."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:114
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:118
 msgid "Q&A Content Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:120
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:124
 msgid ""
 "Enter the desired width of main Q&A content box. Recommended minimum width "
 "is 584."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:127
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:131
 msgid "Alignment of Q&A Content"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:131
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:135
 msgid "Center"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:132
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:136
 msgid "Left"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:133
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:137
 msgid "Right"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:137
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:141
 msgid ""
 "Select the desired alignment of Q&A content relative to the page and sidebar."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:144
-msgid "Sidebar width (px)"
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:148
+msgid "Sidebar Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:150
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:154
 msgid ""
 "Enter the sidebar width of your theme, if you selected sidebar to be "
-"displayed in page layout setting. You may need to set this a few px greater "
-"than the actual width. Tip: To find the width of your sidebar, using Google "
-"Chrome, mouse over your sidebar, right click and select \"Inspect element\". "
-"Dimensions of the sidebar will be displayed."
+"displayed in page layout setting. Depending on margins, you may need to set "
+"this a few px greater than the actual width. Tip: To find the width of your "
+"sidebar, using Google Chrome, mouse over your sidebar, right click and "
+"select \"Inspect element\". Dimensions of the sidebar will be displayed."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:160
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:164
 msgid "Estimate Additional css Rules"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:163
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:167
 msgid ""
 "When you click this button, using the above widths and selected layout, css "
-"rules will be automatically estimated and saved. These settings may not work "
-"on every theme and you may still need to make some fine tunings."
+"rules will be automatically estimated and saved inside the \"Additional ccs "
+"Rules\" field. These settings may not work on every theme and you may still "
+"need to make some fine tunings. Tip: If the result is not satisfactory (e.g. "
+"sidebar dislocated), you can change the width settings and try again. Each "
+"time Additional css Rules field is reset."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:230
-msgid "Additional css rules"
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:234
+msgid "Additional css Rules"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:236
-msgid "Use valid css. e.g."
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:240
+msgid ""
+"You can add your css codes manually or edit the already estimated ones. "
+"Ensure that you use valid css. e.g."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:243
-msgid "Search input width (px)"
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:247
+msgid "Search Input Field Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:249
-msgid "This setting will only be applied to the default template."
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:253
+msgid ""
+"If search input field is displayed below the Q&A menu, reduce this value."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:259
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:266
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:321
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:499
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:545
+msgid "Save Everything on this Page"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:268
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:323
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:501
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:547
+msgid "Settings saved"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:272
 msgid "Other Display Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:267
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:280
 msgid "Questions Per Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:280
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:293
 msgid "Answers Per Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:283
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:296
 msgid "If left empty: 20"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:289
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:302
 msgid "Disable WP Editor"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:295
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:308
 msgid ""
 "If you are having issues with Buddypress or if you don't want submissions to "
 "be formatted, check this checkbox. Then, textarea will be used for question "
 "and answer forms instead of the WP editor."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:308
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:486
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:532
-msgid "Save Everything on this Page"
-msgstr ""
-
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:310
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:488
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:534
-msgid "Settings saved"
-msgstr ""
-
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:314
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:327
 msgid "Accessibility Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:323
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:336
 msgid "Assign Capabilities"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:332
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:345
 msgid ""
 "This list has all the user roles of your website. As you make a new "
 "selection, capability of that role will be displayed. Select a role to which "
 "you want to assign WP Q&A capabilities."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:348
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:361
 msgid "After Visitor Submits a Question"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:358
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:371
 msgid "He is asked for registration"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:359
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:372
 msgid "Question is assigned to a user"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:368
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:381
 msgid "Assign to: "
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:373
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:386
 msgid ""
 "Every question should have an author. If you want to let the visitor submit "
 "a question without the need for registration, you can assign a preset "
@@ -274,54 +288,54 @@ msgid ""
 "preset author."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:381
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:394
 msgid "Thank You Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:392
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:405
 msgid ""
 "If questions are saved as pending, user will be redirected to this page "
 "after submitting a question."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:399
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:412
 msgid "Unauthorized Access Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:411
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:424
 msgid ""
 "If a user tries to access a page he should not access, he will be redirected "
 "to this page instead."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:418
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:431
 msgid "Report reasons"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:424
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:437
 msgid ""
 "Enter reasons of reporting to be chosen by the user each one separated by "
 "comma, e.g. Spam,Language. If left empty, user will not be asked to select a "
 "report reason."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:431
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:444
 msgid "Use Captcha"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:437
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:450
 msgid "Whether to use Captcha verification while submitting report."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:440
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:453
 msgid "Note: Your php installation does not let Captcha usage."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:448
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:461
 msgid "Email address on report"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:454
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:467
 msgid ""
 "Email address that will be notified in case a question or answer is "
 "reported. Leaving empty will disable notification. Note: If a question or "
@@ -329,31 +343,31 @@ msgid ""
 "number of reports and latest reporter will be saved."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:466
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:479
 msgid "Disable Reply in Activity Stream"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:472
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:485
 msgid ""
 "Checking this will disable commenting for the question asked notification in "
 "Buddypress Activity Stream, forsing user to answer the question through "
 "plugin generated pages."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:492
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:505
 msgid "Notification Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:501
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:514
 msgid "Notification E-mail Subject"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:507
 #: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:520
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:533
 msgid "Variables:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:514
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:527
 msgid "Notification E-mail Content"
 msgstr ""
 

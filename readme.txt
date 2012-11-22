@@ -55,6 +55,12 @@ When you feel the Q&A section is ready for prime time, if your theme supports [c
 
 == Changelog ==
 
+= 1.4.0 =
+* css codes required to adapt the theme is automatically estimated by the plugin based on page and sidebar width and layout\
+* Admin UI modified
+* Tags are now stripped from submitted question title
+* More filter hooks added 
+
 = 1.3.1 =
 * Questions and answers can now be reported/flagged with Captcha verification option
 * Added more filter and action hooks

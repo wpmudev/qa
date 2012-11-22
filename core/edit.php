@@ -86,7 +86,7 @@ class QA_Edit {
 		$question_id = (int) $_POST['question_id'];
 
 		$question = array(
-			'post_title' => trim( $_POST['question_title'] ),
+			'post_title' => trim( wp_strip_all_tags( $_POST['question_title'] ) ),
 			'post_content' => trim( $_POST['question_content'] ),
 		);
 
@@ -127,7 +127,7 @@ class QA_Edit {
 		$question_id = (int) $_POST['question_id'];
 		$answer_id = (int) $_POST['answer_id'];
 		
-		$title = trim(strip_tags($_POST['answer']));
+		$title = trim( wp_strip_all_tags( $_POST['answer'] ) );
 		
 		if (strlen($title) >= 255) {
 			$title = substr($title, 0, 252)."...";

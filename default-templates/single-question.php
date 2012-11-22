@@ -64,12 +64,8 @@ get_header( 'question' );
 <?php 
 global $qa_general_settings;
 
-if ( isset( $qa_general_settings["page_layout"] ) && $qa_general_settings["page_layout"] !='content' ) {
-	?><div id="qa-sidebar-wrapper"><?php
+if ( isset( $qa_general_settings["page_layout"] ) && $qa_general_settings["page_layout"] !='content' )
 	get_sidebar( 'question' );
-	?><div style="clear:both"></div>
-	</div><?php
-}	
 ?>
 
 <?php get_footer( 'question' ); ?>

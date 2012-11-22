@@ -20,7 +20,7 @@
 <?php 
 global $qa_general_settings;
 
-if ( !isset( $qa_general_settings["full_width"] ) || !$qa_general_settings["full_width"] )	
+if ( isset( $qa_general_settings["page_layout"] ) && $qa_general_settings["page_layout"] !='content' )
 	get_sidebar( 'question' ); 
 ?>
 

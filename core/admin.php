@@ -622,7 +622,7 @@ class QA_Core_Admin extends QA_Core {
 				'page_layout'		=> @$_POST['qa_page_layout'],
 				'page_width'		=> @$_POST['page_width'],
 				'content_width'		=> @$_POST['content_width'],
-				'content_alignment'	=> @$_POST['cotent_alignment'],
+				'content_alignment'	=> @$_POST['content_alignment'],
 				'sidebar_width'		=> @$_POST['sidebar_width'],
 				'search_input_width'=> @$_POST['search_input_width'],
 				'additional_css'	=> esc_attr(@$_POST['additional_css']),
@@ -660,7 +660,7 @@ class QA_Core_Admin extends QA_Core {
 	function estimate() {
 	
 		if ( !current_user_can( 'manage_options' ) )
-			die(json_encode(array( 'error'=>__('You are not authorised to do this', QA_TEXTDOMAIN))));
+			die(json_encode(array( 'error'=>esc_js(__('You are not authorised to do this', QA_TEXTDOMAIN)))));
 			
 		$c_theme = get_template(); // Current theme
 		
@@ -672,7 +672,7 @@ class QA_Core_Admin extends QA_Core {
 		global $qa_general_settings;
 		
 		if ( !isset( $_POST['page_layout'] ) || !isset( $_POST['page_width'] ) || !isset( $_POST['content_width'] ) || !isset( $_POST['sidebar_width'] ) || !isset( $_POST['content_alignment'] ) )
-			die(json_encode(array( 'error'=>__('At least One of the variables is missing', QA_TEXTDOMAIN))));
+			die(json_encode(array( 'error'=>esc_js(__('At least One of the variables is missing', QA_TEXTDOMAIN)))));
 		
 		$qa_general_settings['page_layout'] 		= $page_layout			= $_POST['page_layout'];
 		$qa_general_settings['page_width'] 			= $page_width			= $_POST['page_width'];
@@ -722,7 +722,7 @@ class QA_Core_Admin extends QA_Core {
 				$css .= '#qa-content-wrapper{margin:0 '.$right_margin.'px 0 '.$left_margin.'px !important;}';
 			break;
 		
-			default:	die(json_encode(array( 'error'=>__('Page layout is not selected', QA_TEXTDOMAIN)))); break;
+			default:	die(json_encode(array( 'error'=>esc_js(__('Page layout is not selected', QA_TEXTDOMAIN))))); break;
 		}
 		
 		if ( $css ) {
@@ -730,12 +730,13 @@ class QA_Core_Admin extends QA_Core {
 			if ( update_option( QA_OPTIONS_NAME, $qa_general_settings ) )
 				die(json_encode(array( 'css'=>$css)));
 			else
-				die(json_encode(array( 'error'=>__('Nothing has been saved. Please double check your settings.', QA_TEXTDOMAIN))));
+				die(json_encode(array( 'error'=>esc_js(__('Nothing has been changed. Please double check your settings.', QA_TEXTDOMAIN)))));
 		}
 		// Something went wrong
-		die(json_encode(array( 'error'=>__('Page layout is not selected', QA_TEXTDOMAIN))));
+		die(json_encode(array( 'error'=>esc_js(__('Page layout is not selected', QA_TEXTDOMAIN)))));
 	}
 
+	
 	/**
 	 * Renders an admin section of display code.
 	 *

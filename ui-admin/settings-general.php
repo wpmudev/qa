@@ -64,6 +64,10 @@ function qa_settings_field_layout() {
 	<?php screen_icon('options-general'); ?>
 
 	<h2><?php _e( 'Q&A Settings', QA_TEXTDOMAIN ); ?></h2>
+	
+	<br />
+	<span class="description"><?php _e('This page uses ajax. Settings are saved without a page refresh.', QA_TEXTDOMAIN) ?></span>
+	
 	<div id="poststuff" class="metabox-holder">
 	
 	<form action="" method="post" class="qa-general">
@@ -86,12 +90,12 @@ function qa_settings_field_layout() {
 			
 			<tr>
 				<th>
-					<label for="page_layout"><?php _e( 'Page layout', QA_TEXTDOMAIN ) ?></label>
+					<label for="page_layout"><?php _e( 'Page Layout', QA_TEXTDOMAIN ) ?></label>
 				</th>
 				<td>
 					<?php qa_settings_field_layout() ?>
 					<span class="description">
-					<?php _e( 'Select the layout that will be applied to Q&A pages.', QA_TEXTDOMAIN ) ?>
+					<?php _e( 'Select the layout that will be applied to Q&A pages. For best result, apply the same layout of the rest of your pages.', QA_TEXTDOMAIN ) ?>
 					</span>
 				</td>
 			</tr>
@@ -104,7 +108,7 @@ function qa_settings_field_layout() {
 					<input style="width:100px" name="page_width" value="<?php echo @$options['page_width']; ?>" />
 					&nbsp;&nbsp;&nbsp;
 					<span class="description">
-					<?php _e( 'Enter usable page width of your theme. Because of paddings, usable width can be slightly smaller than full page width. Tip: To find the usable page width, using Google Chrome, mouse over left of Q&A menu, right click and select "Inspect element". Dimensions of the net page width will be displayed.', QA_TEXTDOMAIN ) ?>
+					<?php _e( 'Enter usable page width of your theme (Typically around 1000). Because of paddings, usable width can be slightly smaller than full page width. Tip: To find the usable page width, using Google Chrome, mouse over left of Q&A menu, right click and select "Inspect element". Dimensions of the net page width will be displayed.', QA_TEXTDOMAIN ) ?>
 					</span>
 				</td>
 			</tr>
@@ -141,13 +145,13 @@ function qa_settings_field_layout() {
 			
 			<tr>
 				<th>
-					<label for="sidebar_width"><?php _e( 'Sidebar width (px)', QA_TEXTDOMAIN ) ?></label>
+					<label for="sidebar_width"><?php _e( 'Sidebar Width (px)', QA_TEXTDOMAIN ) ?></label>
 				</th>
 				<td>
 					<input style="width:100px" name="sidebar_width" value="<?php echo @$options['sidebar_width']; ?>" />
 					&nbsp;&nbsp;&nbsp;
 					<span class="description">
-					<?php _e( 'Enter the sidebar width of your theme, if you selected sidebar to be displayed in page layout setting. You may need to set this a few px greater than the actual width. Tip: To find the width of your sidebar, using Google Chrome, mouse over your sidebar, right click and select "Inspect element". Dimensions of the sidebar will be displayed.', QA_TEXTDOMAIN ) ?>
+					<?php _e( 'Enter the sidebar width of your theme, if you selected sidebar to be displayed in page layout setting. Depending on margins, you may need to set this a few px greater than the actual width. Tip: To find the width of your sidebar, using Google Chrome, mouse over your sidebar, right click and select "Inspect element". Dimensions of the sidebar will be displayed.', QA_TEXTDOMAIN ) ?>
 					</span>
 				</td>
 			</tr>
@@ -160,7 +164,7 @@ function qa_settings_field_layout() {
 					<input type="button" class="button-secondary qa-auto-css" name="save" value="<?php _e( 'Estimate Additional css Rules', QA_TEXTDOMAIN ); ?>">
 					&nbsp;&nbsp;&nbsp;
 					<span class="description">
-					<?php _e( 'When you click this button, using the above widths and selected layout, css rules will be automatically estimated and saved. These settings may not work on every theme and you may still need to make some fine tunings.', QA_TEXTDOMAIN ) ?>
+					<?php _e( 'When you click this button, using the above widths and selected layout, css rules will be automatically estimated and saved inside the "Additional ccs Rules" field. These settings may not work on every theme and you may still need to make some fine tunings. Tip: If the result is not satisfactory (e.g. sidebar dislocated), you can change the width settings and try again. Each time Additional css Rules field is reset.', QA_TEXTDOMAIN ) ?>
 					</span>
 				</td>
 			</tr>
@@ -174,7 +178,7 @@ function qa_settings_field_layout() {
 					var sidebar_width = $("input[name='sidebar_width']");
 					var additional_css = $("textarea[name='additional_css']");
 					var confirmed = true;
-					if ( additional_css.val() != '' ) {
+					if ( $.trim(additional_css.val()) != '' ) {
 						confirmed = false;
 					}
 					if ( $.trim(page_width.val()) == ''){
@@ -198,7 +202,7 @@ function qa_settings_field_layout() {
 						return false;
 					}
 					else if ( !confirmed ) {
-						if ( confirm('<?php echo esc_js(__('Your additional css rules field is not empty. If you continue, they will be overwritten. Are you sure?',QA_TEXTDOMAIN))?>') ) {
+						if ( confirm('<?php echo esc_js(__('Your additional css rules field is not empty. If you continue, existing value be overwritten. Are you sure?',QA_TEXTDOMAIN))?>') ) {
 							confirmed = true;
 						}
 						else {
@@ -218,7 +222,7 @@ function qa_settings_field_layout() {
 								alert('<?php echo esc_js(__('Additional css rules estimated and saved. Now you can check display of QA pages in different browsers.',QA_TEXTDOMAIN)) ?>');
 							}
 							else {
-								alert('<?php echo esc_js(__('An unknown error occurred.',QA_TEXTDOMAIN)) ?>');
+								alert('<?php echo esc_js(__('A connection error occurred. Please try again.',QA_TEXTDOMAIN)) ?>');
 							}
 						},'json');	
 					}
@@ -227,34 +231,43 @@ function qa_settings_field_layout() {
 			</script>
 			<tr>
 				<th>
-					<label for="additional_css"><?php _e( 'Additional css rules', QA_TEXTDOMAIN ) ?></label>
+					<label for="additional_css"><?php _e( 'Additional css Rules', QA_TEXTDOMAIN ) ?></label>
 				</th>
 				<td>
 					<textarea cols="120" rows="2" name="additional_css"><?php echo @$options['additional_css']; ?></textarea>
 					<br />
 					<span class="description">
-					<?php _e( 'Use valid css. e.g.', QA_TEXTDOMAIN ) ?>&nbsp;<code>#sidebar{width:200px;float:left;}</code>
+					<?php _e( 'You can add your css codes manually or edit the already estimated ones. Ensure that you use valid css. e.g.', QA_TEXTDOMAIN ) ?>&nbsp;<code>#sidebar{width:200px;float:left;}</code>
 					</span>
 				</td>
 			</tr>
 			
 			<tr>
 				<th>
-					<label for="search_input_width"><?php _e( 'Search input width (px)', QA_TEXTDOMAIN ) ?></label>
+					<label for="search_input_width"><?php _e( 'Search Input Field Width (px)', QA_TEXTDOMAIN ) ?></label>
 				</th>
 				<td>
 					<input style="width:100px" name="search_input_width" value="<?php echo @$options['search_input_width']; ?>" />
 					&nbsp;&nbsp;&nbsp;
 					<span class="description">
-					<?php _e( 'This setting will only be applied to the default template.', QA_TEXTDOMAIN ) ?>
+					<?php _e( 'If search input field is displayed below the Q&A menu, reduce this value.', QA_TEXTDOMAIN ) ?>
 					</span>
 				</td>
 			</tr>
 
 		</table>
-		</div>
-		</div>
-			
+	</div>
+	</div>
+
+	<p class="submit">
+		<?php echo $wp_nonce_verify; ?>
+		<input type="hidden" name="action" value="qa-save" />
+		<input type="hidden" name="key" value="general_settings" />
+		<input type="submit" class="button-primary" name="save" value="<?php _e( 'Save Everything on this Page', QA_TEXTDOMAIN ); ?>">
+		<img class="ajax-loader" src="<?php echo QA_PLUGIN_URL . 'ui-admin/images/ajax-loader.gif'; ?>" />
+		<span style="display:none;font-weight:bold;color:darkgreen" class="qa_settings_saved"><?php _e( 'Settings saved', QA_TEXTDOMAIN ); ?></span>
+	</p>
+		
 	<div class="postbox <?php echo $this->postbox_classes('qa_display') ?>" id="qa_display">
 	<h3 class='hndle'><span><?php _e('Other Display Settings', QA_TEXTDOMAIN) ?></span></h3>
 	
