@@ -1,0 +1,392 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2013-02-13 13:59+0700\n"
+"PO-Revision-Date: 2013-02-13 14:00+0700\n"
+"Last-Translator: incsub.com <hakan@incsub.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-KeywordsList: _;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Hakan\\Desktop\\qa\n"
+
+#: C:\Users\Hakan\Desktop\qa/core/admin.php:139
+msgid "Number of reports:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/admin.php:148
+msgid "Last reported by:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/admin.php:157
+msgid "Last report reason:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/admin.php:166
+msgid "Delete report:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:29
+msgid "Title:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:114
+msgid "Which:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:133
+msgid "Tags:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:143
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:156
+msgid "Comma separated"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:146
+msgid "Categories:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:159
+msgid "Number of questions to show:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:289
+msgid "Show question counts"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/core/widgets.php:351
+msgid "Number of users to show:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/default-templates/single-question.php:21
+#: C:\Users\Hakan\Desktop\qa/thesis-templates/single-question.php:30
+msgid "asked"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/default-templates/single-question.php:50
+#: C:\Users\Hakan\Desktop\qa/thesis-templates/single-question.php:49
+msgid "Your Answer"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/default-templates/user-question.php:16
+#: C:\Users\Hakan\Desktop\qa/thesis-templates/user-question.php:27
+msgid "Name"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/default-templates/user-question.php:20
+#: C:\Users\Hakan\Desktop\qa/thesis-templates/user-question.php:31
+msgid "Member for"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/default-templates/user-question.php:24
+#: C:\Users\Hakan\Desktop\qa/thesis-templates/user-question.php:35
+msgid "Website"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/navigation.php:7
+msgid "General"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/navigation.php:15
+msgid "General Settings"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:66
+msgid "Q&A Settings"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:69
+msgid "This page uses ajax. Settings are saved without a page refresh."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:76
+msgid "Theme Adaptation Settings"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:93
+msgid "Page Layout"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:98
+msgid ""
+"Select the layout that will be applied to Q&A pages. For best result, apply "
+"the same layout of the rest of your pages."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:105
+msgid "Usable Page Width (px)"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:111
+msgid ""
+"Enter usable page width of your theme (Typically around 1000). Because of "
+"paddings, usable width can be slightly smaller than full page width. Tip: To "
+"find the usable page width, using Google Chrome, mouse over left of Q&A "
+"menu, right click and select \"Inspect element\". Dimensions of the net page "
+"width will be displayed."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:118
+msgid "Q&A Content Width (px)"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:124
+msgid ""
+"Enter the desired width of main Q&A content box. Recommended minimum width "
+"is 584."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:131
+msgid "Alignment of Q&A Content"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:135
+msgid "Center"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:136
+msgid "Left"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:137
+msgid "Right"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:141
+msgid ""
+"Select the desired alignment of Q&A content relative to the page and sidebar."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:148
+msgid "Sidebar Width (px)"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:154
+msgid ""
+"Enter the sidebar width of your theme, if you selected sidebar to be "
+"displayed in page layout setting. Depending on margins, you may need to set "
+"this a few px greater than the actual width. Tip: To find the width of your "
+"sidebar, using Google Chrome, mouse over your sidebar, right click and "
+"select \"Inspect element\". Dimensions of the sidebar will be displayed."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:164
+msgid "Estimate Additional css Rules"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:167
+msgid ""
+"When you click this button, using the above widths and selected layout, css "
+"rules will be automatically estimated and saved inside the \"Additional ccs "
+"Rules\" field. These settings may not work on every theme and you may still "
+"need to make some fine tunings. Tip: If the result is not satisfactory (e.g. "
+"sidebar dislocated), you can change the width settings and try again. Each "
+"time Additional css Rules field is reset."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:234
+msgid "Additional css Rules"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:240
+msgid ""
+"You can add your css codes manually or edit the already estimated ones. "
+"Ensure that you use valid css. e.g."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:247
+msgid "Search Input Field Width (px)"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:253
+msgid ""
+"If search input field is displayed below the Q&A menu, reduce this value."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:266
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:321
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:528
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:574
+msgid "Save Everything on this Page"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:268
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:323
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:530
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:576
+msgid "Settings saved"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:272
+msgid "Other Display Settings"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:280
+msgid "Questions Per Page"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:293
+msgid "Answers Per Page"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:296
+msgid "If left empty: 20"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:302
+msgid "Disable WP Editor"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:308
+msgid ""
+"If you are having issues with Buddypress or if you don't want submissions to "
+"be formatted, check this checkbox. Then, textarea will be used for question "
+"and answer forms instead of the WP editor."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:327
+msgid "Accessibility Settings"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:336
+msgid "Assign Capabilities"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:345
+msgid ""
+"This list has all the user roles of your website. As you make a new "
+"selection, capability of that role will be displayed. Select a role to which "
+"you want to assign WP Q&A capabilities."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:361
+msgid "Default Question Category"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:372
+msgid "None"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:383
+msgid ""
+"If no category has been selected by the author, you can assign a category to "
+"the submitted question."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:390
+msgid "After Visitor Submits a Question or Answer"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:400
+msgid "He is asked for registration"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:401
+msgid "Question is assigned to a user"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:410
+msgid "Assign to: "
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:415
+msgid ""
+"Every question and answer should have an author. If you want to let the "
+"visitor submit a question or answer without the need for registration, you "
+"can assign a preset author."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:423
+msgid "Thank You Page"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:434
+msgid ""
+"If questions and are saved as pending, user will be redirected to this page "
+"after submitting a question or answer."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:441
+msgid "Unauthorized Access Page"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:453
+msgid ""
+"If a user tries to access a page he should not access, he will be redirected "
+"to this page instead."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:460
+msgid "Report Reasons"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:466
+msgid ""
+"Enter reasons of reporting to be chosen by the user each one separated by "
+"comma, e.g. Spam,Language. If left empty, user will not be asked to select a "
+"report reason."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:473
+msgid "Use Captcha"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:479
+msgid "Whether to use Captcha verification while submitting report."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:482
+msgid "Note: Your php installation does not let Captcha usage."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:490
+msgid "Email address on report"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:496
+msgid ""
+"Email address that will be notified in case a question or answer is "
+"reported. Leaving empty will disable notification. Note: If a question or "
+"answer is reported more than once, only the first report will be emailed, "
+"but number of reports and latest reporter will be saved."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:508
+msgid "Disable Reply in Activity Stream"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:514
+msgid ""
+"Checking this will disable commenting for the question asked notification in "
+"Buddypress Activity Stream, forsing user to answer the question through "
+"plugin generated pages."
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:534
+msgid "Notification Settings"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:543
+msgid "Notification E-mail Subject"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:549
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:562
+msgid "Variables:"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:556
+msgid "Notification E-mail Content"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/user_profile.php:4
+msgid "Q &amp; A Settings"
+msgstr ""
+
+#: C:\Users\Hakan\Desktop\qa/ui-admin/user_profile.php:9
+msgid "Get e-mail notifications about new questions"
+msgstr ""
