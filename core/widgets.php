@@ -340,7 +340,7 @@ class QA_Widget_Reputation extends QA_Widget_Helper {
 			echo $before_title . $title . $after_title;
 
 		global $wpdb;
-		$results = $wpdb->get_results( "SELECT * FROM " . $wpdb->usermeta . " WHERE meta_key='_qa_rep' AND meta_value > 0  ORDER BY CONVERT(meta_value, SIGNED) DESC LIMIT " . $instance['number'] . " " );
+		$results = $wpdb->get_results( "SELECT * FROM " . $wpdb->usermeta . " WHERE meta_key='_qa_rep' AND meta_value > 0  ORDER BY CONVERT(meta_value, SIGNED) DESC LIMIT " . (int)$instance['number'] . " " );
 
 		if ( $results ) {
 			echo '<ul>';
