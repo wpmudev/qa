@@ -5,7 +5,8 @@
 	float: right;
 }
 
-.column-qa-reported{width:10%;text-align:center;}
+.column-qa-reported{width:10%;}
+.column-qa-question{width:25%;}
 #reported_question label, #reported_answer label{float:left;}
 span.qa_reported{float:right;height:24px;font-weight:bold;}
 

@@ -1,26 +1,28 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2013-04-11 20:49+0700\n"
-"PO-Revision-Date: 2013-04-11 20:49+0700\n"
+"Project-Id-Version: Q&A\n"
+"POT-Creation-Date: 2013-04-29 12:54-0500\n"
+"PO-Revision-Date: 2013-04-29 12:55-0500\n"
 "Last-Translator: incsub.com <hakan@incsub.com>\n"
-"Language-Team: \n"
+"Language-Team: Arnold Bailey <arnold@incsub.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.3\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;"
+"esc_html__;esc_html_e;esc_html_x\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\Users\\Hakan\\Desktop\\qa\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
 
-#: C:\Users\Hakan\Desktop\qa/qa.php:123
+#: ../qa.php:119
 msgid ""
 "<b>[Q&A]</b> There is already a running version of Q&A. Please check if you "
 "have already installed Q&A or Q&A Lite beforehand. You need to deactivate "
 "the other version to install and run this."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/qa.php:202
+#: ../qa.php:198
 #, php-format
 msgid ""
 "Easily get updates, support, and one-click WPMU DEV plugin/theme "
@@ -30,7 +32,7 @@ msgid ""
 "dev/update-notifications-plugin-information/\">(find out more)</a></small>"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/qa.php:206
+#: ../qa.php:202
 #, php-format
 msgid ""
 "Updates, Support, Premium Plugins, Community - <strong><a href=\"%s\" title="
@@ -38,105 +40,147 @@ msgid ""
 "strong>."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:25
+#: ../core/admin.php:25
 msgid "View questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:26
+#: ../core/admin.php:26
 msgid "Ask questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:27
+#: ../core/admin.php:27
 msgid ""
 "Immediately publish questions and answers (Otherwise they will be saved as "
 "pending)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:28
+#: ../core/admin.php:28
 msgid "Edit own questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:29
+#: ../core/admin.php:29
 msgid "Delete own questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:30
+#: ../core/admin.php:30
 msgid "Edit others' questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:31
+#: ../core/admin.php:31
 msgid "Delete others' questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:32
+#: ../core/admin.php:32
 msgid "Subscribe to new questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:34
+#: ../core/admin.php:34
 msgid "View answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:35
+#: ../core/admin.php:35
 msgid "Add answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:36
+#: ../core/admin.php:36
 msgid "Edit own answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:37
+#: ../core/admin.php:37
 msgid "Delete own answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:38
+#: ../core/admin.php:38
 msgid "Edit others' answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:39
+#: ../core/admin.php:39
 msgid "Delete others' answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:41
+#: ../core/admin.php:41
 msgid "Report questions and answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:104
+#: ../core/admin.php:104
 msgid "This Question is Reported"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:113
+#: ../core/admin.php:113
 msgid "This Answer is Reported"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:139
+#: ../core/admin.php:139
 msgid "Number of reports:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:148
+#: ../core/admin.php:148
 msgid "Last reported by:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:157
+#: ../core/admin.php:157
 msgid "Last report reason:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:166
+#: ../core/admin.php:166
 msgid "Delete report:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:213
+#: ../core/admin.php:216
+msgid "Title"
+msgstr ""
+
+#: ../core/admin.php:217 ../core/buddypress.php:109 ../core/core.php:244
+#: ../default-templates/user-question.php:49
+#: ../thesis-templates/user-question.php:60
+msgid "Question"
+msgstr ""
+
+#: ../core/admin.php:218
+msgid "Author"
+msgstr ""
+
+#: ../core/admin.php:219
+msgid "Date"
+msgstr ""
+
+#: ../core/admin.php:220
 msgid "Reported"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:229
+#: ../core/admin.php:240
 msgid "Yes"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:231
+#: ../core/admin.php:242
 msgid "No"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:328
+#: ../core/admin.php:248
+msgid "Got to question page"
+msgstr ""
+
+#: ../core/admin.php:266
+msgid "Question Published"
+msgstr ""
+
+#: ../core/admin.php:278
+msgid "Question Pending"
+msgstr ""
+
+#: ../core/admin.php:292
+msgid "Answer Published"
+msgstr ""
+
+#: ../core/admin.php:304
+msgid "Answer Pending"
+msgstr ""
+
+#: ../core/admin.php:320
+msgid "Q&A Reported"
+msgstr ""
+
+#: ../core/admin.php:349
 #, php-format
 msgid ""
 "<b>[Q&A]</b> It looks like you have just installed or upgraded Q&A. You may "
@@ -144,12 +188,11 @@ msgid ""
 "layout handling has been changed.</b>."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:328
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:339
+#: ../core/admin.php:349 ../core/admin.php:360
 msgid "settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:339
+#: ../core/admin.php:360
 #, php-format
 msgid ""
 "<b>[Q&A]</b> <i>After Visitor Submits a Question</i> setting requires "
@@ -157,282 +200,274 @@ msgid ""
 "You may consider to fix this using plugin %s or Wordpress settings."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:345
+#: ../core/admin.php:366
 msgid ""
 "<b>[Q&A]</b> Visitor role cannot be found. Try to deactivate and reactivate "
 "the plugin, if you continue to see this message, consult our Help and "
 "Support."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:351
+#: ../core/admin.php:372
 msgid ""
 "<b>[Q&A]</b> Plugin will not function correctly with default permalink "
 "structure. You need to use a pretty permalink structure."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:366
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:480
+#: ../core/admin.php:387 ../core/admin.php:501
 msgid "Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:672
+#: ../core/admin.php:693
 msgid "You are not authorised to do this"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:677
+#: ../core/admin.php:698
 #, php-format
 msgid ""
 "Your current theme %s is already supported by Q&A. No additional css rules "
 "are necessary."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:684
+#: ../core/admin.php:705
 msgid "At least One of the variables is missing"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:734
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:745
+#: ../core/admin.php:755 ../core/admin.php:766
 msgid "Page layout is not selected"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/admin.php:742
+#: ../core/admin.php:763
 msgid "Nothing has been changed. Please double check your settings."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:41
+#: ../core/answers.php:41
 msgid "Answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:42
+#: ../core/answers.php:42 ../core/buddypress.php:114
+#: ../default-templates/user-question.php:54
+#: ../thesis-templates/user-question.php:65
 msgid "Answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:43
-#: C:\Users\Hakan\Desktop\qa/core/core.php:245
+#: ../core/answers.php:43 ../core/core.php:245
 msgid "Add New"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:44
+#: ../core/answers.php:44
 msgid "Add New Answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:45
+#: ../core/answers.php:45
 msgid "Edit Answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:46
+#: ../core/answers.php:46
 msgid "New Answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:47
+#: ../core/answers.php:47
 msgid "View Answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:48
+#: ../core/answers.php:48
 msgid "Search Answers"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:49
+#: ../core/answers.php:49
 msgid "No answers found"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:50
+#: ../core/answers.php:50
 msgid "No answers found in trash"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:103
+#: ../core/answers.php:103
 #, php-format
 msgid "Answers for \"%s\""
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/answers.php:107
+#: ../core/answers.php:107
 #, php-format
 msgid "By: %s"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/buddypress.php:37
+#: ../core/buddypress.php:37
 msgid "Q&A"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:98
+#: ../core/core.php:98
 msgid "Unknown"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:103
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:372
+#: ../core/core.php:103
 msgid "None"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:112
+#: ../core/core.php:112
 msgid "A question or answer has been reported"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:113
+#: ../core/core.php:113
 msgid "Reported by:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:116
+#: ../core/core.php:116
 msgid "Report reason:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:119
+#: ../core/core.php:119
 msgid "You can edit it by clicking this link:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:187
+#: ../core/core.php:187
 msgid "Question Categories"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:188
+#: ../core/core.php:188
 msgid "Question Category"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:189
+#: ../core/core.php:189
 msgid "Search Question Categories"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:190
+#: ../core/core.php:190
 msgid "All Question Categories"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:191
+#: ../core/core.php:191
 msgid "Parent Question Category"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:192
+#: ../core/core.php:192
 msgid "Parent Question Category:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:193
+#: ../core/core.php:193
 msgid "Edit Question Category"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:194
+#: ../core/core.php:194
 msgid "Update Question Category"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:195
+#: ../core/core.php:195
 msgid "Add New Question Category"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:196
+#: ../core/core.php:196
 msgid "New Question Category Name"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:212
+#: ../core/core.php:212
 msgid "Question Tags"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:213
+#: ../core/core.php:213
 msgid "Question Tag"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:214
+#: ../core/core.php:214
 msgid "Search Question Tags"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:215
+#: ../core/core.php:215
 msgid "Popular Question Tags"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:216
+#: ../core/core.php:216
 msgid "All Question Tags"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:217
+#: ../core/core.php:217
 msgid "Edit Question Tag"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:218
+#: ../core/core.php:218
 msgid "Update Question Tag"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:219
+#: ../core/core.php:219
 msgid "Add New Question Tag"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:220
+#: ../core/core.php:220
 msgid "New Question Tag Name"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:221
+#: ../core/core.php:221
 msgid "Separate question tags with commas"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:222
+#: ../core/core.php:222
 msgid "Add or remove question tags"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:223
+#: ../core/core.php:223
 msgid "Choose from the most used question tags"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:243
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:17
+#: ../core/core.php:243 ../core/template-tags.php:17
 msgid "Questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:244
-msgid "Question"
-msgstr ""
-
-#: C:\Users\Hakan\Desktop\qa/core/core.php:246
+#: ../core/core.php:246
 msgid "Add New Question"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:247
+#: ../core/core.php:247
 msgid "Edit Question"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:248
+#: ../core/core.php:248
 msgid "New Question"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:249
+#: ../core/core.php:249
 msgid "View Question"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:250
+#: ../core/core.php:250
 msgid "Search Questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:251
+#: ../core/core.php:251
 msgid "No questions found."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:252
+#: ../core/core.php:252
 msgid "No questions found in trash."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:512
+#: ../core/core.php:512
 msgid "Please login or register to vote."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:513
+#: ../core/core.php:513
 msgid "You can't vote on your own post."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:588
+#: ../core/core.php:588
 msgid "Ask a question"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/core.php:598
+#: ../core/core.php:598
 #, php-format
 msgid "User: %s"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:86
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:126
+#: ../core/edit.php:86 ../core/edit.php:126
 msgid "Nonce error: It looks like you don't have permission to do that."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:96
+#: ../core/edit.php:96
 msgid ""
 "Questions must have both a title and a body. Please use your browser's back "
 "button to edit your question."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:110
+#: ../core/edit.php:110
 #, php-format
 msgid ""
 "It seems that this question was already asked. Click <a href=\"%s\" target="
@@ -442,357 +477,367 @@ msgid ""
 "question."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:146
+#: ../core/edit.php:146
 msgid "Answer must be associated to a question."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:149
+#: ../core/edit.php:149
 msgid ""
 "You have to actually write something. Please use your browser's back button "
 "to edit your answer."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:163
+#: ../core/edit.php:163
 #, php-format
 msgid "It seems that answer was <a href=\"%s\">already given</a>."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:195
+#: ../core/edit.php:195
 msgid "You are posting too fast. Slow down."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:432
+#: ../core/edit.php:432
 #, php-format
 msgid ""
 "To finish posting your %s, please register below. If you already have an "
 "account, please <a href=\"%s\">login</a> instead."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:483
+#: ../core/edit.php:483
 #, php-format
 msgid "%s answered question \"<a href=\"%s\">%s</a>\""
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/edit.php:503
+#: ../core/edit.php:503
 #, php-format
 msgid "%s asked \"<a href=\"%s\">%s</a>\""
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/subscriptions.php:71
+#: ../core/subscriptions.php:71
 #, php-format
 msgid "[%s] New answer on \"%s\""
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/subscriptions.php:73
+#: ../core/subscriptions.php:73
 #, php-format
 msgid "%s added a new answer to %s:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/subscriptions.php:93
+#: ../core/subscriptions.php:93
 #, php-format
 msgid "To manage your subscription, visit <a href=\"%s\">the question</a>."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:22
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:135
+#: ../core/template-tags.php:22 ../core/widgets.php:135
 msgid "Unanswered"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:30
+#: ../core/template-tags.php:30
 msgid "Ask a Question"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:78
+#: ../core/template-tags.php:78
 msgid "An error has occured while processing your submission."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:90
+#: ../core/template-tags.php:90
 msgid "Search"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:119
+#: ../core/template-tags.php:119
 msgid "prev"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:141
+#: ../core/template-tags.php:141
 msgid "next"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:175
+#: ../core/template-tags.php:175
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:209
+#: ../core/template-tags.php:209
 msgid "link"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:212
+#: ../core/template-tags.php:212
 msgid "edit"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:215
+#: ../core/template-tags.php:215
 msgid "delete"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:219
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:222
+#: ../core/template-tags.php:219 ../core/template-tags.php:222
 msgid "report"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:229
+#: ../core/template-tags.php:229
 msgid "Your report has been received."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:231
+#: ../core/template-tags.php:231
 msgid "Please select a reason for reporting."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:235
+#: ../core/template-tags.php:235
 msgid "Captcha error. Please try again."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:274
+#: ../core/template-tags.php:274
 msgid "Select a reason for reporting:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:286
+#: ../core/template-tags.php:286
 msgid "Type the letters you see in the image below:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:292
+#: ../core/template-tags.php:292
 msgid "[ Different Image ]"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:296
+#: ../core/template-tags.php:296
 msgid "Send Report"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:299
+#: ../core/template-tags.php:299
 msgid "Cancel"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:395
+#: ../core/template-tags.php:377
+msgid "vote"
+msgstr ""
+
+#: ../core/template-tags.php:395
 msgid "This question is useful and clear (click again to undo)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:396
+#: ../core/template-tags.php:396
 msgid "This question is unclear or not useful (click again to undo)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:406
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:443
+#: ../core/template-tags.php:406 ../core/template-tags.php:443
 msgid "Score"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:420
+#: ../core/template-tags.php:420
 msgid "Click here to be notified of followup answers via e-mail"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:421
+#: ../core/template-tags.php:421
 msgid "Stop notifying me of followup answers via e-mail"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:432
+#: ../core/template-tags.php:432
 msgid "This answer is useful (click again to undo)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:433
+#: ../core/template-tags.php:433
 msgid "This answer is not useful (click again to undo)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:481
+#: ../core/template-tags.php:481
 msgid "Accept answer (click again to undo)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:489
+#: ../core/template-tags.php:489
 msgid "Accepted answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:491
+#: ../core/template-tags.php:491
 msgid "accepted"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:584
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:29
+#: ../core/template-tags.php:520
+msgid "answer"
+msgstr ""
+
+#: ../core/template-tags.php:584 ../core/widgets.php:29
 msgid "Title:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:617
+#: ../core/template-tags.php:617
 msgid "Select category..."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:622
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:148
-#: C:\Users\Hakan\Desktop\qa/default-templates/single-question.php:20
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/single-question.php:29
+#: ../core/template-tags.php:622 ../core/widgets.php:148
+#: ../default-templates/single-question.php:20
+#: ../thesis-templates/single-question.php:29
 msgid "Tags:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:736
+#: ../core/template-tags.php:655
+msgid "1 Answer"
+msgstr ""
+
+#: ../core/template-tags.php:736
 msgid "You are not allowed to add answers!"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:785
+#: ../core/template-tags.php:785
 msgid "Submit"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:787
+#: ../core/template-tags.php:787
 msgid "Register/Login and Submit"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/template-tags.php:789
+#: ../core/template-tags.php:789
 msgid "Login and Submit"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/votes.php:21
+#: ../core/votes.php:21
 #, php-format
 msgid "<span class=\"qa qa-rep activity\">QA rep %d</span>"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:55
+#: ../core/widgets.php:55
 msgid ""
 "List of questions selectable from recent, most popular and unanswered ones"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:56
+#: ../core/widgets.php:56
 msgid "Q&A: Questions"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:129
+#: ../core/widgets.php:129
 msgid "Which:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:133
+#: ../core/widgets.php:133
 msgid "Recent"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:134
+#: ../core/widgets.php:134
 msgid "Popular"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:158
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:171
+#: ../core/widgets.php:158 ../core/widgets.php:171
 msgid "Comma separated"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:161
+#: ../core/widgets.php:161
 msgid "Categories:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:174
+#: ../core/widgets.php:174
 msgid "Number of questions to show:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:208
+#: ../core/widgets.php:208
 msgid "The most popular question tags in cloud format"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:209
+#: ../core/widgets.php:209
 msgid "Q&A: Question Tags"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:263
+#: ../core/widgets.php:238
+msgid "1 question"
+msgstr ""
+
+#: ../core/widgets.php:263
 msgid "A list of question categories"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:264
+#: ../core/widgets.php:264
 msgid "Q&A: Question Categories"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:304
+#: ../core/widgets.php:304
 msgid "Show question counts"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:325
+#: ../core/widgets.php:325
 msgid "A list of users having highest reputation points"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:326
+#: ../core/widgets.php:326
 msgid "Q&A: Users with Highest Reputation"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/core/widgets.php:366
+#: ../core/widgets.php:366
 msgid "Number of users to show:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/default-templates/edit-answer.php:12
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/edit-answer.php:21
+#: ../default-templates/edit-answer.php:12
+#: ../thesis-templates/edit-answer.php:21
 #, php-format
 msgid "Answer for %s"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/default-templates/single-question.php:19
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/single-question.php:28
+#: ../default-templates/single-question.php:19
+#: ../thesis-templates/single-question.php:28
 msgid "Category:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/default-templates/single-question.php:21
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/single-question.php:30
+#: ../default-templates/single-question.php:21
+#: ../thesis-templates/single-question.php:30
 msgid "asked"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/default-templates/single-question.php:50
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/single-question.php:49
+#: ../default-templates/single-question.php:50
+#: ../thesis-templates/single-question.php:49
 msgid "Your Answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/default-templates/user-question.php:16
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/user-question.php:27
+#: ../default-templates/user-question.php:16
+#: ../thesis-templates/user-question.php:27
 msgid "Name"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/default-templates/user-question.php:20
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/user-question.php:31
+#: ../default-templates/user-question.php:20
+#: ../thesis-templates/user-question.php:31
 msgid "Member for"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/default-templates/user-question.php:24
-#: C:\Users\Hakan\Desktop\qa/thesis-templates/user-question.php:35
+#: ../default-templates/user-question.php:24
+#: ../thesis-templates/user-question.php:35
 msgid "Website"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/message.php:3
+#: ../ui-admin/message.php:3
 msgid "Settings Saved."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/navigation.php:7
+#: ../ui-admin/navigation.php:7
 msgid "General"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/navigation.php:15
+#: ../ui-admin/navigation.php:15
 msgid "General Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:4
+#: ../ui-admin/settings-general.php:4
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:23
+#: ../ui-admin/settings-general.php:23
 msgid "Content on left"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:28
+#: ../ui-admin/settings-general.php:28
 msgid "Content on right"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:33
+#: ../ui-admin/settings-general.php:33
 msgid "One-column, no sidebar"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:66
+#: ../ui-admin/settings-general.php:66
 msgid "Q&A Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:69
+#: ../ui-admin/settings-general.php:69
 msgid "This page uses ajax. Settings are saved without a page refresh."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:76
+#: ../ui-admin/settings-general.php:76
 msgid "Theme Adaptation Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:86
+#: ../ui-admin/settings-general.php:86
 #, php-format
 msgid ""
 "Q&A supports these themes as default: <b>%s</b>. For the rest of themes, the "
@@ -801,21 +846,21 @@ msgid ""
 "having any display issues you can leave them as they are."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:93
+#: ../ui-admin/settings-general.php:93
 msgid "Page Layout"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:98
+#: ../ui-admin/settings-general.php:98
 msgid ""
 "Select the layout that will be applied to Q&A pages. For best result, apply "
 "the same layout of the rest of your pages."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:105
+#: ../ui-admin/settings-general.php:105
 msgid "Usable Page Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:111
+#: ../ui-admin/settings-general.php:111
 msgid ""
 "Enter usable page width of your theme (Typically around 1000). Because of "
 "paddings, usable width can be slightly smaller than full page width. Tip: To "
@@ -824,42 +869,42 @@ msgid ""
 "width will be displayed."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:118
+#: ../ui-admin/settings-general.php:118
 msgid "Q&A Content Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:124
+#: ../ui-admin/settings-general.php:124
 msgid ""
 "Enter the desired width of main Q&A content box. Recommended minimum width "
 "is 584."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:131
+#: ../ui-admin/settings-general.php:131
 msgid "Alignment of Q&A Content"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:135
+#: ../ui-admin/settings-general.php:135
 msgid "Center"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:136
+#: ../ui-admin/settings-general.php:136
 msgid "Left"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:137
+#: ../ui-admin/settings-general.php:137
 msgid "Right"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:141
+#: ../ui-admin/settings-general.php:141
 msgid ""
 "Select the desired alignment of Q&A content relative to the page and sidebar."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:148
+#: ../ui-admin/settings-general.php:148
 msgid "Sidebar Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:154
+#: ../ui-admin/settings-general.php:154
 msgid ""
 "Enter the sidebar width of your theme, if you selected sidebar to be "
 "displayed in page layout setting. Depending on margins, you may need to set "
@@ -868,11 +913,11 @@ msgid ""
 "select \"Inspect element\". Dimensions of the sidebar will be displayed."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:164
+#: ../ui-admin/settings-general.php:164
 msgid "Estimate Additional css Rules"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:167
+#: ../ui-admin/settings-general.php:167
 msgid ""
 "When you click this button, using the above widths and selected layout, css "
 "rules will be automatically estimated and saved inside the \"Additional ccs "
@@ -882,84 +927,80 @@ msgid ""
 "time Additional css Rules field is reset."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:185
+#: ../ui-admin/settings-general.php:185
 msgid "Page width cannot be empty"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:190
+#: ../ui-admin/settings-general.php:190
 msgid "Content width cannot be empty"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:195
+#: ../ui-admin/settings-general.php:195
 msgid "With the selected page layout, sidebar width cannot be empty"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:200
+#: ../ui-admin/settings-general.php:200
 msgid "Page width cannot be less than content width + sidebar width"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:205
+#: ../ui-admin/settings-general.php:205
 msgid ""
 "Your additional css rules field is not empty. If you continue, existing "
 "value be overwritten. Are you sure?"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:222
+#: ../ui-admin/settings-general.php:222
 msgid ""
 "Additional css rules estimated and saved. Now you can check display of QA "
 "pages in different browsers."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:225
+#: ../ui-admin/settings-general.php:225
 msgid "A connection error occurred. Please try again."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:234
+#: ../ui-admin/settings-general.php:234
 msgid "Additional css Rules"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:240
+#: ../ui-admin/settings-general.php:240
 msgid ""
 "You can add your css codes manually or edit the already estimated ones. "
 "Ensure that you use valid css. e.g."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:247
+#: ../ui-admin/settings-general.php:247
 msgid "Search Input Field Width (px)"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:253
+#: ../ui-admin/settings-general.php:253
 msgid ""
 "If search input field is displayed below the Q&A menu, reduce this value."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:266
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:321
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:528
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:574
+#: ../ui-admin/settings-general.php:266 ../ui-admin/settings-general.php:321
+#: ../ui-admin/settings-general.php:499 ../ui-admin/settings-general.php:545
 msgid "Save Everything on this Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:268
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:323
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:530
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:576
+#: ../ui-admin/settings-general.php:268 ../ui-admin/settings-general.php:323
+#: ../ui-admin/settings-general.php:501 ../ui-admin/settings-general.php:547
 msgid "Settings saved"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:272
+#: ../ui-admin/settings-general.php:272
 msgid "Other Display Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:280
+#: ../ui-admin/settings-general.php:280
 msgid "Questions Per Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:283
+#: ../ui-admin/settings-general.php:283
 msgid "If left empty, WP setting will be used: "
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:286
+#: ../ui-admin/settings-general.php:286
 #, php-format
 msgid ""
 "IMPORTANT: Questions Per Page cannot be less than Wordpress %s setting, "
@@ -967,125 +1008,115 @@ msgid ""
 "used instead."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:286
+#: ../ui-admin/settings-general.php:286
 msgid "Blog pages show at most"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:293
+#: ../ui-admin/settings-general.php:293
 msgid "Answers Per Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:296
+#: ../ui-admin/settings-general.php:296
 msgid "If left empty: 20"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:302
+#: ../ui-admin/settings-general.php:302
 msgid "Disable WP Editor"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:308
+#: ../ui-admin/settings-general.php:308
 msgid ""
 "If you are having issues with Buddypress or if you don't want submissions to "
 "be formatted, check this checkbox. Then, textarea will be used for question "
 "and answer forms instead of the WP editor."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:327
+#: ../ui-admin/settings-general.php:327
 msgid "Accessibility Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:336
+#: ../ui-admin/settings-general.php:336
 msgid "Assign Capabilities"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:345
+#: ../ui-admin/settings-general.php:345
 msgid ""
 "This list has all the user roles of your website. As you make a new "
 "selection, capability of that role will be displayed. Select a role to which "
 "you want to assign WP Q&A capabilities."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:361
-msgid "Default Question Category"
-msgstr ""
-
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:383
-msgid ""
-"If no category has been selected by the author, you can assign a category to "
-"the submitted question."
-msgstr ""
-
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:390
+#: ../ui-admin/settings-general.php:361
 msgid "After Visitor Submits a Question or Answer"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:400
+#: ../ui-admin/settings-general.php:371
 msgid "He is asked for registration"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:401
+#: ../ui-admin/settings-general.php:372
 msgid "Question is assigned to a user"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:410
+#: ../ui-admin/settings-general.php:381
 msgid "Assign to: "
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:415
+#: ../ui-admin/settings-general.php:386
 msgid ""
 "Every question and answer should have an author. If you want to let the "
 "visitor submit a question or answer without the need for registration, you "
 "can assign a preset author."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:423
+#: ../ui-admin/settings-general.php:394
 msgid "Thank You Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:434
+#: ../ui-admin/settings-general.php:405
 msgid ""
 "If questions and are saved as pending, user will be redirected to this page "
 "after submitting a question or answer."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:441
+#: ../ui-admin/settings-general.php:412
 msgid "Unauthorized Access Page"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:453
+#: ../ui-admin/settings-general.php:424
 msgid ""
 "If a user tries to access a page he should not access, he will be redirected "
 "to this page instead."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:460
-msgid "Report Reasons"
+#: ../ui-admin/settings-general.php:431
+msgid "Report reasons"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:466
+#: ../ui-admin/settings-general.php:437
 msgid ""
 "Enter reasons of reporting to be chosen by the user each one separated by "
 "comma, e.g. Spam,Language. If left empty, user will not be asked to select a "
 "report reason."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:473
+#: ../ui-admin/settings-general.php:444
 msgid "Use Captcha"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:479
+#: ../ui-admin/settings-general.php:450
 msgid "Whether to use Captcha verification while submitting report."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:482
+#: ../ui-admin/settings-general.php:453
 msgid "Note: Your php installation does not let Captcha usage."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:490
+#: ../ui-admin/settings-general.php:461
 msgid "Email address on report"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:496
+#: ../ui-admin/settings-general.php:467
 msgid ""
 "Email address that will be notified in case a question or answer is "
 "reported. Leaving empty will disable notification. Note: If a question or "
@@ -1093,38 +1124,37 @@ msgid ""
 "but number of reports and latest reporter will be saved."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:508
+#: ../ui-admin/settings-general.php:479
 msgid "Disable Reply in Activity Stream"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:514
+#: ../ui-admin/settings-general.php:485
 msgid ""
 "Checking this will disable commenting for the question asked notification in "
 "Buddypress Activity Stream, forsing user to answer the question through "
 "plugin generated pages."
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:534
+#: ../ui-admin/settings-general.php:505
 msgid "Notification Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:543
+#: ../ui-admin/settings-general.php:514
 msgid "Notification E-mail Subject"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:549
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:562
+#: ../ui-admin/settings-general.php:520 ../ui-admin/settings-general.php:533
 msgid "Variables:"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/settings-general.php:556
+#: ../ui-admin/settings-general.php:527
 msgid "Notification E-mail Content"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/user_profile.php:4
+#: ../ui-admin/user_profile.php:4
 msgid "Q &amp; A Settings"
 msgstr ""
 
-#: C:\Users\Hakan\Desktop\qa/ui-admin/user_profile.php:9
+#: ../ui-admin/user_profile.php:9
 msgid "Get e-mail notifications about new questions"
 msgstr ""

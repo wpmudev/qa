@@ -3,8 +3,8 @@
 Plugin Name: Q&A - WordPress Questions and Answers Plugin
 Plugin URI: http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin
 Description: Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
-Author: S H Mohanjith (Incsub), scribu (Incsub), Hakan Evin (Incsub)
-Version: 1.4.2.1
+Author: S H Mohanjith (Incsub), scribu (Incsub), Hakan Evin (Incsub), Arnold Bailey (Incsub)
+Version: 1.4.2.2
 Author URI: http://premium.wpmudev.org/
 WDP ID: 217
 Text Domain: qa
@@ -37,14 +37,10 @@ if ( !class_exists( 'QA_Core' ) ) {
 	define( 'QA_VERSION', '1.4.2.1' );
 
 	// The full url to the plugin directory
-	if ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || $_SERVER['SERVER_PORT'] == '443') {
-		define( 'QA_PLUGIN_URL', preg_replace('/^http:/', 'https:', WP_PLUGIN_URL) . '/' . basename( dirname( __FILE__ ) ) . '/' );
-	} else {
-		define( 'QA_PLUGIN_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) . '/' );
-	}
-
+	define( 'QA_PLUGIN_URL', plugin_dir_url(__FILE__) );
+	
 	// The full path to the plugin directory
-	define( 'QA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) . '/' );
+	define( 'QA_PLUGIN_DIR', plugin_dir_path(__FILE__) );
 
 	// The text domain for strings localization
 	define( 'QA_TEXTDOMAIN', 'qa' );
