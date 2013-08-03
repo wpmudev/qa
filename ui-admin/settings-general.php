@@ -21,17 +21,17 @@ function qa_layouts() {
 		'content-sidebar' => array(
 			'value' => 'content-sidebar',
 			'label' => __( 'Content on left', QA_TEXTDOMAIN ),
-			'thumbnail' => QA_PLUGIN_URL . '/ui-admin/images/content-sidebar.png',
+			'thumbnail' => QA_PLUGIN_URL . 'ui-admin/images/content-sidebar.png',
 		),
 		'sidebar-content' => array(
 			'value' => 'sidebar-content',
 			'label' => __( 'Content on right', QA_TEXTDOMAIN ),
-			'thumbnail' => QA_PLUGIN_URL . '/ui-admin/images/sidebar-content.png',
+			'thumbnail' => QA_PLUGIN_URL . 'ui-admin/images/sidebar-content.png',
 		),
 		'content' => array(
 			'value' => 'content',
 			'label' => __( 'One-column, no sidebar', QA_TEXTDOMAIN ),
-			'thumbnail' => QA_PLUGIN_URL . '/ui-admin/images/content.png',
+			'thumbnail' => QA_PLUGIN_URL . 'ui-admin/images/content.png',
 		),
 	);
 

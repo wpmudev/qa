@@ -38,7 +38,8 @@ class QA_Core_Admin extends QA_Core {
 		'edit_others_answers'        	=> __( 'Edit others\' answers', QA_TEXTDOMAIN ),
 		'delete_others_answers'      	=> __( 'Delete others\' answers', QA_TEXTDOMAIN ),
 
-		'flag_questions'				=> __( 'Report questions and answers', QA_TEXTDOMAIN ),
+		'flag_questions'							=> __( 'Report questions and answers', QA_TEXTDOMAIN ),
+		'upload_files'      					=> __( 'Upload Files (Necessary for media upload, DO NOT give to QA Visitors)', QA_TEXTDOMAIN ),
 		);
 
 		$this->init();

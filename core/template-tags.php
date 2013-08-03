@@ -261,6 +261,7 @@ function the_qa_action_links( $id ) {
 // Since V 1.3.1
 function the_qa_flag_form( $id ) {
 	global $qa_general_settings;
+	
 	$f  = '';
 	$f .= '<div id="qa_flag_form_'. $id .'" style="display:none" >';
 	$f .= '<form method="post" action="'.admin_url("admin-ajax.php").'" >';
@@ -545,7 +546,7 @@ function the_question_category( $before = '', $sep = ', ', $after = '' ) {
 }
 
 function get_the_question_form() {
-	global $wp_query, $wp_version, $qa_general_settings;
+	global $wp_query, $wp_version, $qa_general_settings, $post;
 
 	if ( is_qa_page( 'edit' ) ) {
 		$question = $wp_query->posts[0];
@@ -560,6 +561,7 @@ function get_the_question_form() {
 		$cats = wp_get_object_terms( $question->ID, 'question_category', $args );
 		$question->cat = empty( $cats ) ? false : reset( $cats );
 	} else {
+		$post = null; //Necessary after 3.5 to prevent media upload from failing for users less than admin
 		$question = (object) array(
 			'ID' => '',
 			'post_content' => '',
@@ -736,6 +738,7 @@ function get_the_answer_form() {
 			$out .= '<p>'.__('You are not allowed to add answers!', QA_TEXTDOMAIN).'</p>';
 			return;
 		}
+		$post = null; //Necessary after 3.5 to prevent media upload from failing for users less than admin
 		$answer = (object) array(
 			'ID' => '',
 			'post_parent' => get_the_ID(),

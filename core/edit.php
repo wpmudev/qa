@@ -181,6 +181,10 @@ class QA_Edit {
 				$current_site = (object) array('domain' => $_domain_parts[2]);
 			}
 			
+			// Assign an author, if selected so flooding check can work
+			if ( !is_user_logged_in() && 'assign' == $this->g_settings["method"] )
+				$post['post_author'] = $this->g_settings["assigned_to"];
+			
 			// Check for flooding
 			$most_recent = $wpdb->get_var( $wpdb->prepare( "
 				SELECT MAX(post_date)
@@ -210,10 +214,6 @@ class QA_Edit {
 				$post['post_status'] = 'publish';
 			else
 				$post['post_status'] = 'pending';
-			
-			// Assign an author, if selected so
-			if ( !is_user_logged_in() && 'assign' == $this->g_settings["method"] )
-				$post['post_author'] = $this->g_settings["assigned_to"];
 			
 			// Create new post
 			$post = apply_filters( 'qa_before_insert_post', $post );

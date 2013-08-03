@@ -1,5 +1,10 @@
 ﻿== Changelog ==
 
+= 1.4.2.3 =
+* Nulled global $post variable on entering new question or answer to avoid a media upload problem in WP > 3.5. 
+  Bug in WP uses leftover post info an ajax call. http://mikekelly.myblog.arts.ac.uk/2013/04/25/tracking-down-a-wordpress-bug/
+* Added "upload_files" capability so other roles can be given image/media upload rights.
+
 = 1.4.2.2 =
 * Added Question column to the Admin backend.
 * Broke out Changelog
@@ -130,6 +135,9 @@
 * New filters qa_before_menu, qa_first_menu_item, qa_last_menu_item, qa_after_menu, is_qa_page, qa_get_url, qa_is_question_answered, qa_time, qa_user_link, qa_get_question_link, qa_question_score, qa_question_status
 * New actions qa_before_content, qa_before_question_loop, qa_before_question, qa_before_question_stats, qa_after_question_stats, qa_before_question_summary, qa_after_question_summary, qa_after_question,
   qa_after_question_loop, qa_after_content, qa_before_question_meta, qa_after_question_meta, qa_before_edit_answer, qa_after_edit_answer
+
+= 1.0.5 =
+* Fixed anonymous posting so author is assigned before flooding test.
 
 = 1.0.4 =
 * Fixed: WYSIWYG editor doesn't wrap

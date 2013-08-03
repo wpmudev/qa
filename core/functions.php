@@ -111,7 +111,11 @@ function is_question_answered( $question_id = 0, $type = 'any' ) {
 }
 
 function get_answer_count( $question_id ) {
-	return (int) get_post_meta( $question_id, '_answer_count', true );
+	$count = (int)get_post_meta( $question_id, '_answer_count', true );
+
+	if($count < 0) update_post_meta( $question_id, '_answer_count', 0);
+
+	return $count;
 }
 
 

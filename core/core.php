@@ -425,7 +425,6 @@ class QA_Core {
 	 */
 	function load_template( $name ) {
 		$path = locate_template( $name );
-
 		if ( !$path ) {
 			$path = QA_PLUGIN_DIR . QA_DEFAULT_TEMPLATE_DIR. "/$name";
 		}
