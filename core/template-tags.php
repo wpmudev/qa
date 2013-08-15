@@ -724,7 +724,7 @@ function the_answer_list() {
 }
 
 function get_the_answer_form() {
-	global $wp_query, $user_ID, $wp_version, $qa_general_settings;
+	global $wp_query, $user_ID, $wp_version, $qa_general_settings, $post;
 	
 	$out = '';
 	

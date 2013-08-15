@@ -1,8 +1,12 @@
 ﻿== Changelog ==
 
+= 1.4.2.4 =
+* Another un-nulled $post variable causing media upload problems.
+* New dashboard added.
+
 = 1.4.2.3 =
 * Nulled global $post variable on entering new question or answer to avoid a media upload problem in WP > 3.5. 
-  Bug in WP uses leftover post info an ajax call. http://mikekelly.myblog.arts.ac.uk/2013/04/25/tracking-down-a-wordpress-bug/
+  Bug in WP uses leftover post info on ajax call. http://mikekelly.myblog.arts.ac.uk/2013/04/25/tracking-down-a-wordpress-bug/
 * Added "upload_files" capability so other roles can be given image/media upload rights.
 
 = 1.4.2.2 =
