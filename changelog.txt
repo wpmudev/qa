@@ -1,5 +1,8 @@
 ﻿== Changelog ==
 
+= 1.4.2.5 =
+* Answers not being accepted under some circumastances.
+
 = 1.4.2.4 =
 * Another un-nulled $post variable causing media upload problems.
 * New dashboard added.

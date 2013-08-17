@@ -738,12 +738,13 @@ function get_the_answer_form() {
 			$out .= '<p>'.__('You are not allowed to add answers!', QA_TEXTDOMAIN).'</p>';
 			return;
 		}
-		$post = null; //Necessary after 3.5 to prevent media upload from failing for users less than admin
 		$answer = (object) array(
 			'ID' => '',
 			'post_parent' => get_the_ID(),
 			'post_content' => ''
 		);
+		
+		$post = null; //Necessary after 3.5 to prevent media upload from failing for users less than admin
 	}
 	
 	
