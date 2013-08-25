@@ -82,7 +82,8 @@ class QA_Core_Admin extends QA_Core {
 		add_action( 'save_post', array( &$this, 'save_metabox' ) );
 		add_filter( 'manage_question_posts_columns', array( &$this, 'add_column') );
 		add_filter( 'manage_answer_posts_columns', array( &$this, 'add_column') );
-		add_action( 'manage_posts_custom_column', array( &$this, 'show_column') );
+		add_action( 'manage_question_posts_custom_column', array( &$this, 'show_column') );
+		add_action( 'manage_answer_posts_custom_column', array( &$this, 'show_column') );
 
 	}
 
@@ -212,6 +213,8 @@ class QA_Core_Admin extends QA_Core {
 	* Added Question Column v1.4.2.2
 	*/
 	function add_column( $columns ){
+		print_r($columns);
+		//return $columns;
 		$columns = array(
 		'cb' => '<input type="checkbox" />',
 		'title' => __('Title' ),
@@ -244,10 +247,13 @@ class QA_Core_Admin extends QA_Core {
 				break;
 			}
 			case 'qa-question': {
-				$post = get_post($post->post_parent);
-				setup_postdata($post);
-				printf('<a href="%s" title="%s" target="question" ><strong>%s</strong></a><p>%s</p>', get_permalink(), __('Got to question page', QA_TEXTDOMAIN), get_the_title(), get_the_excerpt() );
-				wp_reset_postdata();
+				
+				printf('<a href="%s" title="%s" target="question" ><strong>%s</strong></a><p>%s</p>', 
+				get_permalink($post->post_parent), 
+				__('Go to question page', QA_TEXTDOMAIN), 
+				get_the_title($post->post_parent), 
+				get_the_excerpt($post->post_parent) );
+				
 				break;
 			}
 		}

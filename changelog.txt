@@ -1,5 +1,9 @@
 ﻿== Changelog ==
 
+= 1.4.2.6 =
+* Fixed Answer accepted flag.
+* Fixed Admin question and answer list only displaying admin as the author.
+
 = 1.4.2.5 =
 * Answers not being accepted under some circumastances.
 
