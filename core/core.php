@@ -11,7 +11,7 @@ class QA_Core {
 		// Pagination
 		$nop = 20;
 		if ( isset( $this->g_settings["answers_per_page"] ) && $this->g_settings["answers_per_page"] )
-			$nop = $this->g_settings["answers_per_page"];
+			$nop = $this->g_settings["maskanswers_per_page"];
 		if (!defined('QA_ANSWERS_PER_PAGE')) 
 			define( 'QA_ANSWERS_PER_PAGE', $nop );
 		

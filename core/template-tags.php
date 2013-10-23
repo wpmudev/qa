@@ -90,7 +90,7 @@ function get_the_qa_search_form( ) {
 	$out .=	'<button>'. __( 'Search', QA_TEXTDOMAIN ) . '</button>';
 	$out .= '</form>';
 
-	return $out;
+	return apply_filters('the_qa_search_form', $out);
 }
 
 function the_qa_search_form( ) {
@@ -632,7 +632,7 @@ function get_the_question_form() {
 	$out .= get_the_qa_submit_button();
 	$out .= '</form>';
 	
-	return $out;
+	return apply_filters('the_question_form', $out );
 }
 
 function the_question_form() {
@@ -775,7 +775,7 @@ function get_the_answer_form() {
 	$out .= get_the_qa_submit_button();
 	$out .= '</form>';
 
-	return $out;
+	return apply_filters('the_answer_form', $out);
 }
 
 function the_answer_form() {
@@ -785,17 +785,17 @@ function the_answer_form() {
 function get_the_qa_submit_button() {
 	global $qa_general_settings;
 	if ( is_user_logged_in() ||( is_array($qa_general_settings) && isset( $qa_general_settings["method"] ) && 'assign' == $qa_general_settings["method"] 
-		&& qa_visitor_can( 'immediately_publish_questions' ) ) ) {
+		/*&& qa_visitor_can( 'immediately_publish_questions' )*/ ) ) {
 		$button = __( 'Submit', QA_TEXTDOMAIN );
 	} elseif ( get_option( 'users_can_register' ) ) {
 		$button = __( 'Register/Login and Submit', QA_TEXTDOMAIN );
 	} else {
 		$button = __( 'Login and Submit', QA_TEXTDOMAIN );
 	}
-
-	return '<input class="qa-edit-submit" type="submit" value="'. $button . '" />';
-
+	
+	return apply_filters('the_qa_submit_button', '<input class="qa-edit-submit" type="submit" value="'. $button . '" />' );
 }
+
 function the_qa_submit_button() {
 	echo get_the_qa_submit_button();
 }

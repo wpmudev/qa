@@ -101,4 +101,3 @@ class QA_Subscriptions {
 }
 
 $GLOBALS['_qa_subscriptions'] = new QA_Subscriptions();
-

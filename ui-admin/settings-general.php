@@ -339,9 +339,7 @@ function qa_settings_field_layout() {
 							</th>
 							<td>
 								<select id="roles" name="roles">
-									<?php foreach ( $wp_roles->role_names as $role => $name ): ?>
-									<option value="<?php echo $role; ?>" <?php selected( @$options["selected_role"], $role, true ); ?>><?php echo $name; ?></option>
-									<?php endforeach; ?>
+									<?php wp_dropdown_roles(@$options["selected_role"]); ?>
 								</select>
 								<span class="description"><?php _e('This list has all the user roles of your website. As you make a new selection, capability of that role will be displayed. Select a role to which you want to assign WP Q&A capabilities.', QA_TEXTDOMAIN); ?></span>
 

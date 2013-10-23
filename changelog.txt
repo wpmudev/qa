@@ -1,5 +1,14 @@
 ﻿== Changelog ==
 
+
+
+= 1.4.2.7 =
+* Added "the_qa_submit_button" filter
+* Added "the_question_form" filter
+* Added "the_answer_form" filter
+* Added "the_qa_search_form" filter
+* Restricted Role list to editable roles only to avoid confusion with bbPress forum roles.
+
 = 1.4.2.6 =
 * Fixed Answer accepted flag.
 * Fixed Admin question and answer list only displaying admin as the author.
