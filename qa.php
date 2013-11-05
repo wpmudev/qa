@@ -4,7 +4,7 @@ Plugin Name: Q&A - WordPress Questions and Answers Plugin
 Plugin URI: http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin
 Description: Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
 Author: S H Mohanjith (Incsub), scribu (Incsub), Hakan Evin (Incsub), Arnold Bailey (Incsub)
-Version: 1.4.2.7
+Version: 1.4.2.8
 Author URI: http://premium.wpmudev.org/
 WDP ID: 217
 Text Domain: qa
@@ -34,11 +34,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 if ( !class_exists( 'QA_Core' ) ) {
 
 	// The plugin version
-	define( 'QA_VERSION', '1.4.2.7' );
+	define( 'QA_VERSION', '1.4.2.8' );
 
 	// The full url to the plugin directory
 	define( 'QA_PLUGIN_URL', plugin_dir_url(__FILE__) );
-	
+
 	// The full path to the plugin directory
 	define( 'QA_PLUGIN_DIR', plugin_dir_path(__FILE__) );
 
@@ -107,7 +107,7 @@ if ( !class_exists( 'QA_Core' ) ) {
 	}
 }
 else {
-	if ( is_multisite() ) 
+	if ( is_multisite() )
 		add_action( 'network_admin_notices', 'wpmudev_qa_duplicate' );
 	else
 		add_action( 'admin_notices', 'wpmudev_qa_duplicate' );
@@ -115,7 +115,7 @@ else {
 
 if ( !function_exists( 'wpmudev_qa_duplicate' ) ) {
 	function wpmudev_qa_duplicate() {
-		echo '<div class="error fade"><p>' . 
+		echo '<div class="error fade"><p>' .
 			__("<b>[Q&A]</b> There is already a running version of Q&A. Please check if you have already installed Q&A or Q&A Lite beforehand. You need to deactivate the other version to install and run this.", QA_TEXTDOMAIN) .
 			'</p></div>';
 
