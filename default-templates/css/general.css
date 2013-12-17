@@ -5,6 +5,13 @@
 	overflow: hidden;
 	padding-bottom: 2em;
 }
+/*
+#qa-page-wrapper:after{
+	content: " ";
+  display: table;
+	clear:both;
+}
+*/
 
 #qa-content-wrapper {
 	margin: 0 auto 0 auto;

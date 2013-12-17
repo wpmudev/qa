@@ -4,7 +4,7 @@ Plugin Name: Q&A - WordPress Questions and Answers Plugin
 Plugin URI: http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin
 Description: Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
 Author: S H Mohanjith (Incsub), scribu (Incsub), Hakan Evin (Incsub), Arnold Bailey (Incsub)
-Version: 1.4.2.8
+Version: 1.4.2.9
 Author URI: http://premium.wpmudev.org/
 WDP ID: 217
 Text Domain: qa
@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 if ( !class_exists( 'QA_Core' ) ) {
 
 	// The plugin version
-	define( 'QA_VERSION', '1.4.2.8' );
+	define( 'QA_VERSION', '1.4.2.9' );
 
 	// The full url to the plugin directory
 	define( 'QA_PLUGIN_URL', plugin_dir_url(__FILE__) );
@@ -141,4 +141,19 @@ if ( !function_exists( 'wpmudev_qa_uninstall' ) ) {
 register_uninstall_hook(  __FILE__ , 'wpmudev_qa_uninstall' );
 
 /* -------------------- WPMU DEV Dashboard Notice -------------------- */
+//define('WPMUDEV_SCREEN_ID', true);
+global $wpmudev_notices;
+$wpmudev_notices[] = array(
+'id'=> 217,
+'name'=> 'Q&A - WordPress Questions and Answers Plugin',
+'screens' => array(
+'edit-question',
+'question',
+'edit-question_category',
+'edit-question_tag',
+'edit-answer',
+'question_page_qa_settings',
+) );
+
 include_once 'core/wpmudev-dash-notification.php';
+

@@ -72,13 +72,9 @@ function qa_settings_field_layout() {
 	<div id="poststuff" class="metabox-holder">
 
 		<form action="" method="post" class="qa-general">
-
 			<div class="postbox <?php echo $this->postbox_classes('qa_display') ?>" id="qa_display">
 				<h3 class='hndle'><span><?php _e('Theme Adaptation Settings', QA_TEXTDOMAIN) ?></span></h3>
-
-
 				<div class="inside">
-
 					<table class="form-table">
 
 						<tr>
@@ -88,7 +84,6 @@ function qa_settings_field_layout() {
 								</span>
 							</td>
 						</tr>
-
 						<tr>
 							<th>
 								<label for="page_layout"><?php _e( 'Page Layout', QA_TEXTDOMAIN ) ?></label>
@@ -167,79 +162,84 @@ function qa_settings_field_layout() {
 								<span class="description">
 									<?php _e( 'When you click this button, using the above widths and selected layout, css rules will be automatically estimated and saved inside the "Additional ccs Rules" field. These settings may not work on every theme and you may still need to make some fine tunings. Tip: If the result is not satisfactory (e.g. sidebar dislocated), you can change the width settings and try again. Each time Additional css Rules field is reset.', QA_TEXTDOMAIN ) ?>
 								</span>
+								<script type="text/javascript">
+									//<![CDATA[
+									jQuery(document).ready(function($) {
+										$("input.qa-auto-css").click(function(){
+											var page_layout = $("input[name='qa_page_layout']:checked");
+											var page_width = $("input[name='page_width']");
+											var content_width = $("input[name='content_width']");
+											var content_alignment = $('select.qa_content_alignment option:selected');
+											var sidebar_width = $("input[name='sidebar_width']");
+											var additional_css = $("textarea[name='additional_css']");
+											var confirmed = true;
+											if ( $.trim(additional_css.val()) != '' ) {
+												confirmed = false;
+											}
+											if ( $.trim(page_width.val()) == ''){
+												alert('<?php echo esc_js(__('Page width cannot be empty',QA_TEXTDOMAIN))?>');
+												page_width.focus();
+												return false;
+											}
+											else if ( $.trim(content_width.val()) == ''){
+												alert('<?php echo esc_js(__('Content width cannot be empty',QA_TEXTDOMAIN))?>');
+												content_width.focus();
+												return false;
+											}
+											else if ( page_layout.val() != 'content' && $.trim(sidebar_width.val()) == ''){
+												alert('<?php echo esc_js(__('With the selected page layout, sidebar width cannot be empty',QA_TEXTDOMAIN))?>');
+												sidebar_width.focus();
+												return false;
+											}
+											else if ( parseInt(page_width.val()) < parseInt(content_width.val()) + parseInt(sidebar_width.val()) ){
+												alert('<?php echo esc_js(__('Page width cannot be less than content width + sidebar width', QA_TEXTDOMAIN))?>');
+												sidebar_width.focus();
+												return false;
+											}
+											else if ( !confirmed ) {
+												if ( confirm('<?php echo esc_js(__('Your additional css rules field is not empty. If you continue, existing value be overwritten. Are you sure?',QA_TEXTDOMAIN))?>') ) {
+													confirmed = true;
+												}
+												else {
+													return false;
+												}
+											}
+											if ( confirmed ) {
+												$('.ajax-loader').show();
+												var data = {action: 'qa-estimate', page_layout:page_layout.val(), page_width:page_width.val(), content_width:content_width.val(), content_alignment:content_alignment.val(), sidebar_width:sidebar_width.val(), nonce: '<?php echo wp_create_nonce() ?>'};
+												$.post(ajaxurl, data, function(response) {
+													$('.ajax-loader').hide();
+													if ( response && response.error ) {
+														alert(response.error);
+													}
+													else if ( response && response.css ){
+														$("textarea[name='additional_css']").val(response.css);
+														alert('<?php echo esc_js(__('Additional css rules estimated and saved. Now you can check display of QA pages in different browsers.',QA_TEXTDOMAIN)) ?>');
+													}
+													else {
+														alert('<?php echo esc_js(__('A connection error occurred. Please try again.',QA_TEXTDOMAIN)) ?>');
+													}
+												},'json');
+											}
+										});
+									});
+									//]]>
+								</script>
+
 							</td>
 						</tr>
-						<script type="text/javascript">
-							jQuery(document).ready(function($) {
-								$("input.qa-auto-css").click(function(){
-									var page_layout = $("input[name='qa_page_layout']:checked");
-									var page_width = $("input[name='page_width']");
-									var content_width = $("input[name='content_width']");
-									var content_alignment = $('select.qa_content_alignment option:selected');
-									var sidebar_width = $("input[name='sidebar_width']");
-									var additional_css = $("textarea[name='additional_css']");
-									var confirmed = true;
-									if ( $.trim(additional_css.val()) != '' ) {
-										confirmed = false;
-									}
-									if ( $.trim(page_width.val()) == ''){
-										alert('<?php echo esc_js(__('Page width cannot be empty',QA_TEXTDOMAIN))?>');
-										page_width.focus();
-										return false;
-									}
-									else if ( $.trim(content_width.val()) == ''){
-										alert('<?php echo esc_js(__('Content width cannot be empty',QA_TEXTDOMAIN))?>');
-										content_width.focus();
-										return false;
-									}
-									else if ( page_layout.val() != 'content' && $.trim(sidebar_width.val()) == ''){
-										alert('<?php echo esc_js(__('With the selected page layout, sidebar width cannot be empty',QA_TEXTDOMAIN))?>');
-										sidebar_width.focus();
-										return false;
-									}
-									else if ( parseInt(page_width.val()) < parseInt(content_width.val()) + parseInt(sidebar_width.val()) ){
-										alert('<?php echo esc_js(__('Page width cannot be less than content width + sidebar width', QA_TEXTDOMAIN))?>');
-										sidebar_width.focus();
-										return false;
-									}
-									else if ( !confirmed ) {
-										if ( confirm('<?php echo esc_js(__('Your additional css rules field is not empty. If you continue, existing value be overwritten. Are you sure?',QA_TEXTDOMAIN))?>') ) {
-											confirmed = true;
-										}
-										else {
-											return false;
-										}
-									}
-									if ( confirmed ) {
-										$('.ajax-loader').show();
-										var data = {action: 'qa-estimate', page_layout:page_layout.val(), page_width:page_width.val(), content_width:content_width.val(), content_alignment:content_alignment.val(), sidebar_width:sidebar_width.val(), nonce: '<?php echo wp_create_nonce() ?>'};
-										$.post(ajaxurl, data, function(response) {
-											$('.ajax-loader').hide();
-											if ( response && response.error ) {
-												alert(response.error);
-											}
-											else if ( response && response.css ){
-												$("textarea[name='additional_css']").val(response.css);
-												alert('<?php echo esc_js(__('Additional css rules estimated and saved. Now you can check display of QA pages in different browsers.',QA_TEXTDOMAIN)) ?>');
-											}
-											else {
-												alert('<?php echo esc_js(__('A connection error occurred. Please try again.',QA_TEXTDOMAIN)) ?>');
-											}
-										},'json');
-									}
-								});
-							});
-						</script>
+
 						<tr>
 							<th>
 								<label for="additional_css"><?php _e( 'Additional css Rules', QA_TEXTDOMAIN ) ?></label>
 							</th>
 							<td>
-								<textarea cols="120" rows="2" name="additional_css"><?php echo @$options['additional_css']; ?></textarea>
+								<textarea class="qa-full" rows="2" name="additional_css"><?php echo @$options['additional_css']; ?></textarea>
 								<br />
 								<span class="description">
 									<?php _e( 'You can add your css codes manually or edit the already estimated ones. Ensure that you use valid css. e.g.', QA_TEXTDOMAIN ) ?>&nbsp;<code>#sidebar{width:200px;float:left;}</code>
 								</span>
+
 							</td>
 						</tr>
 
@@ -526,7 +526,7 @@ function qa_settings_field_layout() {
 								<label for="qa_email_notification_content"><?php _e( 'Notification E-mail Content', QA_TEXTDOMAIN ) ?></label>
 							</th>
 							<td>
-								<textarea id="qa_email_notification_content" name="qa_email_notification_content" rows="6" cols="120"><?php echo get_option('qa_email_notification_content', $qa_email_notification_content); ?></textarea>
+								<textarea class="qa-full" id="qa_email_notification_content" name="qa_email_notification_content" rows="6" cols="120"><?php echo get_option('qa_email_notification_content', $qa_email_notification_content); ?></textarea>
 								<br/>
 								<span class="description">
 									<?php _e('Variables:', 'messaging'); ?> TO_USER, SITE_NAME, SITE_URL, QUESTION_TITLE, QUESTION_DESCRIPTION, QUESTION_LINK

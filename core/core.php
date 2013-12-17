@@ -7,14 +7,14 @@ class QA_Core {
 
 	function QA_Core() {
 		$this->g_settings = $this->get_options('general_settings');
-		
+
 		// Pagination
 		$nop = 20;
 		if ( isset( $this->g_settings["answers_per_page"] ) && $this->g_settings["answers_per_page"] )
 			$nop = $this->g_settings["maskanswers_per_page"];
-		if (!defined('QA_ANSWERS_PER_PAGE')) 
+		if (!defined('QA_ANSWERS_PER_PAGE'))
 			define( 'QA_ANSWERS_PER_PAGE', $nop );
-		
+
 		load_plugin_textdomain( QA_TEXTDOMAIN, '', plugin_basename( QA_PLUGIN_DIR . 'languages' ) );
 
 		register_activation_hook( QA_PLUGIN_DIR . 'loader.php', array( &$this, 'install' ) );
@@ -35,9 +35,9 @@ class QA_Core {
 
 		add_filter( 'wp_title', array( &$this, 'wp_title' ), 10, 3 );
 		add_filter( 'body_class', array( &$this, 'body_class' ) );
-		
+
 		add_action( 'pre_get_posts', array( &$this, 'questions_per_page' ) );
-		
+
 		// Since V 1.3.1
 		add_action( 'wp_ajax_nopriv_qa_flag', array( &$this, 'qa_flag' ) );
 		add_action( 'wp_ajax_qa_flag', array( &$this, 'qa_flag' ) );
@@ -48,7 +48,7 @@ class QA_Core {
 	 * Since V1.3.1
 	 */
 	function qa_flag() {
-		
+
 		$id = $_POST['ID'];
 		$post = get_post( $id );
 		// Don't add anchor for answers, as they already have
@@ -57,36 +57,36 @@ class QA_Core {
 		else
 			$anchor = '';
 
-		// Check report reason 
-		if ( isset( $this->g_settings["report_reasons"] ) && '' != trim( $this->g_settings["report_reasons"] ) 
+		// Check report reason
+		if ( isset( $this->g_settings["report_reasons"] ) && '' != trim( $this->g_settings["report_reasons"] )
 			&& !isset( $_POST["report_reason"] ) ) {
-			
+
 			$url = add_query_arg( array( 'no_reason' => '1' . $anchor ), get_permalink( $id ) );
 			wp_redirect( $url );
 			die;
 		}
 		// Check Captcha
 		if ( isset( $this->g_settings["captcha"] ) && $this->g_settings["captcha"] && qa_is_captcha_usable() ) {
-		
-			if ( !session_id() ) 
+
+			if ( !session_id() )
 				@session_start();
-			
+
 			include_once WP_PLUGIN_DIR . '/qa/securimage/securimage.php';
 			$securimage = new Securimage();
-			
+
 			if ($securimage->check($_POST['captcha_code']) == false) {
 				$url = add_query_arg( array( 'flag_error' => '1' . $anchor ), get_permalink( $id ) );
 				wp_redirect( $url );
-				die;			
+				die;
 			}
 		}
-		
+
 		$meta = get_post_meta( $id, '_qa_report', true );
 		$new_meta = array();
 		$new_meta["count"] = 1;
 		if ( $meta && isset( $meta["count"] ) )
 			$new_meta["count"] = $meta["count"] + 1;
-		
+
 		if ( is_user_logged_in() ) {
 			global $current_user;
 			$user_info = get_userdata( $current_user->ID );
@@ -96,17 +96,17 @@ class QA_Core {
 			$new_meta["user"] = $_SERVER['REMOTE_ADDR'];
 		else
 			$new_meta["user"] = __('Unknown', QA_TEXTDOMAIN );
-			
+
 		if ( isset( $_POST["report_reason"] ) )
 			$new_meta["reason"] = $_POST["report_reason"];
 		else
 			$new_meta["reason"] = __('None', QA_TEXTDOMAIN );
-			
+
 		update_post_meta( $id, '_qa_report', $new_meta );
 		do_action( 'qa_reported', $id, $new_meta );
-		
+
 		// Only send email for the first report
-		if ( isset( $this->g_settings["report_email"] ) && is_email( $this->g_settings["report_email"] ) 
+		if ( isset( $this->g_settings["report_email"] ) && is_email( $this->g_settings["report_email"] )
 			&& $new_meta["count"] == 1 ) {
 			$to = $this->g_settings["report_email"];
 			$subject  = __('A question or answer has been reported', QA_TEXTDOMAIN );
@@ -121,7 +121,7 @@ class QA_Core {
 			$message .= admin_url( "post.php?post=". $id ."&action=edit");
 			wp_mail( $to, $subject, $message );
 		}
-		
+
 		$url = add_query_arg( array( 'flag_received' => '1' . $anchor ), get_permalink( $id ) );
 		wp_redirect( $url );
 		die;
@@ -133,14 +133,14 @@ class QA_Core {
 	 * Since v1.2.1
 	 */
 	function questions_per_page( $query ) {
-		if ( 'question' != $query->get( 'post_type' ) || !isset( $this->g_settings["questions_per_page"] ) 
+		if ( 'question' != $query->get( 'post_type' ) || !isset( $this->g_settings["questions_per_page"] )
 			|| $this->g_settings["questions_per_page"] < get_option( 'posts_per_page' ) )
 			return;
-	
+
 		$query->set( 'posts_per_page', $this->g_settings["questions_per_page"] );
 	}
 
-	
+
 	/**
 	 * Register the 'question' post type and related taxonomies and rewrite rules.
 	 */
@@ -223,7 +223,7 @@ class QA_Core {
 				'choose_from_most_used'			=> __( 'Choose from the most used question tags', QA_TEXTDOMAIN ),
 			)
 		) );
-		
+
 		$args = array(
 			'public' => true,
 			'rewrite' => array( 'slug' => QA_SLUG_ROOT, 'with_front' => false ),
@@ -252,7 +252,7 @@ class QA_Core {
 				'not_found_in_trash'	=> __('No questions found in trash.', QA_TEXTDOMAIN),
 			)
 		);
-		
+
 		$args = apply_filters( 'qa_register_post_type_args', $args );
 
 		register_post_type( 'question', $args );
@@ -274,19 +274,19 @@ class QA_Core {
 		$result = add_query_arg( $args, 'index.php' );
 		add_rewrite_rule( $regex, $result, $position );
 	}
-	
+
 	function install() {
 		// Nothing to do
 	}
-	
+
 	function check_rewrite_rules($value) {
 		//prevent an infinite loop
 		if ( !post_type_exists( 'question' ) )
 			return $value;
-		
+
 		if (!is_array($value))
 			$value = array();
-		
+
 		$array_key = QA_SLUG_ROOT . '/' . QA_SLUG_ASK . '/?$';
 		if ( !array_key_exists($array_key, $value) ) {
 			$this->flush_rules();
@@ -301,7 +301,7 @@ class QA_Core {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
 	}
-	
+
 	/**
 	 * Various WP_Query manipulations.
 	 */
@@ -334,7 +334,7 @@ class QA_Core {
 		$v = get_role( 'visitor' );
 		if ( !$v || !is_object( $v ) )
 			return false;
-		
+
 		return $v->has_cap( $cap );
 	}
 
@@ -345,15 +345,15 @@ class QA_Core {
 		// First find the cap requirement for this page
 		if ( is_qa_page( 'archive' ) )
 			$cap = 'read_questions';
-		else if ( is_qa_page( 'ask' ) ) 
+		else if ( is_qa_page( 'ask' ) )
 			$cap = 'publish_questions';
 		else return true; // Always allow for unlisted pages
-		
+
 		if ( !is_user_logged_in() )
 			return $this->visitor_has_cap( $cap );
 		else
 			return current_user_can( $cap );
-	
+
 	}
 
 	/**
@@ -366,7 +366,7 @@ class QA_Core {
 			$redirect_url = site_url();
 			if ( isset( $this->g_settings["unauthorized"] ) )
 				$redirect_url = get_permalink( $this->g_settings["unauthorized"] );
-			
+
 			wp_redirect( $redirect_url );
 			die;
 		}
@@ -418,7 +418,7 @@ class QA_Core {
 
 		return $path;
 	}
-	
+
 
 	/**
 	 * Load a template, with fallback to default-templates.
@@ -481,15 +481,15 @@ class QA_Core {
 	 */
 	function load_default_style() {
 		global $wp_version;
-		
+
 		if ( !is_qa_page() )
 			return;
 
 		if ( !current_theme_supports( 'qa_style' ) ) {
 			wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR. '/css/general.css', array(), QA_VERSION );
-			
+
 			$qa_current_theme = get_template();
-			
+
 			if (file_exists( QA_PLUGIN_DIR . 'theme-mods/css/custom-'.$qa_current_theme.'.css' )) {
 				wp_enqueue_style( 'qa-section-custom', QA_PLUGIN_URL . 'theme-mods/css/custom-'.$qa_current_theme.'.css', array('qa-section'), QA_VERSION );
 			}
@@ -539,7 +539,7 @@ if ( isset( $this->g_settings['page_width'] ) && $this->g_settings['page_width']
 ?>
 #qa-page-wrapper{width:<?php echo $this->g_settings['page_width']; ?>px;}
 <?php
-} 
+}
 if ( isset( $this->g_settings['content_width'] ) && $this->g_settings['content_width'] ) {
 ?>
 #qa-content-wrapper{width:<?php echo $this->g_settings['content_width']; ?>px;}
@@ -557,7 +557,7 @@ if ( isset( $this->g_settings['additional_css'] ) && $this->g_settings['addition
 }
 if ( !isset( $this->g_settings['full_width'] ) || !$this->g_settings['full_width'] ) {
 ?>
-#qa-page-wrapper {float:left}
+/* #qa-page-wrapper {float:left} */
 <?php
 }
 
@@ -565,7 +565,7 @@ if ( !isset( $this->g_settings['full_width'] ) || !$this->g_settings['full_width
 </style>
 <?php
 	}
-	
+
 
 	function _get_content_width() {
 		if ( isset( $GLOBALS['content_width'] ) )

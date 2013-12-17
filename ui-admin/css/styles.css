@@ -29,3 +29,7 @@ span.qa_reported{float:right;height:24px;font-weight:bold;}
 .image-radio-option img {
 	margin: 0 0 0 -2px;
 }
+
+.qa-full{
+	width: 100%;
+}

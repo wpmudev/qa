@@ -1,5 +1,9 @@
 ﻿== Changelog ==
 
+= 1.4.2.9 =
+- Added twentythirteen and twentyfourteen custom templates. Twentyfourteenois an example of a responsive Q&A
+- New WPMU Dashboard
+
 = 1.4.2.8 =
 * Fixes for Buddypress profile page.
 

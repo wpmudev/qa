@@ -1,9 +1,9 @@
 <?php
 
 /**
- * The following functions are meant to be used directly in template files.
- * v1.4.2.1
- */
+* The following functions are meant to be used directly in template files.
+* v1.4.2.1
+*/
 
 /* = General Template Tags
 -------------------------------------------------------------- */
@@ -11,31 +11,31 @@
 function get_the_qa_menu( ) {
 	global $user_ID;
 	$menu = array();
-	
+
 	if ( ($user_ID == 0 && qa_visitor_can('read_questions')) || current_user_can( 'read_questions' )) {
 		$menu[] = array(
-				'title' => __( 'Questions', QA_TEXTDOMAIN ),
-				'type' => 'archive',
-				'current' => !is_qa_page( 'unanswered' ) && !is_qa_page( 'ask' ) && !is_qa_page( 'edit' )
-			);
+		'title' => __( 'Questions', QA_TEXTDOMAIN ),
+		'type' => 'archive',
+		'current' => !is_qa_page( 'unanswered' ) && !is_qa_page( 'ask' ) && !is_qa_page( 'edit' )
+		);
 		$menu[] = array(
-				'title' => __( 'Unanswered', QA_TEXTDOMAIN ),
-				'type' => 'unanswered',
-				'current' => is_qa_page( 'unanswered' )
-			);
+		'title' => __( 'Unanswered', QA_TEXTDOMAIN ),
+		'type' => 'unanswered',
+		'current' => is_qa_page( 'unanswered' )
+		);
 	}
-	
+
 	if ( ($user_ID == 0 && qa_visitor_can('publish_questions')) || current_user_can( 'publish_questions' )) {
 		$menu[] = array(
-			'title' => __( 'Ask a Question', QA_TEXTDOMAIN ),
-			'type' => 'ask',
-			'current' => is_qa_page( 'ask' )
+		'title' => __( 'Ask a Question', QA_TEXTDOMAIN ),
+		'type' => 'ask',
+		'current' => is_qa_page( 'ask' )
 		);
 	}
 	$menu = apply_filters( 'qa_modify_menu_items', $menu );
-	
+
 	$out = apply_filters( 'qa_before_menu', '' );
-	
+
 	$out .= "<div id='qa-menu'>";
 
 	$out .= "<ul>";
@@ -48,9 +48,9 @@ function get_the_qa_menu( ) {
 		$id = $current ? 'qa-current-url' : '';
 
 		$out .= _qa_html( 'li', array( 'id' => $id ),
-			_qa_html( 'a', array( 'href' => $url ),
-				$title
-			)
+		_qa_html( 'a', array( 'href' => $url ),
+		$title
+		)
 		);
 	}
 	$out = apply_filters( 'qa_last_menu_item', $out );
@@ -58,9 +58,9 @@ function get_the_qa_menu( ) {
 	$out .= get_the_qa_search_form();
 	$out .= "</li>";
 	$out .= "</ul>";
-	
+
 	$out = apply_filters( 'qa_after_menu', $out );
-	
+
 	$out .= "</div>";
 
 	return $out;
@@ -72,7 +72,7 @@ function the_qa_menu( ) {
 
 function get_the_qa_error_notice() {
 	if ( !isset( $_GET['qa_error'] ) )
-		return;
+	return;
 	$out  = '';
 	$out .= '<div id="qa-error-notice">';
 	$out .=	__( 'An error has occured while processing your submission.', QA_TEXTDOMAIN );
@@ -99,11 +99,11 @@ function the_qa_search_form( ) {
 
 function get_the_qa_pagination( $query = null ) {
 	if ( is_null( $query ) )
-		$query = $GLOBALS['wp_query'];
+	$query = $GLOBALS['wp_query'];
 
 	if ( $query->max_num_pages <= 1 )
-		return;
-		
+	return;
+
 	$out = '';
 
 	$current_page = max( 1, $query->get( 'paged' ) );
@@ -116,32 +116,32 @@ function get_the_qa_pagination( $query = null ) {
 	$out .= '<div class="qa-pagination">';
 
 	if ( $current_page > 1 )
-		$out .= get_qa_single_page_link( $query, $current_page - 1, __( 'prev', QA_TEXTDOMAIN ), 'prev' );
+	$out .= get_qa_single_page_link( $query, $current_page - 1, __( 'prev', QA_TEXTDOMAIN ), 'prev' );
 
 	if ( $range_start > 1 )
-		$out .= get_qa_single_page_link( $query, 1 );
+	$out .= get_qa_single_page_link( $query, 1 );
 
 	if ( $range_start > $padding )
-		$out .= '<span class="dots">...</span>';
+	$out .= '<span class="dots">...</span>';
 
 	foreach ( range( $range_start, $range_finish ) as $num ) {
 		if ( $num == $current_page )
-			$out .= _qa_html( 'span', array( 'class' => 'current' ), number_format_i18n( $num ) );
+		$out .= _qa_html( 'span', array( 'class' => 'current' ), number_format_i18n( $num ) );
 		else
-			$out .= get_qa_single_page_link( $query, $num );
+		$out .= get_qa_single_page_link( $query, $num );
 	}
 
 	if ( $range_finish + $padding <= $total_pages )
-		$out .= '<span class="dots">...</span>';
+	$out .= '<span class="dots">...</span>';
 
 	if ( $range_finish < $total_pages )
-		$out .= get_qa_single_page_link( $query, $total_pages );
+	$out .= get_qa_single_page_link( $query, $total_pages );
 
 	if ( $current_page < $total_pages )
-		$out .= get_qa_single_page_link( $query, $current_page + 1, __( 'next', QA_TEXTDOMAIN ), 'next' );
+	$out .= get_qa_single_page_link( $query, $current_page + 1, __( 'next', QA_TEXTDOMAIN ), 'next' );
 
 	$out .= '</div>';
-	
+
 	return $out;
 }
 function the_qa_pagination( $query = null ) {
@@ -151,12 +151,12 @@ function the_qa_pagination( $query = null ) {
 
 function get_qa_single_page_link( $query, $num, $title = '', $class = '' ) {
 	if ( !$title )
-		$title = number_format_i18n( $num );
+	$title = number_format_i18n( $num );
 
 	$args = array( 'href' => get_pagenum_link( $num ) );
 
 	if ( $class )
-		$args['class'] = $class;
+	$args['class'] = $class;
 
 	return apply_filters( 'qa_single_page_link', _qa_html( 'a', $args, $title ) );
 }
@@ -172,10 +172,10 @@ function get_the_qa_time( $id ) {
 	$time_diff = time() - $time;
 
 	if ( $time_diff > 0 && $time_diff < 24*60*60 )
-		$h_time = sprintf( __( '%s ago', QA_TEXTDOMAIN ), human_time_diff( $time ) );
+	$h_time = sprintf( __( '%s ago', QA_TEXTDOMAIN ), human_time_diff( $time ) );
 	else
-		$h_time = mysql2date( get_option( 'date_format' ), $post->post_date );
-	
+	$h_time = mysql2date( get_option( 'date_format' ), $post->post_date );
+
 	$h_time = apply_filters( 'qa_time', $h_time, $time);
 	return '<span class="qa-timediff">' . $h_time . '</span>';
 }
@@ -194,7 +194,7 @@ function get_the_qa_author_box( $id ) {
 	$out .=	get_the_qa_user_link( $user_id );
 	$out .=	get_the_qa_user_rep( $user_id );
 	$out .= '</div>
-			</div>';
+	</div>';
 
 	return $out;
 }
@@ -209,24 +209,24 @@ function get_the_qa_action_links( $id ) {
 	$links['single'] = __( 'link', QA_TEXTDOMAIN );
 
 	if ( current_user_can( 'edit_post', $id ) )
-		$links['edit'] = __( 'edit', QA_TEXTDOMAIN );
+	$links['edit'] = __( 'edit', QA_TEXTDOMAIN );
 
 	if ( current_user_can( 'delete_post', $id ) )
-		$links['delete'] = __( 'delete', QA_TEXTDOMAIN );
-		
+	$links['delete'] = __( 'delete', QA_TEXTDOMAIN );
+
 	if ( is_user_logged_in() ) {
 		if ( current_user_can( 'flag_questions', $id ) )
-			$links['flag'] = __( 'report', QA_TEXTDOMAIN );
+		$links['flag'] = __( 'report', QA_TEXTDOMAIN );
 	}
 	else if ( qa_visitor_can( 'flag_questions' ) )
-		$links['flag'] = __( 'report', QA_TEXTDOMAIN );
+	$links['flag'] = __( 'report', QA_TEXTDOMAIN );
 
 	$show_form = false;
 	foreach ( $links as $type => $title ) {
 		if ( 'flag' == $type ) {
 			$flag_link = '<a name="qa_report" href="javascript:void(0)" onClick="javascript:document.getElementById(\'qa_flag_form_'.$id.'\').style.display=\'block\';" >'. $title . '</a>';
 			if ( isset( $_GET['flag_received'] ) )
-				$links[ 'flag' ] = '<span style="color:green">' . __('Your report has been received.', QA_TEXTDOMAIN ) . '</span>';
+			$links[ 'flag' ] = '<span style="color:green">' . __('Your report has been received.', QA_TEXTDOMAIN ) . '</span>';
 			else if ( isset( $_GET['no_reason'] ) ) {
 				$links[ 'flag' ] = $flag_link . " " . '<span style="color:red">' . __('Please select a reason for reporting.', QA_TEXTDOMAIN ) . '</span>';
 				$show_form = true;
@@ -241,17 +241,17 @@ function get_the_qa_action_links( $id ) {
 			}
 		}
 		else
-			$links[ $type ] = _qa_html( 'a', array( 'href' => qa_get_url( $type, $id ) ), $title );
+		$links[ $type ] = _qa_html( 'a', array( 'href' => qa_get_url( $type, $id ) ), $title );
 	}
-	
+
 	$out = '';
 
 	$out .= '<div class="qa-action-links">';
 	$out .= implode( ' | ', $links );
 	if ( $show_form )
-		$out .= the_qa_flag_form( $id );
+	$out .= the_qa_flag_form( $id );
 	$out .= '</div>';
-	
+
 	return $out;
 }
 function the_qa_action_links( $id ) {
@@ -261,13 +261,13 @@ function the_qa_action_links( $id ) {
 // Since V 1.3.1
 function the_qa_flag_form( $id ) {
 	global $qa_general_settings;
-	
+
 	$f  = '';
 	$f .= '<div id="qa_flag_form_'. $id .'" style="display:none" >';
 	$f .= '<form method="post" action="'.admin_url("admin-ajax.php").'" >';
 	$f .= '<input type="hidden" name="action" value="qa_flag" />';
 	$f .= '<input type="hidden" name="ID" value="'.$id.'" />';
-	
+
 	if ( isset( $qa_general_settings["report_reasons"] ) && '' != trim( $qa_general_settings["report_reasons"] ) ) {
 		$reasons = explode( ",", $qa_general_settings["report_reasons"] );
 		if ( is_array( $reasons ) ) {
@@ -283,7 +283,7 @@ function the_qa_flag_form( $id ) {
 	}
 
 	if ( isset( $qa_general_settings["captcha"] ) && $qa_general_settings["captcha"] && qa_is_captcha_usable() ) {
-		$f .= '<div class="qa_captcha"> 
+		$f .= '<div class="qa_captcha">
 		<label class="description" >' . __('Type the letters you see in the image below:',QA_TEXTDOMAIN ). '</label>
 		<div class="qa_captcha_inner">
 		<img class="captcha_image" id="captcha_'.$id.'" src="' . plugins_url( "/qa/securimage/securimage_show.php" ). '" alt="CAPTCHA Image" />
@@ -299,7 +299,7 @@ function the_qa_flag_form( $id ) {
 	$f .= '<br />';
 	$f .= '<input type="submit" value="'.__('Cancel', QA_TEXTDOMAIN).'" onClick="javascript:document.getElementById(\'qa_flag_form_'.$id.'\').style.display=\'none\';" />';
 	$f .= '</div>';
-	
+
 	return $f;
 }
 
@@ -307,10 +307,10 @@ function the_qa_flag_form( $id ) {
 // Since V1.3.1
 // http://www.phpcaptcha.org/faq/
 function qa_is_captcha_usable() {
-	if ( !function_exists( 'imageftbbox' ) || !function_exists( 'imagecreate' ) 
-		|| !function_exists( 'imagecreatetruecolor' ) || version_compare(PHP_VERSION, '5.2.0') < 0 )
-		return false;
-		
+	if ( !function_exists( 'imageftbbox' ) || !function_exists( 'imagecreate' )
+	|| !function_exists( 'imagecreatetruecolor' ) || version_compare(PHP_VERSION, '5.2.0') < 0 )
+	return false;
+
 	return true;
 
 }
@@ -342,9 +342,9 @@ function the_qa_user_rep( $user_id ) {
 function the_question_link( $question_id = 0 ) {
 	global $post;
 	if ( !$question_id )
-		$question_id = $post->ID;
+	$question_id = $post->ID;
 	if ( !$question_id )
-		$question_id = get_the_ID();
+	$question_id = get_the_ID();
 
 	echo get_question_link( $question_id );
 }
@@ -353,31 +353,31 @@ function the_question_link( $question_id = 0 ) {
 function get_question_link( $question_id = 0 ) {
 	global $post;
 	if ( !$question_id )
-		$question_id = $post->ID;
+	$question_id = $post->ID;
 	if ( !$question_id )
-		$question_id = get_the_ID();
-		
+	$question_id = get_the_ID();
+
 	return apply_filters( 'qa_get_question_link', _qa_html( 'a', array( 'class' => 'question-link', 'href' => qa_get_url( 'single', $question_id ) ), $post->post_title ) );
 }
 
 function get_the_question_score( $question_id = 0 ) {
 	global $post;
 	if ( !$question_id )
-		$question_id = $post->ID;
+	$question_id = $post->ID;
 	if ( !$question_id )
-		$question_id = get_the_ID();
+	$question_id = get_the_ID();
 
 	list( $up, $down ) = qa_get_votes( $question_id );
 
 	$score = $up - $down;
 	$score = apply_filters( 'qa_question_score', $score);
-	
+
 	$out  = '';
 	$out .= "<div class='question-score'>";
 	$out .= "<div class='mini-count'>" . number_format_i18n( $score ) . "</div>";
 	$out .= "<div>" . _n( 'vote', 'votes', $score, QA_TEXTDOMAIN ) . "</div>";
 	$out .= "</div>";
-	
+
 	return $out;
 }
 function the_question_score( $question_id = 0 ) {
@@ -388,13 +388,13 @@ function get_the_question_voting( $question_id = 0 ) {
 	global $_qa_core;
 
 	if ( !$question_id )
-		$question_id = get_the_ID();
+	$question_id = get_the_ID();
 
 	list( $up, $down, $current ) = qa_get_votes( $question_id );
 
 	$buttons = array(
-		'up' => __( 'This question is useful and clear (click again to undo)', QA_TEXTDOMAIN ),
-		'down' => __( 'This question is unclear or not useful (click again to undo)', QA_TEXTDOMAIN )
+	'up' => __( 'This question is useful and clear (click again to undo)', QA_TEXTDOMAIN ),
+	'down' => __( 'This question is unclear or not useful (click again to undo)', QA_TEXTDOMAIN )
 	);
 
 	foreach ( $buttons as $type => $text ) {
@@ -417,9 +417,9 @@ function the_question_voting( $question_id = 0 ) {
 
 function get_the_question_subscription() {
 	return $GLOBALS['_qa_subscriptions']->get_link(
-		get_queried_object_id(),
-		__( 'Click here to be notified of followup answers via e-mail', QA_TEXTDOMAIN ),
-		__( 'Stop notifying me of followup answers via e-mail', QA_TEXTDOMAIN )
+	get_queried_object_id(),
+	__( 'Click here to be notified of followup answers via e-mail', QA_TEXTDOMAIN ),
+	__( 'Stop notifying me of followup answers via e-mail', QA_TEXTDOMAIN )
 	);
 }
 function the_question_subscription() {
@@ -430,8 +430,8 @@ function get_the_answer_voting( $answer_id ) {
 	list( $up, $down, $current ) = qa_get_votes( $answer_id );
 
 	$buttons = array(
-		'up' => __( 'This answer is useful (click again to undo)', QA_TEXTDOMAIN ),
-		'down' => __( 'This answer is not useful (click again to undo)', QA_TEXTDOMAIN )
+	'up' => __( 'This answer is useful (click again to undo)', QA_TEXTDOMAIN ),
+	'down' => __( 'This answer is not useful (click again to undo)', QA_TEXTDOMAIN )
 	);
 
 	foreach ( $buttons as $type => $text ) {
@@ -442,7 +442,7 @@ function get_the_answer_voting( $answer_id ) {
 	$out .= '<div class="qa-voting-box">';
 	$out .=$buttons['up'];
 	$out .= '<span title="' . __( 'Score', QA_TEXTDOMAIN ) . '">' . number_format_i18n( $up - $down ) . '</span>';
-	$out .= $buttons['down']; 
+	$out .= $buttons['down'];
 
 	$out .= get_the_answer_accepted( $answer_id );
 	$out .= '</div>';
@@ -460,14 +460,14 @@ function get_the_answer_accepted( $answer_id ) {
 	$user_can_accept = get_post_field( 'post_author', $question_id ) == get_current_user_id();
 
 	$is_accepted = get_post_meta( $question_id, '_accepted_answer', true ) == $answer_id;
-	
+
 	$out = '';
 
 	if ( $user_can_accept ) {
 		$data = array(
-			'action' => 'qa_accept',
-			'answer_id' => $answer_id,
-			'accept' => ( $is_accepted ? 'off' : 'on' )
+		'action' => 'qa_accept',
+		'answer_id' => $answer_id,
+		'accept' => ( $is_accepted ? 'off' : 'on' )
 		);
 
 		$out .= '<form method="post" action="">';
@@ -477,18 +477,18 @@ function get_the_answer_accepted( $answer_id ) {
 			$out .= _qa_html( 'input', array( 'type' => 'hidden', 'name' => $key, 'value' => $value ) );
 		}
 
-		 $out .= _qa_html( 'input', array(
-			'type' => 'submit',
-			'title' => __( 'Accept answer (click again to undo)', QA_TEXTDOMAIN ),
-			'class' => 'vote-accepted-' . ( $is_accepted ? 'on' : 'off' )
+		$out .= _qa_html( 'input', array(
+		'type' => 'submit',
+		'title' => __( 'Accept answer (click again to undo)', QA_TEXTDOMAIN ),
+		'class' => 'vote-accepted-' . ( $is_accepted ? 'on' : 'off' )
 		) );
 		$out .= '</form>';
 
 	}
 	elseif ( $is_accepted ) {
 		$out .= _qa_html( 'span', array(
-			'title' => __( 'Accepted answer', QA_TEXTDOMAIN ),
-			'class' => 'vote-accepted-on'
+		'title' => __( 'Accepted answer', QA_TEXTDOMAIN ),
+		'class' => 'vote-accepted-on'
 		), __( 'accepted', QA_TEXTDOMAIN ) );
 	}
 	return $out;
@@ -501,26 +501,26 @@ function the_answer_accepted( $answer_id ) {
 function get_the_question_status( $question_id = 0 ) {
 	global $post;
 	if ( !$question_id )
-		$question_id = $post->ID;
+	$question_id = $post->ID;
 
 	$count = get_answer_count( $question_id );
 
 	if ( get_post_meta( $question_id, '_accepted_answer', true ) )
-		$status = 'answered-accepted';
+	$status = 'answered-accepted';
 	elseif ( $count > 0 )
-		$status = 'answered';
+	$status = 'answered';
 	else
-		$status = 'unanswered';
-		
+	$status = 'unanswered';
+
 	$status = apply_filters( 'qa_question_status', $status );
-	
+
 	$out  ='';
 
 	$out .= "<div class='question-status $status'>";
 	$out .=	"<div class='mini-count'>" . number_format_i18n( $count ) . "</div>";
 	$out .=	"<div>" . _n( 'answer', 'answers', $count, QA_TEXTDOMAIN ) . "</div>";
 	$out .= "</div>";
-	
+
 	return $out;
 }
 function the_question_status( $question_id = 0 ) {
@@ -552,10 +552,10 @@ function get_the_question_form() {
 		$question = $wp_query->posts[0];
 
 		if ( !current_user_can( 'edit_question', $question->ID ) )
-			return;
+		return;
 
 		$question->tags = wp_get_object_terms( $question->ID, 'question_tag', array( 'fields' => 'names' ) );
-		
+
 		$args = apply_filters( 'qa_category_args', array( 'fields' => 'ids' ) );
 
 		$cats = wp_get_object_terms( $question->ID, 'question_category', $args );
@@ -563,14 +563,14 @@ function get_the_question_form() {
 	} else {
 		$post = null; //Necessary after 3.5 to prevent media upload from failing for users less than admin
 		$question = (object) array(
-			'ID' => '',
-			'post_content' => '',
-			'post_title' => '',
-			'tags' => array(),
-			'cat' => false
+		'ID' => '',
+		'post_content' => '',
+		'post_title' => '',
+		'tags' => array(),
+		'cat' => false
 		);
 	}
-	
+
 	$out = '';
 
 
@@ -588,12 +588,12 @@ function get_the_question_form() {
 	$out .=	'<td id="question-title-td">';
 	$out .= '<input type="text" id="question-title" name="question_title" value="' . esc_attr( $question->post_title ) . '" />';
 	$out .=	'</td>
-		</tr>
+	</tr>
 	</table>';
-	
+
 	$use_editor = true;
 	if ( isset( $qa_general_settings["disable_editor"] ) && $qa_general_settings["disable_editor"] )
-		$use_editor = false;
+	$use_editor = false;
 
 	if ( version_compare($wp_version, "3.3") >= 0 && $use_editor ) {
 		$wp_editor_settings = apply_filters( 'qa_question_editor_settings', array(), $question->ID );
@@ -602,36 +602,36 @@ function get_the_question_form() {
 		$out .= ob_get_contents();
 		ob_end_clean();
 	} else
-		$out .= '<textarea name="question_content" class="wp32">' .esc_textarea( $question->post_content ) . '</textarea>';
+	$out .= '<textarea name="question_content" class="wp32">' .esc_textarea( $question->post_content ) . '</textarea>';
 
 	$out .= '<table id="question-taxonomies">
-		<tr>
-			<td id="question-category-td">';
+	<tr>
+	<td id="question-category-td">';
 	$out .= wp_dropdown_categories( array(
-				'orderby' => 'name',
-				'order' => 'ASC',
-				'taxonomy' => 'question_category',
-				'selected' => $question->cat,
-				'hide_empty' => false,
-				'hierarchical' => true,
-				'name' => 'question_cat',
-				'class' => '',
-				'show_option_none' => __( 'Select category...', QA_TEXTDOMAIN ),
-				'echo'	=> 0
-			) );
+	'orderby' => 'name',
+	'order' => 'ASC',
+	'taxonomy' => 'question_category',
+	'selected' => $question->cat,
+	'hide_empty' => false,
+	'hierarchical' => true,
+	'name' => 'question_cat',
+	'class' => '',
+	'show_option_none' => __( 'Select category...', QA_TEXTDOMAIN ),
+	'echo'	=> 0
+	) );
 	$out .= '</td>
-			<td id="question-tags-label">
-				<label for="question-tags">' . __('Tags:', QA_TEXTDOMAIN) . '</label>
-			</td>
-			<td id="question-tags-td">
-				<input type="text" id="question-tags" name="question_tags" value="'. implode( ', ', $question->tags ) . '" />
-			</td>
-		</tr>
+	<td id="question-tags-label">
+	<label for="question-tags">' . __('Tags:', QA_TEXTDOMAIN) . '</label>
+	</td>
+	<td id="question-tags-td">
+	<input type="text" id="question-tags" name="question_tags" value="'. implode( ', ', $question->tags ) . '" />
+	</td>
+	</tr>
 	</table>';
 
 	$out .= get_the_qa_submit_button();
 	$out .= '</form>';
-	
+
 	return apply_filters('the_question_form', $out );
 }
 
@@ -666,24 +666,24 @@ function get_the_answer_list() {
 	$question_id = $post->ID;
 
 	if ( ($user_ID == 0 && !qa_visitor_can('read_answers', $question_id)) && !current_user_can( 'read_answers', $question_id ) )
-		return;
+	return;
 
 	$accepted_answer = get_post_meta( $question_id, '_accepted_answer', true );
 
 	$answers = new WP_Query( array(
-		'post_type' => 'answer',
-		'post_parent' => $question_id,
-		'post__not_in' => array( $accepted_answer ),
-		'orderby' => 'qa_score',
-		'posts_per_page' => QA_ANSWERS_PER_PAGE,
-		'paged' => get_query_var( 'paged' )
+	'post_type' => 'answer',
+	'post_parent' => $question_id,
+	'post__not_in' => array( $accepted_answer ),
+	'orderby' => 'qa_score',
+	'posts_per_page' => QA_ANSWERS_PER_PAGE,
+	'paged' => get_query_var( 'paged' )
 	) );
 
 	if ( $accepted_answer && !get_query_var( 'paged' ) )
-		array_unshift( $answers->posts, get_post( $accepted_answer ) );
-	
+	array_unshift( $answers->posts, get_post( $accepted_answer ) );
+
 	$out = '';
-	
+
 	$out .= get_the_qa_pagination( $answers );
 
 	foreach ( $answers->posts as $answer ) {
@@ -692,22 +692,22 @@ function get_the_answer_list() {
 		$out .= '<div id="answer-' . $answer->ID .'" class="answer">';
 		$out .= get_the_answer_voting( $answer->ID );
 		$out .=	'<div class="answer-body">';
-			
+
 		do_action( 'qa_before_answer_content', $answer->ID );
-				
+
 		$out .= '<div class="answer-content">';
-		$out .=	apply_filters( 'the_content', $answer->post_content ); 
+		$out .=	apply_filters( 'the_content', $answer->post_content );
 		$out .= '</div>';
-				
+
 		do_action( 'qa_before_answer_meta', $answer->ID );
 
 		$out .=	'<div class="answer-meta">';
 		$out .= get_the_qa_action_links( $answer->ID );
 		$out .= get_the_qa_author_box( $answer->ID );
 		$out .= '</div>';
-				
+
 		do_action( 'qa_after_answer_meta', $answer->ID );
-				
+
 		$out .=	'</div>
 		</div>';
 	}
@@ -715,7 +715,7 @@ function get_the_answer_list() {
 	get_the_qa_pagination( $answers );
 
 	wp_reset_postdata();
-	
+
 	return $out;
 }
 
@@ -725,29 +725,29 @@ function the_answer_list() {
 
 function get_the_answer_form() {
 	global $wp_query, $user_ID, $wp_version, $qa_general_settings, $post;
-	
+
 	$out = '';
-	
+
 	if ( is_qa_page( 'edit' ) ) {
 		$answer = $wp_query->posts[0];
-		
+
 		if ( ($user_ID == 0 && !qa_visitor_can('edit_published_answers', $answer->ID)) && !current_user_can( 'edit_published_answers', $answer->ID ) )
-			return;
+		return;
 	} else {
 		if ( ($user_ID == 0 && !qa_visitor_can('publish_answers')) && !current_user_can( 'publish_answers') ) {
 			$out .= '<p>'.__('You are not allowed to add answers!', QA_TEXTDOMAIN).'</p>';
 			return;
 		}
 		$answer = (object) array(
-			'ID' => '',
-			'post_parent' => get_the_ID(),
-			'post_content' => ''
+		'ID' => '',
+		'post_parent' => get_the_ID(),
+		'post_content' => ''
 		);
-		
+
 		$post = null; //Necessary after 3.5 to prevent media upload from failing for users less than admin
 	}
-	
-	
+
+
 	$out .= '<form id="answer-form" method="post" action="' . qa_get_url( 'archive' ) . '">';
 	$out .= wp_nonce_field( 'qa_answer', "_wpnonce", true , false );
 
@@ -757,21 +757,21 @@ function get_the_answer_form() {
 
 	$use_editor = true;
 	if ( isset( $qa_general_settings["disable_editor"] ) && $qa_general_settings["disable_editor"] )
-		$use_editor = false;
-	
-	if (version_compare($wp_version, "3.3") >= 0 && $use_editor ) { 
+	$use_editor = false;
+
+	if (version_compare($wp_version, "3.3") >= 0 && $use_editor ) {
 		$wp_editor_settings = apply_filters( 'qa_answer_editor_settings', array(), $answer->ID );
 		$out .=  '<p>';
-		
+
 		ob_start();
 		wp_editor(  $answer->post_content, 'answer', $wp_editor_settings);
 		$out .= ob_get_contents();
 		ob_end_clean();
-		
+
 		$out .= '</p>';
 	} else
-		$out .= '<p><textarea name="answer" class="wp32">' .esc_textarea( $answer->post_content ) . '</textarea></p>';
-		
+	$out .= '<p><textarea name="answer" class="wp32">' .esc_textarea( $answer->post_content ) . '</textarea></p>';
+
 	$out .= get_the_qa_submit_button();
 	$out .= '</form>';
 
@@ -784,15 +784,15 @@ function the_answer_form() {
 
 function get_the_qa_submit_button() {
 	global $qa_general_settings;
-	if ( is_user_logged_in() ||( is_array($qa_general_settings) && isset( $qa_general_settings["method"] ) && 'assign' == $qa_general_settings["method"] 
-		/*&& qa_visitor_can( 'immediately_publish_questions' )*/ ) ) {
+	if ( is_user_logged_in() ||( is_array($qa_general_settings) && isset( $qa_general_settings["method"] ) && 'assign' == $qa_general_settings["method"]
+	/*&& qa_visitor_can( 'immediately_publish_questions' )*/ ) ) {
 		$button = __( 'Submit', QA_TEXTDOMAIN );
 	} elseif ( get_option( 'users_can_register' ) ) {
 		$button = __( 'Register/Login and Submit', QA_TEXTDOMAIN );
 	} else {
 		$button = __( 'Login and Submit', QA_TEXTDOMAIN );
 	}
-	
+
 	return apply_filters('the_qa_submit_button', '<input class="qa-edit-submit" type="submit" value="'. $button . '" />' );
 }
 
@@ -802,10 +802,9 @@ function the_qa_submit_button() {
 
 function qa_visitor_can($capability, $post_id = null) {
 	$role = get_role('visitor');
-	
+
 	if ($role && is_object( $role ) && $role->has_cap($capability, $post_id)) {
 		return true;
 	}
 	return false;
 }
-
