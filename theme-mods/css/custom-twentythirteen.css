@@ -1,0 +1,55 @@
+	#qa-page-wrapper {
+		margin: 0  0 0 0;
+	}
+
+	#qa-content-wrapper {
+		margin: 0;
+		padding: 0 20px;
+	}
+
+#qa-menu li{
+	height: 40px;
+	margin-bottom: 10px;
+		line-height: 30px;
+}
+
+#qa-menu form {
+	padding-top: 0;
+}
+
+#qa-menu button{
+	height:40px;
+	padding-top:1px;
+	font-size: 16px;
+	display: block;
+		line-height: 36px;
+
+}
+
+#qa-menu input{
+	height: 40px;
+	margin-right:3px;
+}
+
+.question-score,
+.question-status{
+	width: auto;
+}
+
+.question-summary{
+	padding: 10px 5px 0 10px;
+}
+
+.question h3{
+	margin: 3px 0 6px 0;
+
+}
+
+.mini-count{
+	font-size: 28px;
+	line-height: 26px;
+}
+
+.qa-voting-box{
+	width: 40px;
+}
