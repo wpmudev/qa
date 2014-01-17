@@ -184,23 +184,23 @@ function _qa_html( $tag ) {
 		$version = get_option('qa_installed_version');
 		if ( $version == QA_VERSION )
 			return;
-		
-		// Just update version number if theme is already supported 		
+
+		// Just update version number if theme is already supported
 		if ( strpos( qa_supported_themes(), get_template() ) !== false )
 			$supported_theme = true;
 		else
 			$supported_theme = false;
-			
+
 		if ( !$options = get_option( QA_OPTIONS_NAME ) )
 			$options = array();
-		
-		$changed = false;		
+
+		$changed = false;
 		if ( !isset( $options["general_settings"]["page_layout"] ) ) {
 			if ( isset( $options["general_settings"]["full_width"] ) && $options["general_settings"]["full_width"] )
 				$options["general_settings"]["page_layout"] = 'content';
 			else
 				$options["general_settings"]["page_layout"] = 'content-sidebar';
-				
+
 			unset( $options["general_settings"]["full_width"] );
 			$changed = true;
 		}
@@ -242,6 +242,6 @@ function qa_supported_themes(){
 		}
 		return rtrim( $file_list, ', ' );
 	}
-	
+
 	return '';
 }

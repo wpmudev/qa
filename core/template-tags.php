@@ -283,16 +283,20 @@ function the_qa_flag_form( $id ) {
 	}
 
 	if ( isset( $qa_general_settings["captcha"] ) && $qa_general_settings["captcha"] && qa_is_captcha_usable() ) {
-		$f .= '<div class="qa_captcha">
-		<label class="description" >' . __('Type the letters you see in the image below:',QA_TEXTDOMAIN ). '</label>
-		<div class="qa_captcha_inner">
-		<img class="captcha_image" id="captcha_'.$id.'" src="' . plugins_url( "/qa/securimage/securimage_show.php" ). '" alt="CAPTCHA Image" />
-		</div>
-		<div>
-		<input type="text" id="captcha_code_'.$id.'" name="captcha_code" size="10" maxlength="6" />
-		<a href="javascript:void(0)" onclick="document.getElementsByClassName(\'captcha_image\').src=\'' . plugins_url( "/qa/securimage/images/blank.png" ). '\';document.getElementById(\'captcha_'.$id.'\').src = \''. plugins_url( "/qa/securimage/securimage_show.php") . '?\' + Math.random(); document.getElementById(\'captcha_code_'.$id.'\').value=\'\'; return false;">'. __('[ Different Image ]',QA_TEXTDOMAIN ). '</a>
-		</div>
-		</div>';
+
+		$f .= sprintf('<br/><label class="qa_captcha"><img src="%s" style="vertical-align:top" /> <input type="text" name="random" placeholder="%s"/></label> ', QA_PLUGIN_URL .'default-templates/captcha-image.php', __('Enter letters in image', QA_TEXTDOMAIN) );
+
+
+//		$f .= '<div class="qa_captcha">
+//		<label class="description" >' . __('Type the letters you see in the image below:',QA_TEXTDOMAIN ). '</label>
+//		<div class="qa_captcha_inner">
+//		<img class="captcha_image" id="captcha_'.$id.'" src="' . plugins_url( "/qa/securimage/securimage_show.php" ). '" alt="CAPTCHA Image" />
+//		</div>
+//		<div>
+//		<input type="text" id="captcha_code_'.$id.'" name="captcha_code" size="10" maxlength="6" />
+//		<a href="javascript:void(0)" onclick="document.getElementsByClassName(\'captcha_image\').src=\'' . plugins_url( "/qa/securimage/images/blank.png" ). '\';document.getElementById(\'captcha_'.$id.'\').src = \''. plugins_url( "/qa/securimage/securimage_show.php") . '?\' + Math.random(); document.getElementById(\'captcha_code_'.$id.'\').value=\'\'; return false;">'. __('[ Different Image ]',QA_TEXTDOMAIN ). '</a>
+//		</div>
+//		</div>';
 	}
 	$f .= '<input type="submit" value="'.__('Send Report', QA_TEXTDOMAIN).'" />';
 	$f .= '</form>';
@@ -307,8 +311,11 @@ function the_qa_flag_form( $id ) {
 // Since V1.3.1
 // http://www.phpcaptcha.org/faq/
 function qa_is_captcha_usable() {
-	if ( !function_exists( 'imageftbbox' ) || !function_exists( 'imagecreate' )
-	|| !function_exists( 'imagecreatetruecolor' ) || version_compare(PHP_VERSION, '5.2.0') < 0 )
+	if ( !function_exists( 'imageftbbox' )
+	|| !function_exists( 'imagecreate' )
+	|| !function_exists( 'imagecreatetruecolor' )
+	|| !function_exists( 'imagettftext' )
+	|| version_compare(PHP_VERSION, '5.2.0') < 0 )
 	return false;
 
 	return true;
@@ -620,6 +627,7 @@ function get_the_question_form() {
 	'echo'	=> 0
 	) );
 	$out .= '</td>
+
 	<td id="question-tags-label">
 	<label for="question-tags">' . __('Tags:', QA_TEXTDOMAIN) . '</label>
 	</td>
@@ -629,6 +637,9 @@ function get_the_question_form() {
 	</tr>
 	</table>';
 
+	if($qa_general_settings['captcha'] ) {
+		$out .= sprintf('<label><img src="%s" style="vertical-align:top" /> <input type="text" name="random" placeholder="%s"/></label> ', QA_PLUGIN_URL .'default-templates/captcha-image.php', __('Enter letters in image', QA_TEXTDOMAIN) );
+	}
 	$out .= get_the_qa_submit_button();
 	$out .= '</form>';
 
@@ -771,6 +782,10 @@ function get_the_answer_form() {
 		$out .= '</p>';
 	} else
 	$out .= '<p><textarea name="answer" class="wp32">' .esc_textarea( $answer->post_content ) . '</textarea></p>';
+
+	if($qa_general_settings['captcha'] ) {
+		$out .= sprintf('<label><img src="%s" style="vertical-align:top" /> <input type="text" name="random" placeholder="%s"/></label> ', QA_PLUGIN_URL .'default-templates/captcha-image.php', __('Enter letters in image', QA_TEXTDOMAIN) );
+	}
 
 	$out .= get_the_qa_submit_button();
 	$out .= '</form>';

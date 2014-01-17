@@ -68,13 +68,16 @@ class QA_Core {
 		// Check Captcha
 		if ( isset( $this->g_settings["captcha"] ) && $this->g_settings["captcha"] && qa_is_captcha_usable() ) {
 
-			if ( !session_id() )
-				@session_start();
+			if ( !session_id() ) @session_start();
 
-			include_once WP_PLUGIN_DIR . '/qa/securimage/securimage.php';
-			$securimage = new Securimage();
+			$random = strtoupper($_POST['random']);
 
-			if ($securimage->check($_POST['captcha_code']) == false) {
+//			include_once WP_PLUGIN_DIR . '/qa/securimage/securimage.php';
+//			$securimage = new Securimage();
+//
+//			if ($securimage->check($_POST['captcha_code']) == false) {
+
+			if( $_SESSION['captcha_random_value'] != md5($random)) {
 				$url = add_query_arg( array( 'flag_error' => '1' . $anchor ), get_permalink( $id ) );
 				wp_redirect( $url );
 				die;
@@ -394,7 +397,7 @@ class QA_Core {
 
 		// Redirect template loading to archive-question.php rather than to archive.php
 		if ( is_qa_page( 'tag' ) || is_qa_page( 'category' ) ) {
-			$wp_query->set( 'post_type', 'question' );
+			$wp_query->set( 'post_type', array('question') );
 		}
 	}
 
@@ -480,7 +483,7 @@ class QA_Core {
 	 * Enqueue default CSS and JS.
 	 */
 	function load_default_style() {
-		global $wp_version;
+		global $wp_version, $wp_query;
 
 		if ( !is_qa_page() )
 			return;

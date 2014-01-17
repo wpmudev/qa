@@ -2,16 +2,21 @@
 <div id="qa-page-wrapper">
 	<div id="qa-content-wrapper">
 		<?php do_action( 'qa_before_content', 'archive-question' ); ?>
-			
+
 		<?php the_qa_error_notice(); ?>
 		<?php the_qa_menu(); ?>
-			
+
 		<?php if ( !have_posts() ) : ?>
-			
+
 			<p><?php $question_ptype = get_post_type_object( 'question' ); echo $question_ptype->labels->not_found; ?></p>
-		
+
 		<?php else: ?>
-		
+<?php
+global $wp_query;
+
+single_cat_title('Category: ');
+
+?>
 			<div id="question-list">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php do_action( 'qa_before_question_loop' ); ?>
@@ -39,11 +44,11 @@
 				<?php do_action( 'qa_after_question_loop' ); ?>
 			<?php endwhile; $wp_query->set('posts_per_page', 6); ?>
 			</div><!--#question-list-->
-			
+
 			<?php the_qa_pagination( ); ?>
-			
+
 			<?php do_action( 'qa_after_content', 'archive-question' ); ?>
-		
+
 		<?php endif;?>
 	</div>
 </div><!--#qa-page-wrapper-->
@@ -51,7 +56,7 @@
 global $qa_general_settings;
 
 if ( isset( $qa_general_settings["page_layout"] ) && $qa_general_settings["page_layout"] !='content' )
-	get_sidebar( 'question' ); 
+	get_sidebar( 'question' );
 ?>
-	
+
 <?php get_footer( 'question' ); ?>

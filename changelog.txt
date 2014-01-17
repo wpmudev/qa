@@ -1,5 +1,8 @@
 ﻿== Changelog ==
 
+= 1.4.3 =
+- "Use Captcha" setting now applies to Questions and Answers as wel as Reports.
+
 = 1.4.2.9 =
 - Added twentythirteen and twentyfourteen custom templates. Twentyfourteenois an example of a responsive Q&A
 - New WPMU Dashboard

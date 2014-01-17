@@ -446,7 +446,7 @@ function qa_settings_field_layout() {
 								<input type="checkbox" name="captcha" value="1" <?php if ( isset( $options["captcha"] ) && $options["captcha"] )echo 'checked="checked"' ?> />
 								&nbsp;
 								<span class="description">
-									<?php _e( 'Whether to use Captcha verification while submitting report.', QA_TEXTDOMAIN ) ?>
+									<?php _e( 'Whether to use Captcha verification while submitting.', QA_TEXTDOMAIN ) ?>
 									<?php
 									if ( !qa_is_captcha_usable() )
 									_e( 'Note: Your php installation does not let Captcha usage.', QA_TEXTDOMAIN );
