@@ -508,6 +508,14 @@ function qa_settings_field_layout() {
 
 					<table class="form-table">
 
+					<tr>
+						<th><label for="cc_admin"><?php _e( 'CC the Administrator:', $this->text_domain ); ?></label></th>
+						<td>
+							<input type="hidden" name="qa_cc_admin" value="0" />
+							<input type="checkbox" id="qa_cc_admin" name="qa_cc_admin" value="1" <?php checked( isset( $options['qa_cc_admin'] ) && 1 == $options['qa_cc_admin'] ); ?> />
+							<span class="description"><?php _e( 'cc the administrator', $this->text_domain ); ?></span>
+						</td>
+					</tr>
 						<tr>
 							<th>
 								<label for="qa_email_notification_subject"><?php _e( 'Notification E-mail Subject', QA_TEXTDOMAIN ) ?></label>

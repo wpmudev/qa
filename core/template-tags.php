@@ -98,6 +98,7 @@ function the_qa_search_form( ) {
 }
 
 function get_the_qa_pagination( $query = null ) {
+
 	if ( is_null( $query ) )
 	$query = $GLOBALS['wp_query'];
 

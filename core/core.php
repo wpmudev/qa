@@ -5,7 +5,7 @@
  */
 class QA_Core {
 
-	function QA_Core() {
+	function __construct() {
 		$this->g_settings = $this->get_options('general_settings');
 
 		// Pagination
@@ -24,6 +24,9 @@ class QA_Core {
 		if ( !is_admin() ) {
 			add_action( 'parse_query', array( &$this, 'parse_query' ) );
 		}
+
+			add_action( 'parse_request', array( &$this, 'parse_request' ),1 );
+
 		add_filter( 'posts_clauses', array( &$this, 'posts_clauses' ), 10, 2 );
 
 		add_action( 'template_redirect', array( &$this, 'load_default_style' ), 11 );
@@ -43,6 +46,12 @@ class QA_Core {
 		add_action( 'wp_ajax_qa_flag', array( &$this, 'qa_flag' ) );
 	}
 
+function parse_request($wp){
+	//var_dump($wp);
+	global $wp_rewrite;
+	//print_r($wp_rewrite);
+
+}
 	/**
 	 * Handles report request
 	 * Since V1.3.1
@@ -136,6 +145,7 @@ class QA_Core {
 	 * Since v1.2.1
 	 */
 	function questions_per_page( $query ) {
+
 		if ( 'question' != $query->get( 'post_type' ) || !isset( $this->g_settings["questions_per_page"] )
 			|| $this->g_settings["questions_per_page"] < get_option( 'posts_per_page' ) )
 			return;
@@ -148,6 +158,7 @@ class QA_Core {
 	 * Register the 'question' post type and related taxonomies and rewrite rules.
 	 */
 	function init() {
+
 		global $wp, $wp_rewrite;
 
 		// Ask page
@@ -309,8 +320,10 @@ class QA_Core {
 	 * Various WP_Query manipulations.
 	 */
 	function parse_query( $wp_query ) {
-		if ( $GLOBALS['wp_query'] !== $wp_query )
+
+		if ( $GLOBALS['wp_query'] !== $wp_query ){
 			return;
+		}
 
 		if ( $wp_query->get( 'qa_ask' ) || $wp_query->get( 'qa_edit' ) ) {
 			$wp_query->is_home = false;
@@ -364,6 +377,7 @@ class QA_Core {
 	 */
 	function template_redirect() {
 		global $wp_query;
+//print_r($wp_query);
 		// Dont display these pages to unauthorized people
 		if ( !$this->is_page_allowed() ) {
 			$redirect_url = site_url();
@@ -410,7 +424,8 @@ class QA_Core {
 		if ( 'question' != get_query_var( 'post_type' ) )
 			return $path;
 
-		$type = reset( explode( '_', current_filter() ) );
+		$cf = explode( '_', current_filter() );
+		$type = reset( $cf  );
 
 		$file = basename( $path );
 

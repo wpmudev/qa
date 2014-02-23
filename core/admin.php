@@ -17,7 +17,7 @@ class QA_Core_Admin extends QA_Core {
 	/**
 	* Constructor.
 	*/
-	function QA_Core_Admin() {
+	function __construct() {
 		// Settings page ID
 		$this->page = 'question_page_qa_settings';
 
@@ -247,13 +247,13 @@ class QA_Core_Admin extends QA_Core {
 				break;
 			}
 			case 'qa-question': {
-				
-				printf('<a href="%s" title="%s" target="question" ><strong>%s</strong></a><p>%s</p>', 
-				get_permalink($post->post_parent), 
-				__('Go to question page', QA_TEXTDOMAIN), 
-				get_the_title($post->post_parent), 
+
+				printf('<a href="%s" title="%s" target="question" ><strong>%s</strong></a><p>%s</p>',
+				get_permalink($post->post_parent),
+				__('Go to question page', QA_TEXTDOMAIN),
+				get_the_title($post->post_parent),
 				get_the_excerpt($post->post_parent) );
-				
+
 				break;
 			}
 		}
@@ -674,7 +674,7 @@ class QA_Core_Admin extends QA_Core {
 		'method'			=> @$_POST['method'],
 		'captcha'			=> $captcha,
 		'report_reasons'	=> trim( @$_POST['report_reasons'] ),
-		'report_email'		=> trim( @$_POST['report_email'] )
+		'report_email'		=> trim( @$_POST['report_email'] ),
 		)
 		);
 
@@ -683,6 +683,7 @@ class QA_Core_Admin extends QA_Core {
 		update_option( 'qa_capabilties_set', array_unique( $qa_capabilities_set ));
 		update_option( QA_OPTIONS_NAME, $options );
 
+		update_option( 'qa_cc_admin', $_POST['qa_cc_admin'] );
 		update_option( 'qa_email_notification_subject', $_POST['qa_email_notification_subject'] );
 		update_option( 'qa_email_notification_content', $_POST['qa_email_notification_content'] );
 

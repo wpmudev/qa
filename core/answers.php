@@ -10,12 +10,12 @@ class QA_Answers {
 	 */
 	var $question_slug;
 
-	function QA_Answers() {
+	function __construct() {
 		add_action( 'init', array( &$this, 'init' ) );
 		add_action( 'request', array( &$this, 'request' ) );
 		add_filter( 'redirect_canonical', array( &$this, 'redirect_canonical' ), 10, 2 );
 		add_filter( 'post_type_link', array( &$this, 'answer_permalink' ), 10, 2 );
-		
+
 		add_action( 'admin_init', array( &$this, 'admin_init' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_enqueue_scripts' ) );
 	}
@@ -53,11 +53,11 @@ class QA_Answers {
 		$args = apply_filters( 'qa_answer_register_post_type_args', $args );
 		register_post_type( 'answer', $args );
 	}
-	
+
 	function admin_init() {
 		wp_register_style( 'qa-answers-remove-add', QA_PLUGIN_URL . 'css/qa-answers-remove-add.css' );
 	}
-	
+
 	function admin_enqueue_scripts($hook) {
 		global $post;
 		if( 'edit.php' != $hook || !isset($post) || $post->post_type != 'answer' )
@@ -65,9 +65,9 @@ class QA_Answers {
 		wp_enqueue_style( 'qa-answers-remove-add' );
 	}
 
-	// Handle answer feed	
+	// Handle answer feed
 	function request( $args ) {
-		if ( isset( $args['question'] ) && isset( $args['feed'] ) ) {		
+		if ( isset( $args['question'] ) && isset( $args['feed'] ) ) {
 			$question = get_posts( array(
 				'post_type' => 'question',
 				'question' => $args['question'],
@@ -100,7 +100,7 @@ class QA_Answers {
 
 	function wp_title_rss() {
 		$sep = '&#187;'; // http://core.trac.wordpress.org/ticket/16983
-		return " $sep " . sprintf( __( 'Answers for "%s"', QA_TEXTDOMAIN ), $this->question->post_title );		
+		return " $sep " . sprintf( __( 'Answers for "%s"', QA_TEXTDOMAIN ), $this->question->post_title );
 	}
 
 	function answer_title_rss() {

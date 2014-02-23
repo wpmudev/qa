@@ -4,34 +4,34 @@ define( 'QA_BP_COMPONENT_SLUG', 'q-and-a' );
 
 class QA_BuddyPress {
 
-	function QA_BuddyPress() {
+	function __construct() {
 		global $bp;
-		
+
 		add_filter( 'qa_get_url', array( &$this, 'qa_get_url' ), 10, 3 );
-		
+
 		add_action( 'bp_setup_nav', array( &$this, 'bp_setup_nav'), 100 );
 		add_action( 'template_redirect', array( &$this, 'template_redirect' ), 9 );
 		add_filter( 'bp_activity_can_comment', array( &$this, 'hide_comment' ) ); // New in V1.2
 	}
-	
+
 	/**
 	 * Hides comment button for Buddypress Activity Stream
 	 * @Since V1.2
 	 */
 	function hide_comment( $can_comment ){
 		global $activities_template, $qa_general_settings;
-		
+
 		if ( !$activities_template || !@$qa_general_settings["bp_comment_hide"] )
 			return $can_comment;
- 
+
 		$activity = $activities_template->activity;
-	  
+
 		if ( 'qa' != $activity->component )
 			return $can_comment;
 		else
 			return false;
-	} 
-	
+	}
+
 	function bp_setup_nav() {
 		bp_core_new_nav_item( array(
 			'name' => __( 'Q&A', QA_TEXTDOMAIN ),
@@ -63,13 +63,13 @@ class QA_BuddyPress {
 
 	function tab_template() {
 		global $_qa_core;
-		
+
 		add_action( 'bp_template_content', array( &$this, 'tab_content' ) );
 		add_action( 'bp_member_plugin_options_nav', array( &$this, 'tab_nav' ) );
 		add_filter( 'is_qa_page', array( &$this, 'is_qa_page' ), 10, 2 );
-		
+
 		$_qa_core->load_default_style();
-		
+
 		bp_core_load_template( 'members/single/plugins' );
 	}
 
@@ -79,10 +79,10 @@ class QA_BuddyPress {
 
 		return $result;
 	}
-	
+
 	function tab_nav() {
 		$user_id = bp_displayed_user_id();
-		
+
 		$question_query = new WP_Query( array(
 			'author' => $user_id,
 			'post_type' => 'question',

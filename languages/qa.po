@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Q&A\n"
-"POT-Creation-Date: 2013-08-03 10:03-0500\n"
-"PO-Revision-Date: 2013-08-03 10:03-0500\n"
+"POT-Creation-Date: 2014-01-26 14:36-0500\n"
+"PO-Revision-Date: 2014-01-26 14:46-0500\n"
 "Last-Translator: Arnold Bailey <arnold@incsub.com>\n"
 "Language-Team: Arnold Bailey <arnold@incsub.com>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-KeywordsList: _n:1,2;__;_e;_x;_ex;_nx;esc_attr__;esc_attr_e;"
 "esc_attr_x;esc_html__;esc_html_e;esc_html_x\n"
 "X-Poedit-Basepath: .\n"
@@ -21,24 +22,6 @@ msgid ""
 "<b>[Q&A]</b> There is already a running version of Q&A. Please check if you "
 "have already installed Q&A or Q&A Lite beforehand. You need to deactivate "
 "the other version to install and run this."
-msgstr ""
-
-#: ../qa.php:198
-#, php-format
-msgid ""
-"Easily get updates, support, and one-click WPMU DEV plugin/theme "
-"installations right from in your dashboard - <strong><a href=\"%s\" title="
-"\"Install Now &raquo;\">install the free WPMU DEV Dashboard plugin</a></"
-"strong>. &nbsp;&nbsp;&nbsp;<small><a href=\"http://premium.wpmudev.org/wpmu-"
-"dev/update-notifications-plugin-information/\">(find out more)</a></small>"
-msgstr ""
-
-#: ../qa.php:202
-#, php-format
-msgid ""
-"Updates, Support, Premium Plugins, Community - <strong><a href=\"%s\" title="
-"\"Activate Now &raquo;\">activate the WPMU DEV Dashboard plugin now</a></"
-"strong>."
 msgstr ""
 
 #: ../core/admin.php:25
@@ -107,97 +90,97 @@ msgstr ""
 msgid "Upload Files (Necessary for media upload, DO NOT give to QA Visitors)"
 msgstr ""
 
-#: ../core/admin.php:105
+#: ../core/admin.php:106
 msgid "This Question is Reported"
 msgstr ""
 
-#: ../core/admin.php:114
+#: ../core/admin.php:115
 msgid "This Answer is Reported"
 msgstr ""
 
-#: ../core/admin.php:140
+#: ../core/admin.php:141
 msgid "Number of reports:"
 msgstr ""
 
-#: ../core/admin.php:149
+#: ../core/admin.php:150
 msgid "Last reported by:"
 msgstr ""
 
-#: ../core/admin.php:158
+#: ../core/admin.php:159
 msgid "Last report reason:"
 msgstr ""
 
-#: ../core/admin.php:167
+#: ../core/admin.php:168
 msgid "Delete report:"
 msgstr ""
 
-#: ../core/admin.php:217
+#: ../core/admin.php:220
 msgid "Title"
 msgstr ""
 
-#: ../core/admin.php:218 ../core/buddypress.php:109 ../core/core.php:244
-#: ../default-templates/user-question.php:49
+#: ../core/admin.php:221 ../core/buddypress.php:109 ../core/core.php:257
+#: ../default-templates/user-question.php:56
 #: ../thesis-templates/user-question.php:60
 msgid "Question"
 msgid_plural "Questions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:219
+#: ../core/admin.php:222
 msgid "Author"
 msgstr ""
 
-#: ../core/admin.php:220
+#: ../core/admin.php:223
 msgid "Date"
 msgstr ""
 
-#: ../core/admin.php:221
+#: ../core/admin.php:224
 msgid "Reported"
 msgstr ""
 
-#: ../core/admin.php:241
+#: ../core/admin.php:244
 msgid "Yes"
 msgstr ""
 
-#: ../core/admin.php:243
+#: ../core/admin.php:246
 msgid "No"
 msgstr ""
 
-#: ../core/admin.php:249
-msgid "Got to question page"
+#: ../core/admin.php:253
+msgid "Go to question page"
 msgstr ""
 
-#: ../core/admin.php:267
+#: ../core/admin.php:273
 msgid "Question Published"
 msgid_plural "Questions Published"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:279
+#: ../core/admin.php:285
 msgid "Question Pending"
 msgid_plural "Questions Pending"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:293
+#: ../core/admin.php:299
 msgid "Answer Published"
 msgid_plural "Answers Published"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:305
+#: ../core/admin.php:311
 msgid "Answer Pending"
 msgid_plural "Answers Pending"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:321
+#: ../core/admin.php:327
 msgid "Q&A Reported"
 msgid_plural "Q&A Reported"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:350
+#: ../core/admin.php:356
 #, php-format
 msgid ""
 "<b>[Q&A]</b> It looks like you have just installed or upgraded Q&A. You may "
@@ -205,11 +188,11 @@ msgid ""
 "layout handling has been changed.</b>."
 msgstr ""
 
-#: ../core/admin.php:350 ../core/admin.php:361
+#: ../core/admin.php:356 ../core/admin.php:367
 msgid "settings"
 msgstr ""
 
-#: ../core/admin.php:361
+#: ../core/admin.php:367
 #, php-format
 msgid ""
 "<b>[Q&A]</b> <i>After Visitor Submits a Question</i> setting requires "
@@ -217,43 +200,43 @@ msgid ""
 "You may consider to fix this using plugin %s or Wordpress settings."
 msgstr ""
 
-#: ../core/admin.php:367
+#: ../core/admin.php:373
 msgid ""
 "<b>[Q&A]</b> Visitor role cannot be found. Try to deactivate and reactivate "
 "the plugin, if you continue to see this message, consult our Help and "
 "Support."
 msgstr ""
 
-#: ../core/admin.php:373
+#: ../core/admin.php:379
 msgid ""
 "<b>[Q&A]</b> Plugin will not function correctly with default permalink "
 "structure. You need to use a pretty permalink structure."
 msgstr ""
 
-#: ../core/admin.php:388 ../core/admin.php:502
+#: ../core/admin.php:394 ../core/admin.php:508
 msgid "Settings"
 msgstr ""
 
-#: ../core/admin.php:694
+#: ../core/admin.php:700
 msgid "You are not authorised to do this"
 msgstr ""
 
-#: ../core/admin.php:699
+#: ../core/admin.php:705
 #, php-format
 msgid ""
 "Your current theme %s is already supported by Q&A. No additional css rules "
 "are necessary."
 msgstr ""
 
-#: ../core/admin.php:706
+#: ../core/admin.php:712
 msgid "At least One of the variables is missing"
 msgstr ""
 
-#: ../core/admin.php:756 ../core/admin.php:767
+#: ../core/admin.php:762 ../core/admin.php:773
 msgid "Page layout is not selected"
 msgstr ""
 
-#: ../core/admin.php:764
+#: ../core/admin.php:770
 msgid "Nothing has been changed. Please double check your settings."
 msgstr ""
 
@@ -262,14 +245,14 @@ msgid "Answers"
 msgstr ""
 
 #: ../core/answers.php:42 ../core/buddypress.php:114
-#: ../default-templates/user-question.php:54
+#: ../default-templates/user-question.php:61
 #: ../thesis-templates/user-question.php:65
 msgid "Answer"
 msgid_plural "Answers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/answers.php:43 ../core/core.php:245
+#: ../core/answers.php:43 ../core/core.php:258
 msgid "Add New"
 msgstr ""
 
@@ -315,178 +298,184 @@ msgstr ""
 msgid "Q&A"
 msgstr ""
 
-#: ../core/core.php:98
+#: ../core/core.php:110
 msgid "Unknown"
 msgstr ""
 
-#: ../core/core.php:103
+#: ../core/core.php:115
 msgid "None"
 msgstr ""
 
-#: ../core/core.php:112
+#: ../core/core.php:124
 msgid "A question or answer has been reported"
 msgstr ""
 
-#: ../core/core.php:113
+#: ../core/core.php:125
 msgid "Reported by:"
 msgstr ""
 
-#: ../core/core.php:116
+#: ../core/core.php:128
 msgid "Report reason:"
 msgstr ""
 
-#: ../core/core.php:119
+#: ../core/core.php:131
 msgid "You can edit it by clicking this link:"
 msgstr ""
 
-#: ../core/core.php:187
+#: ../core/core.php:200
 msgid "Question Categories"
 msgstr ""
 
-#: ../core/core.php:188
+#: ../core/core.php:201
 msgid "Question Category"
 msgstr ""
 
-#: ../core/core.php:189
+#: ../core/core.php:202
 msgid "Search Question Categories"
 msgstr ""
 
-#: ../core/core.php:190
+#: ../core/core.php:203
 msgid "All Question Categories"
 msgstr ""
 
-#: ../core/core.php:191
+#: ../core/core.php:204
 msgid "Parent Question Category"
 msgstr ""
 
-#: ../core/core.php:192
+#: ../core/core.php:205
 msgid "Parent Question Category:"
 msgstr ""
 
-#: ../core/core.php:193
+#: ../core/core.php:206
 msgid "Edit Question Category"
 msgstr ""
 
-#: ../core/core.php:194
+#: ../core/core.php:207
 msgid "Update Question Category"
 msgstr ""
 
-#: ../core/core.php:195
+#: ../core/core.php:208
 msgid "Add New Question Category"
 msgstr ""
 
-#: ../core/core.php:196
+#: ../core/core.php:209
 msgid "New Question Category Name"
 msgstr ""
 
-#: ../core/core.php:212
+#: ../core/core.php:225
 msgid "Question Tags"
 msgstr ""
 
-#: ../core/core.php:213
+#: ../core/core.php:226
 msgid "Question Tag"
 msgstr ""
 
-#: ../core/core.php:214
+#: ../core/core.php:227
 msgid "Search Question Tags"
 msgstr ""
 
-#: ../core/core.php:215
+#: ../core/core.php:228
 msgid "Popular Question Tags"
 msgstr ""
 
-#: ../core/core.php:216
+#: ../core/core.php:229
 msgid "All Question Tags"
 msgstr ""
 
-#: ../core/core.php:217
+#: ../core/core.php:230
 msgid "Edit Question Tag"
 msgstr ""
 
-#: ../core/core.php:218
+#: ../core/core.php:231
 msgid "Update Question Tag"
 msgstr ""
 
-#: ../core/core.php:219
+#: ../core/core.php:232
 msgid "Add New Question Tag"
 msgstr ""
 
-#: ../core/core.php:220
+#: ../core/core.php:233
 msgid "New Question Tag Name"
 msgstr ""
 
-#: ../core/core.php:221
+#: ../core/core.php:234
 msgid "Separate question tags with commas"
 msgstr ""
 
-#: ../core/core.php:222
+#: ../core/core.php:235
 msgid "Add or remove question tags"
 msgstr ""
 
-#: ../core/core.php:223
+#: ../core/core.php:236
 msgid "Choose from the most used question tags"
 msgstr ""
 
-#: ../core/core.php:243 ../core/template-tags.php:17
+#: ../core/core.php:256 ../core/template-tags.php:17
 msgid "Questions"
 msgstr ""
 
-#: ../core/core.php:246
+#: ../core/core.php:259
 msgid "Add New Question"
 msgstr ""
 
-#: ../core/core.php:247
+#: ../core/core.php:260
 msgid "Edit Question"
 msgstr ""
 
-#: ../core/core.php:248
+#: ../core/core.php:261
 msgid "New Question"
 msgstr ""
 
-#: ../core/core.php:249
+#: ../core/core.php:262
 msgid "View Question"
 msgstr ""
 
-#: ../core/core.php:250
+#: ../core/core.php:263
 msgid "Search Questions"
 msgstr ""
 
-#: ../core/core.php:251
+#: ../core/core.php:264
 msgid "No questions found."
 msgstr ""
 
-#: ../core/core.php:252
+#: ../core/core.php:265
 msgid "No questions found in trash."
 msgstr ""
 
-#: ../core/core.php:511
+#: ../core/core.php:527
 msgid "Please login or register to vote."
 msgstr ""
 
-#: ../core/core.php:512
+#: ../core/core.php:528
 msgid "You can't vote on your own post."
 msgstr ""
 
-#: ../core/core.php:587
+#: ../core/core.php:603
 msgid "Ask a question"
 msgstr ""
 
-#: ../core/core.php:597
+#: ../core/core.php:613
 #, php-format
 msgid "User: %s"
 msgstr ""
 
-#: ../core/edit.php:86 ../core/edit.php:126
+#: ../core/edit.php:86 ../core/edit.php:133
 msgid "Nonce error: It looks like you don't have permission to do that."
 msgstr ""
 
-#: ../core/edit.php:96
+#: ../core/edit.php:93
+msgid ""
+"Characters entered do not match the image.  Please use your browser's back "
+"button to edit your question."
+msgstr ""
+
+#: ../core/edit.php:103
 msgid ""
 "Questions must have both a title and a body. Please use your browser's back "
 "button to edit your question."
 msgstr ""
 
-#: ../core/edit.php:110
+#: ../core/edit.php:117
 #, php-format
 msgid ""
 "It seems that this question was already asked. Click <a href=\"%s\" target="
@@ -496,38 +485,44 @@ msgid ""
 "question."
 msgstr ""
 
-#: ../core/edit.php:146
+#: ../core/edit.php:140
+msgid ""
+"Characters entered do not match the image.  Please use your browser's back "
+"button to edit your answer."
+msgstr ""
+
+#: ../core/edit.php:161
 msgid "Answer must be associated to a question."
 msgstr ""
 
-#: ../core/edit.php:149
+#: ../core/edit.php:164
 msgid ""
 "You have to actually write something. Please use your browser's back button "
 "to edit your answer."
 msgstr ""
 
-#: ../core/edit.php:163
+#: ../core/edit.php:178
 #, php-format
 msgid "It seems that answer was <a href=\"%s\">already given</a>."
 msgstr ""
 
-#: ../core/edit.php:199
+#: ../core/edit.php:214
 msgid "You are posting too fast. Slow down."
 msgstr ""
 
-#: ../core/edit.php:432
+#: ../core/edit.php:447
 #, php-format
 msgid ""
 "To finish posting your %s, please register below. If you already have an "
 "account, please <a href=\"%s\">login</a> instead."
 msgstr ""
 
-#: ../core/edit.php:483
+#: ../core/edit.php:498
 #, php-format
 msgid "%s answered question \"<a href=\"%s\">%s</a>\""
 msgstr ""
 
-#: ../core/edit.php:503
+#: ../core/edit.php:518
 #, php-format
 msgid "%s asked \"<a href=\"%s\">%s</a>\""
 msgstr ""
@@ -563,153 +558,150 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: ../core/template-tags.php:119
+#: ../core/template-tags.php:120
 msgid "prev"
 msgstr ""
 
-#: ../core/template-tags.php:141
+#: ../core/template-tags.php:142
 msgid "next"
 msgstr ""
 
-#: ../core/template-tags.php:175
+#: ../core/template-tags.php:176
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: ../core/template-tags.php:209
+#: ../core/template-tags.php:210
 msgid "link"
 msgstr ""
 
-#: ../core/template-tags.php:212
+#: ../core/template-tags.php:213
 msgid "edit"
 msgstr ""
 
-#: ../core/template-tags.php:215
+#: ../core/template-tags.php:216
 msgid "delete"
 msgstr ""
 
-#: ../core/template-tags.php:219 ../core/template-tags.php:222
+#: ../core/template-tags.php:220 ../core/template-tags.php:223
 msgid "report"
 msgstr ""
 
-#: ../core/template-tags.php:229
+#: ../core/template-tags.php:230
 msgid "Your report has been received."
 msgstr ""
 
-#: ../core/template-tags.php:231
+#: ../core/template-tags.php:232
 msgid "Please select a reason for reporting."
 msgstr ""
 
-#: ../core/template-tags.php:235
+#: ../core/template-tags.php:236
 msgid "Captcha error. Please try again."
 msgstr ""
 
-#: ../core/template-tags.php:275
+#: ../core/template-tags.php:276
 msgid "Select a reason for reporting:"
 msgstr ""
 
-#: ../core/template-tags.php:287
-msgid "Type the letters you see in the image below:"
+#: ../core/template-tags.php:288 ../core/template-tags.php:642
+#: ../core/template-tags.php:788
+msgid "Enter letters in image"
 msgstr ""
 
-#: ../core/template-tags.php:293
-msgid "[ Different Image ]"
-msgstr ""
-
-#: ../core/template-tags.php:297
+#: ../core/template-tags.php:302
 msgid "Send Report"
 msgstr ""
 
-#: ../core/template-tags.php:300
+#: ../core/template-tags.php:305
 msgid "Cancel"
 msgstr ""
 
-#: ../core/template-tags.php:378
+#: ../core/template-tags.php:386
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/template-tags.php:396
+#: ../core/template-tags.php:404
 msgid "This question is useful and clear (click again to undo)"
 msgstr ""
 
-#: ../core/template-tags.php:397
+#: ../core/template-tags.php:405
 msgid "This question is unclear or not useful (click again to undo)"
 msgstr ""
 
-#: ../core/template-tags.php:407 ../core/template-tags.php:444
+#: ../core/template-tags.php:415 ../core/template-tags.php:452
 msgid "Score"
 msgstr ""
 
-#: ../core/template-tags.php:421
+#: ../core/template-tags.php:429
 msgid "Click here to be notified of followup answers via e-mail"
 msgstr ""
 
-#: ../core/template-tags.php:422
+#: ../core/template-tags.php:430
 msgid "Stop notifying me of followup answers via e-mail"
 msgstr ""
 
-#: ../core/template-tags.php:433
+#: ../core/template-tags.php:441
 msgid "This answer is useful (click again to undo)"
 msgstr ""
 
-#: ../core/template-tags.php:434
+#: ../core/template-tags.php:442
 msgid "This answer is not useful (click again to undo)"
 msgstr ""
 
-#: ../core/template-tags.php:482
+#: ../core/template-tags.php:490
 msgid "Accept answer (click again to undo)"
 msgstr ""
 
-#: ../core/template-tags.php:490
+#: ../core/template-tags.php:498
 msgid "Accepted answer"
 msgstr ""
 
-#: ../core/template-tags.php:492
+#: ../core/template-tags.php:500
 msgid "accepted"
 msgstr ""
 
-#: ../core/template-tags.php:521
+#: ../core/template-tags.php:529
 msgid "answer"
 msgid_plural "answers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/template-tags.php:586 ../core/widgets.php:29
+#: ../core/template-tags.php:594 ../core/widgets.php:29
 msgid "Title:"
 msgstr ""
 
-#: ../core/template-tags.php:619
+#: ../core/template-tags.php:627
 msgid "Select category..."
 msgstr ""
 
-#: ../core/template-tags.php:624 ../core/widgets.php:148
+#: ../core/template-tags.php:633 ../core/widgets.php:148
 #: ../default-templates/single-question.php:20
 #: ../thesis-templates/single-question.php:29
 msgid "Tags:"
 msgstr ""
 
-#: ../core/template-tags.php:657
+#: ../core/template-tags.php:669
 #, php-format
 msgid "1 Answer"
 msgid_plural "%d Answers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/template-tags.php:738
+#: ../core/template-tags.php:750
 msgid "You are not allowed to add answers!"
 msgstr ""
 
-#: ../core/template-tags.php:788
+#: ../core/template-tags.php:805
 msgid "Submit"
 msgstr ""
 
-#: ../core/template-tags.php:790
+#: ../core/template-tags.php:807
 msgid "Register/Login and Submit"
 msgstr ""
 
-#: ../core/template-tags.php:792
+#: ../core/template-tags.php:809
 msgid "Login and Submit"
 msgstr ""
 
@@ -811,17 +803,17 @@ msgstr ""
 msgid "Your Answer"
 msgstr ""
 
-#: ../default-templates/user-question.php:16
+#: ../default-templates/user-question.php:23
 #: ../thesis-templates/user-question.php:27
 msgid "Name"
 msgstr ""
 
-#: ../default-templates/user-question.php:20
+#: ../default-templates/user-question.php:27
 #: ../thesis-templates/user-question.php:31
 msgid "Member for"
 msgstr ""
 
-#: ../default-templates/user-question.php:24
+#: ../default-templates/user-question.php:31
 #: ../thesis-templates/user-question.php:35
 msgid "Website"
 msgstr ""
@@ -854,11 +846,11 @@ msgstr ""
 msgid "One-column, no sidebar"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:66
+#: ../ui-admin/settings-general.php:67
 msgid "Q&A Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:69
+#: ../ui-admin/settings-general.php:70
 msgid "This page uses ajax. Settings are saved without a page refresh."
 msgstr ""
 
@@ -866,7 +858,7 @@ msgstr ""
 msgid "Theme Adaptation Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:86
+#: ../ui-admin/settings-general.php:83
 #, php-format
 msgid ""
 "Q&A supports these themes as default: <b>%s</b>. For the rest of themes, the "
@@ -875,21 +867,21 @@ msgid ""
 "having any display issues you can leave them as they are."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:93
+#: ../ui-admin/settings-general.php:89
 msgid "Page Layout"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:98
+#: ../ui-admin/settings-general.php:94
 msgid ""
 "Select the layout that will be applied to Q&A pages. For best result, apply "
 "the same layout of the rest of your pages."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:105
+#: ../ui-admin/settings-general.php:101
 msgid "Usable Page Width (px)"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:111
+#: ../ui-admin/settings-general.php:107
 msgid ""
 "Enter usable page width of your theme (Typically around 1000). Because of "
 "paddings, usable width can be slightly smaller than full page width. Tip: To "
@@ -898,42 +890,42 @@ msgid ""
 "width will be displayed."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:118
+#: ../ui-admin/settings-general.php:114
 msgid "Q&A Content Width (px)"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:124
+#: ../ui-admin/settings-general.php:120
 msgid ""
 "Enter the desired width of main Q&A content box. Recommended minimum width "
 "is 584."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:131
+#: ../ui-admin/settings-general.php:127
 msgid "Alignment of Q&A Content"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:135
+#: ../ui-admin/settings-general.php:131
 msgid "Center"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:136
+#: ../ui-admin/settings-general.php:132
 msgid "Left"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:137
+#: ../ui-admin/settings-general.php:133
 msgid "Right"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:141
+#: ../ui-admin/settings-general.php:137
 msgid ""
 "Select the desired alignment of Q&A content relative to the page and sidebar."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:148
+#: ../ui-admin/settings-general.php:144
 msgid "Sidebar Width (px)"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:154
+#: ../ui-admin/settings-general.php:150
 msgid ""
 "Enter the sidebar width of your theme, if you selected sidebar to be "
 "displayed in page layout setting. Depending on margins, you may need to set "
@@ -942,11 +934,11 @@ msgid ""
 "select \"Inspect element\". Dimensions of the sidebar will be displayed."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:164
+#: ../ui-admin/settings-general.php:160
 msgid "Estimate Additional css Rules"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:167
+#: ../ui-admin/settings-general.php:163
 msgid ""
 "When you click this button, using the above widths and selected layout, css "
 "rules will be automatically estimated and saved inside the \"Additional ccs "
@@ -956,35 +948,35 @@ msgid ""
 "time Additional css Rules field is reset."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:185
+#: ../ui-admin/settings-general.php:180
 msgid "Page width cannot be empty"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:190
+#: ../ui-admin/settings-general.php:185
 msgid "Content width cannot be empty"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:195
+#: ../ui-admin/settings-general.php:190
 msgid "With the selected page layout, sidebar width cannot be empty"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:200
+#: ../ui-admin/settings-general.php:195
 msgid "Page width cannot be less than content width + sidebar width"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:205
+#: ../ui-admin/settings-general.php:200
 msgid ""
 "Your additional css rules field is not empty. If you continue, existing "
 "value be overwritten. Are you sure?"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:222
+#: ../ui-admin/settings-general.php:217
 msgid ""
 "Additional css rules estimated and saved. Now you can check display of QA "
 "pages in different browsers."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:225
+#: ../ui-admin/settings-general.php:220
 msgid "A connection error occurred. Please try again."
 msgstr ""
 
@@ -998,38 +990,38 @@ msgid ""
 "Ensure that you use valid css. e.g."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:247
+#: ../ui-admin/settings-general.php:248
 msgid "Search Input Field Width (px)"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:253
+#: ../ui-admin/settings-general.php:254
 msgid ""
 "If search input field is displayed below the Q&A menu, reduce this value."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:266 ../ui-admin/settings-general.php:321
-#: ../ui-admin/settings-general.php:499 ../ui-admin/settings-general.php:545
+#: ../ui-admin/settings-general.php:267 ../ui-admin/settings-general.php:322
+#: ../ui-admin/settings-general.php:498 ../ui-admin/settings-general.php:544
 msgid "Save Everything on this Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:268 ../ui-admin/settings-general.php:323
-#: ../ui-admin/settings-general.php:501 ../ui-admin/settings-general.php:547
+#: ../ui-admin/settings-general.php:269 ../ui-admin/settings-general.php:324
+#: ../ui-admin/settings-general.php:500 ../ui-admin/settings-general.php:546
 msgid "Settings saved"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:272
+#: ../ui-admin/settings-general.php:273
 msgid "Other Display Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:280
+#: ../ui-admin/settings-general.php:281
 msgid "Questions Per Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:283
+#: ../ui-admin/settings-general.php:284
 msgid "If left empty, WP setting will be used: "
 msgstr ""
 
-#: ../ui-admin/settings-general.php:286
+#: ../ui-admin/settings-general.php:287
 #, php-format
 msgid ""
 "IMPORTANT: Questions Per Page cannot be less than Wordpress %s setting, "
@@ -1037,115 +1029,115 @@ msgid ""
 "used instead."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:286
+#: ../ui-admin/settings-general.php:287
 msgid "Blog pages show at most"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:293
+#: ../ui-admin/settings-general.php:294
 msgid "Answers Per Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:296
+#: ../ui-admin/settings-general.php:297
 msgid "If left empty: 20"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:302
+#: ../ui-admin/settings-general.php:303
 msgid "Disable WP Editor"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:308
+#: ../ui-admin/settings-general.php:309
 msgid ""
 "If you are having issues with Buddypress or if you don't want submissions to "
 "be formatted, check this checkbox. Then, textarea will be used for question "
 "and answer forms instead of the WP editor."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:327
+#: ../ui-admin/settings-general.php:328
 msgid "Accessibility Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:336
+#: ../ui-admin/settings-general.php:337
 msgid "Assign Capabilities"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:345
+#: ../ui-admin/settings-general.php:344
 msgid ""
 "This list has all the user roles of your website. As you make a new "
 "selection, capability of that role will be displayed. Select a role to which "
 "you want to assign WP Q&A capabilities."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:361
+#: ../ui-admin/settings-general.php:360
 msgid "After Visitor Submits a Question or Answer"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:371
+#: ../ui-admin/settings-general.php:370
 msgid "He is asked for registration"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:372
+#: ../ui-admin/settings-general.php:371
 msgid "Question is assigned to a user"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:381
+#: ../ui-admin/settings-general.php:380
 msgid "Assign to: "
 msgstr ""
 
-#: ../ui-admin/settings-general.php:386
+#: ../ui-admin/settings-general.php:385
 msgid ""
 "Every question and answer should have an author. If you want to let the "
 "visitor submit a question or answer without the need for registration, you "
 "can assign a preset author."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:394
+#: ../ui-admin/settings-general.php:393
 msgid "Thank You Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:405
+#: ../ui-admin/settings-general.php:404
 msgid ""
 "If questions and are saved as pending, user will be redirected to this page "
 "after submitting a question or answer."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:412
+#: ../ui-admin/settings-general.php:411
 msgid "Unauthorized Access Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:424
+#: ../ui-admin/settings-general.php:423
 msgid ""
 "If a user tries to access a page he should not access, he will be redirected "
 "to this page instead."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:431
+#: ../ui-admin/settings-general.php:430
 msgid "Report reasons"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:437
+#: ../ui-admin/settings-general.php:436
 msgid ""
 "Enter reasons of reporting to be chosen by the user each one separated by "
 "comma, e.g. Spam,Language. If left empty, user will not be asked to select a "
 "report reason."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:444
+#: ../ui-admin/settings-general.php:443
 msgid "Use Captcha"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:450
-msgid "Whether to use Captcha verification while submitting report."
+#: ../ui-admin/settings-general.php:449
+msgid "Whether to use Captcha verification while submitting."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:453
+#: ../ui-admin/settings-general.php:452
 msgid "Note: Your php installation does not let Captcha usage."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:461
+#: ../ui-admin/settings-general.php:460
 msgid "Email address on report"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:467
+#: ../ui-admin/settings-general.php:466
 msgid ""
 "Email address that will be notified in case a question or answer is "
 "reported. Leaving empty will disable notification. Note: If a question or "
@@ -1153,30 +1145,30 @@ msgid ""
 "but number of reports and latest reporter will be saved."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:479
+#: ../ui-admin/settings-general.php:478
 msgid "Disable Reply in Activity Stream"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:485
+#: ../ui-admin/settings-general.php:484
 msgid ""
 "Checking this will disable commenting for the question asked notification in "
 "Buddypress Activity Stream, forsing user to answer the question through "
 "plugin generated pages."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:505
+#: ../ui-admin/settings-general.php:504
 msgid "Notification Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:514
+#: ../ui-admin/settings-general.php:513
 msgid "Notification E-mail Subject"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:520 ../ui-admin/settings-general.php:533
+#: ../ui-admin/settings-general.php:519 ../ui-admin/settings-general.php:532
 msgid "Variables:"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:527
+#: ../ui-admin/settings-general.php:526
 msgid "Notification E-mail Content"
 msgstr ""
 

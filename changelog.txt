@@ -1,10 +1,15 @@
 ﻿== Changelog ==
 
+= 1.4.3.1 = 2014-02-21
+- Notifications of new questions to users moved to after the transition to published.
+- Added cc Administrator settings, CC admin on all emails.
+- Changed Class structure to newer _construct for strict parsing.
+
 = 1.4.3 =
 - "Use Captcha" setting now applies to Questions and Answers as wel as Reports.
 
 = 1.4.2.9 =
-- Added twentythirteen and twentyfourteen custom templates. Twentyfourteenois an example of a responsive Q&A
+- Added twentythirteen and twentyfourteen custom templates. Twentyfourteen is an example of a responsive Q&A
 - New WPMU Dashboard
 
 = 1.4.2.8 =

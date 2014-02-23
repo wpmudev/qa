@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Takes care of everything that has to do with content creation and editing.
- */
+* Takes care of everything that has to do with content creation and editing.
+*/
 class QA_Edit {
 
-	function QA_Edit() {
+	function __construct() {
 		$this->g_settings = $this->get_options('general_settings');
 
 		add_action( 'init', array( &$this, 'handle_forms' ), 11 );
@@ -25,24 +25,24 @@ class QA_Edit {
 	}
 
 	/**
-	 * Get plugin options.
-	 *
-	 * @param  string|NULL $key The key for that plugin option.
-	 * @return array $options Plugin options or empty array if no options are found
-	 */
+	* Get plugin options.
+	*
+	* @param  string|NULL $key The key for that plugin option.
+	* @return array $options Plugin options or empty array if no options are found
+	*/
 	function get_options( $key = null ) {
 		$options = get_option( QA_OPTIONS_NAME );
 		$options = is_array( $options ) ? $options : array();
 		// Check if specific plugin option is requested and return it
 		if ( isset( $key ) && array_key_exists( $key, $options ) )
-			return $options[$key];
+		return $options[$key];
 		else
-			return $options;
+		return $options;
 	}
 
 	function handle_forms() {
 		if ( !isset( $_REQUEST['_wpnonce'] ) )
-			return;
+		return;
 
 		// Handle deletions
 		if ( isset( $_REQUEST['qa_delete'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'qa_delete' ) ) {
@@ -60,12 +60,12 @@ class QA_Edit {
 		} elseif ( isset( $_POST['qa_action'] ) ) {
 			switch ( $_POST['qa_action'] ) {
 				case 'edit_question':
-					$url = $this->handle_question_editing();
-					break;
+				$url = $this->handle_question_editing();
+				break;
 
 				case 'edit_answer':
-					$url = $this->handle_answer_editing();
-					break;
+				$url = $this->handle_answer_editing();
+				break;
 			}
 		} else {
 			return;
@@ -83,7 +83,7 @@ class QA_Edit {
 		global $wpdb, $qa_general_settings;
 
 		if ( !wp_verify_nonce( $_POST['_wpnonce'], 'qa_edit' ) )
-			wp_die( __( 'Nonce error: It looks like you don\'t have permission to do that.', QA_TEXTDOMAIN ) );
+		wp_die( __( 'Nonce error: It looks like you don\'t have permission to do that.', QA_TEXTDOMAIN ) );
 
 		// Handle captcha
 		if( $qa_general_settings['captcha'] ) {
@@ -95,22 +95,22 @@ class QA_Edit {
 		$question_id = (int) $_POST['question_id'];
 
 		$question = array(
-			'post_title' => trim( wp_strip_all_tags( $_POST['question_title'] ) ),
-			'post_content' => trim( $_POST['question_content'] ),
+		'post_title' => trim( wp_strip_all_tags( $_POST['question_title'] ) ),
+		'post_content' => trim( $_POST['question_content'] ),
 		);
 
 		if ( empty( $question['post_title'] ) || empty( $question['post_content'] ) )
-			wp_die( __( 'Questions must have both a title and a body. Please use your browser\'s back button to edit your question.', QA_TEXTDOMAIN ) );
+		wp_die( __( 'Questions must have both a title and a body. Please use your browser\'s back button to edit your question.', QA_TEXTDOMAIN ) );
 
 		// Check for duplicates
 		if ( !$question_id ) {
 			$dup_id = $wpdb->get_var( $wpdb->prepare( "
-				SELECT ID
-				FROM $wpdb->posts
-				WHERE post_type = 'question'
-				AND post_status = 'publish'
-				AND (post_title = %s OR post_content = %s)
-				LIMIT 1
+			SELECT ID
+			FROM $wpdb->posts
+			WHERE post_type = 'question'
+			AND post_status = 'publish'
+			AND (post_title = %s OR post_content = %s)
+			LIMIT 1
 			", $question['post_title'], $question['post_content'] ) );
 
 			if ( $dup_id ) {
@@ -119,8 +119,8 @@ class QA_Edit {
 		}
 
 		$question_id = $this->_insert_post( $question_id, $question, array(
-			'post_type' => 'question',
-			'comment_status' => 'open',
+		'post_type' => 'question',
+		'comment_status' => 'open',
 		) );
 
 		return qa_get_url( 'single', $question_id );
@@ -130,7 +130,7 @@ class QA_Edit {
 		global $wpdb, $qa_general_settings;
 
 		if ( !wp_verify_nonce( $_POST['_wpnonce'], 'qa_answer' ) )
-			wp_die( __( 'Nonce error: It looks like you don\'t have permission to do that.', QA_TEXTDOMAIN ) );
+		wp_die( __( 'Nonce error: It looks like you don\'t have permission to do that.', QA_TEXTDOMAIN ) );
 
 		// Handle captcha
 		if( $qa_general_settings['captcha'] ) {
@@ -150,28 +150,28 @@ class QA_Edit {
 		}
 
 		$answer = array(
-			'post_title' => $title,
-			'post_parent' => absint( $question_id ),
-			'post_content' => trim( $_POST['answer'] ),
-			'post_type' => 'answer',
-			'post_status' => 'publish',
+		'post_title' => $title,
+		'post_parent' => absint( $question_id ),
+		'post_content' => trim( $_POST['answer'] ),
+		'post_type' => 'answer',
+		'post_status' => 'publish',
 		);
 
 		if ( empty( $answer['post_parent'] ) )
-			wp_die( __( 'Answer must be associated to a question.', QA_TEXTDOMAIN ) );
+		wp_die( __( 'Answer must be associated to a question.', QA_TEXTDOMAIN ) );
 
 		if ( empty( $answer['post_content'] ) )
-			wp_die( __( 'You have to actually write something. Please use your browser\'s back button to edit your answer.', QA_TEXTDOMAIN ) );
+		wp_die( __( 'You have to actually write something. Please use your browser\'s back button to edit your answer.', QA_TEXTDOMAIN ) );
 
 		// Check for duplicates
 		$dup_id = $wpdb->get_var( $wpdb->prepare( "
-			SELECT ID
-			FROM $wpdb->posts
-			WHERE post_type = 'answer'
-			AND post_status = 'publish'
-			AND post_parent = %d
-			AND post_content = %s
-			LIMIT 1
+		SELECT ID
+		FROM $wpdb->posts
+		WHERE post_type = 'answer'
+		AND post_status = 'publish'
+		AND post_parent = %d
+		AND post_content = %s
+		LIMIT 1
 		", $answer['post_parent'], $answer['post_content'] ) );
 
 		if ( $dup_id ) {
@@ -179,14 +179,14 @@ class QA_Edit {
 		}
 
 		$answer_id = $this->_insert_post( $answer_id, $answer, array(
-			'post_type' => 'answer',
-			'comment_status' => 'open',
+		'post_type' => 'answer',
+		'comment_status' => 'open',
 		) );
 
 		return qa_get_url( 'single', $answer_id );
 	}
 
-	function _insert_post( $post_id, $post, $defaults ) {
+	function _insert_post( $post_id, $post_args, $defaults ) {
 		if ( !$post_id ) {
 			global $wpdb, $qa_email_notification_content, $qa_email_notification_subject, $current_site;
 
@@ -198,105 +198,67 @@ class QA_Edit {
 
 			// Assign an author, if selected so flooding check can work
 			if ( !is_user_logged_in() && 'assign' == $this->g_settings["method"] )
-				$post['post_author'] = $this->g_settings["assigned_to"];
+			$post_args['post_author'] = $this->g_settings["assigned_to"];
 
 			// Check for flooding
 			$most_recent = $wpdb->get_var( $wpdb->prepare( "
-				SELECT MAX(post_date)
-				FROM $wpdb->posts
-				WHERE post_status = 'publish'
-				AND post_type IN ('question', 'answer')
-				AND post_author = %d
+			SELECT MAX(post_date)
+			FROM $wpdb->posts
+			WHERE post_status = 'publish'
+			AND post_type IN ('question', 'answer')
+			AND post_author = %d
 			", get_current_user_id() ) );
 
 			$diff = current_time( 'timestamp' ) - strtotime( $most_recent );
 			if ( !current_user_can('manage_options') && $diff < QA_FLOOD_SECONDS )
-				wp_die( __( 'You are posting too fast. Slow down.', QA_TEXTDOMAIN ) );
+			wp_die( __( 'You are posting too fast. Slow down.', QA_TEXTDOMAIN ) );
 
 			$v = get_role( 'visitor' );
 			if ( $v && is_object( $v ) && $v->has_cap( 'immediately_publish_questions' ) )
-				$visitor_can_publish = true;
+			$visitor_can_publish = true;
 			else
-				$visitor_can_publish = false;
+			$visitor_can_publish = false;
 
 			// Find if post will be saved as pending. New in V1.2
-			$post = array_merge( $post, $defaults );
+			$post_args = array_merge( $post_args, $defaults );
 			if ( is_user_logged_in() && current_user_can( 'immediately_publish_questions' ) )
-					$post['post_status'] = 'publish';
+			$post_args['post_status'] = 'publish';
 			else if ( is_user_logged_in() )
-				$post['post_status'] = 'pending';
+			$post_args['post_status'] = 'pending';
 			else if ( $visitor_can_publish )
-				$post['post_status'] = 'publish';
+			$post_args['post_status'] = 'publish';
 			else
-				$post['post_status'] = 'pending';
+			$post_args['post_status'] = 'pending';
 
 			// Create new post
-			$post = apply_filters( 'qa_before_insert_post', $post );
-			$post_id = wp_insert_post( $post, true );
+			$post_args = apply_filters( 'qa_before_insert_post', $post_args );
+			$post_id = wp_insert_post( $post_args, true );
 
 			// Add tags
-			$question_tag = apply_filters( 'qa_before_add_tag', @$_POST['question_tags'], $post );
+			$question_tag = apply_filters( 'qa_before_add_tag', @$_POST['question_tags'], $post_args );
 			wp_set_post_terms( $post_id, $question_tag, 'question_tag' );
 
 			// Add category
-			$question_category = apply_filters( 'qa_before_add_category', array( (int) @$_POST['question_cat'] ), $post );
+			$question_category = apply_filters( 'qa_before_add_category', array( (int) @$_POST['question_cat'] ), $post_args );
 			// Assign a default category if selected so
 			if ( ( empty( $question_category ) || -1 == $question_category[0] )
-				&& isset( $this->g_settings["default_category"] ) && $this->g_settings["default_category"] )
-				$question_category = array( $this->g_settings["default_category"] );
+			&& isset( $this->g_settings["default_category"] ) && $this->g_settings["default_category"] )
+			$question_category = array( $this->g_settings["default_category"] );
 			wp_set_post_terms( $post_id, $question_category, 'question_category' );
 
-			$post = get_post( $post_id, ARRAY_A );
+			$post = get_post( $post_id );
 
 			// Notification
 			if (isset($defaults['post_type']) && $defaults['post_type'] == 'question') {
-				$notification_subscriptions = $wpdb->get_results( "SELECT user_id
-					FROM {$wpdb->usermeta}
-					WHERE meta_key = 'qa_notification'
-					AND meta_value = 1");
-				// Add custom users to be notified
-				$notification_subscriptions = apply_filters( 'qa_notified_users', $notification_subscriptions, $post );
-
-				$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
-				$message_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $message_content );
-				$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
-
-				$message_content = str_replace( "QUESTION_TITLE", $post['post_title'], $message_content );
-				$message_content = str_replace( "QUESTION_DESCRIPTION", strip_tags($post['post_content']), $message_content );
-				$message_content = str_replace( "QUESTION_LINK", get_permalink($post_id), $message_content );
-				// Modify email message
-				$message_content = apply_filters( 'qa_message_content', $message_content, $post );
-
-				$message_content = str_replace( "\'", "'", $message_content );
-
-				$subject_content = get_option('qa_email_notification_subject', $qa_email_notification_subject);
-				$subject_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $subject_content );
-				// Modify message subject
-				$subject_content = apply_filters( 'qa_message_subject', $subject_content, $post );
-
-				$admin_email = get_site_option('admin_email');
-				if ( !$admin_email ){
-					$admin_email = 'admin@' . $current_site->domain;
-				}
-
-				$message_headers = "MIME-Version: 1.0\n" . "From: " . get_option( 'blogname' ) .  " <{$admin_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
-				// Modify message headers
-				$message_headers = apply_filters( 'qa_message_headers', $message_headers, $post );
-
-				foreach ( $notification_subscriptions as $uid ) {
-					$user_data = get_userdata($uid->user_id);
-					if ( $user_data )
-						wp_mail( $user_data->user_email, $subject_content, str_replace( "TO_USER", $user_data->display_name, $message_content ), $message_headers);
-				}
+				$this->on_question_notify($post, true);
 			}
-
 
 			// Anon posting
 			if ( !is_user_logged_in() ) {
 
 				$login_url = site_url( 'wp-login.php', 'login' );
 				if ( get_option( 'users_can_register' ) )
-					$login_url .= '?action=register';
+				$login_url .= '?action=register';
 
 				$login_url = apply_filters( 'qa_login_url', $login_url );
 
@@ -309,7 +271,7 @@ class QA_Edit {
 					die;
 				}
 				// Send him to the page if post is published
-				if ( 'publish' == $post['post_status'] ) {
+				if ( 'publish' == $post->post_status ) {
 					wp_redirect( get_permalink( $post_id ) );
 					die;
 				}
@@ -319,25 +281,25 @@ class QA_Edit {
 					die;
 				}
 			}
-			else if ( 'publish' != $post['post_status'] ) {
+			else if ( 'publish' != $post->post_status ) {
 				wp_redirect( get_permalink( $this->g_settings["thank_you"] ) );
 				die;
 			}
 		} else {
 			if ( !current_user_can( 'edit_post', $post_id ) )
-				die( "Cheatin' uh?" );
+			die( "Cheatin' uh?" );
 
 			// Update post
-			$post['ID'] = $post_id;
-			$post = apply_filters( 'qa_before_update_post', $post );
-			$post_id = wp_update_post( $post, true );
+			$post_args['ID'] = $post_id;
+			$post_args = apply_filters( 'qa_before_update_post', $post_args );
+			$post_id = wp_update_post( $post_args, true );
 
 			// Add tags
-			$question_tag = apply_filters( 'qa_before_add_tag', @$_POST['question_tags'], $post );
+			$question_tag = apply_filters( 'qa_before_add_tag', @$_POST['question_tags'], $post_args );
 			wp_set_post_terms( $post_id, $question_tag, 'question_tag' );
 
 			// Add category
-			$question_category = apply_filters( 'qa_before_add_category', array( (int) @$_POST['question_cat'] ), $post );
+			$question_category = apply_filters( 'qa_before_add_category', array( (int) @$_POST['question_cat'] ), $post_args );
 			wp_set_post_terms( $post_id, $question_category, 'question_category' );
 		}
 
@@ -348,26 +310,80 @@ class QA_Edit {
 		return $post_id;
 	}
 
+	//Notify if Question trasitions to 'publish'
+	function on_question_notify( $post = null, $pre_publish = false){
+		global $wpdb;
+
+		$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
+		$message_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $message_content );
+		$message_content = str_replace( "SITE_URL", 'http://' . $current_site->domain . '', $message_content );
+
+		$message_content = str_replace( "QUESTION_TITLE", $post->post_title, $message_content );
+		$message_content = str_replace( "QUESTION_DESCRIPTION", strip_tags($post->post_content), $message_content );
+		$message_content = str_replace( "QUESTION_LINK", get_permalink($post->ID), $message_content );
+		// Modify email message
+		$message_content = apply_filters( 'qa_message_content', $message_content, $post );
+
+		$message_content = str_replace( "\'", "'", $message_content );
+
+		$subject_content = get_option('qa_email_notification_subject', $qa_email_notification_subject);
+		$subject_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $subject_content );
+		// Modify message subject
+		$subject_content = apply_filters( 'qa_message_subject', $subject_content, $post );
+
+		$admin_email = get_site_option('admin_email');
+		if ( !$admin_email ){
+			$admin_email = 'admin@' . $current_site->domain;
+		}
+
+		$message_headers = "MIME-Version: 1.0\n" . "From: " . get_option( 'blogname' ) .  " <{$admin_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
+		// Modify message headers
+		$message_headers = apply_filters( 'qa_message_headers', $message_headers, $post );
+
+		if( get_option('qa_cc_admin') )	{
+			$admin_ids = new WP_User_Query( array('role' => 'administrator', 'fields' => 'ID') );
+			$admin_ids = (array)$admin_ids->results;
+		}
+		if($pre_publish){
+			$notification_subscriptions = $admin_ids;
+		} else {
+			$notification_subscriptions = array_keys($wpdb->get_results( "SELECT user_id
+			FROM {$wpdb->usermeta}
+			WHERE meta_key = 'qa_notification'
+			AND meta_value = 1",
+			OBJECT_K) );
+			// Add custom users to be notified
+		}
+		$notification_subscriptions = apply_filters( 'qa_notified_users', $notification_subscriptions, $post );
+
+		foreach ( $notification_subscriptions as $uid ) {
+			$user_data = get_userdata($uid);
+			if ( $user_data )
+			wp_mail( $user_data->user_email, $subject_content, str_replace( "TO_USER", $user_data->display_name, $message_content ), $message_headers);
+		}
+
+	}
+
 	// Redirect user to his claimed post, if there is one
 	function wp_login( $login ) {
 		$post_id = $this->_get_post_to_claim();
 
 		if ( !$post_id )
-			return;
+		return;
 
 		$user =  get_user_by('login', $login);
 
 		if ( user_can( $user->ID, 'immediately_publish_questions' ) )
-			wp_update_post( array(
-				'ID' => $post_id,
-				'post_author' => $user->ID,
-				'post_status' => 'publish'
-			) );
+		wp_update_post( array(
+		'ID' => $post_id,
+		'post_author' => $user->ID,
+		'post_status' => 'publish'
+		) );
 		else
-			wp_update_post( array(
-				'ID' => $post_id,
-				'post_author' => $user->ID
-			) );
+		wp_update_post( array(
+		'ID' => $post_id,
+		'post_author' => $user->ID
+		) );
 
 		delete_post_meta( $post_id, '_claim' );
 		setcookie( '_qa_claim', false, time() - 3600, '/' );
@@ -375,10 +391,10 @@ class QA_Edit {
 		// Check if post is published
 		$post = get_post( $post_id );
 		if ( 'publish' == $post->post_status )
-			wp_safe_redirect( qa_get_url( 'single', $post_id ) );
+		wp_safe_redirect( qa_get_url( 'single', $post_id ) );
 		else {
 			if ( !$url = get_permalink( $this->g_settings['thank_you'] ) )
-				$url = site_url();
+			$url = site_url();
 			wp_redirect( $url );
 		}
 		die;
@@ -389,7 +405,7 @@ class QA_Edit {
 		$post_id = $this->_get_post_to_claim();
 
 		if ( !$post_id )
-			return;
+		return;
 
 		wp_set_auth_cookie( $user_id, true, is_ssl() );
 
@@ -399,19 +415,19 @@ class QA_Edit {
 		$post_id = $this->_get_post_to_claim();
 
 		if ( !$post_id )
-			return;
+		return;
 
 		if ( user_can( $user->ID, 'immediately_publish_questions' ) )
-			wp_update_post( array(
-				'ID' => $post_id,
-				'post_author' => $user->ID,
-				'post_status' => 'publish'
-			) );
+		wp_update_post( array(
+		'ID' => $post_id,
+		'post_author' => $user->ID,
+		'post_status' => 'publish'
+		) );
 		else
-			wp_update_post( array(
-				'ID' => $post_id,
-				'post_author' => $user->ID
-			) );
+		wp_update_post( array(
+		'ID' => $post_id,
+		'post_author' => $user->ID
+		) );
 
 		delete_post_meta( $post_id, '_claim' );
 		setcookie( '_qa_claim', false, time() - 3600, '/' );
@@ -422,14 +438,14 @@ class QA_Edit {
 		$post_id = $this->_get_post_to_claim();
 
 		if ( !$post_id )
-			return;
+		return;
 
 		// Check if post is published
 		$post = get_post( $post_id );
 		if ( 'publish' == $post->post_status )
-			$url = qa_get_url( 'single', $post_id );
+		$url = qa_get_url( 'single', $post_id );
 		else if ( !$url = get_permalink( $this->g_settings['thank_you'] ) )
-			$url = site_url();
+		$url = site_url();
 
 		return $url;
 	}
@@ -439,10 +455,10 @@ class QA_Edit {
 		$post_id = $this->_get_post_to_claim();
 
 		if ( !$post_id )
-			return $msg;
+		return $msg;
 
 		if ( 'register' != @$_GET['action'] )
-			return $msg;
+		return $msg;
 
 		$text = sprintf( __( 'To finish posting your %s, please register below. If you already have an account, please <a href="%s">login</a> instead.', QA_TEXTDOMAIN ), get_post_type( $post_id ), wp_login_url() );
 
@@ -451,18 +467,18 @@ class QA_Edit {
 
 	function _get_post_to_claim() {
 		if ( !isset( $_COOKIE['_qa_claim'] ) )
-			return false;
+		return false;
 
 
 		$posts = get_posts( array(
-			'post_type' => array( 'question', 'answer' ),
-			'meta_key' => '_claim',
-			'meta_value' => $_COOKIE['_qa_claim'],
-			'post_status' => array( 'publish', 'pending' )
+		'post_type' => array( 'question', 'answer' ),
+		'meta_key' => '_claim',
+		'meta_value' => $_COOKIE['_qa_claim'],
+		'post_status' => array( 'publish', 'pending' )
 		) );
 
 		if ( empty( $posts ) )
-			return false;
+		return false;
 
 		return $posts[0]->ID;
 	}
@@ -472,14 +488,14 @@ class QA_Edit {
 		global $wp_rewrite;
 
 		if ( 'question' == $post_type )
-			return in_array( $slug, array( 'ask', 'unanswered', 'edit', 'tags', $wp_rewrite->pagination_base ) );
+		return in_array( $slug, array( 'ask', 'unanswered', 'edit', 'tags', $wp_rewrite->pagination_base ) );
 
 		return $r;
 	}
 
 	function transition_post_status( $new_status, $old_status, $post ) {
 		if ( $new_status == $old_status )
-			return;
+		return;
 
 		global $user_ID;
 
@@ -493,14 +509,14 @@ class QA_Edit {
 			if (function_exists('bp_activity_add')) {
 				$question = get_post($post->post_parent);
 				$activity_id = bp_activity_add( array(
-					'id' => get_post_meta($post->ID, '_bp_activity_id', true),
-					'user_id' => $user_ID,
-					'action' => sprintf(__('%s answered question "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $question->post_title),
-					'primary_link' => get_permalink($post->ID),
-					'component' => 'qa',
-					'type' => 'activity_update',
-					'item_id' => $post->ID,
-					'secondary_item_id' => $question->ID
+				'id' => get_post_meta($post->ID, '_bp_activity_id', true),
+				'user_id' => $user_ID,
+				'action' => sprintf(__('%s answered question "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $question->post_title),
+				'primary_link' => get_permalink($post->ID),
+				'component' => 'qa',
+				'type' => 'activity_update',
+				'item_id' => $post->ID,
+				'secondary_item_id' => $question->ID
 				));
 				if ($activity_id) {
 					update_post_meta($post->ID, '_bp_activity_id', $activity_id);
@@ -510,16 +526,17 @@ class QA_Edit {
 
 		if ( 'question' == $post->post_type && 'publish' == $new_status ) {
 			do_action( 'qa_new_question_published', $post );
+			$this->on_question_notify($post);
 			// Post to activity stream
 			if (function_exists('bp_activity_add')) {
 				$activity_id = bp_activity_add( array(
-					'id' => get_post_meta($post->ID, '_bp_activity_id', true),
-					'user_id' => $user_ID,
-					'action' => sprintf(__('%s asked "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $post->post_title),
-					'primary_link' => get_permalink($post->ID),
-					'component' => 'qa',
-					'type' => 'activity_update',
-					'item_id' => $post->ID,
+				'id' => get_post_meta($post->ID, '_bp_activity_id', true),
+				'user_id' => $user_ID,
+				'action' => sprintf(__('%s asked "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $post->post_title),
+				'primary_link' => get_permalink($post->ID),
+				'component' => 'qa',
+				'type' => 'activity_update',
+				'item_id' => $post->ID,
 				));
 				if ($activity_id) {
 					update_post_meta($post->ID, '_bp_activity_id', $activity_id);
@@ -533,11 +550,11 @@ class QA_Edit {
 		global $wpdb;
 
 		$r = $wpdb->update( $wpdb->posts,
-			array(
-				'post_modified' => current_time( 'mysql' ),
-				'post_modified_gmt' => current_time( 'mysql', true ),
-			),
-			array( 'ID' => $post_id )
+		array(
+		'post_modified' => current_time( 'mysql' ),
+		'post_modified_gmt' => current_time( 'mysql', true ),
+		),
+		array( 'ID' => $post_id )
 		);
 	}
 
@@ -547,13 +564,13 @@ class QA_Edit {
 		$post = get_post( $post_id );
 
 		if ( 'answer' != $post->post_type )
-			return;
+		return;
 
 		$question_id = $post->post_parent;
 
 		$count = $_qa_core->get_count( array(
-			'post_type' => 'answer',
-			'post_parent' => $question_id,
+		'post_type' => 'answer',
+		'post_parent' => $question_id,
 		) );
 
 		// When deleting/trashing, don't count it
@@ -568,7 +585,7 @@ class QA_Edit {
 	// since 1.4.2
 	function delete_term( $term, $tt_id, $taxonomy ) {
 		if ( 'question_category' != $term->name || $term->term_id != @$this->g_settings["default_category"] )
-			return;
+		return;
 
 		// Set as None as our default category is deleted
 		$this->g_settings['default_category'] = 0;

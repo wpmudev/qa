@@ -245,3 +245,4 @@ function qa_supported_themes(){
 
 	return '';
 }
+

@@ -5,7 +5,7 @@
  */
 class QA_Votes {
 
-	function QA_Votes() {
+	function __construct() {
 		add_action( 'template_redirect', array( &$this, 'handle_voting' ), 9 );
 		add_action( 'template_redirect', array( &$this, 'handle_accepting' ), 9 );
 		add_action( 'transition_post_status', array( &$this, 'update_reps' ), 10, 3 );
@@ -14,10 +14,10 @@ class QA_Votes {
 		if ( !is_admin() )
 			add_filter( 'posts_clauses', array( &$this, 'posts_clauses' ), 10, 2 );
 	}
-	
+
 	function bp_before_member_header_meta() {
 		global $bp;
-		
+
 		echo sprintf(__('<span class="qa qa-rep activity">QA rep %d</span>', QA_TEXTDOMAIN), number_format_i18n( qa_get_user_rep(  bp_displayed_user_id() ) ));
 	}
 
