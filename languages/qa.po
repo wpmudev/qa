@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Q&A\n"
-"POT-Creation-Date: 2014-01-26 14:36-0500\n"
-"PO-Revision-Date: 2014-01-26 14:46-0500\n"
+"POT-Creation-Date: 2014-02-23 13:42-0500\n"
+"PO-Revision-Date: 2014-02-23 16:38-0500\n"
 "Last-Translator: Arnold Bailey <arnold@incsub.com>\n"
 "Language-Team: Arnold Bailey <arnold@incsub.com>\n"
 "Language: en\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../qa.php:119
+#: ../qa.php:121
 msgid ""
 "<b>[Q&A]</b> There is already a running version of Q&A. Please check if you "
 "have already installed Q&A or Q&A Lite beforehand. You need to deactivate "
@@ -118,7 +118,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ../core/admin.php:221 ../core/buddypress.php:109 ../core/core.php:257
+#: ../core/admin.php:221 ../core/buddypress.php:109 ../core/core.php:258
 #: ../default-templates/user-question.php:56
 #: ../thesis-templates/user-question.php:60
 msgid "Question"
@@ -217,26 +217,26 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: ../core/admin.php:700
+#: ../core/admin.php:701
 msgid "You are not authorised to do this"
 msgstr ""
 
-#: ../core/admin.php:705
+#: ../core/admin.php:706
 #, php-format
 msgid ""
 "Your current theme %s is already supported by Q&A. No additional css rules "
 "are necessary."
 msgstr ""
 
-#: ../core/admin.php:712
+#: ../core/admin.php:713
 msgid "At least One of the variables is missing"
 msgstr ""
 
-#: ../core/admin.php:762 ../core/admin.php:773
+#: ../core/admin.php:763 ../core/admin.php:774
 msgid "Page layout is not selected"
 msgstr ""
 
-#: ../core/admin.php:770
+#: ../core/admin.php:771
 msgid "Nothing has been changed. Please double check your settings."
 msgstr ""
 
@@ -252,7 +252,7 @@ msgid_plural "Answers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/answers.php:43 ../core/core.php:258
+#: ../core/answers.php:43 ../core/core.php:259
 msgid "Add New"
 msgstr ""
 
@@ -322,139 +322,139 @@ msgstr ""
 msgid "You can edit it by clicking this link:"
 msgstr ""
 
-#: ../core/core.php:200
+#: ../core/core.php:201
 msgid "Question Categories"
 msgstr ""
 
-#: ../core/core.php:201
+#: ../core/core.php:202
 msgid "Question Category"
 msgstr ""
 
-#: ../core/core.php:202
+#: ../core/core.php:203
 msgid "Search Question Categories"
 msgstr ""
 
-#: ../core/core.php:203
+#: ../core/core.php:204
 msgid "All Question Categories"
 msgstr ""
 
-#: ../core/core.php:204
+#: ../core/core.php:205
 msgid "Parent Question Category"
 msgstr ""
 
-#: ../core/core.php:205
+#: ../core/core.php:206
 msgid "Parent Question Category:"
 msgstr ""
 
-#: ../core/core.php:206
+#: ../core/core.php:207
 msgid "Edit Question Category"
 msgstr ""
 
-#: ../core/core.php:207
+#: ../core/core.php:208
 msgid "Update Question Category"
 msgstr ""
 
-#: ../core/core.php:208
+#: ../core/core.php:209
 msgid "Add New Question Category"
 msgstr ""
 
-#: ../core/core.php:209
+#: ../core/core.php:210
 msgid "New Question Category Name"
 msgstr ""
 
-#: ../core/core.php:225
+#: ../core/core.php:226
 msgid "Question Tags"
 msgstr ""
 
-#: ../core/core.php:226
+#: ../core/core.php:227
 msgid "Question Tag"
 msgstr ""
 
-#: ../core/core.php:227
+#: ../core/core.php:228
 msgid "Search Question Tags"
 msgstr ""
 
-#: ../core/core.php:228
+#: ../core/core.php:229
 msgid "Popular Question Tags"
 msgstr ""
 
-#: ../core/core.php:229
+#: ../core/core.php:230
 msgid "All Question Tags"
 msgstr ""
 
-#: ../core/core.php:230
+#: ../core/core.php:231
 msgid "Edit Question Tag"
 msgstr ""
 
-#: ../core/core.php:231
+#: ../core/core.php:232
 msgid "Update Question Tag"
 msgstr ""
 
-#: ../core/core.php:232
+#: ../core/core.php:233
 msgid "Add New Question Tag"
 msgstr ""
 
-#: ../core/core.php:233
+#: ../core/core.php:234
 msgid "New Question Tag Name"
 msgstr ""
 
-#: ../core/core.php:234
+#: ../core/core.php:235
 msgid "Separate question tags with commas"
 msgstr ""
 
-#: ../core/core.php:235
+#: ../core/core.php:236
 msgid "Add or remove question tags"
 msgstr ""
 
-#: ../core/core.php:236
+#: ../core/core.php:237
 msgid "Choose from the most used question tags"
 msgstr ""
 
-#: ../core/core.php:256 ../core/template-tags.php:17
+#: ../core/core.php:257 ../core/template-tags.php:17
 msgid "Questions"
 msgstr ""
 
-#: ../core/core.php:259
+#: ../core/core.php:260
 msgid "Add New Question"
 msgstr ""
 
-#: ../core/core.php:260
+#: ../core/core.php:261
 msgid "Edit Question"
 msgstr ""
 
-#: ../core/core.php:261
+#: ../core/core.php:262
 msgid "New Question"
 msgstr ""
 
-#: ../core/core.php:262
+#: ../core/core.php:263
 msgid "View Question"
 msgstr ""
 
-#: ../core/core.php:263
+#: ../core/core.php:264
 msgid "Search Questions"
 msgstr ""
 
-#: ../core/core.php:264
+#: ../core/core.php:265
 msgid "No questions found."
 msgstr ""
 
-#: ../core/core.php:265
+#: ../core/core.php:266
 msgid "No questions found in trash."
 msgstr ""
 
-#: ../core/core.php:527
+#: ../core/core.php:529
 msgid "Please login or register to vote."
 msgstr ""
 
-#: ../core/core.php:528
+#: ../core/core.php:530
 msgid "You can't vote on your own post."
 msgstr ""
 
-#: ../core/core.php:603
+#: ../core/core.php:605
 msgid "Ask a question"
 msgstr ""
 
-#: ../core/core.php:613
+#: ../core/core.php:615
 #, php-format
 msgid "User: %s"
 msgstr ""
@@ -510,34 +510,34 @@ msgstr ""
 msgid "You are posting too fast. Slow down."
 msgstr ""
 
-#: ../core/edit.php:447
+#: ../core/edit.php:463
 #, php-format
 msgid ""
 "To finish posting your %s, please register below. If you already have an "
 "account, please <a href=\"%s\">login</a> instead."
 msgstr ""
 
-#: ../core/edit.php:498
+#: ../core/edit.php:514
 #, php-format
 msgid "%s answered question \"<a href=\"%s\">%s</a>\""
 msgstr ""
 
-#: ../core/edit.php:518
+#: ../core/edit.php:535
 #, php-format
 msgid "%s asked \"<a href=\"%s\">%s</a>\""
 msgstr ""
 
-#: ../core/subscriptions.php:71
+#: ../core/subscriptions.php:76
 #, php-format
 msgid "[%s] New answer on \"%s\""
 msgstr ""
 
-#: ../core/subscriptions.php:73
+#: ../core/subscriptions.php:78
 #, php-format
 msgid "%s added a new answer to %s:"
 msgstr ""
 
-#: ../core/subscriptions.php:93
+#: ../core/subscriptions.php:98
 #, php-format
 msgid "To manage your subscription, visit <a href=\"%s\">the question</a>."
 msgstr ""
@@ -1000,12 +1000,12 @@ msgid ""
 msgstr ""
 
 #: ../ui-admin/settings-general.php:267 ../ui-admin/settings-general.php:322
-#: ../ui-admin/settings-general.php:498 ../ui-admin/settings-general.php:544
+#: ../ui-admin/settings-general.php:498 ../ui-admin/settings-general.php:552
 msgid "Save Everything on this Page"
 msgstr ""
 
 #: ../ui-admin/settings-general.php:269 ../ui-admin/settings-general.php:324
-#: ../ui-admin/settings-general.php:500 ../ui-admin/settings-general.php:546
+#: ../ui-admin/settings-general.php:500 ../ui-admin/settings-general.php:554
 msgid "Settings saved"
 msgstr ""
 
@@ -1160,15 +1160,23 @@ msgstr ""
 msgid "Notification Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:513
+#: ../ui-admin/settings-general.php:512
+msgid "CC the Administrator:"
+msgstr ""
+
+#: ../ui-admin/settings-general.php:516
+msgid "cc the administrator"
+msgstr ""
+
+#: ../ui-admin/settings-general.php:521
 msgid "Notification E-mail Subject"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:519 ../ui-admin/settings-general.php:532
+#: ../ui-admin/settings-general.php:527 ../ui-admin/settings-general.php:540
 msgid "Variables:"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:526
+#: ../ui-admin/settings-general.php:534
 msgid "Notification E-mail Content"
 msgstr ""
 

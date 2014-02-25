@@ -316,9 +316,6 @@ function qa_settings_field_layout() {
 			</div>
 
 			<p class="submit">
-				<?php echo $wp_nonce_verify; ?>
-				<input type="hidden" name="action" value="qa-save" />
-				<input type="hidden" name="key" value="general_settings" />
 				<input type="submit" class="button-primary" name="save" value="<?php _e( 'Save Everything on this Page', QA_TEXTDOMAIN ); ?>">
 				<img class="ajax-loader" src="<?php echo QA_PLUGIN_URL . 'ui-admin/images/ajax-loader.gif'; ?>" />
 				<span style="display:none;font-weight:bold;color:darkgreen" class="qa_settings_saved"><?php _e( 'Settings saved', QA_TEXTDOMAIN ); ?></span>
@@ -492,9 +489,6 @@ function qa_settings_field_layout() {
 			</div>
 
 			<p class="submit">
-				<?php echo $wp_nonce_verify; ?>
-				<input type="hidden" name="action" value="qa-save" />
-				<input type="hidden" name="key" value="general_settings" />
 				<input type="submit" class="button-primary" name="save" value="<?php _e( 'Save Everything on this Page', QA_TEXTDOMAIN ); ?>">
 				<img class="ajax-loader" src="<?php echo QA_PLUGIN_URL . 'ui-admin/images/ajax-loader.gif'; ?>" />
 				<span style="display:none;font-weight:bold;color:darkgreen" class="qa_settings_saved"><?php _e( 'Settings saved', QA_TEXTDOMAIN ); ?></span>
@@ -509,11 +503,11 @@ function qa_settings_field_layout() {
 					<table class="form-table">
 
 					<tr>
-						<th><label for="cc_admin"><?php _e( 'CC the Administrator:', $this->text_domain ); ?></label></th>
+						<th><label for="cc_admin"><?php _e( 'CC the Administrator:', QA_TEXTDOMAIN ); ?></label></th>
 						<td>
 							<input type="hidden" name="qa_cc_admin" value="0" />
-							<input type="checkbox" id="qa_cc_admin" name="qa_cc_admin" value="1" <?php checked( isset( $options['qa_cc_admin'] ) && 1 == $options['qa_cc_admin'] ); ?> />
-							<span class="description"><?php _e( 'cc the administrator', $this->text_domain ); ?></span>
+							<input type="checkbox" id="qa_cc_admin" name="qa_cc_admin" value="1" <?php checked( get_option('qa_cc_admin', '0') ); ?> />
+							<span class="description"><?php _e( 'cc the administrator', QA_TEXTDOMAIN ); ?></span>
 						</td>
 					</tr>
 						<tr>
@@ -546,9 +540,6 @@ function qa_settings_field_layout() {
 			</div>
 
 			<p class="submit">
-				<?php echo $wp_nonce_verify; ?>
-				<input type="hidden" name="action" value="qa-save" />
-				<input type="hidden" name="key" value="general_settings" />
 				<input type="submit" class="button-primary" name="save" value="<?php _e( 'Save Everything on this Page', QA_TEXTDOMAIN ); ?>">
 				<img class="ajax-loader" src="<?php echo QA_PLUGIN_URL . 'ui-admin/images/ajax-loader.gif'; ?>" />
 				<span style="display:none;font-weight:bold;color:darkgreen" class="qa_settings_saved"><?php _e( 'Settings saved', QA_TEXTDOMAIN ); ?></span>

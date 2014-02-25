@@ -682,7 +682,6 @@ class QA_Core_Admin extends QA_Core {
 
 		update_option( 'qa_capabilties_set', array_unique( $qa_capabilities_set ));
 		update_option( QA_OPTIONS_NAME, $options );
-
 		update_option( 'qa_cc_admin', $_POST['qa_cc_admin'] );
 		update_option( 'qa_email_notification_subject', $_POST['qa_email_notification_subject'] );
 		update_option( 'qa_email_notification_content', $_POST['qa_email_notification_content'] );
