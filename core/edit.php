@@ -508,10 +508,14 @@ class QA_Edit {
 			// Post to activity stream
 			if (function_exists('bp_activity_add')) {
 				$question = get_post($post->post_parent);
+
+				$action	= sprintf(__('%1$s answered question "<a href="%2$s">%3$s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $question->post_title);
+				$action = apply_filters('qa_bp_activity_action', $action, $post	);
+
 				$activity_id = bp_activity_add( array(
 				'id' => get_post_meta($post->ID, '_bp_activity_id', true),
 				'user_id' => $user_ID,
-				'action' => sprintf(__('%s answered question "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $question->post_title),
+				'action' => $action,
 				'primary_link' => get_permalink($post->ID),
 				'component' => 'qa',
 				'type' => 'activity_update',
@@ -529,10 +533,14 @@ class QA_Edit {
 			$this->on_question_notify($post);
 			// Post to activity stream
 			if (function_exists('bp_activity_add')) {
+
+				$action = sprintf(__('%1$s asked "<a href="%2$s">%3$s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $post->post_title);
+				$action = apply_filters('qa_bp_activity_action', $action, $post );
+
 				$activity_id = bp_activity_add( array(
 				'id' => get_post_meta($post->ID, '_bp_activity_id', true),
 				'user_id' => $user_ID,
-				'action' => sprintf(__('%s asked "<a href="%s">%s</a>"', 'qa'), $current_user->display_name, get_permalink($post->ID), $post->post_title),
+				'action' => $action,
 				'primary_link' => get_permalink($post->ID),
 				'component' => 'qa',
 				'type' => 'activity_update',

@@ -1,28 +1,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Q&A\n"
-"POT-Creation-Date: 2014-02-23 13:42-0500\n"
-"PO-Revision-Date: 2014-02-23 16:38-0500\n"
+"POT-Creation-Date: 2014-02-26 09:54-0500\n"
+"PO-Revision-Date: 2014-02-26 09:54-0500\n"
 "Last-Translator: Arnold Bailey <arnold@incsub.com>\n"
 "Language-Team: Arnold Bailey <arnold@incsub.com>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-KeywordsList: _n:1,2;__;_e;_x;_ex;_nx;esc_attr__;esc_attr_e;"
 "esc_attr_x;esc_html__;esc_html_e;esc_html_x\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
-
-#: ../qa.php:121
-msgid ""
-"<b>[Q&A]</b> There is already a running version of Q&A. Please check if you "
-"have already installed Q&A or Q&A Lite beforehand. You need to deactivate "
-"the other version to install and run this."
-msgstr ""
 
 #: ../core/admin.php:25
 msgid "View questions"
@@ -217,26 +210,26 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: ../core/admin.php:701
+#: ../core/admin.php:700
 msgid "You are not authorised to do this"
 msgstr ""
 
-#: ../core/admin.php:706
+#: ../core/admin.php:705
 #, php-format
 msgid ""
 "Your current theme %s is already supported by Q&A. No additional css rules "
 "are necessary."
 msgstr ""
 
-#: ../core/admin.php:713
+#: ../core/admin.php:712
 msgid "At least One of the variables is missing"
 msgstr ""
 
-#: ../core/admin.php:763 ../core/admin.php:774
+#: ../core/admin.php:762 ../core/admin.php:773
 msgid "Page layout is not selected"
 msgstr ""
 
-#: ../core/admin.php:771
+#: ../core/admin.php:770
 msgid "Nothing has been changed. Please double check your settings."
 msgstr ""
 
@@ -517,14 +510,14 @@ msgid ""
 "account, please <a href=\"%s\">login</a> instead."
 msgstr ""
 
-#: ../core/edit.php:514
+#: ../core/edit.php:512
 #, php-format
-msgid "%s answered question \"<a href=\"%s\">%s</a>\""
+msgid "%1$s answered question \"<a href=\"%2$s\">%3$s</a>\""
 msgstr ""
 
-#: ../core/edit.php:535
+#: ../core/edit.php:537
 #, php-format
-msgid "%s asked \"<a href=\"%s\">%s</a>\""
+msgid "%1$s asked \"<a href=\"%2$s\">%3$s</a>\""
 msgstr ""
 
 #: ../core/subscriptions.php:76
@@ -818,6 +811,13 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
+#: ../qa.php:121
+msgid ""
+"<b>[Q&A]</b> There is already a running version of Q&A. Please check if you "
+"have already installed Q&A or Q&A Lite beforehand. You need to deactivate "
+"the other version to install and run this."
+msgstr ""
+
 #: ../ui-admin/message.php:3
 msgid "Settings Saved."
 msgstr ""
@@ -999,13 +999,13 @@ msgid ""
 "If search input field is displayed below the Q&A menu, reduce this value."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:267 ../ui-admin/settings-general.php:322
-#: ../ui-admin/settings-general.php:498 ../ui-admin/settings-general.php:552
+#: ../ui-admin/settings-general.php:267 ../ui-admin/settings-general.php:319
+#: ../ui-admin/settings-general.php:492 ../ui-admin/settings-general.php:543
 msgid "Save Everything on this Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:269 ../ui-admin/settings-general.php:324
-#: ../ui-admin/settings-general.php:500 ../ui-admin/settings-general.php:554
+#: ../ui-admin/settings-general.php:269 ../ui-admin/settings-general.php:321
+#: ../ui-admin/settings-general.php:494 ../ui-admin/settings-general.php:545
 msgid "Settings saved"
 msgstr ""
 
@@ -1052,92 +1052,92 @@ msgid ""
 "and answer forms instead of the WP editor."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:328
+#: ../ui-admin/settings-general.php:325
 msgid "Accessibility Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:337
+#: ../ui-admin/settings-general.php:334
 msgid "Assign Capabilities"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:344
+#: ../ui-admin/settings-general.php:341
 msgid ""
 "This list has all the user roles of your website. As you make a new "
 "selection, capability of that role will be displayed. Select a role to which "
 "you want to assign WP Q&A capabilities."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:360
+#: ../ui-admin/settings-general.php:357
 msgid "After Visitor Submits a Question or Answer"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:370
+#: ../ui-admin/settings-general.php:367
 msgid "He is asked for registration"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:371
+#: ../ui-admin/settings-general.php:368
 msgid "Question is assigned to a user"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:380
+#: ../ui-admin/settings-general.php:377
 msgid "Assign to: "
 msgstr ""
 
-#: ../ui-admin/settings-general.php:385
+#: ../ui-admin/settings-general.php:382
 msgid ""
 "Every question and answer should have an author. If you want to let the "
 "visitor submit a question or answer without the need for registration, you "
 "can assign a preset author."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:393
+#: ../ui-admin/settings-general.php:390
 msgid "Thank You Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:404
+#: ../ui-admin/settings-general.php:401
 msgid ""
 "If questions and are saved as pending, user will be redirected to this page "
 "after submitting a question or answer."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:411
+#: ../ui-admin/settings-general.php:408
 msgid "Unauthorized Access Page"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:423
+#: ../ui-admin/settings-general.php:420
 msgid ""
 "If a user tries to access a page he should not access, he will be redirected "
 "to this page instead."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:430
+#: ../ui-admin/settings-general.php:427
 msgid "Report reasons"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:436
+#: ../ui-admin/settings-general.php:433
 msgid ""
 "Enter reasons of reporting to be chosen by the user each one separated by "
 "comma, e.g. Spam,Language. If left empty, user will not be asked to select a "
 "report reason."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:443
+#: ../ui-admin/settings-general.php:440
 msgid "Use Captcha"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:449
+#: ../ui-admin/settings-general.php:446
 msgid "Whether to use Captcha verification while submitting."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:452
+#: ../ui-admin/settings-general.php:449
 msgid "Note: Your php installation does not let Captcha usage."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:460
+#: ../ui-admin/settings-general.php:457
 msgid "Email address on report"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:466
+#: ../ui-admin/settings-general.php:463
 msgid ""
 "Email address that will be notified in case a question or answer is "
 "reported. Leaving empty will disable notification. Note: If a question or "
@@ -1145,38 +1145,38 @@ msgid ""
 "but number of reports and latest reporter will be saved."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:478
+#: ../ui-admin/settings-general.php:475
 msgid "Disable Reply in Activity Stream"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:484
+#: ../ui-admin/settings-general.php:481
 msgid ""
 "Checking this will disable commenting for the question asked notification in "
 "Buddypress Activity Stream, forsing user to answer the question through "
 "plugin generated pages."
 msgstr ""
 
-#: ../ui-admin/settings-general.php:504
+#: ../ui-admin/settings-general.php:498
 msgid "Notification Settings"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:512
+#: ../ui-admin/settings-general.php:506
 msgid "CC the Administrator:"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:516
+#: ../ui-admin/settings-general.php:510
 msgid "cc the administrator"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:521
+#: ../ui-admin/settings-general.php:515
 msgid "Notification E-mail Subject"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:527 ../ui-admin/settings-general.php:540
+#: ../ui-admin/settings-general.php:521 ../ui-admin/settings-general.php:534
 msgid "Variables:"
 msgstr ""
 
-#: ../ui-admin/settings-general.php:534
+#: ../ui-admin/settings-general.php:528
 msgid "Notification E-mail Content"
 msgstr ""
 

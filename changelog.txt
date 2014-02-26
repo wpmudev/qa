@@ -1,5 +1,9 @@
 ﻿== Changelog ==
 
+= 1.4.3.3 = 2014-02-26
+- Added qa_bp_activity_action filter hook to allow customizing the activity text in BuddyPress.
+  Passes the default $action and the $post for both Questions and Answers.
+
 = 1.4.3.2 = 2014-02-21
 - Fixed General Settings form sending multiple copies of some fields. Prevented the cc admin field frm being saved in some circumstances.
 
