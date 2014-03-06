@@ -356,7 +356,7 @@ class QA_Edit {
 		}
 		$notification_subscriptions = apply_filters( 'qa_notified_users', $notification_subscriptions, $post );
 
-		foreach ( $notification_subscriptions as $uid ) {
+		foreach ( (array)$notification_subscriptions as $uid ) {
 			$user_data = get_userdata($uid);
 			if ( $user_data )
 			wp_mail( $user_data->user_email, $subject_content, str_replace( "TO_USER", $user_data->display_name, $message_content ), $message_headers);

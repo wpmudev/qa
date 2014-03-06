@@ -1,5 +1,8 @@
 ﻿== Changelog ==
 
+= 1.4.3.4 = 2014-03-05
+- Fixed email notification loop
+
 = 1.4.3.3 = 2014-02-26
 - Added qa_bp_activity_action filter hook to allow customizing the activity text in BuddyPress.
   Passes the default $action and the $post for both Questions and Answers.
