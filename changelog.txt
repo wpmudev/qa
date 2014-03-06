@@ -1,5 +1,9 @@
 ﻿== Changelog ==
 
+= 1.4.3.5 = 2014-03-06
+- Fixed question count display on tabs
+- Fixed Question list display on user pages.
+
 = 1.4.3.4 = 2014-03-05
 - Fixed email notification loop
 

@@ -113,6 +113,7 @@ class QA_BuddyPress {
 			<span id="user-answers-total"><?php echo number_format_i18n( $answer_query->found_posts ); ?></span>
 			<?php echo _n( 'Answer', 'Answers', $answer_query->found_posts, QA_TEXTDOMAIN ); ?>
 		</a></li>
+		
 <?php
 	}
 

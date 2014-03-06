@@ -38,6 +38,13 @@ function do_qa_single(){
         </table>
 
         <?php
+        $question_query = new WP_Query( array(
+        'author' => get_queried_object_id(),
+        'post_type' => 'question',
+        'posts_per_page' => 20,
+        'update_post_term_cache' => false
+        ) );
+
         $answer_query = new WP_Query( array(
         'author' => get_queried_object_id(),
         'post_type' => 'answer',
@@ -56,8 +63,8 @@ function do_qa_single(){
         <div id="qa-user-tabs-wrapper">
           <ul id="qa-user-tabs">
             <li><a href="#qa-user-questions">
-              <span id="user-questions-total"><?php echo number_format_i18n( $wp_query->found_posts ); ?></span>
-              <?php echo _n( 'Question', 'Questions', $wp_query->found_posts, QA_TEXTDOMAIN ); ?>
+              <span id="user-questions-total"><?php echo number_format_i18n( $question_query->found_posts ); ?></span>
+              <?php echo _n( 'Question', 'Questions', $question_query->found_posts, QA_TEXTDOMAIN ); ?>
             </a></li>
 
             <li><a href="#qa-user-answers">
@@ -68,7 +75,7 @@ function do_qa_single(){
 
           <div id="qa-user-questions">
             <div id="question-list">
-              <?php while ( have_posts() ) : the_post(); ?>
+              <?php while ( $question_query->have_posts() ) : $question_query->the_post(); ?>
               <div class="question">
                 <div class="question-stats">
                   <?php the_question_score(); ?>
