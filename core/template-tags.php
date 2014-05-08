@@ -677,6 +677,8 @@ function get_the_answer_list() {
 	global $user_ID, $post;
 	$question_id = $post->ID;
 
+	if( post_password_required($post) ) return;
+	
 	if ( ($user_ID == 0 && !qa_visitor_can('read_answers', $question_id)) && !current_user_can( 'read_answers', $question_id ) )
 	return;
 
@@ -737,6 +739,8 @@ function the_answer_list() {
 
 function get_the_answer_form() {
 	global $wp_query, $user_ID, $wp_version, $qa_general_settings, $post;
+
+	if( post_password_required( $post ) ) return;
 
 	$out = '';
 

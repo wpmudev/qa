@@ -312,7 +312,13 @@ class QA_Edit {
 
 	//Notify if Question trasitions to 'publish'
 	function on_question_notify( $post = null, $pre_publish = false){
-		global $wpdb;
+		global $wpdb, $qa_email_notification_content, $qa_email_notification_subject,$current_site;
+
+		if (!isset($current_site)) {
+			$_url = get_bloginfo('url');
+			$_domain_parts = explode('/', $_url);
+			$current_site = (object) array('domain' => $_domain_parts[2]);
+		}
 
 		$message_content = get_option('qa_email_notification_content', $qa_email_notification_content);
 		$message_content = str_replace( "SITE_NAME", get_option( 'blogname' ), $message_content );
@@ -320,7 +326,13 @@ class QA_Edit {
 
 		$message_content = str_replace( "QUESTION_TITLE", $post->post_title, $message_content );
 		$message_content = str_replace( "QUESTION_DESCRIPTION", strip_tags($post->post_content), $message_content );
-		$message_content = str_replace( "QUESTION_LINK", get_permalink($post->ID), $message_content );
+		
+		if($pre_publish) {
+			$message_content = str_replace( "QUESTION_LINK", admin_url( "post.php?post={$post->ID}&action=edit"), $message_content );
+		} else {
+			$message_content = str_replace( "QUESTION_LINK", get_permalink($post->ID), $message_content );
+		}
+	
 		// Modify email message
 		$message_content = apply_filters( 'qa_message_content', $message_content, $post );
 
@@ -447,6 +459,7 @@ class QA_Edit {
 		else if ( !$url = get_permalink( $this->g_settings['thank_you'] ) )
 		$url = site_url();
 
+		$url = apply_filters('qa_register_redirect', $url, $post_id );
 		return $url;
 	}
 

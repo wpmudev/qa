@@ -1,5 +1,11 @@
 ﻿== Changelog ==
 
+= 1.4.3.6 = 2014-05-07
+- Admin email notifications pass url to the backend for pending questions.
+- Hides the Answers if a question is password protected.
+- Problem with front end not retrieving "pending listings"
+- Fixed "on_question_notify()" missing globals	
+
 = 1.4.3.5 = 2014-03-06
 - Fixed question count display on tabs
 - Fixed Question list display on user pages.

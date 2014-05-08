@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Q&A\n"
-"POT-Creation-Date: 2014-02-26 09:54-0500\n"
-"PO-Revision-Date: 2014-02-26 09:54-0500\n"
+"POT-Creation-Date: 2014-05-07 21:55-0500\n"
+"PO-Revision-Date: 2014-05-07 21:55-0500\n"
 "Last-Translator: Arnold Bailey <arnold@incsub.com>\n"
 "Language-Team: Arnold Bailey <arnold@incsub.com>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: _n:1,2;__;_e;_x;_ex;_nx;esc_attr__;esc_attr_e;"
 "esc_attr_x;esc_html__;esc_html_e;esc_html_x\n"
 "X-Poedit-Basepath: .\n"
@@ -107,73 +107,73 @@ msgstr ""
 msgid "Delete report:"
 msgstr ""
 
-#: ../core/admin.php:220
+#: ../core/admin.php:219
 msgid "Title"
 msgstr ""
 
-#: ../core/admin.php:221 ../core/buddypress.php:109 ../core/core.php:258
-#: ../default-templates/user-question.php:56
-#: ../thesis-templates/user-question.php:60
+#: ../core/admin.php:220 ../core/buddypress.php:109 ../core/core.php:258
+#: ../default-templates/user-question.php:63
+#: ../thesis-templates/user-question.php:67
 msgid "Question"
 msgid_plural "Questions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:222
+#: ../core/admin.php:221
 msgid "Author"
 msgstr ""
 
-#: ../core/admin.php:223
+#: ../core/admin.php:222
 msgid "Date"
 msgstr ""
 
-#: ../core/admin.php:224
+#: ../core/admin.php:223
 msgid "Reported"
 msgstr ""
 
-#: ../core/admin.php:244
+#: ../core/admin.php:243
 msgid "Yes"
 msgstr ""
 
-#: ../core/admin.php:246
+#: ../core/admin.php:245
 msgid "No"
 msgstr ""
 
-#: ../core/admin.php:253
+#: ../core/admin.php:252
 msgid "Go to question page"
 msgstr ""
 
-#: ../core/admin.php:273
+#: ../core/admin.php:272
 msgid "Question Published"
 msgid_plural "Questions Published"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:285
+#: ../core/admin.php:284
 msgid "Question Pending"
 msgid_plural "Questions Pending"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:299
+#: ../core/admin.php:298
 msgid "Answer Published"
 msgid_plural "Answers Published"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:311
+#: ../core/admin.php:310
 msgid "Answer Pending"
 msgid_plural "Answers Pending"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:327
+#: ../core/admin.php:326
 msgid "Q&A Reported"
 msgid_plural "Q&A Reported"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/admin.php:356
+#: ../core/admin.php:355
 #, php-format
 msgid ""
 "<b>[Q&A]</b> It looks like you have just installed or upgraded Q&A. You may "
@@ -181,11 +181,11 @@ msgid ""
 "layout handling has been changed.</b>."
 msgstr ""
 
-#: ../core/admin.php:356 ../core/admin.php:367
+#: ../core/admin.php:355 ../core/admin.php:366
 msgid "settings"
 msgstr ""
 
-#: ../core/admin.php:367
+#: ../core/admin.php:366
 #, php-format
 msgid ""
 "<b>[Q&A]</b> <i>After Visitor Submits a Question</i> setting requires "
@@ -193,43 +193,43 @@ msgid ""
 "You may consider to fix this using plugin %s or Wordpress settings."
 msgstr ""
 
-#: ../core/admin.php:373
+#: ../core/admin.php:372
 msgid ""
 "<b>[Q&A]</b> Visitor role cannot be found. Try to deactivate and reactivate "
 "the plugin, if you continue to see this message, consult our Help and "
 "Support."
 msgstr ""
 
-#: ../core/admin.php:379
+#: ../core/admin.php:378
 msgid ""
 "<b>[Q&A]</b> Plugin will not function correctly with default permalink "
 "structure. You need to use a pretty permalink structure."
 msgstr ""
 
-#: ../core/admin.php:394 ../core/admin.php:508
+#: ../core/admin.php:393 ../core/admin.php:507
 msgid "Settings"
 msgstr ""
 
-#: ../core/admin.php:700
+#: ../core/admin.php:699
 msgid "You are not authorised to do this"
 msgstr ""
 
-#: ../core/admin.php:705
+#: ../core/admin.php:704
 #, php-format
 msgid ""
 "Your current theme %s is already supported by Q&A. No additional css rules "
 "are necessary."
 msgstr ""
 
-#: ../core/admin.php:712
+#: ../core/admin.php:711
 msgid "At least One of the variables is missing"
 msgstr ""
 
-#: ../core/admin.php:762 ../core/admin.php:773
+#: ../core/admin.php:761 ../core/admin.php:772
 msgid "Page layout is not selected"
 msgstr ""
 
-#: ../core/admin.php:770
+#: ../core/admin.php:769
 msgid "Nothing has been changed. Please double check your settings."
 msgstr ""
 
@@ -238,8 +238,8 @@ msgid "Answers"
 msgstr ""
 
 #: ../core/answers.php:42 ../core/buddypress.php:114
-#: ../default-templates/user-question.php:61
-#: ../thesis-templates/user-question.php:65
+#: ../default-templates/user-question.php:68
+#: ../thesis-templates/user-question.php:72
 msgid "Answer"
 msgid_plural "Answers"
 msgstr[0] ""
@@ -435,19 +435,19 @@ msgstr ""
 msgid "No questions found in trash."
 msgstr ""
 
-#: ../core/core.php:529
+#: ../core/core.php:535
 msgid "Please login or register to vote."
 msgstr ""
 
-#: ../core/core.php:530
+#: ../core/core.php:536
 msgid "You can't vote on your own post."
 msgstr ""
 
-#: ../core/core.php:605
+#: ../core/core.php:611
 msgid "Ask a question"
 msgstr ""
 
-#: ../core/core.php:615
+#: ../core/core.php:623
 #, php-format
 msgid "User: %s"
 msgstr ""
@@ -503,19 +503,19 @@ msgstr ""
 msgid "You are posting too fast. Slow down."
 msgstr ""
 
-#: ../core/edit.php:463
+#: ../core/edit.php:476
 #, php-format
 msgid ""
 "To finish posting your %s, please register below. If you already have an "
 "account, please <a href=\"%s\">login</a> instead."
 msgstr ""
 
-#: ../core/edit.php:512
+#: ../core/edit.php:525
 #, php-format
 msgid "%1$s answered question \"<a href=\"%2$s\">%3$s</a>\""
 msgstr ""
 
-#: ../core/edit.php:537
+#: ../core/edit.php:550
 #, php-format
 msgid "%1$s asked \"<a href=\"%2$s\">%3$s</a>\""
 msgstr ""
@@ -597,7 +597,7 @@ msgid "Select a reason for reporting:"
 msgstr ""
 
 #: ../core/template-tags.php:288 ../core/template-tags.php:642
-#: ../core/template-tags.php:788
+#: ../core/template-tags.php:792
 msgid "Enter letters in image"
 msgstr ""
 
@@ -682,19 +682,19 @@ msgid_plural "%d Answers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../core/template-tags.php:750
+#: ../core/template-tags.php:754
 msgid "You are not allowed to add answers!"
 msgstr ""
 
-#: ../core/template-tags.php:805
+#: ../core/template-tags.php:809
 msgid "Submit"
 msgstr ""
 
-#: ../core/template-tags.php:807
+#: ../core/template-tags.php:811
 msgid "Register/Login and Submit"
 msgstr ""
 
-#: ../core/template-tags.php:809
+#: ../core/template-tags.php:813
 msgid "Login and Submit"
 msgstr ""
 
