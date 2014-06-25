@@ -222,6 +222,7 @@ class QA_Core_Admin extends QA_Core {
 		'date' => __('Date'),
 		'qa-reported' => __('Reported', QA_TEXTDOMAIN ),
 		);
+		print_r($columns);
 		return $columns;
 	}
 
@@ -246,13 +247,14 @@ class QA_Core_Admin extends QA_Core {
 				break;
 			}
 			case 'qa-question': {
+				$post_id = $post->ID;
 				$post = get_post($post->post_parent);
 				printf('<a href="%s" title="%s" target="question" ><strong>%s</strong></a><p>%s</p>',
 				get_permalink(),
 				__('Go to question page', QA_TEXTDOMAIN),
 				get_the_title(),
 				get_the_excerpt() );
-				wp_reset_postdata();
+				$post = get_post($post_id);
 				break;
 			}
 		}

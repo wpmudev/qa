@@ -1,5 +1,8 @@
 ﻿== Changelog ==
 
+= 1.4.3.7 = 2014-06-26
+- Fixed author display in Q&A backend
+
 = 1.4.3.6 = 2014-05-07
 - Admin email notifications pass url to the backend for pending questions.
 - Hides the Answers if a question is password protected.
