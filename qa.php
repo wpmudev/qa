@@ -4,7 +4,7 @@ Plugin Name: Q&A - WordPress Questions and Answers Plugin
 Plugin URI: http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin
 Description: Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
 Author: WPMU DEV
-Version: 1.4.3.7
+Version: 1.4.3.8
 Author URI: http://premium.wpmudev.org/
 WDP ID: 217
 Text Domain: qa

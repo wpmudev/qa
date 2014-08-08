@@ -2,7 +2,7 @@
 Contributors: scribu, mohanjith, hakan
 Tags: questions, answers, community, Q&A, stackoverflow, wordpress-plugins
 Requires at least: 3.1
-Tested up to: 3.4.2
+Tested up to: 3.9.2
 Stable tag: trunk
 
 Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
