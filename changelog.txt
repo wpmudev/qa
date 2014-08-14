@@ -1,6 +1,7 @@
 ﻿== Changelog ==
 
 = 1.4.3.8 = 2014-08-08
+- Fixed "Add new" button being rendered under Answers section.
 - Fixed issue with permalinks and nesting levels on questions and answers screens in admin
 
 = 1.4.3.7 = 2014-06-26
