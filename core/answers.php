@@ -56,7 +56,7 @@ class QA_Answers {
 
     function admin_enqueue_scripts( $hook ) {
         global $post;
-        if ( 'edit.php' != $hook || !isset($post) || $post->post_type != 'answer' )
+        if ( 'edit.php' != $hook || (isset($post) && $post->post_type != 'answer') )
             return;
         wp_enqueue_style('qa-answers-remove-add');
     }
