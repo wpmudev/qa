@@ -233,7 +233,7 @@ function _qa_html( $tag ) {
  *
  */
 function qa_supported_themes(){
-	$dir = QA_PLUGIN_DIR . 'theme-mods/css/';
+	/*$dir = QA_PLUGIN_DIR . 'theme-mods/css/';
 	$files = glob( $dir . 'custom-*.css' );
 	if ( is_array( $files ) && !empty( $files ) ) {
 		$file_list = '';
@@ -241,7 +241,7 @@ function qa_supported_themes(){
 			$file_list .= str_replace( array( $dir . 'custom-', '.css'), '', $filename ) . ', ';
 		}
 		return rtrim( $file_list, ', ' );
-	}
+	}*/
 
 	return '';
 }
