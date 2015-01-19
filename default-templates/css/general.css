@@ -39,6 +39,8 @@
 #qa-menu {
     clear: both;
     overflow: hidden;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #qa-menu ul {
@@ -58,6 +60,7 @@
     display: block;
     float: right;
     margin-right: 0px;
+    width: 32%;
 }
 
 #qa-menu #qa-current-url {
@@ -70,27 +73,29 @@
     font-weight: bold;
     padding: 4px 10px;
     text-decoration: none;
+    font-size: 14px;
 }
 
 #qa-menu form {
-    padding-top: 3px;
+    padding-top: 0px;
 }
 
 #qa-menu input {
-    padding: 2px;
-    display: block;
-    float: left;
-    width: 70%;
+    padding: 4px 4px;
+    display: inline-block;
+    float: right;
+    width: 51%;
 }
 
 #qa-menu button {
-    color: #FFF;
-    display: block;
-    font-weight: bold;
-    padding: 1.5% 1%;
+    display: inline-block;
+    font-weight: normal;
+    padding: 4px 10px;
     text-decoration: none;
+    /* float: right; */
+    /* width: 25%; */
     float: right;
-    width: 25%;
+    margin-left: 7px;
 }
 
 .qa-pagination {
@@ -224,6 +229,40 @@
     width: 100%;
 }
 
+.question-stats{
+    margin-top: 20px;
+}
+
+.question-score{
+    margin-bottom: 5px;
+}
+
+#wp-answer-wrap .wp-editor-container textarea.wp-editor-area,
+#wp-question_content-wrap .wp-editor-container textarea.wp-editor-area,
+#wp-question_content-wrap #question_content_ifr,
+#wp-answer-wrap #answer_ifr{
+    border: 1px solid #dedede;
+    border-top: 0px;
+}
+#wp-answer-wrap #answer_ifr,
+#wp-question_content-wrap #answer_ifr,
+#wp-question_content-wrap #question_content_ifr{
+    width: 99.45% !important;
+    border-bottom: 0px;
+    padding: 1px;
+}
+
+#wp-answer-wrap div.mce-toolbar-grp>div,
+#wp-question_content-wrap div.mce-toolbar-grp>div{
+    border: 1px solid #dedede;
+    border-bottom: 0px;
+}
+
+#wp-answer-wrap .quicktags-toolbar,
+#wp-question_content-wrap .quicktags-toolbar{
+    border: 1px solid #dedede;
+}
+
 .question h3 {
     font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
     font-size: 130%;
@@ -315,13 +354,35 @@
 
 .qa-voting-box {
     float: left;
-    width: 60px;
+    width: 42px;
+    padding-right: 0;
+    margin-right: 5px;
+}
+
+.qa-voting-box form{
+    margin: 0;
+    height: 0px;
 }
 
 .qa-voting-box input,
 .qa-voting-box a,
 .qa-voting-box span {
     display: block;
+}
+
+.qa-user-details a.qa-user-link{
+    border: 0px;
+    border-bottom: 0px;
+}
+
+input[type=submit].vote-up-on:focus,
+input[type=submit].vote-up-off:focus,
+input[type=submit].vote-down-on:focus,
+input[type=submit].vote-down-off:focus,
+input[type=submit].vote-accepted-on:focus,
+input[type=submit].vote-accepted-off:focus,
+.vote-accepted-on:focus {
+    background: none;
 }
 
 input[type=submit].vote-up-on,
@@ -332,7 +393,7 @@ input[type=submit].vote-accepted-on,
 input[type=submit].vote-accepted-off,
 .vote-accepted-on {
     border: 0;
-    background-color: #fff !important;
+    background-color: transparent;
     background-image: url("../img/vote.png") !important;
     background-repeat: no-repeat !important;
     overflow: hidden;
@@ -347,6 +408,19 @@ input[type=submit].vote-accepted-off,
 
 .qa-voting-box input[type=submit]:hover {
     filter: none;
+    background: none;
+}
+
+.qa-voting-box input[type=submit]:active {
+    background: none !important;
+    background-color: none !important;
+}
+
+
+input[type=submit].vote-accepted-off:focus,
+input[type=submit].vote-accepted-on:focus,
+.vote-accepted-on:focus{
+    background: none;
 }
 
 input[type=submit].vote-accepted-off,
@@ -361,10 +435,12 @@ input[type=submit].vote-accepted-on,
 input[type=submit].vote-accepted-on,
 .vote-accepted-on {
     background-position: 0 0 !important;
+    margin-top: 30px;
 }
 
 input[type=submit].vote-accepted-off {
     background-position: 0 -35px !important;
+    margin-top: 30px;
 }
 
 input[type=submit].vote-up-on,
@@ -395,9 +471,16 @@ input[type=submit].vote-down-on {
     color: #808185;
     font-weight: bold;
     font-family: "Arial", "Liberation Sans", "DejaVu Sans",sans-serif;
-    font-size: 240%;
-    line-height: 36px;
+    font-size: 14px;
+    line-height: 14px;
     text-align: center;
+    margin-top: 24px;
+}
+
+.clearvf{
+    width: 100%;
+    height: 20px;
+    float: left;
 }
 
 /* = User profile
@@ -613,3 +696,7 @@ input[type=submit].vote-down-on {
 
 /* Captcha */
 .qa_captcha_inner{margin:10px 0 10px 0;}
+
+#qa-page-wrapper div.mce-panel{
+    //border: 1px solid #e5e5e5;
+}

@@ -8,14 +8,14 @@
   -------------------------------------------------------------- */
 
 function get_the_qa_menu() {
-	global $user_ID;
+	global $user_ID, $wp;
 	$menu = array();
 
 	if ( ($user_ID == 0 && qa_visitor_can( 'read_questions' )) || current_user_can( 'read_questions' ) ) {
 		$menu[]	 = array(
 			'title'		 => __( 'Questions', QA_TEXTDOMAIN ),
 			'type'		 => 'archive',
-			'current'	 => !is_qa_page( 'unanswered' ) && !is_qa_page( 'ask' ) && !is_qa_page( 'edit' )
+			'current'	 => !is_qa_page( 'unanswered' ) && !(isset($wp->query_vars['qa_ask']) ? true : false) && !is_qa_page( 'edit' )
 		);
 		$menu[]	 = array(
 			'title'		 => __( 'Unanswered', QA_TEXTDOMAIN ),
@@ -28,7 +28,7 @@ function get_the_qa_menu() {
 		$menu[] = array(
 			'title'		 => __( 'Ask a Question', QA_TEXTDOMAIN ),
 			'type'		 => 'ask',
-			'current'	 => is_qa_page( 'ask' )
+			'current'	 => isset($wp->query_vars['qa_ask']) ? true : false
 		);
 	}
 	$menu = apply_filters( 'qa_modify_menu_items', $menu );
@@ -39,6 +39,7 @@ function get_the_qa_menu() {
 
 	$out .= "<ul>";
 	$out = apply_filters( 'qa_first_menu_item', $out );
+	
 	foreach ( $menu as $item ) {
 		extract( $item );
 
@@ -84,8 +85,8 @@ function get_the_qa_search_form() {
 
 	$out = '';
 	$out .= '<form method="get" action="' . qa_get_url( 'archive' ) . '">';
-	$out .= '<input type="text" name="s" value="' . get_search_query() . '" />';
 	$out .= '<button>' . __( 'Search', QA_TEXTDOMAIN ) . '</button>';
+	$out .= '<input type="text" name="s" value="' . get_search_query() . '" />';
 	$out .= '</form>';
 
 	return apply_filters( 'the_qa_search_form', $out );

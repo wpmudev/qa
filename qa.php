@@ -4,7 +4,7 @@ Plugin Name: Q&A - WordPress Questions and Answers Plugin
 Plugin URI: http://premium.wpmudev.org/project/qa-wordpress-questions-and-answers-plugin
 Description: Q&A allows any WordPress site to have a fully featured questions and answers section - just like StackOverflow, Yahoo Answers, Quora and more...
 Author: WPMU DEV
-Version: 1.4.3.8
+Version: 1.4.4
 Author URI: http://premium.wpmudev.org/
 WDP ID: 217
 Text Domain: qa
@@ -12,9 +12,9 @@ Text Domain: qa
 
 /*
 
-Authors - S H Mohanjith, scribu, Hakan Evin, Arnold Bailey
+Authors - Marko Miljus, S H Mohanjith, scribu, Hakan Evin, Arnold Bailey
 
-Copyright 2007-2013 Incsub, (http://incsub.com)
+Copyright 2007-2015 Incsub, (http://incsub.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 if ( !class_exists( 'QA_Core' ) ) {
 
 	// The plugin version
-	define( 'QA_VERSION', '1.4.3.7' );
+	define( 'QA_VERSION', '1.4.4' );
 
 	// The full url to the plugin directory
 	define( 'QA_PLUGIN_URL', plugin_dir_url(__FILE__) );
@@ -98,7 +98,8 @@ if ( !class_exists( 'QA_Core' ) ) {
 	include_once QA_PLUGIN_DIR . 'core/template-tags.php';
 	include_once QA_PLUGIN_DIR . 'core/widgets.php';
 	include_once QA_PLUGIN_DIR . 'core/ajax.php';
-
+	include_once QA_PLUGIN_DIR . 'core/class.virtualpage.php';
+	
 	function qa_bp_integration() {
 		include_once QA_PLUGIN_DIR . 'core/buddypress.php';
 	}

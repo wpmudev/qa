@@ -12,6 +12,7 @@
  * @return bool
  */
 function is_qa_page( $type = '' ) {
+	global $wp;
 	static $flags;
 
 	if ( !$flags ) {
@@ -32,7 +33,7 @@ function is_qa_page( $type = '' ) {
 		$result = in_array( true, $flags );
 	else
 		$result = isset( $flags[ $type ] ) && $flags[ $type ];
-
+	
 	return apply_filters( 'is_qa_page', $result, $type );
 }
 

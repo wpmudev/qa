@@ -1,10 +1,10 @@
-<?php get_header( 'question' ); ?>
+<?php 
+wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR . '/css/general.css', array(), QA_VERSION );
+?>
 
 <div id="qa-page-wrapper">
     <div id="qa-content-wrapper">
     <?php do_action( 'qa_before_content', 'ask-question' ); ?>
-    
-    <?php the_qa_menu(); ?>
     
     <div id="ask-question">
     <?php the_question_form(); ?>
@@ -15,11 +15,11 @@
 </div><!--#qa-page-wrapper-->
 
 <?php 
-global $qa_general_settings;
+//global $qa_general_settings;
 
-if ( isset( $qa_general_settings["page_layout"] ) && $qa_general_settings["page_layout"] !='content' )	
-	get_sidebar( 'question' ); 
+//if ( isset( $qa_general_settings["page_layout"] ) && $qa_general_settings["page_layout"] !='content' )	
+//	get_sidebar( 'question' ); 
 ?>
 
-<?php get_footer( 'question' ); ?>
+<?php //get_footer( 'question' ); ?>
 

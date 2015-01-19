@@ -2,6 +2,7 @@
 global $user_ID, $post;
 get_header( 'question' );
 ?>
+
 <div id="qa-page-wrapper">
 	<div id="qa-content-wrapper">
 	<?php do_action( 'qa_before_content', 'single-question' ); ?>

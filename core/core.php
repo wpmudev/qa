@@ -34,9 +34,11 @@ class QA_Core {
 		add_action( 'template_redirect', array( &$this, 'template_redirect' ), 12 );
 		add_action( 'option_rewrite_rules', array( &$this, 'check_rewrite_rules' ) );
 
-		add_filter( 'single_template', array( &$this, 'handle_template' ) );
+		//add_filter( 'single_template', array( &$this, 'handle_template' ) );
 		//add_filter( 'archive_template', array( &$this, 'handle_template' ) );
 		add_filter( 'the_title', array( &$this, 'the_title' ) );
+		add_action( 'loop_start', array( &$this, 'loop_start' ) );
+
 		add_action( 'loop_start', array( &$this, 'add_custom_content_before_loop' ) );
 
 		add_filter( 'the_content', array( &$this, 'add_custom_content' ), 1 );
@@ -52,8 +54,9 @@ class QA_Core {
 	}
 
 	function add_custom_content_before_loop() {
-		global $post;
-		if ( in_the_loop() && get_post_type($post) == 'question' ) {
+		global $post, $wp;
+
+		if ( (in_the_loop() && get_post_type( $post ) == 'question') || in_the_loop() && isset( $wp->query_vars[ 'qa_ask' ] ) ) {
 			echo $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/qa-menu.php' );
 		}
 	}
@@ -64,13 +67,51 @@ class QA_Core {
 			$prepend_content = $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/archive-question-single.php' );
 			$content		 = $content . $prepend_content;
 		}
+
+		if ( is_single() ) {
+			$append_content	 = $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/single-answers.php' );
+			$content		 = $content . $append_content;
+		}
 		return $content;
 	}
 
 	function parse_request( $wp ) {
-		//var_dump($wp);
-		global $wp_rewrite;
-		//print_r($wp_rewrite);
+
+		global $wp_rewrite, $wp;
+
+		if ( isset( $wp->query_vars[ 'qa_ask' ] ) ) {
+			$theme_file = locate_template( array( 'page-ask-question.php' ) );
+
+			if ( $theme_file != '' ) {
+				require_once( $theme_file );
+				exit;
+			} else {
+				$args	 = array(
+					'slug'			 => $wp->request,
+					'title'			 => __( 'Ask Question', QA_TEXTDOMAIN ),
+					'content'		 => $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/ask-question.php', array(), true ),
+					'type'			 => 'page',
+					'is_page'		 => TRUE,
+					'is_singular'	 => FALSE,
+					'is_archive'	 => FALSE
+				);
+				$pg		 = new QA_Virtual_Page( $args );
+			}
+		}
+
+		if ( isset( $wp->query_vars[ 'author_name' ] ) && isset( $wp->query_vars[ 'post_type' ] ) && $wp->query_vars[ 'post_type' ] == 'question' ) {
+			$args	 = array(
+				'slug'			 => $wp->request,
+				'title'			 => __( 'User Profile', QA_TEXTDOMAIN ),
+				'content'		 => $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/user-question.php', array(), true ),
+				'type'			 => 'page',
+				'is_page'		 => TRUE,
+				'is_singular'	 => FALSE,
+				'is_archive'	 => FALSE,
+				'max_num_pages'	 => 1
+			);
+			$pg		 = new QA_Virtual_Page( $args );
+		}
 	}
 
 	/**
@@ -399,10 +440,6 @@ class QA_Core {
 			die;
 		}
 
-		if ( is_qa_page( 'ask' ) ) {
-			$this->load_template( 'ask-question.php' );
-		}
-
 		if ( is_qa_page( 'edit' ) ) {
 			if ( $wp_query->found_posts == 0 ) {
 				$wp_query->is_404 = true;
@@ -413,16 +450,27 @@ class QA_Core {
 		}
 
 		if ( is_qa_page( 'user' ) ) {
+			//global $wp;
 			$wp_query->queried_object_id	 = (int) $wp_query->get( 'author' );
 			$wp_query->queried_object		 = get_userdata( $wp_query->queried_object_id );
 			$wp_query->is_post_type_archive	 = false;
 
-			$this->load_template( 'user-question.php' );
+			$this->load_template( 'user-question-old.php' );
+			/* $args	 = array(
+			  'slug'			 => $wp->request,
+			  'title'			 => __( 'User Profile', QA_TEXTDOMAIN ),
+			  'content'		 => $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/user-question.php', array(), true ),
+			  'type'			 => 'page',
+			  'is_page'		 => TRUE,
+			  'is_singular'	 => FALSE,
+			  'is_archive'	 => FALSE
+			  );
+			  $pg		 = new QA_Virtual_Page( $args ); */
 		}
 
-		/*if ( ( is_qa_page( 'archive' ) && is_search() ) || is_qa_page( 'unanswered' ) ) {
-			$this->load_template( 'archive-question.php' );
-		}*/
+		/* if ( ( is_qa_page( 'archive' ) && is_search() ) || is_qa_page( 'unanswered' ) ) {
+		  $this->load_template( 'archive-question.php' );
+		  } */
 
 		// Redirect template loading to archive-question.php rather than to archive.php
 		if ( is_qa_page( 'tag' ) || is_qa_page( 'category' ) ) {
@@ -430,20 +478,44 @@ class QA_Core {
 		}
 	}
 
-	function get_template_details( $template, $args = array() ) {
+	function get_template_details( $template, $args = array(), $remove_wpautop = false ) {
 		ob_start();
+		if ( $remove_wpautop ) {
+			remove_filter( 'the_content', 'wpautop' );
+		}
 		extract( $args );
-		include( $template );
-		return ob_get_clean();
+		include_once( $template );
+		$content = ob_get_clean();
+
+		return $content;
 	}
 
 	function the_title( $the_title ) {
+		global $wp_query;
+		//var_dump($wp_query);
 		if ( in_the_loop() && is_archive( 'question' ) ) {
 			$qa_class	 = (is_question_answered()) ? "qa-answered-icon" : "qa-unanswered-icon";
 			$qa_status	 = '<div class="qa-status-icon ' . $qa_class . '"></div>';
 			return $qa_status . $the_title;
 		} else {
 			return $the_title;
+		}
+	}
+
+	function single_title( $the_title ) {
+		global $do_not_duplicate;
+		if ( $do_not_duplicate == 0 ) {
+			$do_not_duplicate = 1;
+			return get_the_question_voting() . $the_title . '<div class="clearvf"></div>';
+		} else {
+			return $the_title;
+		}
+	}
+
+	function loop_start() {
+		global $wp_query;
+		if ( is_single() && in_the_loop() && $wp_query->post->post_type == 'question' ) {
+			add_filter( 'the_title', array( &$this, 'single_title' ) );
 		}
 	}
 
