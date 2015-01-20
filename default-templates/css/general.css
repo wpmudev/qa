@@ -1,6 +1,18 @@
 /* = General
 -------------------------------------------------------------- */
 
+.qa_flag_form input[type="submit"]{
+    font-size: 14px;
+    padding: 5px;
+    font-weight: normal;
+}
+
+.qa_flag_form form{
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
 #qa-page-wrapper {
     overflow: hidden;
     padding: 20px;
@@ -133,6 +145,11 @@
 /* = Common Question Elements
 -------------------------------------------------------------- */
 
+.question-categories{
+    width: 100%;
+    display: inline-block;
+}
+
 .question-tags a {
     background-color: #F5F5F5;
     color: #666;
@@ -196,7 +213,7 @@
 }
 
 .mini-count {
-    font-size: 190%;
+    font-size: 100%;
     padding-bottom: 7px;
     padding-top: 7px;
 }
@@ -216,6 +233,7 @@
 
 .question-status.answered-accepted .mini-count {
     background-color: #E0EAF1;
+    padding: 0.3em;
 }
 
 .question-status.unanswered {
@@ -296,6 +314,10 @@
 
 /* = Single Question
 -------------------------------------------------------------- */
+
+#answer-list{
+    margin-top: 50px;
+}
 
 #single-question h1,
 #answer-list h2 {
@@ -512,6 +534,8 @@ input[type=submit].vote-down-on {
 
 #qa-user-details td {
     padding: 4px 0;
+    padding-left: 0.4em;
+    text-align: left;
 }
 
 .ui-tabs-hide {

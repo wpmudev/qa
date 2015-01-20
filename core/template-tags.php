@@ -15,7 +15,7 @@ function get_the_qa_menu() {
 		$menu[]	 = array(
 			'title'		 => __( 'Questions', QA_TEXTDOMAIN ),
 			'type'		 => 'archive',
-			'current'	 => !is_qa_page( 'unanswered' ) && !(isset($wp->query_vars['qa_ask']) ? true : false) && !is_qa_page( 'edit' )
+			'current'	 => !is_qa_page( 'unanswered' ) && !(isset( $wp->query_vars[ 'qa_ask' ] ) ? true : false) && !is_qa_page( 'edit' )
 		);
 		$menu[]	 = array(
 			'title'		 => __( 'Unanswered', QA_TEXTDOMAIN ),
@@ -28,7 +28,7 @@ function get_the_qa_menu() {
 		$menu[] = array(
 			'title'		 => __( 'Ask a Question', QA_TEXTDOMAIN ),
 			'type'		 => 'ask',
-			'current'	 => isset($wp->query_vars['qa_ask']) ? true : false
+			'current'	 => isset( $wp->query_vars[ 'qa_ask' ] ) ? true : false
 		);
 	}
 	$menu = apply_filters( 'qa_modify_menu_items', $menu );
@@ -39,7 +39,7 @@ function get_the_qa_menu() {
 
 	$out .= "<ul>";
 	$out = apply_filters( 'qa_first_menu_item', $out );
-	
+
 	foreach ( $menu as $item ) {
 		extract( $item );
 
@@ -52,9 +52,11 @@ function get_the_qa_menu() {
 		);
 	}
 	$out = apply_filters( 'qa_last_menu_item', $out );
-	$out .= "<li class='qa-search'>";
-	$out .= get_the_qa_search_form();
-	$out .= "</li>";
+	if ( apply_filters( 'qa_show_menu_search_form', false ) ) {
+		$out .= "<li class='qa-search'>";
+		$out .= get_the_qa_search_form();
+		$out .= "</li>";
+	}
 	$out .= "</ul>";
 
 	$out = apply_filters( 'qa_after_menu', $out );
@@ -262,7 +264,7 @@ function the_qa_flag_form( $id ) {
 	global $qa_general_settings;
 
 	$f = '';
-	$f .= '<div id="qa_flag_form_' . $id . '" style="display:none" >';
+	$f .= '<div id="qa_flag_form_' . $id . '" style="display:none" class="qa_flag_form" >';
 	$f .= '<form method="post" action="' . admin_url( "admin-ajax.php" ) . '" >';
 	$f .= '<input type="hidden" name="action" value="qa_flag" />';
 	$f .= '<input type="hidden" name="ID" value="' . $id . '" />';
@@ -299,7 +301,7 @@ function the_qa_flag_form( $id ) {
 	}
 	$f .= '<input type="submit" value="' . __( 'Send Report', QA_TEXTDOMAIN ) . '" />';
 	$f .= '</form>';
-	$f .= '<br />';
+	//$f .= '<br />';
 	$f .= '<input type="submit" value="' . __( 'Cancel', QA_TEXTDOMAIN ) . '" onClick="javascript:document.getElementById(\'qa_flag_form_' . $id . '\').style.display=\'none\';" />';
 	$f .= '</div>';
 
@@ -355,6 +357,10 @@ function get_question_link( $question_id = 0 ) {
 		$question_id = $post->ID;
 	if ( !$question_id )
 		$question_id = get_the_ID();
+
+	if ( !isset( $post ) ) {
+		$post = get_post( $question_id );
+	}
 
 	return apply_filters( 'qa_get_question_link', _qa_html( 'a', array( 'class' => 'question-link', 'href' => qa_get_url( 'single', $question_id ) ), $post->post_title ) );
 }
@@ -716,15 +722,19 @@ function the_answer_list() {
 }
 
 function get_the_answer_form() {
-	global $wp_query, $user_ID, $wp_version, $qa_general_settings, $post;
+	global $wp, $wp_query, $user_ID, $wp_version, $qa_general_settings, $post;
+
+	//if(!isset($post)){
+	$post = get_post( (int) $wp->query_vars[ 'qa_edit' ] );
+	//}
 
 	if ( post_password_required( $post ) )
 		return;
 
 	$out = '';
 
-	if ( is_qa_page( 'edit' ) ) {
-		$answer = $wp_query->posts[ 0 ];
+	if ( isset( $wp->query_vars[ 'qa_edit' ] ) ) {
+		$answer = $post;
 
 		if ( ($user_ID == 0 && !qa_visitor_can( 'edit_published_answers', $answer->ID )) && !current_user_can( 'edit_published_answers', $answer->ID ) )
 			return;

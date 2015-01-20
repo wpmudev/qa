@@ -9,7 +9,8 @@
 
 	<div class="question-summary">
 		<?php do_action( 'qa_before_question_summary' ); ?>
-		<?php the_question_tags( '<div class="question-tags">', ' ', '</div>' ); ?>
+		<?php the_question_tags( '<div class="question-tags">'.__('Tags: ', QA_TEXTDOMAIN), ' ', '</div>' ); ?>
+		<?php the_question_category( '<div class="question-categories">'.__('Categories: ', QA_TEXTDOMAIN), ' ', '</div>' ); ?>
 		<div class="question-started">
 			<?php the_qa_time( get_the_ID() ); ?>
 			<?php the_qa_user_link( $post->post_author ); ?>

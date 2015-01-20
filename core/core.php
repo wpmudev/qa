@@ -41,7 +41,7 @@ class QA_Core {
 
 		add_action( 'loop_start', array( &$this, 'add_custom_content_before_loop' ) );
 
-		add_filter( 'the_content', array( &$this, 'add_custom_content' ), 1 );
+		add_filter( 'the_content', array( &$this, 'add_custom_content' ), 10, 1 );
 
 		add_filter( 'wp_title', array( &$this, 'wp_title' ), 10, 3 );
 		add_filter( 'body_class', array( &$this, 'body_class' ) );
@@ -56,15 +56,15 @@ class QA_Core {
 	function add_custom_content_before_loop() {
 		global $post, $wp;
 
-		if ( (in_the_loop() && get_post_type( $post ) == 'question') || in_the_loop() && isset( $wp->query_vars[ 'qa_ask' ] ) ) {
+		if ( ((in_the_loop() && get_post_type( $post ) == 'question') || in_the_loop() && isset( $wp->query_vars[ 'qa_ask' ] )) && !isset( $wp->query_vars[ 's' ] ) ) {
 			echo $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/qa-menu.php' );
 		}
 	}
 
 	function add_custom_content( $content ) {
 		global $post;
-		if ( get_post_type( $post ) == 'question' ) {
-			$prepend_content = $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/archive-question-single.php' );
+		if ( get_post_type( $post ) == 'question' && !is_single() ) {
+			$prepend_content = $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/archive-question-single.php', array(), false, false );
 			$content		 = $content . $prepend_content;
 		}
 
@@ -78,6 +78,28 @@ class QA_Core {
 	function parse_request( $wp ) {
 
 		global $wp_rewrite, $wp;
+
+		if ( isset( $wp->query_vars[ 'qa_edit' ] ) ) {
+			$theme_file = locate_template( array( 'page-edit-answer.php' ) );
+
+			if ( $theme_file != '' ) {
+				require_once( $theme_file );
+				exit;
+			} else {
+				$args	 = array(
+					'slug'			 => $wp->request,
+					'title'			 => __( 'Edit Answer', QA_TEXTDOMAIN ),
+					'content'		 => $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/edit-answer.php', array(), true ),
+					'type'			 => 'post',
+					'post_type'		 => 'post_type',
+					'is_page'		 => FALSE,
+					'is_singular'	 => TRUE,
+					'is_archive'	 => FALSE,
+					'ID'			 => $wp->query_vars[ 'qa_edit' ]
+				);
+				$pg		 = new QA_Virtual_Page( $args );
+			}
+		}
 
 		if ( isset( $wp->query_vars[ 'qa_ask' ] ) ) {
 			$theme_file = locate_template( array( 'page-ask-question.php' ) );
@@ -478,13 +500,17 @@ class QA_Core {
 		}
 	}
 
-	function get_template_details( $template, $args = array(), $remove_wpautop = false ) {
+	function get_template_details( $template, $args = array(), $remove_wpautop = false, $include_once = true ) {
 		ob_start();
 		if ( $remove_wpautop ) {
 			remove_filter( 'the_content', 'wpautop' );
 		}
 		extract( $args );
-		include_once( $template );
+		if ( $include_once ) {
+			include_once( $template );
+		} else {
+			include( $template );
+		}
 		$content = ob_get_clean();
 
 		return $content;
