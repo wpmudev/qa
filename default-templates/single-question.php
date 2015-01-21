@@ -24,7 +24,8 @@ get_header( 'question' );
 				<div class="question-meta">
 					<?php do_action( 'qa_before_question_meta' ); ?>
 					
-					<?php the_qa_action_links( get_the_ID() ); ?>
+					<?php 
+					the_qa_action_links( get_the_ID() ); ?>
 					<?php the_qa_author_box( get_the_ID() ); ?>
 					
 					<?php do_action( 'qa_after_question_meta' ); ?>

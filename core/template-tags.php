@@ -739,13 +739,14 @@ function get_the_answer_form() {
 		if ( ($user_ID == 0 && !qa_visitor_can( 'edit_published_answers', $answer->ID )) && !current_user_can( 'edit_published_answers', $answer->ID ) )
 			return;
 	} else {
-		if ( ($user_ID == 0 && !qa_visitor_can( 'publish_answers' )) && !current_user_can( 'publish_answers' ) ) {
+		//if ( ($user_ID == 0 && !qa_visitor_can( 'publish_answers' )) && !current_user_can( 'publish_answers' ) ) {
+		if ( !current_user_can( 'publish_answers' ) ) {
 			$out .= '<p>' . __( 'You are not allowed to add answers!', QA_TEXTDOMAIN ) . '</p>';
 			return;
 		}
 		$answer = (object) array(
 			'ID'			 => '',
-			'post_parent'	 => get_the_ID(),
+			'post_parent'	 => $post->ID,
 			'post_content'	 => ''
 		);
 
