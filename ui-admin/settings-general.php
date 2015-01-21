@@ -255,7 +255,7 @@ function qa_settings_field_layout() {
 					</div>
 				</div>
 
-
+<?php } ?>
 			<p class="submit">
 			<?php echo $wp_nonce_verify; ?>
 				<input type="hidden" name="action" value="qa-save" />
@@ -264,7 +264,7 @@ function qa_settings_field_layout() {
 				<img class="ajax-loader" src="<?php echo QA_PLUGIN_URL . 'ui-admin/images/ajax-loader.gif'; ?>" />
 				<span style="display:none;font-weight:bold;color:darkgreen" class="qa_settings_saved"><?php _e( 'Settings saved', QA_TEXTDOMAIN ); ?></span>
 			</p>
-<?php } ?>
+
 			<div class="postbox <?php echo $this->postbox_classes( 'qa_display' ) ?>" id="qa_display">
 				<h3 class='hndle'><span><?php _e( 'Other Display Settings', QA_TEXTDOMAIN ) ?></span></h3>
 
