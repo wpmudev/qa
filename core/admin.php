@@ -85,6 +85,10 @@ class QA_Core_Admin extends QA_Core {
 		add_action( 'manage_question_posts_custom_column', array( &$this, 'show_column') );
 		add_action( 'manage_answer_posts_custom_column', array( &$this, 'show_column') );
 
+		/**
+		 * @since 1.4.5
+		 */
+		add_action( 'init', array( &$this, 'map_role_to_admin' ) );
 	}
 
 	/**
@@ -842,6 +846,19 @@ class QA_Core_Admin extends QA_Core {
 			}
 		}
 		return $allcaps;
+	}
+	/**
+	 * @since 1.4.5
+	 */
+	function map_role_to_admin() {
+		if ( get_option( 'qa_admin_setup_cap' ) == false ) {
+			global $wp_roles;
+			$role = $wp_roles->get_role( 'administrator' );
+			foreach ( $this->capability_map as $key => $val ) {
+				$role->add_cap( $key );
+			}
+			update_option( 'qa_admin_setup_cap', true );
+		}
 	}
 }
 
