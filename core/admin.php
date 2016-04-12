@@ -439,7 +439,6 @@ class QA_Core_Admin extends QA_Core {
 		$results = $wpdb->get_col( $wpdb->prepare( "SELECT t.name FROM $wpdb->term_taxonomy AS tt INNER JOIN $wpdb->terms AS t ON tt.term_id = t.term_id WHERE tt.taxonomy = %s AND t.name LIKE (%s)", $taxonomy, '%' . like_escape( $s ) . '%' ) );
 		echo join( $results, "\n" );
 		die;
-		break;
 	}
 
 	/**
