@@ -1,4 +1,6 @@
 ﻿== Changelog ==
+= 1.4.4 = 2016-04-13
+- Fixed conflict with WP 4.5
 
 = 1.4.4 = 2015-01-19
 - Plugin revamp
