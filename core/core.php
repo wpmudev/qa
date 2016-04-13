@@ -366,6 +366,7 @@ class QA_Core {
 	}
 
 	function check_rewrite_rules( $value ) {
+		remove_action( 'option_rewrite_rules', array( &$this, 'check_rewrite_rules' ) );
 		//prevent an infinite loop
 		if ( !post_type_exists( 'question' ) )
 			return $value;
