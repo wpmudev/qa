@@ -70,7 +70,7 @@ class QA_Core {
 			$content         = $content . $prepend_content;
 		}
 
-		if ( is_single() ) {
+		if ( is_singular( 'question' ) ) {
 			$append_content = $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/single-answers.php' );
 			$content        = $content . $append_content;
 		}
