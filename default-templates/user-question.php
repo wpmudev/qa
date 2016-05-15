@@ -1,21 +1,21 @@
 <?php
 //get_header( 'question' ); 
-global $wp_query, $wp;
+global $wp_query, $wp, $_qa_core;
 $wp_query->max_num_pages = 1;
 
-$author							 = get_user_by( 'login', $wp->query_vars[ 'author_name' ] );
-$wp_query->queried_object_id	 = (int) $author->ID;
-$wp_query->queried_object		 = get_userdata( $author->ID );
-$wp_query->is_post_type_archive	 = false;
+$author                         = get_user_by( 'login', $wp->query_vars['author_name'] );
+$wp_query->queried_object_id    = (int) $author->ID;
+$wp_query->queried_object       = get_userdata( $author->ID );
+$wp_query->is_post_type_archive = false;
 ?>
 <?php
 wp_enqueue_style( 'qa-section', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR . '/css/general.css', array(), QA_VERSION );
 wp_enqueue_script( 'qa-init', QA_PLUGIN_URL . QA_DEFAULT_TEMPLATE_DIR . '/js/init.js', array( 'jquery' ), QA_VERSION );
 wp_localize_script( 'qa-init', 'QA_L10N', array(
-	'ajaxurl'		 => admin_url( 'admin-ajax.php' ),
-	'msg_login'		 => __( 'Please login or register to vote.', QA_TEXTDOMAIN ),
-	'msg_own'		 => __( 'You can\'t vote on your own post.', QA_TEXTDOMAIN ),
-	'content_width'	 => $this->_get_content_width()
+	'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+	'msg_login'     => __( 'Please login or register to vote.', QA_TEXTDOMAIN ),
+	'msg_own'       => __( 'You can\'t vote on your own post.', QA_TEXTDOMAIN ),
+	'content_width' => $_qa_core->_get_content_width()
 ) );
 ?>
 
@@ -29,7 +29,7 @@ wp_localize_script( 'qa-init', 'QA_L10N', array(
 
 			<?php
 			global $bp; //BuddyPress active
-			$userdata						 = (isset( $bp ) ) ? $userdata						 = $bp->displayed_user->userdata : get_queried_object();
+			$userdata = ( isset( $bp ) ) ? $userdata = $bp->displayed_user->userdata : get_queried_object();
 			//var_dump($userdata);
 			?>
 
@@ -53,24 +53,24 @@ wp_localize_script( 'qa-init', 'QA_L10N', array(
 		</table>
 
 		<?php
-		$question_query					 = new WP_Query( array(
-			'author'				 => $userdata->ID,
-			'post_type'				 => 'question',
-			'posts_per_page'		 => 20,
+		$question_query = new WP_Query( array(
+			'author'                 => $userdata->ID,
+			'post_type'              => 'question',
+			'posts_per_page'         => 20,
 			'update_post_term_cache' => false
 		) );
 
 		$answer_query = new WP_Query( array(
-			'author'				 => $userdata->ID,
-			'post_type'				 => 'answer',
-			'posts_per_page'		 => 20,
+			'author'                 => $userdata->ID,
+			'post_type'              => 'answer',
+			'posts_per_page'         => 20,
 			'update_post_term_cache' => false
 		) );
 
 		$fav_query = new WP_Query( array(
-			'post_type'		 => 'question',
-			'meta_key'		 => '_fav',
-			'meta_value'	 => $userdata->ID,
+			'post_type'      => 'question',
+			'meta_key'       => '_fav',
+			'meta_value'     => $userdata->ID,
 			'posts_per_page' => 20,
 		) );
 		?>
@@ -78,12 +78,14 @@ wp_localize_script( 'qa-init', 'QA_L10N', array(
 		<div id="qa-user-tabs-wrapper">
 			<ul id="qa-user-tabs">
 				<li><a href="#qa-user-questions">
-						<span id="user-questions-total"><?php echo number_format_i18n( $question_query->found_posts ); ?></span>
+						<span
+							id="user-questions-total"><?php echo number_format_i18n( $question_query->found_posts ); ?></span>
 						<?php echo _n( 'Question', 'Questions', $question_query->found_posts, QA_TEXTDOMAIN ); ?>
 					</a></li>
 
 				<li><a href="#qa-user-answers">
-						<span id="user-answers-total"><?php echo number_format_i18n( $answer_query->found_posts ); ?></span>
+						<span
+							id="user-answers-total"><?php echo number_format_i18n( $answer_query->found_posts ); ?></span>
 						<?php echo _n( 'Answer', 'Answers', $answer_query->found_posts, QA_TEXTDOMAIN ); ?>
 					</a></li>
 			</ul>
