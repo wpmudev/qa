@@ -1,7 +1,7 @@
 ﻿== Changelog ==
 = 1.4.5.1 = 2016-05-22
-- Fix BuddyPress Q&A page cause fatal error
-- Fix answer form display on other post type
+- Fix BuddyPress Q&A page caused fatal error
+- Fix answer form displayed on other post types
 
 = 1.4.4 = 2015-01-19
 - Plugin revamp
@@ -13,7 +13,7 @@
 = 1.4.3.7 = 2014-06-26
 - Fixed author display in Q&A backend
 
-= 1.4.3.6 = 2014-05-07
+= 1.4.3.6 = 2014-05-07cd wp
 - Admin email notifications pass url to the backend for pending questions.
 - Hides the Answers if a question is password protected.
 - Problem with front end not retrieving "pending listings"
