@@ -1,4 +1,7 @@
 ﻿== Changelog ==
+= 1.4.5.1 = 2016-05-22
+- Fix BuddyPress Q&A page cause fatal error
+- Fix answer form display on other post type
 
 = 1.4.4 = 2015-01-19
 - Plugin revamp
