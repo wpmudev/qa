@@ -64,6 +64,10 @@ class QA_Core {
 	}
 
 	function add_custom_content( $content ) {
+		if ( is_admin() ) {
+			return $content;
+		}
+
 		global $post;
 		if ( get_post_type( $post ) == 'question' && ! is_single() ) {
 			$prepend_content = $this->get_template_details( QA_PLUGIN_DIR . '/default-templates/archive-question-single.php', array(), false, false );
