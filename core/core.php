@@ -419,7 +419,7 @@ class QA_Core {
 			// Fix for incorrect 404 assignment when there are no posts
 			$count_posts = wp_count_posts();
 			if ( ! is_object( $count_posts ) || ! isset( $count_posts->publish ) || ! $count_posts->publish ) {
-				$wp_query->is_robots = true;
+				//$wp_query->is_robots = true;
 			}
 		}
 
