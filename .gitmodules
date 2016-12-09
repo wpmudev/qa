@@ -1,3 +1,0 @@
-[submodule "ext"]
-	path = ext
-	url = git@bitbucket.org:incsub/wpmudev-dashboard-notification.git

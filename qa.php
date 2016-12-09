@@ -142,21 +142,3 @@ if ( !function_exists( 'wpmudev_qa_uninstall' ) ) {
 	}
 }
 register_uninstall_hook(  __FILE__ , 'wpmudev_qa_uninstall' );
-
-/* -------------------- WPMU DEV Dashboard Notice -------------------- */
-//define('WPMUDEV_SCREEN_ID', true);
-global $wpmudev_notices;
-$wpmudev_notices[] = array(
-'id'=> 217,
-'name'=> 'Q&A - WordPress Questions and Answers Plugin',
-'screens' => array(
-'edit-question',
-'question',
-'edit-question_category',
-'edit-question_tag',
-'edit-answer',
-'question_page_qa_settings',
-) );
-
-include_once 'ext/wpmudev-dash-notification.php';
-
