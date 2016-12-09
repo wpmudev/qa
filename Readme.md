@@ -1,4 +1,8 @@
-# Give WordPress a fully-featured questions and answers section – just like StackOverflow, Yahoo Answers and Quora.
+# Q&A Plugin
+
+**INACTIVE NOTICE: This plugin is unsupported by WPMUDEV, we've published it here for those technical types who might want to fork and maintain it for their needs.**
+
+Give WordPress a fully-featured questions and answers section – just like StackOverflow, Yahoo Answers and Quora.
 
 ## Q&A brings full Questions and Answers functionality to any WordPress or BuddyPress site in minutes.
 
